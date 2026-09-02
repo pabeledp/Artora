@@ -1,0 +1,70 @@
+// Prisma schema for Artora by FramEmpire (Fiha Islam)
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model ArtPiece {
+  id               String   @id @default(cuid())
+  slug             String   @unique
+  title            String
+  titleBn          String
+  medium           String   // e.g., "Heavy Impasto Acrylic", "Hand-Painted Silk", "Mixed Media"
+  mediumBn         String
+  canvasSize       String   // e.g., "36 x 48 inches (Gallery Depth Canvas)"
+  canvasSizeBn     String
+  priceBDT         Int      // e.g. 25000 (BDT ৳)
+  priceUSD         Int      // e.g. 230 (USD $)
+  isSold           Boolean  @default(false)
+  isCommissionable Boolean  @default(true)
+  featured         Boolean  @default(false)
+  images           String   // JSON string of image URLs
+  primaryImage     String
+  model3dUrl       String?  // Optional GLTF/GLB or dynamic 3D slab
+  textureMap       String?  // Impasto bump/normal texture map
+  description      String
+  descriptionBn    String
+  year             Int      @default(2025)
+  category         String   // "acrylic", "textile", "original", "print"
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+}
+
+model CommissionRequest {
+  id                String   @id @default(cuid())
+  clientName        String
+  phone             String
+  email             String
+  desiredDimensions String   // e.g., "24 x 36 inches"
+  palette           String?  // JSON array or color theme string
+  budgetBDT         Int
+  description       String
+  wallPhotoUrl      String?
+  status            String   @default("PENDING") // PENDING, REVIEWING, APPROVED, IN_PROGRESS, COMPLETED
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+}
+
+model Order {
+  id              String   @id @default(cuid())
+  orderNumber     String   @unique
+  customerName    String
+  phone           String
+  email           String
+  paymentMethod   String   // "bKash", "Nagad", "Card", "Pathao_COD", "Stripe"
+  paymentStatus   String   @default("PENDING") // "PENDING", "PAID", "FAILED", "COD"
+  shippingAddress String
+  division        String   // "Dhaka", "Chittagong", "Sylhet", etc.
+  itemsJson       String   // JSON string of cart items
+  totalBDT        Int
+  totalUSD        Int
+  currency        String   @default("BDT")
+  transactionId   String?
+  courierStatus   String   @default("PROCESSING") // PROCESSING, DISPATCHED_PATHAO, IN_TRANSIT, DELIVERED
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+}

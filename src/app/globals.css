@@ -1,0 +1,100 @@
+@import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;600;700;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 10 10 12;
+    --foreground: 250 250 250;
+  }
+
+  body {
+    background-color: #0A0A0C;
+    color: #FAFAFA;
+    font-feature-settings: "rlig" 1, "calt" 1;
+    overflow-x: hidden;
+    min-height: 100vh;
+  }
+}
+
+/* Exclusive Bengali Typography: Hind Siliguri for entire site in Bangla mode */
+html[lang="bn"],
+html[lang="bn"] body,
+html[lang="bn"] h1,
+html[lang="bn"] h2,
+html[lang="bn"] h3,
+html[lang="bn"] h4,
+html[lang="bn"] h5,
+html[lang="bn"] h6,
+html[lang="bn"] p,
+html[lang="bn"] span,
+html[lang="bn"] button,
+html[lang="bn"] a,
+html[lang="bn"] input,
+html[lang="bn"] textarea,
+html[lang="bn"] select {
+  font-family: 'Hind Siliguri', sans-serif !important;
+}
+
+/* English Typography */
+html[lang="en"] body {
+  font-family: 'Inter', sans-serif;
+}
+
+html[lang="en"] .font-display,
+html[lang="en"] h1,
+html[lang="en"] h2,
+html[lang="en"] h3 {
+  font-family: 'Space Grotesk', sans-serif;
+}
+
+/* Custom Scrollbar for Minimalist Futuristic Aesthetic */
+::-webkit-scrollbar {
+  width: 7px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0D0004;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(230, 0, 73, 0.25);
+  border-radius: 9999px;
+  border: 2px solid #0D0004;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #E60049;
+}
+
+/* Matte Glass Textures & Metallic Magenta-Red Outlines */
+.glass-panel {
+  background: rgba(27, 3, 10, 0.72);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(230, 0, 73, 0.20);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4), inset 0 1px 1px 0 rgba(255, 176, 193, 0.12);
+}
+
+.glass-panel:hover {
+  border-color: rgba(230, 0, 73, 0.45);
+  box-shadow: 0 12px 40px 0 rgba(230, 0, 73, 0.15), inset 0 1px 1px 0 rgba(255, 176, 193, 0.25);
+}
+
+.glass-glow-crimson {
+  box-shadow: 0 0 35px -5px rgba(230, 0, 73, 0.35);
+}
+
+.glass-glow-soft {
+  box-shadow: 0 0 35px -5px rgba(255, 176, 193, 0.25);
+}
+
+/* Futuristic Geometric Grid & Lighting Overlay */
+.bg-tech-grid {
+  background-size: 40px 40px;
+  background-image: 
+    linear-gradient(to right, rgba(230, 0, 73, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(230, 0, 73, 0.04) 1px, transparent 1px);
+}
