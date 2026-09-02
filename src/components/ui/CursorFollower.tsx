@@ -1,89 +1,50 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
-import { motion } from 'framer-motion';
+import React, { useEffect, useRef } from 'react';
 
 export const CursorFollower: React.FC = () => {
-  const [mousePosition, setMousePosition] = useState({ x: -100, y: -100 });
-  const [isHovered, setIsHovered] = useState(false);
-  const [isVisible, setIsVisible] = useState(false);
+  const dotRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    // Only show on devices with fine pointer (mouse)
-    if (window.matchMedia('(pointer: fine)').matches) {
-      setIsVisible(true);
-    }
+    // Only run on desktop with fine mouse pointer
+    if (!window.matchMedia('(pointer: fine)').matches) return;
 
-    const updateMousePosition = (e: MouseEvent) => {
-      setMousePosition({ x: e.clientX, y: e.clientY });
+    let mouseX = -100;
+    let mouseY = -100;
+    let currentX = -100;
+    let currentY = -100;
+    let animId: number;
+
+    const onMouseMove = (e: MouseEvent) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
     };
 
-    const handleMouseOver = (e: MouseEvent) => {
-      const target = e.target as HTMLElement;
-      if (
-        target.tagName === 'BUTTON' ||
-        target.tagName === 'A' ||
-        target.closest('button') ||
-        target.closest('a') ||
-        target.getAttribute('role') === 'button'
-      ) {
-        setIsHovered(true);
-      } else {
-        setIsHovered(false);
+    const animate = () => {
+      // Smooth linear interpolation (lerp)
+      currentX += (mouseX - currentX) * 0.25;
+      currentY += (mouseY - currentY) * 0.25;
+
+      if (dotRef.current) {
+        dotRef.current.style.transform = `translate3d(${currentX - 6}px, ${currentY - 6}px, 0)`;
       }
+      animId = requestAnimationFrame(animate);
     };
 
-    window.addEventListener('mousemove', updateMousePosition);
-    window.addEventListener('mouseover', handleMouseOver);
+    window.addEventListener('mousemove', onMouseMove, { passive: true });
+    animId = requestAnimationFrame(animate);
 
     return () => {
-      window.removeEventListener('mousemove', updateMousePosition);
-      window.removeEventListener('mouseover', handleMouseOver);
+      window.removeEventListener('mousemove', onMouseMove);
+      cancelAnimationFrame(animId);
     };
   }, []);
 
-  if (!isVisible) return null;
-
   return (
-    <>
-      {/* Primary Glowing Brush Dot */}
-      <motion.div
-        className="pointer-events-none fixed left-0 top-0 z-50 rounded-full mix-blend-screen"
-        animate={{
-          x: mousePosition.x - (isHovered ? 20 : 8),
-          y: mousePosition.y - (isHovered ? 20 : 8),
-          width: isHovered ? 40 : 16,
-          height: isHovered ? 40 : 16,
-          backgroundColor: isHovered ? '#FF2A5F' : '#E6B93F',
-          boxShadow: isHovered
-            ? '0 0 30px 8px rgba(255, 42, 95, 0.8), 0 0 50px 15px rgba(124, 58, 237, 0.4)'
-            : '0 0 20px 4px rgba(230, 185, 63, 0.7)',
-        }}
-        transition={{
-          type: 'spring',
-          damping: 25,
-          stiffness: 350,
-          mass: 0.2,
-        }}
-      />
-
-      {/* Trailing Acrylic Fluid Halo */}
-      <motion.div
-        className="pointer-events-none fixed left-0 top-0 z-40 rounded-full opacity-30 blur-md mix-blend-screen"
-        animate={{
-          x: mousePosition.x - 30,
-          y: mousePosition.y - 30,
-          width: 60,
-          height: 60,
-          background: 'radial-gradient(circle, #7C3AED 0%, #FF2A5F 50%, transparent 80%)',
-        }}
-        transition={{
-          type: 'spring',
-          damping: 35,
-          stiffness: 150,
-          mass: 0.6,
-        }}
-      />
-    </>
+    <div
+      ref={dotRef}
+      className="pointer-events-none fixed top-0 left-0 z-50 w-3 h-3 rounded-full bg-[#E60049] shadow-[0_0_15px_rgba(230,0,73,0.8)] mix-blend-screen will-change-transform hidden md:block"
+      style={{ transform: 'translate3d(-100px, -100px, 0)' }}
+    />
   );
 };

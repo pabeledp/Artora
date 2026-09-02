@@ -100,37 +100,26 @@ export const Navbar: React.FC = () => {
           </nav>
 
           {/* Top Right Actions */}
-          <div className="flex items-center gap-1.5 sm:gap-3">
-            {/* Currency Switcher */}
-            <button
-              onClick={toggleCurrency}
-              title="Toggle BDT ৳ / USD $"
-              className="px-2 sm:px-3 py-1 sm:py-1.5 rounded-full text-[11px] sm:text-xs font-mono font-semibold bg-void-card border border-glass-border text-white hover:text-gold hover:border-gold transition-all backdrop-blur-md flex items-center gap-1 shadow-sm"
-            >
-              <span className={currency === 'BDT' ? 'text-gold font-bold' : 'text-white/40'}>৳</span>
-              <span className="text-white/20">/</span>
-              <span className={currency === 'USD' ? 'text-gold font-bold' : 'text-white/40'}>$</span>
-            </button>
-
+          <div className="flex items-center gap-2 sm:gap-3">
             {/* Language Switcher */}
             <button
               onClick={toggleLanguage}
               title="Toggle Bengali / English"
-              className="px-2 sm:px-3 py-1 sm:py-1.5 rounded-full text-[11px] sm:text-xs font-semibold bg-void-card border border-glass-border text-white hover:text-[#FFB0C1] hover:border-[#E60049] transition-all backdrop-blur-md flex items-center gap-1 shadow-sm"
+              className="px-3 py-1.5 rounded-full text-xs font-semibold bg-void-card border border-glass-border text-white hover:text-[#FFB0C1] hover:border-[#E60049] transition-all backdrop-blur-md flex items-center gap-1.5 shadow-sm"
             >
-              <Globe className="w-3 h-3 text-[#E60049]" />
+              <Globe className="w-3.5 h-3.5 text-[#E60049]" />
               <span>{locale === 'bn' ? 'বাংলা' : 'EN'}</span>
             </button>
 
             {/* Cart Button */}
             <button
               onClick={() => setIsCartOpen(true)}
-              className="relative p-1.5 sm:p-2.5 rounded-full bg-void-card border border-glass-border text-white hover:text-gold hover:border-gold transition-all backdrop-blur-md shadow-sm"
+              className="relative p-2 sm:p-2.5 rounded-full bg-void-card border border-glass-border text-white hover:text-gold hover:border-gold transition-all backdrop-blur-md shadow-sm"
               aria-label="Open Cart"
             >
               <ShoppingBag className="w-4 h-4" />
               {totalCount > 0 && (
-                <span className="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-[#E60049] text-white font-bold text-[9px] flex items-center justify-center border-2 border-void shadow-neon-crimson">
+                <span className="absolute -top-1 -right-1 w-4 h-4 sm:w-5 sm:h-5 rounded-full bg-[#E60049] text-white font-bold text-[9px] sm:text-[10px] flex items-center justify-center border-2 border-void shadow-neon-crimson">
                   {totalCount}
                 </span>
               )}

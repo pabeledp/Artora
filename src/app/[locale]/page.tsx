@@ -218,14 +218,14 @@ export default function HomePage() {
                   <div className="absolute top-3 right-3">
                     <Link
                       href={`/art/${featuredHeroArt.slug}`}
-                      className="px-3 py-1 rounded-full text-[10px] sm:text-xs font-mono bg-black/70 backdrop-blur-md border border-gold/40 text-gold hover:bg-gold hover:text-black transition-all flex items-center gap-1"
+                      className="px-3 py-1 rounded-full text-[10px] sm:text-xs font-mono bg-white/10 hover:bg-white/20 backdrop-blur-xl border border-white/25 text-white hover:border-[#FFB0C1] transition-all flex items-center gap-1 shadow-sm"
                     >
-                      <Zap className="w-3 h-3 text-gold animate-bounce" /> 3D View
+                      <Zap className="w-3 h-3 text-[#FFB0C1]" /> 3D View
                     </Link>
                   </div>
 
                   {/* Artwork Plaque on Image Bottom */}
-                  <div className="absolute bottom-3 left-3 right-3 p-3 rounded-xl bg-black/75 backdrop-blur-md border border-white/15 flex items-center justify-between">
+                  <div className="absolute bottom-3 left-3 right-3 p-3 rounded-xl bg-black/80 backdrop-blur-xl border border-white/15 flex items-center justify-between">
                     <div>
                       <h3 className="font-display font-bold text-sm sm:text-base text-white truncate">
                         {locale === 'bn' ? featuredHeroArt.titleBn : featuredHeroArt.title}
@@ -239,9 +239,9 @@ export default function HomePage() {
 
                     <div className="flex items-center gap-2 shrink-0">
                       <Link href={`/art/${featuredHeroArt.slug}`}>
-                        <button className="px-3 py-1.5 rounded-lg text-xs font-bold bg-gold text-black hover:bg-amber-400 transition-colors flex items-center gap-1 shadow-md">
+                        <button className="px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-white/10 hover:bg-white/20 text-white border border-white/25 backdrop-blur-xl transition-all flex items-center gap-1 shadow-sm">
                           <span>{locale === 'bn' ? 'দেখুন' : 'View'}</span>
-                          <ArrowRight className="w-3 h-3" />
+                          <ArrowRight className="w-3 h-3 text-[#FFB0C1]" />
                         </button>
                       </Link>
                     </div>

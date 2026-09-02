@@ -12,19 +12,49 @@ import { CursorFollower } from '@/components/ui/CursorFollower';
 import '../globals.css';
 
 export const metadata: Metadata = {
-  title: 'Artora by FramEmpire • Fiha Islam | Futuristic Acrylic & Fine Art',
+  metadataBase: new URL('https://www.artora.framempire.com'),
+  title: 'Professional Canvas Artist | Fiha Islam',
   description:
-    'Futuristic luxury e-commerce portfolio and 3D art experience by artist Fiha Islam. Original acrylic impasto, wearable canvas silks, and bespoke art commissions in Dhaka, Bangladesh.',
+    'Original hand-painted acrylic impasto, sacred Arabic calligraphy, and bespoke fine art by artist Fiha Islam. Based in Kutubpur, Fatullah, Narayanganj, Dhaka.',
   keywords: [
+    'Professional Canvas Artist',
+    'Fiha Islam',
     'Artora',
     'FramEmpire',
-    'Fiha Islam',
-    'Acrylic Impasto Bangladesh',
+    'Arabic Calligraphy Canvas',
+    'Acrylic Impasto Artist Bangladesh',
     'Fine Art Dhaka',
     'Custom Painting Commission',
-    '3D Art Gallery',
-    'Hand-Painted Silk',
   ],
+  icons: {
+    icon: '/images/artora-logo.png',
+    shortcut: '/images/artora-logo.png',
+    apple: '/images/artora-logo.png',
+  },
+  openGraph: {
+    title: 'Professional Canvas Artist | Fiha Islam',
+    description:
+      'Original hand-painted acrylic impasto, sacred Arabic calligraphy, and bespoke fine art by artist Fiha Islam. Nationwide delivery via Steadfast Courier.',
+    url: 'https://www.artora.framempire.com',
+    siteName: 'Artora by FramEmpire',
+    images: [
+      {
+        url: '/images/fiha-islam.png',
+        width: 1200,
+        height: 1200,
+        alt: 'Professional Canvas Artist - Fiha Islam',
+      },
+    ],
+    locale: 'bn_BD',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Professional Canvas Artist | Fiha Islam',
+    description:
+      'Original hand-painted acrylic impasto, sacred Arabic calligraphy, and bespoke fine art by artist Fiha Islam.',
+    images: ['/images/fiha-islam.png'],
+  },
 };
 
 export default async function LocaleLayout({
@@ -50,8 +80,9 @@ export default async function LocaleLayout({
           href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;600;700;900&display=swap"
           rel="stylesheet"
         />
+        <link rel="icon" href="/images/artora-logo.png" type="image/png" />
       </head>
-      <body className="bg-void text-white font-sans antialiased selection:bg-crimson selection:text-white bg-tech-grid min-h-screen flex flex-col justify-between relative">
+      <body className="bg-void text-white font-sans antialiased selection:bg-[#E60049] selection:text-white bg-tech-grid min-h-screen flex flex-col justify-between relative">
         <NextIntlClientProvider messages={messages} locale={locale}>
           <CurrencyProvider>
             <CartProvider>

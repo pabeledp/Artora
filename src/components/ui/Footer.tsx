@@ -1,25 +1,26 @@
 'use client';
 
 import React from 'react';
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
 import { Link } from '@/i18n/routing';
-import { MapPin, Phone, Mail, Instagram, Facebook, ShieldCheck, Truck, MessageCircle } from 'lucide-react';
+import { MapPin, Phone, Mail, Facebook, Globe, ShieldCheck, Truck, MessageCircle } from 'lucide-react';
 
 export const Footer: React.FC = () => {
   const t = useTranslations('footer');
   const tNav = useTranslations('nav');
+  const locale = useLocale();
 
   return (
     <footer className="relative bg-void-light/80 border-t border-glass-border pt-16 pb-12 overflow-hidden">
       {/* Glow ambient spots */}
-      <div className="absolute top-0 left-1/4 w-96 h-96 bg-crimson/5 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-violet/5 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-0 left-1/4 w-96 h-96 bg-[#E60049]/5 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-[#FFB0C1]/5 rounded-full blur-3xl pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 pb-12 border-b border-glass-border">
           {/* Brand Info */}
           <div className="space-y-4 lg:col-span-1">
-            <div className="flex items-center gap-3">
+            <div className="flex flex-col items-start">
               <div className="relative h-10 w-36 flex items-center">
                 <img
                   src="/images/artora-logo.png"
@@ -27,26 +28,31 @@ export const Footer: React.FC = () => {
                   className="h-10 w-auto object-contain mix-blend-screen brightness-110"
                 />
               </div>
+              <span className="text-[10px] text-white/50 tracking-wider font-mono -mt-1 pl-0.5">
+                by <span className="text-white/80 font-semibold">FramEmpire</span>
+              </span>
             </div>
+            
             <p className="text-xs text-white/60 leading-relaxed">{t('about')}</p>
+
             <div className="flex items-center gap-3 pt-2">
               <a
-                href="https://facebook.com"
+                href="https://www.facebook.com/profile.php?id=61591782255184"
                 target="_blank"
                 rel="noreferrer"
-                className="w-8 h-8 rounded-full bg-void-card border border-glass-border flex items-center justify-center text-white/70 hover:text-crimson hover:border-crimson transition-all"
-                title="Facebook"
+                className="w-8 h-8 rounded-full bg-void-card border border-glass-border flex items-center justify-center text-white/70 hover:text-[#1877F2] hover:border-[#1877F2] transition-all"
+                title="Artora Facebook Page"
               >
                 <Facebook className="w-4 h-4" />
               </a>
               <a
-                href="https://instagram.com"
+                href="https://www.artora.framempire.com"
                 target="_blank"
                 rel="noreferrer"
-                className="w-8 h-8 rounded-full bg-void-card border border-glass-border flex items-center justify-center text-white/70 hover:text-gold hover:border-gold transition-all"
-                title="Instagram"
+                className="w-8 h-8 rounded-full bg-void-card border border-glass-border flex items-center justify-center text-white/70 hover:text-[#FFB0C1] hover:border-[#E60049] transition-all"
+                title="Official Website"
               >
-                <Instagram className="w-4 h-4" />
+                <Globe className="w-4 h-4" />
               </a>
               <a
                 href="https://wa.me/8801723722019"
@@ -96,7 +102,7 @@ export const Footer: React.FC = () => {
             </h4>
             <div className="space-y-2.5 text-xs text-white/70">
               <p className="flex items-start gap-2">
-                <MapPin className="w-4 h-4 text-crimson shrink-0 mt-0.5" />
+                <MapPin className="w-4 h-4 text-[#E60049] shrink-0 mt-0.5" />
                 <span>{t('address')}</span>
               </p>
               <p className="flex items-center gap-2">
@@ -120,29 +126,29 @@ export const Footer: React.FC = () => {
             </div>
           </div>
 
-          {/* Logistics Badges */}
+          {/* Delivery & Consultation Badges */}
           <div className="space-y-3">
             <h4 className="text-sm font-semibold uppercase tracking-wider text-gold">
-              Payment & Delivery
+              {locale === 'bn' ? 'পরামর্শ ও ডেলিভারি' : 'Consultation & Delivery'}
             </h4>
             <div className="space-y-2">
               <div className="p-3 rounded-xl bg-void-card border border-glass-border text-[11px] text-white/70 space-y-1">
                 <div className="flex items-center gap-1.5 font-semibold text-emerald-400">
                   <ShieldCheck className="w-3.5 h-3.5" />
-                  <span>Direct Gateway Integration</span>
+                  <span>{locale === 'bn' ? 'সরাসরি আলোচনা ও কাস্টম প্রাইসিং' : 'Direct Consultation & Custom Pricing'}</span>
                 </div>
                 <p className="text-[10px] text-white/50">
-                  bKash • Nagad • SSLCommerz • Stripe Global
+                  {locale === 'bn' ? 'শিল্পীর সাথে আলোচনা করে পছন্দ অনুযায়ী মূল্য নির্ধারণ' : 'Discuss directly with artist to finalize custom pricing'}
                 </p>
               </div>
 
               <div className="p-3 rounded-xl bg-void-card border border-glass-border text-[11px] text-white/70 space-y-1">
                 <div className="flex items-center gap-1.5 font-semibold text-amber-400">
                   <Truck className="w-3.5 h-3.5" />
-                  <span>Courier & Packaging</span>
+                  <span>Steadfast Courier Delivery</span>
                 </div>
                 <p className="text-[10px] text-white/50">
-                  Pathao Logistics (BD) • Worldwide Express Shipping
+                  {locale === 'bn' ? 'সারা বাংলাদেশে স্টেডফাস্ট কুরিয়ারে নিরাপদ হোম ডেলিভারি' : 'Safe Nationwide Home Delivery via Steadfast Courier'}
                 </p>
               </div>
             </div>
