@@ -31,6 +31,48 @@ export interface ArtWork {
 
 export const ARTWORKS_DATA: ArtWork[] = [
   {
+    id: "art-calligraphy-1",
+    slug: "la-tahzan-arabic-calligraphy",
+    title: "La Tahzan (لا تَحْزَنْ إِنَّ اللَّهَ مَعَنَا)",
+    titleBn: "লা তাহযান - আরবি ক্যালিগ্রাফি ও টেক্সচার্ড ক্যানভাস",
+    medium: "Arabic Calligraphy & Textured Earth Palette Acrylic on Canvas",
+    mediumBn: "আরবি ক্যালিগ্রাফি ও টেক্সচার্ড আর্থ প্যালেট অ্যাক্রিলিক (ক্যানভাস)",
+    canvasSize: "30 x 48 inches (Horizontal Gallery Canvas)",
+    canvasSizeBn: "৩০ x ৪৮ ইঞ্চি (হরাইজন্টাল গ্যালারি ফ্রেম)",
+    priceBDT: 35000,
+    priceUSD: 310,
+    isSold: false,
+    isCommissionable: true,
+    featured: true,
+    category: "original",
+    year: 2025,
+    primaryImage: "/images/hero-calligraphy.png",
+    images: [
+      "/images/hero-calligraphy.png",
+      "https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?q=80&w=1200&auto=format&fit=crop"
+    ],
+    colorPalette: ["#B88B58", "#5A3825", "#F4ECE1", "#221A15", "#A3CAD6"],
+    description: "An evocative, spiritually uplifting masterpiece featuring the timeless Quranic verse 'Do not grieve, indeed Allah is with us' (لا تَحْزَنْ إِنَّ اللَّهَ مَعَنَا). Hand-crafted with organic raw earth ochre textures, intricate floral leaf accents, and bold fluid Arabic calligraphy by Fiha Islam.",
+    descriptionBn: "কোরআনের চিরন্তন সান্ত্বনা ও আশার বাণী 'হতাশ হয়ো না, নিশ্চয়ই আল্লাহ আমাদের সাথে আছেন' (لا تَحْزَنْ إِنَّ اللَّهَ مَعَنَا) সম্বলিত আত্মিক প্রশান্তির এক অনন্য মাস্টারপিস। শিল্পী ফিহা ইসলামের নিপুণ হাতে রাস্টি-আর্থ টেক্সচার ও সূক্ষ্ম ফ্লোরাল পাতার নকশায় তৈরি অরিজিনাল ক্যানভাস।",
+    dimensions: {
+      widthInches: 48,
+      heightInches: 30,
+      depthInches: 1.5
+    },
+    highlights: [
+      "Sacred Quranic Arabic Calligraphy (Thuluth script style)",
+      "Multi-layered earthy ochre & textured brush strokes",
+      "Hand-painted delicate botanical foliage corners",
+      "Signed by Artist Fiha Islam with Authenticity Certificate"
+    ],
+    highlightsBn: [
+      "পবিত্র কোরআনিক আরবি ক্যালিগ্রাফি (থুলুথ ও দিওয়ানি ফ্লেভার)",
+      "মাল্টি-লেয়ার্ড রাস্ট-আর্থ ও টেক্সচার্ড ক্যানভাস ব্যাকগ্রাউন্ড",
+      "হাতে আঁকা সূক্ষ্ম বোটানিক্যাল ফ্লোরাল লিফ অ্যাকসেন্ট",
+      "শিল্পী ফিহা ইসলামের স্বাক্ষরযুক্ত প্রামাণ্য সার্টিফিকেট"
+    ]
+  },
+  {
     id: "art-1",
     slug: "crimson-monsoon-impasto",
     title: "Crimson Monsoon (রক্তিম বর্ষা)",
