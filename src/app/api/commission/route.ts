@@ -58,7 +58,7 @@ export async function POST(req: NextRequest) {
     // 2. Google Apps Script Web App API Forwarding (Google Sheets & Email)
     const appsScriptUrl =
       process.env.NEXT_PUBLIC_APPS_SCRIPT_URL ||
-      'https://script.google.com/macros/s/AKfycbxCfTeV3bXvPvGDs1EFtmDx72zqLIhhGxKVgDSyDojHWTlQMT_0qli5lv-sT5Kj02esDg/exec';
+      'https://script.google.com/macros/s/AKfycbyhE7UBrWkfQPQZZBqTXnObIqITWi7uh6MWwGN8Ac44GPLh9ic1mjtswiPS6Yv7lcWU8A/exec';
 
     if (appsScriptUrl) {
       try {
