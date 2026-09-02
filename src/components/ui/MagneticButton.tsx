@@ -7,7 +7,7 @@ interface MagneticButtonProps {
   children: React.ReactNode;
   className?: string;
   onClick?: () => void;
-  variant?: 'primary' | 'secondary' | 'gold' | 'outline';
+  variant?: 'primary' | 'secondary' | 'gold' | 'glass' | 'outline';
   disabled?: boolean;
   type?: 'button' | 'submit' | 'reset';
 }
@@ -45,6 +45,8 @@ export const MagneticButton: React.FC<MagneticButtonProps> = ({
         return 'bg-gradient-to-r from-gold to-amber-500 text-void font-bold shadow-neon-gold border-gold/40 hover:border-gold';
       case 'secondary':
         return 'bg-gradient-to-r from-violet to-indigo-600 text-white shadow-neon-violet border-violet/30 hover:border-violet';
+      case 'glass':
+        return 'bg-white/[0.08] text-white backdrop-blur-2xl border border-white/20 hover:border-[#25D366]/60 hover:bg-[#25D366]/15 hover:shadow-[0_0_25px_rgba(37,211,102,0.3)] transition-all';
       case 'outline':
       default:
         return 'bg-void-card/80 text-white backdrop-blur-md border-glass-border hover:border-crimson hover:shadow-neon-crimson';

@@ -156,8 +156,8 @@ export default function HomePage() {
                 rel="noopener noreferrer"
                 className="w-full sm:w-auto"
               >
-                <MagneticButton variant="gold" className="w-full sm:w-auto text-xs sm:text-sm py-3.5 px-6 sm:px-8">
-                  <MessageSquare className="w-4 h-4" />
+                <MagneticButton variant="glass" className="w-full sm:w-auto text-xs sm:text-sm py-3.5 px-6 sm:px-8">
+                  <MessageSquare className="w-4 h-4 text-[#25D366]" />
                   <span>{locale === 'bn' ? 'হোয়াটসঅ্যাপে কথা বলুন' : 'Chat on WhatsApp'}</span>
                 </MagneticButton>
               </a>

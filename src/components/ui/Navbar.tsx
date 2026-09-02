@@ -51,18 +51,28 @@ export const Navbar: React.FC = () => {
         }`}
       >
         <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 flex items-center justify-between">
-          {/* Brand Logo */}
-          <Link href="/" className="group flex items-center gap-2">
-            <div className="relative h-9 sm:h-12 w-28 sm:w-40 flex items-center">
-              <img
-                src="/images/artora-logo.png"
-                alt="Artora Logo"
-                className="h-full w-auto object-contain mix-blend-screen brightness-125 drop-shadow-[0_0_15px_rgba(255,176,193,0.4)] group-hover:brightness-150 transition-all duration-300"
-              />
+          {/* Brand Logo & Artist Identity */}
+          <Link href="/" className="group flex items-center gap-3">
+            {/* Logo + by FramEmpire */}
+            <div className="flex flex-col items-start">
+              <div className="relative h-8 sm:h-11 w-28 sm:w-36 flex items-center">
+                <img
+                  src="/images/artora-logo.png"
+                  alt="Artora Logo"
+                  className="h-full w-auto object-contain mix-blend-screen brightness-125 drop-shadow-[0_0_15px_rgba(255,176,193,0.4)] group-hover:brightness-150 transition-all duration-300"
+                />
+              </div>
+              <span className="text-[9px] text-white/50 tracking-wider font-mono -mt-1 pl-0.5">
+                by <span className="text-white/80 font-semibold group-hover:text-gold transition-colors">FramEmpire</span>
+              </span>
             </div>
-            <span className="text-[9px] uppercase tracking-widest px-1.5 py-0.5 rounded-full bg-[#E60049]/15 text-[#FFB0C1] font-mono border border-[#E60049]/30 hidden lg:inline-block">
-              STUDIO
-            </span>
+
+            {/* PC Only Separator & Artist Tag */}
+            <div className="hidden md:flex items-center gap-3 pl-2 border-l border-white/25 h-7 self-center">
+              <span className="font-display font-medium text-sm sm:text-base text-white/90 tracking-wide">
+                Fiha Islam
+              </span>
+            </div>
           </Link>
 
           {/* Desktop Nav Links */}
