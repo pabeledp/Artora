@@ -67,16 +67,16 @@ export default function ShopPage() {
       </div>
 
       {/* Control Toolbar: Filter tabs & View Mode switcher */}
-      <div className="flex flex-col md:flex-row items-center justify-between gap-6 mb-10 pb-6 border-b border-glass-border">
-        {/* Category Pills */}
-        <div className="flex flex-wrap items-center gap-2">
+      <div className="flex flex-col md:flex-row items-center justify-between gap-4 sm:gap-6 mb-10 pb-6 border-b border-glass-border">
+        {/* Category Pills (horizontally scrollable on mobile) */}
+        <div className="flex items-center gap-2 overflow-x-auto max-w-full w-full md:w-auto pb-2 md:pb-0 scrollbar-none snap-x">
           {categories.map((cat) => (
             <button
               key={cat.key}
               onClick={() => setActiveCategory(cat.key)}
-              className={`px-4 py-2 rounded-full text-xs font-medium transition-all ${
+              className={`px-4 py-2 rounded-full text-xs font-medium transition-all shrink-0 snap-start ${
                 activeCategory === cat.key
-                  ? 'bg-gradient-to-r from-crimson to-violet text-white shadow-neon-crimson border-crimson/50 font-bold'
+                  ? 'bg-gradient-to-r from-[#E60049] to-[#2B020A] text-white shadow-neon-crimson border border-[#E60049]/50 font-bold'
                   : 'bg-void-card border border-glass-border text-white/70 hover:text-white hover:border-white/20'
               }`}
             >

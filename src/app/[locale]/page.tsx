@@ -288,7 +288,8 @@ export default function HomePage() {
               </Link>
             </div>
 
-            <div className="space-y-3 flex-1 overflow-y-auto max-h-[550px] pr-1">
+            {/* Responsive Deck: Horizontal swipe on mobile, vertical stack on desktop */}
+            <div className="flex flex-row lg:flex-col gap-3 overflow-x-auto lg:overflow-y-auto max-h-[550px] pb-2 lg:pb-0 pr-1 snap-x scrollbar-thin">
               {filteredArtworks.map((art, idx) => {
                 const isSelected = activeArt.id === art.id;
                 return (
@@ -296,32 +297,33 @@ export default function HomePage() {
                     key={art.id}
                     onClick={() => setActiveArtIndex(idx)}
                     whileHover={{ x: 4 }}
-                    className={`p-3 rounded-2xl cursor-pointer transition-all duration-300 flex items-center gap-4 border ${
+                    className={`p-3 rounded-2xl cursor-pointer transition-all duration-300 flex items-center gap-3.5 border min-w-[240px] sm:min-w-[280px] lg:min-w-0 snap-start shrink-0 lg:shrink ${
                       isSelected
-                        ? 'bg-[#2B020A]/80 border-[#E60049] shadow-neon-crimson'
+                        ? 'bg-[#2B020A]/90 border-[#E60049] shadow-neon-crimson'
                         : 'bg-void-card border-glass-border hover:border-white/20 hover:bg-white/5'
                     }`}
                   >
-                    <div className="relative w-20 h-20 rounded-xl overflow-hidden shrink-0 bg-void-light border border-white/10">
+                    <div className="relative w-16 h-16 sm:w-20 sm:h-20 rounded-xl overflow-hidden shrink-0 bg-void-light border border-white/10">
                       <img
                         src={art.primaryImage}
                         alt={art.title}
                         className="w-full h-full object-cover"
+                        loading="lazy"
                       />
                       {isSelected && (
                         <div className="absolute inset-0 bg-[#E60049]/20 flex items-center justify-center">
-                          <Eye className="w-5 h-5 text-white" />
+                          <Eye className="w-4 h-4 text-white" />
                         </div>
                       )}
                     </div>
 
                     <div className="flex-1 min-w-0">
-                      <h4 className={`text-sm font-bold truncate transition-colors ${
+                      <h4 className={`text-xs sm:text-sm font-bold truncate transition-colors ${
                         isSelected ? 'text-[#FFB0C1]' : 'text-white'
                       }`}>
                         {locale === 'bn' ? art.titleBn : art.title}
                       </h4>
-                      <p className="text-[11px] text-white/50 truncate mt-0.5">
+                      <p className="text-[10px] sm:text-[11px] text-white/50 truncate mt-0.5">
                         {locale === 'bn' ? art.canvasSizeBn : art.canvasSize}
                       </p>
                       <span className="text-xs font-mono font-bold text-gold block mt-1">
@@ -330,7 +332,7 @@ export default function HomePage() {
                     </div>
 
                     {isSelected && (
-                      <div className="w-2 h-2 rounded-full bg-[#E60049] shadow-neon-crimson shrink-0" />
+                      <div className="w-2 h-2 rounded-full bg-[#E60049] shadow-neon-crimson shrink-0 hidden lg:block" />
                     )}
                   </motion.div>
                 );

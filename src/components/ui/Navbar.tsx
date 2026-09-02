@@ -5,7 +5,7 @@ import { useTranslations, useLocale } from 'next-intl';
 import { Link, usePathname, useRouter } from '@/i18n/routing';
 import { useCurrency } from '@/lib/currency';
 import { useCart } from '@/lib/cart';
-import { Sparkles, ShoppingBag, Globe, Menu, X, DollarSign } from 'lucide-react';
+import { ShoppingBag, Globe, Menu, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 export const Navbar: React.FC = () => {
@@ -20,9 +20,9 @@ export const Navbar: React.FC = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
+      setIsScrolled(window.scrollY > 15);
     };
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -44,23 +44,23 @@ export const Navbar: React.FC = () => {
   return (
     <>
       <header
-        className={`fixed top-0 left-0 right-0 z-40 transition-all duration-500 ${
+        className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
           isScrolled
-            ? 'py-3 bg-void/80 backdrop-blur-xl border-b border-glass-border shadow-2xl'
-            : 'py-5 bg-transparent'
+            ? 'py-2.5 bg-void/90 backdrop-blur-xl border-b border-glass-border shadow-2xl'
+            : 'py-4 bg-transparent'
         }`}
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
+        <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 flex items-center justify-between">
           {/* Brand Logo */}
-          <Link href="/" className="group flex items-center gap-3">
-            <div className="relative h-10 w-32 flex items-center">
+          <Link href="/" className="group flex items-center gap-2">
+            <div className="relative h-8 sm:h-10 w-24 sm:w-32 flex items-center">
               <img
                 src="/images/artora-logo.png"
                 alt="Artora Logo"
-                className="h-9 w-auto object-contain mix-blend-screen group-hover:brightness-125 group-hover:drop-shadow-[0_0_15px_rgba(255,176,193,0.5)] transition-all duration-300"
+                className="h-7 sm:h-9 w-auto object-contain mix-blend-screen group-hover:brightness-125 group-hover:drop-shadow-[0_0_15px_rgba(255,176,193,0.5)] transition-all duration-300"
               />
             </div>
-            <span className="text-[10px] uppercase tracking-widest px-2 py-0.5 rounded-full bg-[#E60049]/15 text-[#FFB0C1] font-mono border border-[#E60049]/30 hidden sm:inline-block">
+            <span className="text-[9px] uppercase tracking-widest px-1.5 py-0.5 rounded-full bg-[#E60049]/15 text-[#FFB0C1] font-mono border border-[#E60049]/30 hidden sm:inline-block">
               STUDIO
             </span>
           </Link>
@@ -89,13 +89,13 @@ export const Navbar: React.FC = () => {
             })}
           </nav>
 
-          {/* Action Bar (Language Switcher, Currency Toggle, Cart Button) */}
-          <div className="flex items-center gap-3">
+          {/* Action Bar */}
+          <div className="flex items-center gap-1.5 sm:gap-3">
             {/* Currency Switcher */}
             <button
               onClick={toggleCurrency}
               title="Toggle BDT ৳ / USD $"
-              className="px-3 py-1.5 rounded-full text-xs font-mono font-semibold bg-void-card/80 border border-glass-border text-white/80 hover:text-gold hover:border-gold transition-all backdrop-blur-md flex items-center gap-1"
+              className="px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-full text-[11px] sm:text-xs font-mono font-semibold bg-void-card border border-glass-border text-white/80 hover:text-gold hover:border-gold transition-all backdrop-blur-md flex items-center gap-1"
             >
               <span className={currency === 'BDT' ? 'text-gold' : 'text-white/40'}>৳ BDT</span>
               <span className="text-white/20">|</span>
@@ -106,21 +106,21 @@ export const Navbar: React.FC = () => {
             <button
               onClick={toggleLanguage}
               title="Toggle Bengali / English"
-              className="px-3 py-1.5 rounded-full text-xs font-semibold bg-void-card/80 border border-glass-border text-white/80 hover:text-crimson hover:border-crimson transition-all backdrop-blur-md flex items-center gap-1.5"
+              className="px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-full text-[11px] sm:text-xs font-semibold bg-void-card border border-glass-border text-white/80 hover:text-crimson hover:border-crimson transition-all backdrop-blur-md flex items-center gap-1"
             >
-              <Globe className="w-3.5 h-3.5 text-crimson" />
+              <Globe className="w-3 h-3 text-[#E60049]" />
               <span>{locale === 'bn' ? 'বাংলা' : 'EN'}</span>
             </button>
 
             {/* Cart Button */}
             <button
               onClick={() => setIsCartOpen(true)}
-              className="relative p-2.5 rounded-full bg-void-card/80 border border-glass-border text-white hover:text-gold hover:border-gold transition-all backdrop-blur-md"
+              className="relative p-2 sm:p-2.5 rounded-full bg-void-card border border-glass-border text-white hover:text-gold hover:border-gold transition-all backdrop-blur-md"
               aria-label="Open Cart"
             >
               <ShoppingBag className="w-4 h-4" />
               {totalCount > 0 && (
-                <span className="absolute -top-1 -right-1 w-5 h-5 rounded-full bg-crimson text-white font-bold text-[10px] flex items-center justify-center border-2 border-void shadow-neon-crimson animate-bounce">
+                <span className="absolute -top-1 -right-1 w-4 h-4 sm:w-5 sm:h-5 rounded-full bg-[#E60049] text-white font-bold text-[9px] sm:text-[10px] flex items-center justify-center border-2 border-void shadow-neon-crimson">
                   {totalCount}
                 </span>
               )}
@@ -130,8 +130,9 @@ export const Navbar: React.FC = () => {
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               className="md:hidden p-2 rounded-xl bg-void-card border border-glass-border text-white"
+              aria-label="Toggle Navigation"
             >
-              {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+              {mobileMenuOpen ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
             </button>
           </div>
         </div>
@@ -141,22 +142,34 @@ export const Navbar: React.FC = () => {
       <AnimatePresence>
         {mobileMenuOpen && (
           <motion.div
-            initial={{ opacity: 0, y: -20 }}
+            initial={{ opacity: 0, y: -15 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            className="fixed inset-x-0 top-[70px] z-30 p-6 bg-void/95 backdrop-blur-2xl border-b border-glass-border shadow-2xl md:hidden"
+            exit={{ opacity: 0, y: -15 }}
+            transition={{ duration: 0.2 }}
+            className="fixed inset-x-0 top-[62px] z-30 p-5 bg-void/98 backdrop-blur-2xl border-b border-glass-border shadow-2xl md:hidden space-y-4"
           >
-            <div className="flex flex-col gap-4">
+            <div className="flex flex-col gap-2">
               {navLinks.map((link) => (
                 <Link
                   key={link.href}
                   href={link.href}
                   onClick={() => setMobileMenuOpen(false)}
-                  className="text-base font-medium py-2 px-3 rounded-lg text-white/80 hover:text-gold hover:bg-white/5 transition-all"
+                  className={`text-base font-medium py-3 px-4 rounded-xl transition-all ${
+                    pathname === link.href
+                      ? 'bg-[#E60049]/15 text-[#FFB0C1] border border-[#E60049]/30 font-bold'
+                      : 'text-white/80 hover:text-white hover:bg-white/5'
+                  }`}
                 >
                   {link.label}
                 </Link>
               ))}
+            </div>
+
+            <div className="pt-3 border-t border-glass-border flex items-center justify-between text-xs text-white/50">
+              <span>Artora by FramEmpire</span>
+              <a href="tel:+8801723722019" className="text-emerald-400 font-mono">
+                +880 1723-722019
+              </a>
             </div>
           </motion.div>
         )}

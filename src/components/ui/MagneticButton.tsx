@@ -25,10 +25,11 @@ export const MagneticButton: React.FC<MagneticButtonProps> = ({
 
   const handleMouseMove = (e: React.MouseEvent<HTMLButtonElement>) => {
     if (!buttonRef.current || disabled) return;
+    if (typeof window !== 'undefined' && !window.matchMedia('(pointer: fine)').matches) return;
     const { clientX, clientY } = e;
     const { width, height, left, top } = buttonRef.current.getBoundingClientRect();
-    const x = (clientX - (left + width / 2)) * 0.25;
-    const y = (clientY - (top + height / 2)) * 0.25;
+    const x = (clientX - (left + width / 2)) * 0.2;
+    const y = (clientY - (top + height / 2)) * 0.2;
     setPosition({ x, y });
   };
 

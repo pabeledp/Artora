@@ -31,21 +31,23 @@ export const AcrylicCanvasViewer: React.FC<AcrylicCanvasViewerProps> = ({
     if (!container) return;
 
     let width = container.clientWidth || 600;
-    let height = container.clientHeight || 500;
+    let height = container.clientHeight || 450;
 
     // Scene & Camera
     const scene = new THREE.Scene();
     scene.background = null;
 
-    const camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 100);
+    const camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 50);
     camera.position.set(0, 0, 5.8);
 
-    // Renderer
-    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    // Renderer (Performance tuned)
+    const renderer = new THREE.WebGLRenderer({
+      antialias: true,
+      alpha: true,
+      powerPreference: 'high-performance',
+    });
     renderer.setSize(width, height);
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-    renderer.shadowMap.enabled = true;
-    renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.5));
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
     renderer.toneMappingExposure = 1.1;
 
@@ -57,8 +59,8 @@ export const AcrylicCanvasViewer: React.FC<AcrylicCanvasViewerProps> = ({
     controls.enableDamping = true;
     controls.dampingFactor = 0.05;
     controls.enablePan = false;
-    controls.minDistance = 3.0;
-    controls.maxDistance = 8.5;
+    controls.minDistance = 3.2;
+    controls.maxDistance = 7.5;
     controls.maxPolarAngle = Math.PI / 1.7;
     controls.minPolarAngle = Math.PI / 3.5;
 
@@ -68,7 +70,6 @@ export const AcrylicCanvasViewer: React.FC<AcrylicCanvasViewerProps> = ({
 
     const dirLight = new THREE.DirectionalLight(0xffffff, 2.0);
     dirLight.position.set(4, 6, 5);
-    dirLight.castShadow = true;
     scene.add(dirLight);
 
     const spot1 = new THREE.SpotLight(0xd8b4fe, 1.2);
@@ -83,56 +84,45 @@ export const AcrylicCanvasViewer: React.FC<AcrylicCanvasViewerProps> = ({
 
     // Procedural Impasto Bump Texture
     const bumpCanvas = document.createElement('canvas');
-    bumpCanvas.width = 512;
-    bumpCanvas.height = 512;
+    bumpCanvas.width = 256;
+    bumpCanvas.height = 256;
     const ctx = bumpCanvas.getContext('2d');
     if (ctx) {
       ctx.fillStyle = '#808080';
-      ctx.fillRect(0, 0, 512, 512);
+      ctx.fillRect(0, 0, 256, 256);
 
-      // Heavy impasto knife streaks
-      for (let i = 0; i < 60; i++) {
-        const x = Math.random() * 512;
-        const y = Math.random() * 512;
-        const len = 70 + Math.random() * 160;
+      for (let i = 0; i < 40; i++) {
+        const x = Math.random() * 256;
+        const y = Math.random() * 256;
+        const len = 40 + Math.random() * 100;
         const angle = Math.random() * Math.PI;
 
         ctx.save();
         ctx.translate(x, y);
         ctx.rotate(angle);
-
-        const grad = ctx.createLinearGradient(0, -12, 0, 12);
-        grad.addColorStop(0, 'rgba(255, 255, 255, 0.7)');
-        grad.addColorStop(0.5, 'rgba(128, 128, 128, 0.2)');
-        grad.addColorStop(1, 'rgba(0, 0, 0, 0.7)');
-
+        const grad = ctx.createLinearGradient(0, -6, 0, 6);
+        grad.addColorStop(0, '#ffffff');
+        grad.addColorStop(0.5, '#404040');
+        grad.addColorStop(1, '#a0a0a0');
         ctx.fillStyle = grad;
-        ctx.beginPath();
-        ctx.ellipse(0, 0, len, 10 + Math.random() * 15, 0, 0, Math.PI * 2);
-        ctx.fill();
+        ctx.fillRect(-len / 2, -6, len, 12);
         ctx.restore();
       }
-
-      // Canvas weave grain
-      for (let x = 0; x < 512; x += 4) {
-        ctx.fillStyle = 'rgba(255,255,255,0.03)';
-        ctx.fillRect(x, 0, 2, 512);
-      }
-      for (let y = 0; y < 512; y += 4) {
-        ctx.fillStyle = 'rgba(0,0,0,0.03)';
-        ctx.fillRect(0, y, 512, 2);
-      }
     }
-
     const bumpTexture = new THREE.CanvasTexture(bumpCanvas);
     bumpTexture.wrapS = THREE.RepeatWrapping;
     bumpTexture.wrapT = THREE.RepeatWrapping;
+    bumpTexture.repeat.set(2, 2);
 
-    // Load Painting Image
+    // Canvas Group
+    const canvasGroup = new THREE.Group();
+
+    // Canvas Mesh
+    const boxGeo = new THREE.BoxGeometry(dimensions.width, dimensions.height, dimensions.depth);
+
     const textureLoader = new THREE.TextureLoader();
-    textureLoader.setCrossOrigin('anonymous');
-
     let colorTexture: THREE.Texture | null = null;
+
     if (imageUrl) {
       colorTexture = textureLoader.load(imageUrl, () => {
         renderer.render(scene, camera);
@@ -140,72 +130,38 @@ export const AcrylicCanvasViewer: React.FC<AcrylicCanvasViewerProps> = ({
       colorTexture.colorSpace = THREE.SRGBColorSpace;
     }
 
-    // Canvas Mesh Materials
-    const sideMaterial = new THREE.MeshStandardMaterial({
-      color: 0x14141a,
+    const frontMat = new THREE.MeshStandardMaterial({
+      map: colorTexture,
+      bumpMap: bumpTexture,
+      bumpScale: 0.08,
+      roughness: 0.35,
+      metalness: 0.15,
+    });
+
+    const edgeMat = new THREE.MeshStandardMaterial({
+      color: 0x180308,
       roughness: 0.8,
-      metalness: 0.1,
       bumpMap: bumpTexture,
-      bumpScale: 0.03,
+      bumpScale: 0.04,
     });
 
-    const frontMaterial = new THREE.MeshStandardMaterial({
-      color: colorTexture ? 0xffffff : 0xe62450,
-      map: colorTexture || undefined,
-      bumpMap: bumpTexture,
-      bumpScale: 0.08, // Gives visible raised impasto ridges
-      roughness: 0.45,
-      metalness: 0.25, // Gives acrylic varnish sheen
-    });
-
-    const backMaterial = new THREE.MeshStandardMaterial({
-      color: 0x2a221b, // Raw canvas & cedar stretcher bar
+    const backMat = new THREE.MeshStandardMaterial({
+      color: 0x0a0a0c,
       roughness: 0.9,
     });
 
-    const materials = [
-      sideMaterial, // right
-      sideMaterial, // left
-      sideMaterial, // top
-      sideMaterial, // bottom
-      frontMaterial, // front
-      backMaterial, // back
-    ];
-
-    // Stretched Canvas Box
-    const canvasGroup = new THREE.Group();
-    const boxGeo = new THREE.BoxGeometry(dimensions.width, dimensions.height, dimensions.depth);
+    const materials = [edgeMat, edgeMat, edgeMat, edgeMat, frontMat, backMat];
     const canvasMesh = new THREE.Mesh(boxGeo, materials);
-    canvasMesh.castShadow = true;
-    canvasMesh.receiveShadow = true;
     canvasGroup.add(canvasMesh);
-
-    // Floating Gold Plaque
-    const plaqueGeo = new THREE.BoxGeometry(dimensions.width * 0.7, 0.35, 0.04);
-    const plaqueMat = new THREE.MeshStandardMaterial({
-      color: 0xe6b93f,
-      metalness: 0.9,
-      roughness: 0.2,
-    });
-    const plaqueMesh = new THREE.Mesh(plaqueGeo, plaqueMat);
-    plaqueMesh.position.set(0, -dimensions.height / 2 - 0.35, 0.05);
-    canvasGroup.add(plaqueMesh);
-
-    // Drop Shadow Plane
-    const shadowGeo = new THREE.PlaneGeometry(dimensions.width * 1.8, dimensions.height * 1.8);
-    const shadowMat = new THREE.ShadowMaterial({ opacity: 0.45 });
-    const shadowMesh = new THREE.Mesh(shadowGeo, shadowMat);
-    shadowMesh.position.set(0, 0, -0.6);
-    shadowMesh.receiveShadow = true;
-    scene.add(shadowMesh);
 
     scene.add(canvasGroup);
 
-    // Animation Loop
+    // Animation Loop with Visibility Pause
     let animationId: number;
+    let isVisible = true;
     let clock = new THREE.Clock();
-
     let isDragging = false;
+
     controls.addEventListener('start', () => {
       isDragging = true;
     });
@@ -214,20 +170,34 @@ export const AcrylicCanvasViewer: React.FC<AcrylicCanvasViewerProps> = ({
     });
 
     const animate = () => {
+      if (!isVisible) return;
       animationId = requestAnimationFrame(animate);
       const elapsedTime = clock.getElapsedTime();
 
-      // Subtle breathing float when not dragging
       if (!isDragging) {
-        canvasGroup.rotation.y = Math.sin(elapsedTime * 0.4) * 0.08;
-        canvasGroup.position.y = Math.sin(elapsedTime * 0.8) * 0.05;
+        canvasGroup.rotation.y = Math.sin(elapsedTime * 0.4) * 0.06;
+        canvasGroup.position.y = Math.sin(elapsedTime * 0.8) * 0.03;
       }
 
       controls.update();
       renderer.render(scene, camera);
     };
 
-    animate();
+    // IntersectionObserver to pause rendering when out of viewport
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        isVisible = entry.isIntersecting;
+        if (isVisible) {
+          clock.start();
+          animate();
+        } else {
+          cancelAnimationFrame(animationId);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    observer.observe(container);
 
     // Resize Handler
     const handleResize = () => {
@@ -237,17 +207,17 @@ export const AcrylicCanvasViewer: React.FC<AcrylicCanvasViewerProps> = ({
       camera.aspect = width / height;
       camera.updateProjectionMatrix();
       renderer.setSize(width, height);
+      renderer.render(scene, camera);
     };
 
     window.addEventListener('resize', handleResize);
 
     return () => {
+      observer.disconnect();
       cancelAnimationFrame(animationId);
       window.removeEventListener('resize', handleResize);
       renderer.dispose();
       boxGeo.dispose();
-      plaqueGeo.dispose();
-      shadowGeo.dispose();
       bumpTexture.dispose();
       if (colorTexture) colorTexture.dispose();
       if (container) container.innerHTML = '';
@@ -288,11 +258,11 @@ export const AcrylicCanvasViewer: React.FC<AcrylicCanvasViewerProps> = ({
   }, [studioLight]);
 
   return (
-    <div className="relative w-full h-[480px] md:h-[600px] rounded-2xl overflow-hidden bg-gradient-to-b from-void-light/90 via-void to-void-light/90 border border-glass-border shadow-2xl">
+    <div className="relative w-full h-[360px] sm:h-[460px] md:h-[550px] rounded-2xl overflow-hidden bg-gradient-to-b from-[#1A030A]/90 via-void to-[#1A030A]/90 border border-glass-border shadow-2xl">
       {/* Controls HUD */}
       <div className="absolute top-4 left-4 z-20 flex flex-wrap gap-2 pointer-events-auto">
-        <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-void-card/90 border border-glass-border text-gold backdrop-blur-md">
-          <span className="w-2 h-2 rounded-full bg-crimson animate-ping" />
+        <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-semibold bg-void-card/90 border border-glass-border text-gold backdrop-blur-md">
+          <span className="w-1.5 h-1.5 rounded-full bg-[#E60049] animate-ping" />
           3D Impasto Viewer
         </span>
         <button
@@ -301,26 +271,20 @@ export const AcrylicCanvasViewer: React.FC<AcrylicCanvasViewerProps> = ({
               curr === 'gallery' ? 'warm' : curr === 'warm' ? 'dramatic' : 'gallery'
             )
           }
-          className="px-3 py-1 rounded-full text-xs bg-void-card/80 border border-glass-border text-white/90 hover:border-gold transition-colors backdrop-blur-md"
+          className="px-3 py-1 rounded-full text-[11px] font-semibold bg-white/10 hover:bg-white/20 border border-glass-border text-white backdrop-blur-md transition-colors"
         >
-          💡 Light: <span className="text-gold capitalize">{studioLight}</span>
+          💡 {studioLight === 'gallery' ? 'Studio Mode' : studioLight === 'warm' ? 'Warm Sunlight' : 'Dramatic Spotlight'}
         </button>
       </div>
 
-      <div className="absolute bottom-4 left-4 right-4 z-20 flex justify-between items-center text-xs text-white/60 pointer-events-none">
-        <span className="bg-void-card/90 px-3 py-1.5 rounded-lg border border-glass-border backdrop-blur-md">
-          🔄 Drag to orbit 360° | Scroll to inspect impasto depth
-        </span>
-        <span className="hidden sm:inline bg-void-card/90 px-3 py-1.5 rounded-lg border border-glass-border text-gold backdrop-blur-md">
-          Virtual Studio Lighting Active
-        </span>
+      <div className="absolute bottom-4 left-4 z-20 pointer-events-none">
+        <p className="text-[11px] text-white/60 font-mono">
+          🔄 Drag to orbit • Pinch/Scroll to zoom
+        </p>
       </div>
 
-      {/* Pure Three.js Canvas Container */}
-      <div
-        ref={containerRef}
-        className="w-full h-full cursor-grab active:cursor-grabbing select-none"
-      />
+      {/* 3D WebGL Canvas */}
+      <div ref={containerRef} className="w-full h-full cursor-grab active:cursor-grabbing touch-pan-y" />
     </div>
   );
 };
