@@ -7,13 +7,14 @@ import { useCart } from '@/lib/cart';
 import { useCurrency } from '@/lib/currency';
 import { useRouter } from '@/i18n/routing';
 import { MagneticButton } from '../ui/MagneticButton';
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
 
 export const CartDrawer: React.FC = () => {
   const { items, removeItem, isCartOpen, setIsCartOpen, totalBDT, totalUSD, clearCart } = useCart();
   const { currency, formatPrice } = useCurrency();
   const router = useRouter();
   const t = useTranslations('checkout');
+  const locale = useLocale();
 
   if (!isCartOpen) return null;
 
@@ -135,7 +136,7 @@ export const CartDrawer: React.FC = () => {
                     router.push('/checkout');
                   }}
                 >
-                  <span>Proceed to Checkout</span>
+                  <span>{locale === 'bn' ? 'অর্ডার ও ইনকোয়ারি করুন' : 'Proceed to Order Inquiry'}</span>
                   <ArrowRight className="w-4 h-4" />
                 </MagneticButton>
 
