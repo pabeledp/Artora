@@ -84,7 +84,7 @@ export default function HomePage() {
             initial={{ opacity: 0, x: -30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
-            className="lg:col-span-6 space-y-6 text-left"
+            className="lg:col-span-6 space-y-4 sm:space-y-6 text-center lg:text-left flex flex-col items-center lg:items-start"
           >
             {/* Badge */}
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-void-card border border-crimson/30 shadow-neon-crimson backdrop-blur-xl">
@@ -123,19 +123,12 @@ export default function HomePage() {
               </p>
             </div>
 
-            {/* CTAs */}
-            <div className="flex flex-wrap items-center gap-3.5 pt-2">
-              <Link href="/shop">
-                <MagneticButton variant="primary" className="text-xs sm:text-sm py-3.5 px-6 sm:px-7">
+            {/* Exactly 2 CTAs: Explore Artworks & WhatsApp */}
+            <div className="flex flex-wrap items-center justify-center lg:justify-start gap-3 sm:gap-4 pt-1 sm:pt-2 w-full">
+              <Link href="/shop" className="w-full sm:w-auto">
+                <MagneticButton variant="primary" className="w-full sm:w-auto text-xs sm:text-sm py-3.5 px-6 sm:px-8">
                   <span>{locale === 'bn' ? 'কালেকশন দেখুন' : 'Explore Gallery'}</span>
                   <ArrowRight className="w-4 h-4" />
-                </MagneticButton>
-              </Link>
-
-              <Link href="/commission">
-                <MagneticButton variant="gold" className="text-xs sm:text-sm py-3.5 px-6 sm:px-7">
-                  <Palette className="w-4 h-4" />
-                  <span>{locale === 'bn' ? 'কাস্টম অর্ডার' : 'Bespoke Order'}</span>
                 </MagneticButton>
               </Link>
 
@@ -143,25 +136,26 @@ export default function HomePage() {
                 href="https://wa.me/8801723722019"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-4 py-3.5 rounded-full text-xs font-semibold bg-white/10 hover:bg-[#25D366] text-white hover:text-black border border-glass-border transition-all"
-                title="WhatsApp Direct Consultation"
+                className="w-full sm:w-auto"
               >
-                <MessageSquare className="w-4 h-4" />
-                <span className="hidden sm:inline">WhatsApp</span>
+                <MagneticButton variant="gold" className="w-full sm:w-auto text-xs sm:text-sm py-3.5 px-6 sm:px-8">
+                  <MessageSquare className="w-4 h-4" />
+                  <span>{locale === 'bn' ? 'হোয়াটসঅ্যাপে কথা বলুন' : 'Chat on WhatsApp'}</span>
+                </MagneticButton>
               </a>
             </div>
 
             {/* Trust Highlights */}
-            <div className="grid grid-cols-3 gap-2 sm:gap-3 pt-4 border-t border-white/10 text-[11px] text-white/60">
-              <div className="flex items-center gap-1.5">
+            <div className="grid grid-cols-3 gap-2 sm:gap-3 pt-3 sm:pt-4 border-t border-white/10 text-[10px] sm:text-xs text-white/60 w-full">
+              <div className="flex items-center justify-center lg:justify-start gap-1 sm:gap-1.5">
                 <CheckCircle2 className="w-3.5 h-3.5 text-gold shrink-0" />
                 <span>5+ Years Studio</span>
               </div>
-              <div className="flex items-center gap-1.5">
+              <div className="flex items-center justify-center lg:justify-start gap-1 sm:gap-1.5">
                 <CheckCircle2 className="w-3.5 h-3.5 text-[#E60049] shrink-0" />
                 <span>Original Signed</span>
               </div>
-              <div className="flex items-center gap-1.5">
+              <div className="flex items-center justify-center lg:justify-start gap-1 sm:gap-1.5">
                 <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
                 <span>Safe Delivery</span>
               </div>
