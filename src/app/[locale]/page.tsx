@@ -86,17 +86,35 @@ export default function HomePage() {
             transition={{ duration: 0.8 }}
             className="lg:col-span-6 space-y-4 sm:space-y-6 text-center lg:text-left flex flex-col items-center lg:items-start"
           >
-            {/* Badge */}
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-void-card border border-crimson/30 shadow-neon-crimson backdrop-blur-xl">
-              <Sparkles className="w-3.5 h-3.5 text-[#E60049]" />
-              <span className="text-[11px] sm:text-xs font-semibold text-white/90 uppercase tracking-widest">
+            {/* Futuristic Animated Badge */}
+            <motion.div
+              whileHover={{ scale: 1.03 }}
+              className="relative inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-void-card/90 border border-[#E60049]/40 shadow-neon-crimson backdrop-blur-xl overflow-hidden group cursor-default"
+            >
+              {/* Shimmer laser sweep */}
+              <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full bg-gradient-to-r from-transparent via-[#FFB0C1]/25 to-transparent transition-transform duration-1000 ease-in-out" />
+              
+              {/* Pulsing Beacon Dot & Rotating Cyber Sparkle */}
+              <div className="relative flex items-center justify-center">
+                <span className="animate-ping absolute inline-flex h-3 w-3 rounded-full bg-[#E60049] opacity-75" />
+                <motion.div
+                  animate={{ rotate: 360 }}
+                  transition={{ duration: 8, repeat: Infinity, ease: 'linear' }}
+                >
+                  <Sparkles className="w-3.5 h-3.5 text-[#FFB0C1]" />
+                </motion.div>
+              </div>
+
+              <span className="text-[10px] sm:text-xs font-mono font-bold text-white uppercase tracking-widest">
                 {locale === 'bn' ? '১০০% হাতে আঁকা অরিজিনাল ফাইন আর্ট' : '100% Handcrafted Studio Originals'}
               </span>
-            </div>
+
+              <span className="w-1.5 h-1.5 rounded-full bg-[#E6B93F] animate-pulse" />
+            </motion.div>
 
             {/* Brand Logo & Headline */}
             <div className="space-y-3">
-              <div className="relative h-14 sm:h-16 md:h-20 w-52 sm:w-64 md:w-80 flex items-center">
+              <div className="relative h-12 sm:h-16 md:h-20 w-44 sm:w-64 md:w-80 flex items-center">
                 <img
                   src="/images/artora-logo.png"
                   alt="Artora"
@@ -104,7 +122,7 @@ export default function HomePage() {
                 />
               </div>
 
-              <h1 className="font-display font-black text-3xl sm:text-4xl md:text-5xl text-white leading-tight tracking-tight">
+              <h1 className="font-display font-black text-2xl sm:text-4xl md:text-5xl text-white leading-tight tracking-tight">
                 {locale === 'bn' ? (
                   <>
                     ক্যানভাসে জীবন্ত শিল্পের <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FFB0C1] via-white to-gold">আত্মিক প্রশান্তি</span>
@@ -116,7 +134,7 @@ export default function HomePage() {
                 )}
               </h1>
 
-              <p className="text-sm sm:text-base text-white/70 font-light leading-relaxed max-w-xl">
+              <p className="text-xs sm:text-base text-white/70 font-light leading-relaxed max-w-xl">
                 {locale === 'bn'
                   ? 'শিল্পী ফিহা ইসলামের তুলিতে পবিত্র আরবি ক্যালিগ্রাফি, হেভি ইম্পাস্তো অ্যাক্রিলিক ও কাস্টম ক্যানভাস মাস্টারপিস।'
                   : 'Sacred Arabic calligraphy, textured acrylic impasto, and bespoke collector canvases handcrafted by fine artist Fiha Islam.'}
@@ -162,12 +180,16 @@ export default function HomePage() {
             </div>
           </motion.div>
 
-          {/* RIGHT COLUMN: Featured Calligraphy Masterpiece Stage */}
+          {/* RIGHT COLUMN: Featured Calligraphy Masterpiece Stage with Futuristic Levitation */}
           <motion.div
             initial={{ opacity: 0, scale: 0.95, y: 20 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.15 }}
-            className="lg:col-span-6 flex justify-center"
+            animate={{ opacity: 1, scale: 1, y: [0, -8, 0] }}
+            transition={{
+              opacity: { duration: 0.8, delay: 0.15 },
+              scale: { duration: 0.8, delay: 0.15 },
+              y: { duration: 6, repeat: Infinity, ease: 'easeInOut' },
+            }}
+            className="lg:col-span-6 flex justify-center w-full max-w-sm sm:max-w-md mx-auto lg:max-w-none"
           >
             <div className="relative w-full max-w-lg group">
               {/* Outer Luxury Ambient Glow */}
@@ -184,9 +206,10 @@ export default function HomePage() {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-80" />
 
-                  {/* Floating Top Tag */}
-                  <div className="absolute top-3 left-3 flex gap-2">
-                    <span className="px-3 py-1 rounded-full text-[10px] sm:text-xs font-mono font-bold bg-[#E60049] text-white shadow-neon-crimson">
+                  {/* Floating Top Tag with pulsating live beacon */}
+                  <div className="absolute top-3 left-3 flex items-center gap-2">
+                    <span className="px-3 py-1 rounded-full text-[10px] sm:text-xs font-mono font-bold bg-[#E60049] text-white shadow-neon-crimson flex items-center gap-1.5">
+                      <span className="w-1.5 h-1.5 rounded-full bg-white animate-ping" />
                       {locale === 'bn' ? '🌟 বিশেষ প্রদর্শনী' : '🌟 Featured Masterpiece'}
                     </span>
                   </div>
@@ -197,7 +220,7 @@ export default function HomePage() {
                       href={`/art/${featuredHeroArt.slug}`}
                       className="px-3 py-1 rounded-full text-[10px] sm:text-xs font-mono bg-black/70 backdrop-blur-md border border-gold/40 text-gold hover:bg-gold hover:text-black transition-all flex items-center gap-1"
                     >
-                      <Zap className="w-3 h-3" /> 3D View
+                      <Zap className="w-3 h-3 text-gold animate-bounce" /> 3D View
                     </Link>
                   </div>
 
@@ -207,14 +230,16 @@ export default function HomePage() {
                       <h3 className="font-display font-bold text-sm sm:text-base text-white truncate">
                         {locale === 'bn' ? featuredHeroArt.titleBn : featuredHeroArt.title}
                       </h3>
-                      <p className="text-[10px] sm:text-[11px] text-[#FFB0C1] font-mono">
-                        {locale === 'bn' ? featuredHeroArt.canvasSizeBn : featuredHeroArt.canvasSize} • Fiha Islam
+                      <p className="text-[10px] sm:text-[11px] text-[#FFB0C1] font-mono flex items-center gap-1.5">
+                        <span>{locale === 'bn' ? featuredHeroArt.canvasSizeBn : featuredHeroArt.canvasSize}</span>
+                        <span className="text-white/30">•</span>
+                        <span>Fiha Islam</span>
                       </p>
                     </div>
 
                     <div className="flex items-center gap-2 shrink-0">
                       <Link href={`/art/${featuredHeroArt.slug}`}>
-                        <button className="px-3 py-1.5 rounded-lg text-xs font-bold bg-gold text-black hover:bg-amber-400 transition-colors flex items-center gap-1">
+                        <button className="px-3 py-1.5 rounded-lg text-xs font-bold bg-gold text-black hover:bg-amber-400 transition-colors flex items-center gap-1 shadow-md">
                           <span>{locale === 'bn' ? 'দেখুন' : 'View'}</span>
                           <ArrowRight className="w-3 h-3" />
                         </button>
