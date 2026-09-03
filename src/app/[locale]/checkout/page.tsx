@@ -3,28 +3,26 @@
 import React, { useState } from 'react';
 import { useTranslations, useLocale } from 'next-intl';
 import { useCart } from '@/lib/cart';
-import { useCurrency } from '@/lib/currency';
 import { MagneticButton } from '@/components/ui/MagneticButton';
 import { Link } from '@/i18n/routing';
 import confetti from 'canvas-confetti';
 import {
   ShieldCheck,
-  Truck,
   CheckCircle2,
   ArrowRight,
   ShoppingBag,
   MessageSquare,
   Sparkles,
   Phone,
-  Palette,
+  FileCheck,
+  Loader2,
 } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 export default function CheckoutPage() {
   const t = useTranslations('checkout');
   const locale = useLocale();
-  const { items, totalBDT, totalUSD, clearCart } = useCart();
-  const { formatPrice } = useCurrency();
+  const { items, totalBDT, clearCart } = useCart();
 
   const [fullName, setFullName] = useState('');
   const [phone, setPhone] = useState('');
@@ -38,7 +36,7 @@ export default function CheckoutPage() {
 
   const handlePlaceOrder = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!fullName || !phone) {
+    if (!fullName.trim() || !phone.trim()) {
       setErrorMsg(
         locale === 'bn'
           ? 'অনুগ্রহ করে আপনার নাম এবং ফোন/হোয়াটসঅ্যাপ নম্বর লিখুন।'
@@ -59,14 +57,43 @@ export default function CheckoutPage() {
     setIsProcessing(true);
     setErrorMsg('');
 
+    const itemTitles = items.map((i) => `${i.art.title} (${i.quantity || 1}x)`).join(', ');
+    const appsScriptPayload = {
+      canvasSize: itemTitles || 'Gallery Collection',
+      colorTheme: 'Collector Order Inquiry',
+      wallPhotoUrl: items[0]?.art?.primaryImage || 'No Photo Attached',
+      visionDescription: `[Collector Inquiry] Address: ${address || 'Dhaka'} (${division}) | Notes: ${notes || 'Standard Delivery'}`,
+      fullName: fullName.trim(),
+      phone: phone.trim(),
+      email: email.trim() || 'N/A',
+      estimatedPrice: `৳${totalBDT.toLocaleString()}`,
+      submittedAt: new Date().toISOString(),
+    };
+
     try {
+      // 1. Direct fetch to Google Apps Script Web App (Client-side)
+      const appsScriptUrl =
+        process.env.NEXT_PUBLIC_APPS_SCRIPT_URL ||
+        'https://script.google.com/macros/s/AKfycbyhE7UBrWkfQPQZZBqTXnObIqITWi7uh6MWwGN8Ac44GPLh9ic1mjtswiPS6Yv7lcWU8A/exec';
+
+      if (appsScriptUrl) {
+        fetch(appsScriptUrl, {
+          method: 'POST',
+          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+          body: JSON.stringify(appsScriptPayload),
+        }).catch((gasErr) => {
+          console.warn('Apps script direct post from checkout note:', gasErr);
+        });
+      }
+
+      // 2. Submit to local server endpoint (Server-side + SQLite + DB sync)
       const res = await fetch('/api/orders', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          customerName: fullName,
-          phone,
-          email,
+          customerName: fullName.trim(),
+          phone: phone.trim(),
+          email: email.trim(),
           shippingAddress: address || 'Dhaka',
           division,
           notes,
@@ -74,11 +101,9 @@ export default function CheckoutPage() {
             id: i.art.id,
             title: i.art.title,
             priceBDT: i.art.priceBDT,
-            priceUSD: i.art.priceUSD,
             quantity: i.quantity,
           })),
           totalBDT,
-          totalUSD,
         }),
       });
 
@@ -86,8 +111,8 @@ export default function CheckoutPage() {
       if (!res.ok) throw new Error(data.error || 'Failed to submit inquiry');
 
       confetti({
-        particleCount: 80,
-        spread: 70,
+        particleCount: 100,
+        spread: 80,
         origin: { y: 0.6 },
         colors: ['#E60049', '#E6B93F', '#FFB0C1', '#FFFFFF'],
       });
@@ -100,6 +125,7 @@ export default function CheckoutPage() {
 
       clearCart();
     } catch (err: any) {
+      console.error('Checkout submission error:', err);
       setErrorMsg(err.message || 'Something went wrong');
     } finally {
       setIsProcessing(false);
@@ -110,7 +136,7 @@ export default function CheckoutPage() {
     <div className="min-h-screen pt-24 sm:pt-28 pb-24 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
       {/* Title */}
       <div className="text-center max-w-2xl mx-auto mb-10 space-y-3">
-        <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full text-xs font-semibold bg-void-card border border-glass-border text-gold backdrop-blur-md">
+        <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full text-xs font-semibold bg-void-card border border-[#E60049]/40 text-[#FFB0C1] shadow-neon-crimson backdrop-blur-md">
           <Sparkles className="w-3.5 h-3.5 text-[#E60049]" />
           <span>
             {locale === 'bn' ? 'সরাসরি স্টুডিও অর্ডার ও ইনকোয়ারি' : 'Direct Studio Art Inquiry'}
@@ -131,13 +157,17 @@ export default function CheckoutPage() {
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
-          className="p-8 sm:p-14 rounded-3xl bg-gradient-to-br from-[#1A030A]/90 via-void-card to-void border border-gold/40 text-center space-y-6 shadow-2xl max-w-2xl mx-auto"
+          className="p-8 sm:p-12 rounded-3xl bg-void-card/95 border border-[#E60049]/40 text-center space-y-6 shadow-2xl max-w-2xl mx-auto backdrop-blur-2xl"
         >
-          <div className="w-16 h-16 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center mx-auto border border-emerald-500/40">
-            <CheckCircle2 className="w-10 h-10" />
+          <div className="w-16 h-16 rounded-full bg-[#E60049]/20 border border-[#E60049]/40 text-[#FFB0C1] flex items-center justify-center mx-auto shadow-neon-crimson">
+            <CheckCircle2 className="w-9 h-9 text-emerald-400" />
           </div>
 
           <div className="space-y-2">
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-mono bg-emerald-500/15 border border-emerald-500/30 text-emerald-300">
+              <FileCheck className="w-3.5 h-3.5" />
+              <span>{locale === 'bn' ? 'গুগল শিটস ও স্টুডিও সিস্টেমে সংরক্ষিত' : 'Synced with Google Sheets & Studio'}</span>
+            </span>
             <h2 className="font-display font-black text-2xl sm:text-3xl text-white">
               {locale === 'bn' ? 'ইনকোয়ারি সফলভাবে গৃহীত হয়েছে!' : 'Inquiry Received Successfully!'}
             </h2>
@@ -145,25 +175,25 @@ export default function CheckoutPage() {
               {locale === 'bn'
                 ? 'আপনার রেফারেন্স কোড:'
                 : 'Your Inquiry Reference Code:'}{' '}
-              <span className="font-mono font-bold text-gold">
+              <span className="font-mono font-bold text-[#FFB0C1]">
                 #{orderConfirmed.orderNumber}
               </span>
             </p>
           </div>
 
-          <div className="p-4 rounded-2xl bg-void-light border border-glass-border text-left space-y-2 text-xs">
+          <div className="p-4 rounded-2xl bg-void-light/80 border border-white/10 text-left space-y-2 text-xs backdrop-blur-md">
             <div className="flex justify-between text-white/70">
-              <span>Collector:</span>
+              <span>{locale === 'bn' ? 'সংগ্রাহকের নাম:' : 'Collector:'}</span>
               <span className="font-semibold text-white">{fullName}</span>
             </div>
             <div className="flex justify-between text-white/70">
-              <span>Contact:</span>
-              <span className="font-semibold text-gold">{phone}</span>
+              <span>{locale === 'bn' ? 'মোবাইল / হোয়াটসঅ্যাপ:' : 'Contact:'}</span>
+              <span className="font-semibold text-white font-mono">{phone}</span>
             </div>
-            <div className="flex justify-between text-white/70">
-              <span>Total Indicative:</span>
-              <span className="font-bold text-[#E60049]">
-                {formatPrice(totalBDT, totalUSD)}
+            <div className="flex justify-between text-white/70 pt-2 border-t border-white/10">
+              <span>{locale === 'bn' ? 'মোট মূল্য (আলোচনা সাপেক্ষে):' : 'Estimated Total:'}</span>
+              <span className="font-bold text-emerald-400 font-mono">
+                ৳{totalBDT.toLocaleString()}
               </span>
             </div>
           </div>
@@ -179,36 +209,32 @@ export default function CheckoutPage() {
                 <MessageSquare className="w-4 h-4 fill-current" />
                 <span>
                   {locale === 'bn'
-                    ? 'হোয়াটসঅ্যাপে কথা বলুন'
+                    ? 'হোয়াটসঅ্যাপে সরাসরি কথা বলুন'
                     : 'Chat on WhatsApp with Artist'}
                 </span>
               </a>
             )}
 
             <Link href="/shop" className="w-full sm:w-auto">
-              <MagneticButton variant="gold" className="w-full sm:w-auto text-xs py-3.5 px-6">
+              <button className="w-full sm:w-auto px-6 py-3.5 rounded-full text-xs font-semibold bg-white/10 hover:bg-white/20 text-white border border-white/20 backdrop-blur-xl transition-all flex items-center justify-center gap-2">
                 <span>{locale === 'bn' ? 'আরও আর্ট দেখুন' : 'Explore More Art'}</span>
                 <ArrowRight className="w-3.5 h-3.5" />
-              </MagneticButton>
+              </button>
             </Link>
           </div>
         </motion.div>
       ) : (
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           {/* Form */}
-          <div className="lg:col-span-7 rounded-3xl p-6 sm:p-8 bg-void-card border border-glass-border shadow-xl space-y-6">
+          <div className="lg:col-span-7 rounded-3xl p-6 sm:p-8 bg-void-card/90 border border-glass-border shadow-xl space-y-6 backdrop-blur-xl">
             <h3 className="font-display font-bold text-lg sm:text-xl text-white flex items-center gap-2">
               <Phone className="w-5 h-5 text-[#E60049]" />
-              <span>
-                {locale === 'bn'
-                  ? 'আপনার যোগাযোগের তথ্য'
-                  : 'Collector Information'}
-              </span>
+              <span>{locale === 'bn' ? 'সংগ্রাহকের তথ্য' : 'Collector Information'}</span>
             </h3>
 
             {errorMsg && (
-              <div className="p-3 rounded-xl bg-crimson/20 border border-crimson/40 text-xs text-rose-300">
-                {errorMsg}
+              <div className="p-3.5 rounded-xl bg-red-500/10 border border-red-500/30 text-red-300 text-xs">
+                ⚠️ {errorMsg}
               </div>
             )}
 
@@ -216,7 +242,7 @@ export default function CheckoutPage() {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-xs font-semibold text-white/70 mb-1.5">
-                    {locale === 'bn' ? 'আপনার নাম *' : 'Full Name *'}
+                    {locale === 'bn' ? 'পূর্ণ নাম *' : 'Full Name *'}
                   </label>
                   <input
                     type="text"
@@ -271,6 +297,9 @@ export default function CheckoutPage() {
                     <option value="sylhet">Sylhet (সিলেট)</option>
                     <option value="rajshahi">Rajshahi (রাজশাহী)</option>
                     <option value="khulna">Khulna (খুলনা)</option>
+                    <option value="barisal">Barisal (বরিশাল)</option>
+                    <option value="rangpur">Rangpur (রংপুর)</option>
+                    <option value="mymensingh">Mymensingh (ময়মনসিংহ)</option>
                     <option value="international">International (আন্তর্জাতিক)</option>
                   </select>
                 </div>
@@ -313,29 +342,33 @@ export default function CheckoutPage() {
               </div>
 
               <div className="pt-2">
-                <MagneticButton
+                <button
                   type="submit"
                   disabled={isProcessing || items.length === 0}
-                  variant="gold"
-                  className="w-full py-4 text-sm font-bold"
+                  className="w-full py-4 rounded-full text-xs sm:text-sm font-bold bg-gradient-to-r from-[#E60049] to-[#2B020A] text-white shadow-neon-crimson border border-[#E60049]/50 hover:border-[#FFB0C1] disabled:opacity-50 flex items-center justify-center gap-2 transition-all cursor-pointer"
                 >
-                  <MessageSquare className="w-4 h-4" />
-                  <span>
-                    {isProcessing
-                      ? locale === 'bn'
-                        ? 'প্রসেসিং হচ্ছে...'
-                        : 'Submitting...'
-                      : locale === 'bn'
-                      ? 'অর্ডার ইনকোয়ারি পাঠান ও হোয়াটসঅ্যাপে কথা বলুন'
-                      : 'Send Inquiry & Discuss on WhatsApp'}
-                  </span>
-                </MagneticButton>
+                  {isProcessing ? (
+                    <>
+                      <Loader2 className="w-4 h-4 animate-spin text-[#FFB0C1]" />
+                      <span>{locale === 'bn' ? 'সংরক্ষণ ও প্রসেসিং হচ্ছে...' : 'Submitting to Sheets...'}</span>
+                    </>
+                  ) : (
+                    <>
+                      <MessageSquare className="w-4 h-4" />
+                      <span>
+                        {locale === 'bn'
+                          ? 'অর্ডার ইনকোয়ারি পাঠান ও হোয়াটসঅ্যাপে কথা বলুন'
+                          : 'Send Inquiry & Discuss on WhatsApp'}
+                      </span>
+                    </>
+                  )}
+                </button>
               </div>
             </form>
           </div>
 
           {/* Cart Summary */}
-          <div className="lg:col-span-5 rounded-3xl p-6 sm:p-8 bg-void-card border border-glass-border shadow-xl space-y-6">
+          <div className="lg:col-span-5 rounded-3xl p-6 sm:p-8 bg-void-card/90 border border-glass-border shadow-xl space-y-6 backdrop-blur-xl">
             <h3 className="font-display font-bold text-lg sm:text-xl text-white flex items-center gap-2">
               <ShoppingBag className="w-5 h-5 text-gold" />
               <span>{locale === 'bn' ? 'নির্বাচিত আর্টওয়ার্ক' : 'Selected Artworks'}</span>
@@ -362,11 +395,11 @@ export default function CheckoutPage() {
                         {locale === 'bn' ? art.titleBn : art.title}
                       </h4>
                       <p className="text-[10px] text-white/50">
-                        {locale === 'bn' ? art.canvasSizeBn : art.canvasSize}
+                        {locale === 'bn' ? art.canvasSizeBn : art.canvasSize} ({quantity}x)
                       </p>
-                      <span className="text-xs font-mono font-bold text-[#FFB0C1]">
-                        {formatPrice(art.priceBDT * quantity, art.priceUSD * quantity)}
-                      </span>
+                      <p className="text-xs font-mono font-bold text-emerald-400 mt-1">
+                        ৳{(art.priceBDT * quantity).toLocaleString()}
+                      </p>
                     </div>
                   </div>
                 ))}
@@ -375,25 +408,25 @@ export default function CheckoutPage() {
 
             <div className="pt-4 border-t border-glass-border space-y-2 text-xs">
               <div className="flex justify-between text-white/70">
-                <span>{locale === 'bn' ? 'আনুমানিক মূল্য' : 'Estimated Base Price'}</span>
-                <span className="font-bold text-white">
-                  {formatPrice(totalBDT, totalUSD)}
+                <span>{locale === 'bn' ? 'আনুমানিক মূল্য:' : 'Estimated Base Price'}</span>
+                <span className="font-mono font-bold text-white">
+                  ৳{totalBDT.toLocaleString()}
                 </span>
               </div>
-              <div className="flex justify-between text-emerald-400">
-                <span>{locale === 'bn' ? 'কাস্টম কনসালটেশন' : 'Studio Consultation'}</span>
-                <span>{locale === 'bn' ? 'ফ্রি' : 'Free'}</span>
+              <div className="flex justify-between text-white/70">
+                <span>{locale === 'bn' ? 'স্টুডিও কনসাল্টেশন:' : 'Studio Consultation'}</span>
+                <span className="text-emerald-400 font-semibold">{locale === 'bn' ? 'ফ্রি' : 'Free'}</span>
               </div>
             </div>
 
-            <div className="p-3.5 rounded-2xl bg-[#1A030A] border border-[#E60049]/30 text-[11px] text-white/70 space-y-1.5">
+            <div className="p-4 rounded-2xl bg-void-light/80 border border-white/10 space-y-1 text-xs text-white/60">
               <div className="flex items-center gap-1.5 text-gold font-semibold">
-                <Palette className="w-3.5 h-3.5" />
-                <span>100% Original Fine Art Guarantee</span>
+                <ShieldCheck className="w-3.5 h-3.5" />
+                <span>{locale === 'bn' ? '১০০% অরিজিনাল ফাইন আর্ট গ্যারান্টি' : '100% Original Fine Art Guarantee'}</span>
               </div>
-              <p className="leading-relaxed">
+              <p className="text-[11px] leading-relaxed">
                 {locale === 'bn'
-                  ? 'সবগুলো পেইন্টিং শিল্পী ফিহা ইসলামের নিজ হাতে আঁকা অরিজিনাল মাস্টারপিস।'
+                  ? 'প্রতিটি শিল্পকর্ম শিল্পী ফিহা ইসলামের স্বহস্তে অঙ্কিত এবং খাঁটি প্রামাণ্য সার্টিফিকেটসহ প্রেরিত হয়।'
                   : 'Every piece is an authentic original creation directly from Fiha Islam studio.'}
               </p>
             </div>
