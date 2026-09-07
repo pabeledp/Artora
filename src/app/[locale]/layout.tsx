@@ -115,7 +115,7 @@ export async function generateMetadata({
       },
     },
     verification: {
-      google: 'google6fb04044b58d987c',
+      google: 'Oy93MTaszG3wYsln_fWjPwYsDI8eSDTjNJOeaSJH8tI',
     },
   };
 }
