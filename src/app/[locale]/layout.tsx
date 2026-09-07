@@ -114,6 +114,9 @@ export async function generateMetadata({
         'max-snippet': -1,
       },
     },
+    verification: {
+      google: 'google6fb04044b58d987c',
+    },
   };
 }
 
