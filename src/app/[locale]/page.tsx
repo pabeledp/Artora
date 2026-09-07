@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import dynamic from 'next/dynamic';
+import Image from 'next/image';
 import { useTranslations, useLocale } from 'next-intl';
 import { Link } from '@/i18n/routing';
 import { MagneticButton } from '@/components/ui/MagneticButton';
@@ -15,7 +16,7 @@ const AcrylicCanvasViewer = dynamic(
   {
     ssr: false,
     loading: () => (
-      <div className="w-full h-[360px] sm:h-[460px] rounded-2xl bg-void-card border border-glass-border flex items-center justify-center text-xs text-gold/60 animate-pulse">
+      <div className="w-full h-[360px] sm:h-[480px] rounded-2xl bg-void-card border border-glass-border flex items-center justify-center text-xs text-[#FFB0C1] animate-pulse">
         🎨 Loading 3D Canvas Impasto Studio...
       </div>
     ),
@@ -58,9 +59,10 @@ export default function HomePage() {
     { id: 'textile', labelBn: 'হ্যান্ড-পেইন্টেড সিল্ক', labelEn: 'Wearable Silk' },
   ];
 
-  const filteredArtworks = selectedCategory === 'all'
-    ? ARTWORKS_DATA
-    : ARTWORKS_DATA.filter((art) => art.category === selectedCategory);
+  const filteredArtworks =
+    selectedCategory === 'all'
+      ? ARTWORKS_DATA
+      : ARTWORKS_DATA.filter((art) => art.category === selectedCategory);
 
   const activeArt = filteredArtworks[activeArtIndex] || filteredArtworks[0] || ARTWORKS_DATA[0];
   const featuredHeroArt = ARTWORKS_DATA[0]; // La Tahzan Calligraphy
@@ -71,8 +73,8 @@ export default function HomePage() {
       <section className="relative min-h-[90vh] flex items-center justify-center pt-24 sm:pt-28 pb-16 px-4 sm:px-6 lg:px-8">
         {/* Polished crimson-black gradient background (Hero only) */}
         <div className="absolute inset-0 bg-gradient-to-b from-[#0D0004] via-[#2B020A]/70 to-[#0D0004] pointer-events-none" />
-        
-        {/* Geometric Soft Neon Glows & Metallic Magenta-Red Accents */}
+
+        {/* Geometric Soft Neon Glows */}
         <div className="absolute top-1/4 left-1/4 w-[500px] h-[350px] bg-gradient-to-tr from-[#E60049]/20 via-[#2B020A] to-[#FFB0C1]/10 rounded-full blur-[140px] pointer-events-none" />
         <div className="absolute top-1/3 right-1/4 w-[500px] h-[400px] bg-gradient-to-bl from-[#E6B93F]/15 via-[#2B020A] to-transparent rounded-full blur-[130px] pointer-events-none" />
         <div className="absolute top-12 left-8 w-24 h-24 border-l border-t border-[#E60049]/25 pointer-events-none hidden md:block" />
@@ -80,119 +82,90 @@ export default function HomePage() {
 
         <div className="relative z-10 max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
           {/* LEFT COLUMN: Brand, Typography & CTAs */}
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-            className="lg:col-span-6 space-y-4 sm:space-y-6 text-center lg:text-left flex flex-col items-center lg:items-start"
-          >
+          <div className="lg:col-span-6 space-y-4 sm:space-y-6 text-center lg:text-left flex flex-col items-center lg:items-start">
             {/* Futuristic Animated Badge */}
-            <motion.div
-              whileHover={{ scale: 1.03 }}
-              className="relative inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-void-card/90 border border-[#E60049]/40 shadow-neon-crimson backdrop-blur-xl overflow-hidden group cursor-default"
-            >
-              {/* Shimmer laser sweep */}
-              <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full bg-gradient-to-r from-transparent via-[#FFB0C1]/25 to-transparent transition-transform duration-1000 ease-in-out" />
-              
-              {/* Pulsing Beacon Dot & Rotating Cyber Sparkle */}
+            <div className="relative inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-void-card/90 border border-[#E60049]/40 shadow-neon-crimson backdrop-blur-xl overflow-hidden group cursor-default">
               <div className="relative flex items-center justify-center">
                 <span className="animate-ping absolute inline-flex h-3 w-3 rounded-full bg-[#E60049] opacity-75" />
-                <motion.div
-                  animate={{ rotate: 360 }}
-                  transition={{ duration: 8, repeat: Infinity, ease: 'linear' }}
-                >
-                  <Sparkles className="w-3.5 h-3.5 text-[#FFB0C1]" />
-                </motion.div>
+                <Sparkles className="w-3.5 h-3.5 text-[#FFB0C1]" />
               </div>
 
               <span className="text-[10px] sm:text-xs font-mono font-bold text-white uppercase tracking-widest">
-                {locale === 'bn' ? '১০০% হাতে আঁকা অরিজিনাল ফাইন আর্ট' : '100% Handcrafted Studio Originals'}
+                {locale === 'bn'
+                  ? '১০০% হাতে আঁকা অরিজিনাল ফাইন আর্ট'
+                  : '100% Handcrafted Studio Originals'}
               </span>
 
               <span className="w-1.5 h-1.5 rounded-full bg-[#E6B93F] animate-pulse" />
-            </motion.div>
+            </div>
 
             {/* Brand Logo & Headline */}
             <div className="space-y-3">
               <div className="relative h-12 sm:h-16 md:h-20 w-44 sm:w-64 md:w-80 flex items-center">
-                <img
+                <Image
                   src="/images/artora-logo.png"
                   alt="Artora"
-                  className="h-full w-auto object-contain mix-blend-screen brightness-125 drop-shadow-[0_0_35px_rgba(255,176,193,0.45)]"
+                  fill
+                  priority
+                  sizes="(max-width: 768px) 250px, 320px"
+                  className="object-contain"
                 />
               </div>
 
-              <h1 className="font-display font-black text-2xl sm:text-4xl md:text-5xl text-white leading-tight tracking-tight">
-                {locale === 'bn' ? (
-                  <>
-                    ক্যানভাসে জীবন্ত শিল্পের <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FFB0C1] via-white to-gold">আত্মিক প্রশান্তি</span>
-                  </>
-                ) : (
-                  <>
-                    Where Tactile Texture Meets <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FFB0C1] via-white to-gold">Sacred Soul</span>
-                  </>
-                )}
+              <h1 className="font-display font-black text-3xl sm:text-5xl md:text-6xl text-white tracking-tight leading-[1.12]">
+                {tHero('headline1')}{' '}
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FFB0C1] via-[#E60049] to-gold">
+                  {tHero('headline2')}
+                </span>
               </h1>
-
-              <p className="text-xs sm:text-base text-white/70 font-light leading-relaxed max-w-xl">
-                {locale === 'bn'
-                  ? 'শিল্পী ফিহা ইসলামের তুলিতে পবিত্র আরবি ক্যালিগ্রাফি, হেভি ইম্পাস্তো অ্যাক্রিলিক ও কাস্টম ক্যানভাস মাস্টারপিস।'
-                  : 'Sacred Arabic calligraphy, textured acrylic impasto, and bespoke collector canvases handcrafted by fine artist Fiha Islam.'}
-              </p>
             </div>
 
-            {/* Exactly 2 CTAs: Explore Artworks & WhatsApp */}
-            <div className="flex flex-wrap items-center justify-center lg:justify-start gap-3 sm:gap-4 pt-1 sm:pt-2 w-full">
+            {/* Sub-headline description */}
+            <p className="text-sm sm:text-base md:text-lg text-white/70 max-w-xl font-light leading-relaxed">
+              {tHero('subheadline')}
+            </p>
+
+            {/* Primary Action Buttons (2 Buttons) */}
+            <div className="flex flex-col sm:flex-row items-center gap-3.5 sm:gap-4 w-full sm:w-auto pt-2">
               <Link href="/shop" className="w-full sm:w-auto">
-                <MagneticButton variant="primary" className="w-full sm:w-auto text-xs sm:text-sm py-3.5 px-6 sm:px-8">
-                  <span>{locale === 'bn' ? 'কালেকশন দেখুন' : 'Explore Gallery'}</span>
+                <MagneticButton variant="gold" className="w-full sm:w-auto py-3.5 px-7 text-sm font-bold">
+                  <span>{tHero('exploreGallery')}</span>
                   <ArrowRight className="w-4 h-4" />
                 </MagneticButton>
               </Link>
 
               <a
-                href="https://wa.me/8801723722019"
+                href="https://wa.me/8801723722019?text=Hello%20Fiha%20Islam%2C%20I%20am%20interested%20in%20your%20custom%20canvas%20artwork."
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full sm:w-auto"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full text-sm font-semibold bg-white/10 hover:bg-white/20 text-white border border-white/20 backdrop-blur-xl shadow-lg transition-all"
               >
-                <MagneticButton variant="glass" className="w-full sm:w-auto text-xs sm:text-sm py-3.5 px-6 sm:px-8">
-                  <MessageSquare className="w-4 h-4 text-[#25D366]" />
-                  <span>{locale === 'bn' ? 'হোয়াটসঅ্যাপে কথা বলুন' : 'Chat on WhatsApp'}</span>
-                </MagneticButton>
+                <MessageSquare className="w-4 h-4 text-[#25D366]" />
+                <span>{locale === 'bn' ? 'হোয়াটসঅ্যাপে কথা বলুন' : 'Chat on WhatsApp'}</span>
               </a>
             </div>
 
-            {/* Trust Highlights */}
-            <div className="grid grid-cols-3 gap-2 sm:gap-3 pt-3 sm:pt-4 border-t border-white/10 text-[10px] sm:text-xs text-white/60 w-full">
-              <div className="flex items-center justify-center lg:justify-start gap-1 sm:gap-1.5">
-                <CheckCircle2 className="w-3.5 h-3.5 text-gold shrink-0" />
-                <span>5+ Years Studio</span>
+            {/* Micro Trust Indicators */}
+            <div className="grid grid-cols-3 gap-3 pt-4 border-t border-glass-border w-full max-w-lg text-[11px] sm:text-xs text-white/60">
+              <div className="flex items-center gap-1.5 justify-center lg:justify-start">
+                <ShieldCheck className="w-3.5 h-3.5 text-gold shrink-0" />
+                <span>{locale === 'bn' ? '১০০% অরিজিনাল' : '100% Original'}</span>
               </div>
-              <div className="flex items-center justify-center lg:justify-start gap-1 sm:gap-1.5">
-                <CheckCircle2 className="w-3.5 h-3.5 text-[#E60049] shrink-0" />
-                <span>Original Signed</span>
+              <div className="flex items-center gap-1.5 justify-center lg:justify-start">
+                <Award className="w-3.5 h-3.5 text-[#E60049] shrink-0" />
+                <span>{locale === 'bn' ? 'প্রামাণ্য সনদসহ' : 'Signed Artwork'}</span>
               </div>
-              <div className="flex items-center justify-center lg:justify-start gap-1 sm:gap-1.5">
+              <div className="flex items-center gap-1.5 justify-center lg:justify-start">
                 <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
-                <span>Safe Delivery</span>
+                <span>{locale === 'bn' ? 'স্টেডফাস্ট ডেলিভারি' : 'Safe Delivery'}</span>
               </div>
             </div>
-          </motion.div>
+          </div>
 
-          {/* RIGHT COLUMN: Featured Calligraphy Masterpiece Stage with Futuristic Levitation */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95, y: 20 }}
-            animate={{ opacity: 1, scale: 1, y: [0, -8, 0] }}
-            transition={{
-              opacity: { duration: 0.8, delay: 0.15 },
-              scale: { duration: 0.8, delay: 0.15 },
-              y: { duration: 6, repeat: Infinity, ease: 'easeInOut' },
-            }}
-            className="lg:col-span-6 flex justify-center w-full max-w-sm sm:max-w-md mx-auto lg:max-w-none"
-          >
+          {/* RIGHT COLUMN: Featured Artwork Spotlight with next/image priority */}
+          <div className="lg:col-span-6 flex justify-center w-full max-w-sm sm:max-w-md mx-auto lg:max-w-none">
             <div className="relative w-full max-w-lg group">
-              {/* Outer Luxury Ambient Glow */}
+              {/* Outer Ambient Glow */}
               <div className="absolute -inset-2 bg-gradient-to-tr from-[#E60049]/40 via-[#2B020A] to-[#E6B93F]/30 rounded-3xl blur-xl opacity-75 group-hover:opacity-100 transition-opacity duration-700" />
 
               {/* Canvas Card Container */}
@@ -211,12 +184,15 @@ export default function HomePage() {
                   </Link>
                 </div>
 
-                {/* 100% Clear, Unobstructed Image Display */}
+                {/* 100% Clear, Unobstructed Image Display (Preloaded via priority) */}
                 <div className="relative aspect-[16/10] rounded-xl sm:rounded-2xl overflow-hidden bg-void-light border border-white/10 group-hover:scale-[1.01] transition-transform duration-500 shadow-inner">
-                  <img
+                  <Image
                     src={featuredHeroArt.primaryImage}
                     alt={featuredHeroArt.title}
-                    className="w-full h-full object-cover object-center"
+                    fill
+                    priority
+                    sizes="(max-width: 768px) 90vw, 550px"
+                    className="object-cover object-center"
                   />
                 </div>
 
@@ -260,7 +236,7 @@ export default function HomePage() {
                 </div>
               </div>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
@@ -312,15 +288,17 @@ export default function HomePage() {
                 initial={{ opacity: 0, scale: 0.98 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.98 }}
-                transition={{ duration: 0.4 }}
+                transition={{ duration: 0.3 }}
                 className="space-y-5"
               >
                 {/* 100% Unobstructed Artwork Display Container */}
                 <div className="relative aspect-[16/10] sm:aspect-[16/9] rounded-2xl overflow-hidden bg-void-light border border-white/10 group shadow-inner">
-                  <img
+                  <Image
                     src={activeArt.primaryImage}
                     alt={activeArt.title}
-                    className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
+                    fill
+                    sizes="(max-width: 1024px) 100vw, 850px"
+                    className="object-cover object-center transition-transform duration-700 group-hover:scale-105"
                   />
 
                   {/* Top Floating Badges */}
@@ -444,10 +422,12 @@ export default function HomePage() {
                     }`}
                   >
                     <div className="relative w-16 h-16 rounded-xl overflow-hidden bg-void-light shrink-0">
-                      <img
+                      <Image
                         src={art.primaryImage}
                         alt={art.title}
-                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                        fill
+                        sizes="80px"
+                        className="object-cover group-hover:scale-110 transition-transform duration-500"
                       />
                       {art.discountPercent && (
                         <div className="absolute top-0.5 right-0.5 px-1 py-0.5 rounded bg-[#E60049] text-white text-[8px] font-bold font-mono">
@@ -485,117 +465,93 @@ export default function HomePage() {
       {/* ===================== ABOUT THE ARTIST • FIHA ISLAM SECTION ===================== */}
       <section className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto relative z-10">
         <div className="rounded-3xl p-8 sm:p-12 lg:p-16 bg-gradient-to-br from-[#1A030A]/90 via-void-card to-void border border-glass-border shadow-2xl relative overflow-hidden">
-          {/* Ambient Lighting Accents */}
-          <div className="absolute top-0 right-0 w-96 h-96 bg-[#E60049]/10 rounded-full blur-3xl pointer-events-none" />
-          <div className="absolute bottom-0 left-0 w-96 h-96 bg-[#FFB0C1]/5 rounded-full blur-3xl pointer-events-none" />
-
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative z-10">
             {/* Left: Artist Photo with Luxury Frame */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="lg:col-span-5 flex justify-center"
-            >
+            <div className="lg:col-span-5 flex justify-center">
               <div className="relative group w-full max-w-md aspect-[3/4] rounded-2xl overflow-hidden p-2 bg-gradient-to-tr from-[#E60049]/40 via-[#2B020A] to-[#FFB0C1]/30 shadow-neon-crimson border border-[#E60049]/30">
                 <div className="w-full h-full rounded-xl overflow-hidden relative">
-                  <img
+                  <Image
                     src="/images/fiha-islam.png"
                     alt="Fiha Islam - Artist & Founder"
-                    className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
+                    fill
+                    sizes="(max-width: 768px) 90vw, 450px"
+                    className="object-cover object-top transition-transform duration-700 group-hover:scale-105"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60" />
-                  
-                  {/* Floating Plaque on Photo */}
-                  <div className="absolute bottom-4 left-4 right-4 p-3 rounded-xl bg-black/70 backdrop-blur-md border border-white/10 text-center">
-                    <h4 className="font-display font-bold text-sm text-white">
-                      Fiha Islam (ফিহা ইসলাম)
-                    </h4>
-                    <p className="text-[11px] text-[#FFB0C1] font-mono">
-                      Lead Artist & Founder, Artora
-                    </p>
+                  <div className="absolute bottom-4 left-4 right-4 p-3 rounded-xl bg-black/70 backdrop-blur-md border border-white/10 flex items-center justify-between">
+                    <div>
+                      <h4 className="font-display font-bold text-sm text-white">Fiha Islam</h4>
+                      <p className="text-[10px] text-[#FFB0C1] font-mono">
+                        {locale === 'bn' ? 'প্রতিষ্ঠাতা ও শিল্পী, Artora' : 'Founder & Lead Artist, Artora'}
+                      </p>
+                    </div>
+                    <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
                   </div>
                 </div>
               </div>
-            </motion.div>
+            </div>
 
-            {/* Right: Artist Bio & Vision Narrative */}
-            <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="lg:col-span-7 space-y-6"
-            >
+            {/* Right: Artist Story & Biography */}
+            <div className="lg:col-span-7 space-y-6">
               <div className="space-y-2">
-                <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full text-xs font-semibold bg-[#E60049]/15 border border-[#E60049]/40 text-[#FFB0C1] backdrop-blur-md">
-                  <Sparkles className="w-3.5 h-3.5 text-[#E60049]" />
-                  <span>{tAbout('badge')}</span>
-                </div>
-                <h2 className="font-display font-black text-3xl sm:text-5xl text-white tracking-tight">
+                <span className="text-xs font-bold text-gold uppercase tracking-widest font-mono flex items-center gap-2">
+                  <Star className="w-3.5 h-3.5 fill-gold" />
+                  {tAbout('subtitle')}
+                </span>
+                <h2 className="font-display font-black text-3xl sm:text-4xl lg:text-5xl text-white tracking-tight">
                   {tAbout('title')}
                 </h2>
-                <p className="text-xs font-mono text-[#E60049] tracking-wider uppercase">
-                  {tAbout('role')}
-                </p>
               </div>
 
-              <div className="space-y-4 text-sm sm:text-base text-white/75 leading-relaxed font-light">
+              <div className="space-y-4 text-sm sm:text-base text-white/75 font-light leading-relaxed">
                 <p>{tAbout('bio1')}</p>
-                <p>{tAbout('bio2')}</p>
+                <p className="text-white/60 text-xs sm:text-sm">{tAbout('bio2')}</p>
               </div>
 
-              {/* Quick Metrics Badges */}
-              <div className="grid grid-cols-3 gap-3 pt-2">
-                <div className="p-4 rounded-xl bg-black/40 border border-glass-border text-center">
-                  <span className="font-display font-black text-lg sm:text-xl text-[#FFB0C1] block">
-                    5+
-                  </span>
-                  <span className="text-[10px] text-white/50 uppercase tracking-wider block mt-0.5">
-                    {tAbout('experience')}
-                  </span>
+              {/* Core Attributes */}
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 pt-2">
+                <div className="p-3.5 rounded-2xl bg-void-card border border-glass-border">
+                  <span className="text-xl font-display font-black text-white block">100%</span>
+                  <span className="text-[11px] text-white/50">{tAbout('stat1')}</span>
                 </div>
-                <div className="p-4 rounded-xl bg-black/40 border border-glass-border text-center">
-                  <span className="font-display font-black text-lg sm:text-xl text-[#E60049] block">
-                    300+
-                  </span>
-                  <span className="text-[10px] text-white/50 uppercase tracking-wider block mt-0.5">
-                    {tAbout('artworksDelivered')}
-                  </span>
+                <div className="p-3.5 rounded-2xl bg-void-card border border-glass-border">
+                  <span className="text-xl font-display font-black text-[#FFB0C1] block">Bespoke</span>
+                  <span className="text-[11px] text-white/50">{tAbout('stat2')}</span>
                 </div>
-                <div className="p-4 rounded-xl bg-black/40 border border-glass-border text-center">
-                  <span className="font-display font-black text-lg sm:text-xl text-gold block">
-                    100%
-                  </span>
-                  <span className="text-[10px] text-white/50 uppercase tracking-wider block mt-0.5">
-                    {tAbout('customCommissions')}
-                  </span>
+                <div className="p-3.5 rounded-2xl bg-void-card border border-glass-border col-span-2 sm:col-span-1">
+                  <span className="text-xl font-display font-black text-gold block">Nationwide</span>
+                  <span className="text-[11px] text-white/50">{tAbout('stat3')}</span>
                 </div>
               </div>
 
-              {/* Action Button */}
-              <div className="pt-4 flex flex-wrap items-center gap-4">
+              <div className="pt-2 flex flex-wrap items-center gap-4">
                 <Link href="/commission">
-                  <MagneticButton variant="gold" className="text-sm py-3.5 px-7">
-                    <Palette className="w-4 h-4" />
-                    <span>{tAbout('viewBio')}</span>
+                  <MagneticButton variant="gold" className="text-xs py-3 px-6">
+                    <Palette className="w-3.5 h-3.5" />
+                    <span>{tAbout('commissionCTA')}</span>
                   </MagneticButton>
                 </Link>
-                <span className="text-xs text-white/40 italic font-mono">
-                  {tAbout('signature')}
-                </span>
+
+                <a
+                  href="https://wa.me/8801723722019"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-5 py-3 rounded-full text-xs font-semibold bg-white/10 hover:bg-white/20 text-white border border-white/20 backdrop-blur-xl transition-all flex items-center gap-2"
+                >
+                  <MessageSquare className="w-3.5 h-3.5 text-[#25D366]" />
+                  <span>{locale === 'bn' ? 'স্টুডিও চ্যাট' : 'Direct Studio Chat'}</span>
+                </a>
               </div>
-            </motion.div>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* ===================== 3D ACRYLIC TEXTURE VIEWER SHOWCASE ===================== */}
+      {/* ===================== 3D VIRTUAL STUDIO SECTION ===================== */}
       <section className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto relative z-10">
-        <div className="rounded-3xl p-8 lg:p-12 bg-gradient-to-br from-void-card via-void-light to-void-card border border-glass-border shadow-2xl relative overflow-hidden">
+        <div className="rounded-3xl p-6 sm:p-12 bg-gradient-to-br from-[#1A030A] via-void-card to-[#0D0004] border border-glass-border shadow-2xl relative overflow-hidden">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
-            {/* Left Content */}
+            {/* Left: 3D Explanation */}
             <div className="lg:col-span-5 space-y-6">
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold bg-[#E60049]/20 border border-[#E60049]/40 text-[#FFB0C1]">
                 <Zap className="w-3.5 h-3.5 text-gold" />
@@ -657,40 +613,33 @@ export default function HomePage() {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {TESTIMONIALS_DATA.map((item, idx) => (
-            <motion.div
+            <div
               key={item.id}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: idx * 0.15 }}
-              className="p-8 rounded-3xl bg-void-card border border-glass-border hover:border-gold/40 transition-all flex flex-col justify-between shadow-lg"
+              className="p-8 rounded-3xl bg-void-card border border-glass-border hover:border-gold/40 transition-all duration-300 flex flex-col justify-between space-y-6 shadow-xl"
             >
               <div className="space-y-4">
-                <div className="flex items-center gap-1 text-gold">
+                <div className="flex items-center gap-1">
                   {[...Array(item.rating)].map((_, i) => (
-                    <Star key={i} className="w-4 h-4 fill-current" />
+                    <Star key={i} className="w-4 h-4 text-gold fill-gold" />
                   ))}
                 </div>
-                <p className="text-sm text-white/80 leading-relaxed italic font-light">
+                <p className="text-sm text-white/80 font-light leading-relaxed italic">
                   "{locale === 'bn' ? item.reviewBn : item.review}"
                 </p>
               </div>
 
-              <div className="pt-6 mt-6 border-t border-glass-border flex items-center justify-between">
+              <div className="pt-4 border-t border-glass-border flex items-center justify-between">
                 <div>
-                  <h4 className="text-sm font-bold text-white">
+                  <h4 className="font-display font-bold text-sm text-white">
                     {locale === 'bn' ? item.authorBn : item.author}
                   </h4>
-                  <p className="text-xs text-white/40">
+                  <span className="text-xs text-white/40">
                     {locale === 'bn' ? item.locationBn : item.location}
-                  </p>
+                  </span>
                 </div>
-                <span className="inline-flex items-center gap-1 text-[11px] text-emerald-400 font-medium">
-                  <ShieldCheck className="w-3.5 h-3.5" />
-                  <span>{tTestimonials('verified')}</span>
-                </span>
+                <ShieldCheck className="w-5 h-5 text-[#FFB0C1]" />
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
       </section>

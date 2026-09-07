@@ -13,30 +13,46 @@ export const CursorFollower: React.FC = () => {
     let mouseY = -100;
     let currentX = -100;
     let currentY = -100;
-    let animId: number;
-
-    const onMouseMove = (e: MouseEvent) => {
-      mouseX = e.clientX;
-      mouseY = e.clientY;
-    };
+    let animId: number | null = null;
+    let isMoving = false;
 
     const animate = () => {
-      // Smooth linear interpolation (lerp)
-      currentX += (mouseX - currentX) * 0.25;
-      currentY += (mouseY - currentY) * 0.25;
+      const dx = mouseX - currentX;
+      const dy = mouseY - currentY;
+
+      currentX += dx * 0.25;
+      currentY += dy * 0.25;
 
       if (dotRef.current) {
         dotRef.current.style.transform = `translate3d(${currentX - 6}px, ${currentY - 6}px, 0)`;
       }
-      animId = requestAnimationFrame(animate);
+
+      // If close to destination, stop animation loop to conserve CPU and avoid blocking main thread
+      if (Math.abs(dx) > 0.1 || Math.abs(dy) > 0.1) {
+        animId = requestAnimationFrame(animate);
+      } else {
+        isMoving = false;
+        animId = null;
+      }
+    };
+
+    const onMouseMove = (e: MouseEvent) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+
+      if (!isMoving) {
+        isMoving = true;
+        if (!animId) {
+          animId = requestAnimationFrame(animate);
+        }
+      }
     };
 
     window.addEventListener('mousemove', onMouseMove, { passive: true });
-    animId = requestAnimationFrame(animate);
 
     return () => {
       window.removeEventListener('mousemove', onMouseMove);
-      cancelAnimationFrame(animId);
+      if (animId) cancelAnimationFrame(animId);
     };
   }, []);
 

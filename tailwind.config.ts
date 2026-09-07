@@ -34,7 +34,7 @@ const config: Config = {
         },
       },
       fontFamily: {
-        sans: ["Inter", "Hind Siliguri", "sans-serif"],
+        sans: ["Inter", "Hind Siliguri", "system-ui", "-apple-system", "sans-serif"],
         display: ["Space Grotesk", "sans-serif"],
         bangla: ["Hind Siliguri", "sans-serif"],
       },

@@ -77,10 +77,14 @@ export default async function LocaleLayout({
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link
-          href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;600;700;900&display=swap"
+          rel="preload"
+          as="style"
+          href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap"
+        />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap"
           rel="stylesheet"
         />
-        <link rel="icon" href="/images/artora-logo.png" type="image/png" />
       </head>
       <body className="bg-void text-white font-sans antialiased selection:bg-[#E60049] selection:text-white bg-tech-grid min-h-screen flex flex-col justify-between relative">
         <NextIntlClientProvider messages={messages} locale={locale}>
