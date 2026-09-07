@@ -177,7 +177,7 @@ export default function HomePage() {
                   />
                 </div>
 
-                <h1 className="font-display font-black text-3xl sm:text-5xl md:text-6xl text-white tracking-tight leading-[1.12]">
+                <h1 className="font-display font-black text-3xl sm:text-5xl md:text-6xl text-white tracking-tight leading-[1.15]">
                   {isBn ? (
                     <>
                       শিল্পী ফিহা ইসলামের স্বহস্তে আঁকা{' '}
@@ -187,9 +187,9 @@ export default function HomePage() {
                     </>
                   ) : (
                     <>
-                      {tHero('headline1')}{' '}
+                      Sacred Arabic Calligraphy &{' '}
                       <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FFB0C1] via-[#E60049] to-gold">
-                        {tHero('headline2')}
+                        Textured Impasto Canvas Art
                       </span>
                     </>
                   )}
@@ -207,7 +207,7 @@ export default function HomePage() {
               <div className="flex flex-col sm:flex-row items-center gap-3.5 sm:gap-4 w-full sm:w-auto pt-2">
                 <Link href="/shop" className="w-full sm:w-auto">
                   <MagneticButton variant="gold" className="w-full sm:w-auto py-4 px-7 text-sm font-bold min-h-[48px]">
-                    <span>{tHero('exploreGallery')}</span>
+                    <span>{isBn ? 'কালেকশন দেখুন' : 'Explore Collection'}</span>
                     <ArrowRight className="w-4 h-4" />
                   </MagneticButton>
                 </Link>
@@ -590,15 +590,15 @@ export default function HomePage() {
                 <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 pt-2">
                   <div className="p-3.5 rounded-2xl bg-void-card border border-glass-border">
                     <span className="text-xl font-display font-black text-white block">100%</span>
-                    <span className="text-[11px] text-white/50">{tAbout('stat1')}</span>
+                    <span className="text-[11px] text-white/50">{tAbout('experience')}</span>
                   </div>
                   <div className="p-3.5 rounded-2xl bg-void-card border border-glass-border">
                     <span className="text-xl font-display font-black text-[#FFB0C1] block">Bespoke</span>
-                    <span className="text-[11px] text-white/50">{tAbout('stat2')}</span>
+                    <span className="text-[11px] text-white/50">{tAbout('customCommissions')}</span>
                   </div>
                   <div className="p-3.5 rounded-2xl bg-void-card border border-glass-border col-span-2 sm:col-span-1">
                     <span className="text-xl font-display font-black text-gold block">Nationwide</span>
-                    <span className="text-[11px] text-white/50">{tAbout('stat3')}</span>
+                    <span className="text-[11px] text-white/50">{tAbout('artworksDelivered')}</span>
                   </div>
                 </div>
 
@@ -606,7 +606,7 @@ export default function HomePage() {
                   <Link href="/commission">
                     <MagneticButton variant="gold" className="text-xs py-3.5 px-6 min-h-[44px]">
                       <Palette className="w-3.5 h-3.5" />
-                      <span>{tAbout('commissionCTA')}</span>
+                      <span>{tAbout('viewBio')}</span>
                     </MagneticButton>
                   </Link>
 
