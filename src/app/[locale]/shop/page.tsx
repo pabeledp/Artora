@@ -54,16 +54,22 @@ export default function ShopPage() {
 
   return (
     <div className="min-h-screen pt-28 pb-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-      {/* Page Header */}
+      {/* Page Header with Single H1 and High-Intent SEO Keywords */}
       <div className="text-center max-w-3xl mx-auto mb-12 space-y-4">
         <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full text-xs font-semibold bg-void-card border border-glass-border text-gold backdrop-blur-md">
           <Sparkles className="w-3.5 h-3.5 text-crimson" />
-          <span>Curated Acrylic Collection & Wearables</span>
+          <span>{locale === 'bn' ? 'আর্ট গ্যালারি ও অরিজিনাল ক্যানভাস শপ' : 'Original Artwork Gallery & Fine Art Shop'}</span>
         </div>
-        <h1 className="font-display font-black text-4xl sm:text-5xl text-white">
-          {t('title')}
+        <h1 className="font-display font-black text-3xl sm:text-5xl text-white tracking-tight">
+          {locale === 'bn'
+            ? 'আর্ট গ্যালারি ও অরিজিনাল ক্যানভাস শপ - ফিহা ইসলাম'
+            : 'Original Artwork Gallery & Fine Art Canvas Shop by Fiha Islam'}
         </h1>
-        <p className="text-sm sm:text-base text-white/60">{t('subtitle')}</p>
+        <p className="text-sm sm:text-base text-white/70 max-w-2xl mx-auto leading-relaxed">
+          {locale === 'bn'
+            ? 'হাতে আঁকা থ্রিডি আরবি ক্যালিগ্রাফি ও টেক্সচার্ড ইম্প্যাস্টো অ্যাক্রিলিক আর্টওয়ার্ক কালেকশন। প্রতিটি পেইন্টিং ১০০% অরিজিনাল এবং আর্টিস্ট ফিহা ইসলামের স্বাক্ষরযুক্ত।'
+            : 'Explore handcrafted 3D Islamic calligraphy, heavy impasto textures, and bespoke original canvases created in Dhaka, Bangladesh by fine artist Fiha Islam.'}
+        </p>
       </div>
 
       {/* Control Toolbar: Filter tabs & View Mode switcher */}
@@ -133,7 +139,7 @@ export default function ShopPage() {
                 <div className="relative h-72 overflow-hidden bg-void-light">
                   <img
                     src={art.primaryImage}
-                    alt={art.title}
+                    alt={`${art.title} - Handcrafted 3D Arabic Calligraphy and Impasto Canvas Painting by Fiha Islam (${art.canvasSize})`}
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-void via-transparent to-transparent opacity-70" />

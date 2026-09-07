@@ -127,16 +127,22 @@ export default function CommissionPage() {
 
   return (
     <div className="min-h-screen pt-28 pb-24 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
-      {/* Header */}
+      {/* Header with Single H1 for Search Engine Optimization */}
       <div className="text-center max-w-2xl mx-auto mb-12 space-y-3">
         <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-mono font-semibold bg-void-card/90 border border-[#E60049]/40 text-[#FFB0C1] shadow-neon-crimson backdrop-blur-xl">
           <Palette className="w-3.5 h-3.5 text-[#E60049] animate-spin-slow" />
-          <span>{locale === 'bn' ? 'বিস্পোক কাস্টম আর্ট স্টুডিও' : 'Bespoke Custom Art Studio'}</span>
+          <span>{locale === 'bn' ? 'বিস্পোক কাস্টম আর্ট কমিশন' : 'Bespoke Custom Canvas Commission'}</span>
         </div>
-        <h1 className="font-display font-black text-3xl sm:text-5xl text-white">
-          {t('title')}
+        <h1 className="font-display font-black text-3xl sm:text-5xl text-white tracking-tight">
+          {locale === 'bn'
+            ? 'কাস্টম আর্ট কমিশন ও বিস্পোক পেইন্টিং - ফিহা ইসলাম'
+            : 'Bespoke Custom Artwork Commission by Fiha Islam'}
         </h1>
-        <p className="text-sm sm:text-base text-white/65 leading-relaxed">{t('subtitle')}</p>
+        <p className="text-sm sm:text-base text-white/70 leading-relaxed">
+          {locale === 'bn'
+            ? 'আপনার লিভিং রুম, অফিস বা লাক্সারি ইন্টেরিয়রের জন্য কাস্টমাইজড থ্রিডি আরবি ক্যালিগ্রাফি ও হেভি ইম্প্যাস্টো ক্যানভাস তৈরি করুন।'
+            : 'Commission custom handcrafted 3D Islamic calligraphy and heavy impasto textured wall art tailored to your interior space in Dhaka, Bangladesh.'}
+        </p>
       </div>
 
       {isSuccess ? (
