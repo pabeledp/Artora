@@ -156,10 +156,15 @@ export default function ProductDetailPage() {
         {/* ===================== RIGHT: ARTWORK DETAILS & COMMERCE ACTIONS ===================== */}
         <div className="lg:col-span-5 space-y-6">
           {/* Category & Status */}
-          <div className="flex items-center gap-2">
-            <span className="px-3 py-1 rounded-full text-xs font-semibold bg-crimson/20 border border-crimson/40 text-crimson">
+          <div className="flex flex-wrap items-center gap-2">
+            <span className="px-3 py-1 rounded-full text-xs font-semibold bg-[#E60049]/20 border border-[#E60049]/40 text-[#FFB0C1]">
               {art.category.toUpperCase()}
             </span>
+            {art.discountPercent && (
+              <span className="px-3 py-1 rounded-full text-xs font-mono font-bold bg-[#E60049] text-white shadow-neon-crimson animate-pulse">
+                🔥 {art.discountPercent}% SPECIAL DISCOUNT
+              </span>
+            )}
             <span className="px-3 py-1 rounded-full text-xs font-semibold bg-void-card border border-glass-border text-gold">
               Original by Fiha Islam
             </span>
@@ -173,22 +178,29 @@ export default function ProductDetailPage() {
             <p className="text-sm text-white/50 mt-1">Year {art.year} • Studio Artwork</p>
           </div>
 
-          {/* Dual Price Box */}
+          {/* Dual Price Box with Discount Support */}
           <div className="p-5 rounded-2xl bg-void-card border border-glass-border backdrop-blur-md space-y-2">
             <span className="text-xs text-white/40 uppercase tracking-widest block font-mono">
-              Investment / মূল্য
+              {locale === 'bn' ? 'মূল্য ও ডিসকাউন্ট' : 'Collector Investment'}
             </span>
-            <div className="flex items-baseline gap-4">
-              <span className="font-display font-black text-3xl sm:text-4xl text-transparent bg-clip-text bg-gradient-to-r from-crimson via-gold to-white">
-                {formatPrice(art.priceBDT, art.priceUSD)}
+            <div className="flex flex-wrap items-baseline gap-3">
+              <span className="font-display font-black text-3xl sm:text-4xl text-transparent bg-clip-text bg-gradient-to-r from-[#FFB0C1] via-white to-gold font-mono">
+                ৳{art.priceBDT.toLocaleString()}
               </span>
-              <span className="text-xs text-white/50">
-                (৳{art.priceBDT.toLocaleString()} BDT / ${art.priceUSD} USD)
-              </span>
+              {art.discountPercent && art.originalPriceBDT && (
+                <div className="flex items-center gap-2">
+                  <span className="text-sm text-white/40 line-through font-mono">
+                    ৳{art.originalPriceBDT.toLocaleString()}
+                  </span>
+                  <span className="text-xs font-mono font-bold px-2 py-0.5 rounded bg-[#E60049]/20 text-[#FFB0C1] border border-[#E60049]/40">
+                    SAVE {art.discountPercent}%
+                  </span>
+                </div>
+              )}
             </div>
             <p className="text-xs text-emerald-400 flex items-center gap-1.5 pt-1">
               <CheckCircle2 className="w-3.5 h-3.5" />
-              <span>Available for Immediate Acquisition & Delivery</span>
+              <span>{locale === 'bn' ? 'সরাসরি সংগ্রহ ও স্টেডফাস্ট কুরিয়ারে ডেলিভারিযোগ্য' : 'Available for Immediate Acquisition & Steadfast Delivery'}</span>
             </p>
           </div>
 

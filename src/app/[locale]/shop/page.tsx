@@ -139,41 +139,55 @@ export default function ShopPage() {
                   <div className="absolute inset-0 bg-gradient-to-t from-void via-transparent to-transparent opacity-70" />
 
                   {/* Badges */}
-                  <div className="absolute top-4 left-4 flex gap-2">
+                  <div className="absolute top-4 left-4 flex flex-wrap gap-2">
                     <span className="px-2.5 py-1 rounded-full text-[11px] font-semibold bg-void/80 border border-glass-border text-white/90 backdrop-blur-md">
-                      {art.canvasSize}
+                      {locale === 'bn' ? art.canvasSizeBn : art.canvasSize}
                     </span>
+                    {art.discountPercent && (
+                      <span className="px-2.5 py-1 rounded-full text-[10px] font-mono font-bold bg-[#E60049] text-white shadow-neon-crimson animate-pulse">
+                        🔥 {art.discountPercent}% OFF
+                      </span>
+                    )}
                   </div>
 
                   <div className="absolute top-4 right-4">
-                    <span className="px-2.5 py-1 rounded-full text-[11px] font-mono bg-violet/80 border border-violet/40 text-white backdrop-blur-md flex items-center gap-1">
-                      <Zap className="w-3 h-3 text-gold" /> 3D View
+                    <span className="px-2.5 py-1 rounded-full text-[11px] font-mono bg-[#E60049]/30 border border-[#E60049]/40 text-[#FFB0C1] backdrop-blur-md flex items-center gap-1">
+                      <Zap className="w-3 h-3 text-[#FFB0C1]" /> 3D View
                     </span>
                   </div>
                 </div>
 
                 <div className="p-6 space-y-4 flex-1 flex flex-col justify-between">
                   <div>
-                    <h3 className="font-display font-bold text-lg text-white group-hover:text-gold transition-colors">
+                    <h3 className="font-display font-bold text-lg text-white group-hover:text-[#FFB0C1] transition-colors">
                       {locale === 'bn' ? art.titleBn : art.title}
                     </h3>
-                    <p className="text-xs text-white/60 mt-1">
+                    <p className="text-xs text-white/60 mt-1 line-clamp-2">
                       {locale === 'bn' ? art.mediumBn : art.medium}
                     </p>
                   </div>
 
                   <div className="pt-4 border-t border-glass-border flex items-center justify-between">
                     <div>
-                      <span className="text-[10px] text-white/40 uppercase block">Investment</span>
-                      <span className="text-lg font-black text-crimson">
-                        {formatPrice(art.priceBDT, art.priceUSD)}
+                      {art.discountPercent && art.originalPriceBDT && (
+                        <div className="flex items-center gap-1.5">
+                          <span className="text-[11px] text-white/40 line-through font-mono">
+                            ৳{art.originalPriceBDT.toLocaleString()}
+                          </span>
+                          <span className="text-[9px] font-mono font-bold px-1 py-0.2 rounded bg-[#E60049]/20 text-[#FFB0C1]">
+                            -{art.discountPercent}%
+                          </span>
+                        </div>
+                      )}
+                      <span className="text-lg font-black text-[#E60049] font-mono">
+                        ৳{art.priceBDT.toLocaleString()}
                       </span>
                     </div>
 
                     <div className="flex items-center gap-2">
                       <button
                         onClick={() => addItem(art)}
-                        className="p-2.5 rounded-full bg-void-card border border-glass-border text-white hover:text-gold hover:border-gold transition-colors"
+                        className="p-2.5 rounded-full bg-void-card border border-glass-border text-white hover:text-[#FFB0C1] hover:border-[#E60049] transition-colors"
                         title={t('addToCart')}
                       >
                         <ShoppingBag className="w-4 h-4" />

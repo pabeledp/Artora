@@ -260,7 +260,7 @@ export default function HomePage() {
           <div className="space-y-2">
             <div className="flex items-center gap-2 text-[#E60049] text-xs font-mono font-bold uppercase tracking-widest">
               <Layers className="w-4 h-4" />
-              <span>Exhibition Spotlight • কিউরেটেড গ্যালারি</span>
+              <span>{locale === 'bn' ? 'কিউরেটেড প্রদর্শনী' : 'Exhibition Spotlight'}</span>
             </div>
             <h2 className="font-display font-black text-3xl sm:text-5xl text-white tracking-tight">
               {tFeatured('title')}
@@ -314,16 +314,21 @@ export default function HomePage() {
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-70" />
 
                   {/* Top Floating Badges */}
-                  <div className="absolute top-4 left-4 flex gap-2">
-                    <span className="px-3.5 py-1.5 rounded-full text-xs font-mono font-semibold bg-black/70 backdrop-blur-md text-white border border-white/15">
+                  <div className="absolute top-4 left-4 flex flex-wrap gap-2">
+                    <span className="px-3 py-1 rounded-full text-xs font-mono font-semibold bg-black/70 backdrop-blur-md text-white border border-white/15">
                       {locale === 'bn' ? activeArt.mediumBn.split(' ')[0] : activeArt.medium.split(' ')[0]}
                     </span>
+                    {activeArt.discountPercent && (
+                      <span className="px-3 py-1 rounded-full text-xs font-mono font-bold bg-[#E60049] text-white shadow-neon-crimson animate-pulse">
+                        🔥 {activeArt.discountPercent}% OFF
+                      </span>
+                    )}
                     {activeArt.isSold ? (
-                      <span className="px-3.5 py-1.5 rounded-full text-xs font-semibold bg-[#E60049] text-white">
+                      <span className="px-3 py-1 rounded-full text-xs font-semibold bg-[#E60049] text-white">
                         {tFeatured('sold')}
                       </span>
                     ) : (
-                      <span className="px-3.5 py-1.5 rounded-full text-xs font-semibold bg-emerald-500/80 text-white backdrop-blur-md">
+                      <span className="px-3 py-1 rounded-full text-xs font-semibold bg-emerald-500/80 text-white backdrop-blur-md">
                         {tFeatured('available')}
                       </span>
                     )}
@@ -334,7 +339,7 @@ export default function HomePage() {
                       href={`/art/${activeArt.slug}`}
                       className="px-3.5 py-1.5 rounded-full text-xs font-mono bg-[#E60049]/30 border border-[#E60049] text-[#FFB0C1] backdrop-blur-md flex items-center gap-1.5 hover:bg-[#E60049] hover:text-white transition-colors"
                     >
-                      <Zap className="w-3.5 h-3.5 text-[#FFB0C1]" /> 3D Impasto Mode
+                      <Zap className="w-3.5 h-3.5 text-[#FFB0C1]" /> 3D View
                     </Link>
                   </div>
 
@@ -371,11 +376,18 @@ export default function HomePage() {
 
                   <div className="flex items-center gap-3 shrink-0">
                     <div className="text-right">
-                      <span className="text-[10px] text-white/40 uppercase tracking-widest block font-mono">
-                        Price / মূল্য
-                      </span>
-                      <span className="text-2xl font-display font-black text-[#E60049]">
-                        {formatPrice(activeArt.priceBDT, activeArt.priceUSD)}
+                      {activeArt.discountPercent && activeArt.originalPriceBDT && (
+                        <div className="flex items-center justify-end gap-1.5">
+                          <span className="text-xs text-white/40 line-through font-mono">
+                            ৳{activeArt.originalPriceBDT.toLocaleString()}
+                          </span>
+                          <span className="text-[10px] font-bold font-mono px-1.5 py-0.5 rounded bg-[#E60049]/20 text-[#FFB0C1] border border-[#E60049]/40">
+                            {activeArt.discountPercent}% OFF
+                          </span>
+                        </div>
+                      )}
+                      <span className="text-2xl font-display font-black text-[#E60049] font-mono">
+                        ৳{activeArt.priceBDT.toLocaleString()}
                       </span>
                     </div>
 
@@ -402,59 +414,57 @@ export default function HomePage() {
           {/* Curator's Artwork Deck / Thumbnails (4 Cols) */}
           <div className="lg:col-span-4 flex flex-col justify-between space-y-3">
             <div className="text-xs font-mono uppercase tracking-wider text-white/50 flex items-center justify-between px-1">
-              <span>Collection Pieces ({filteredArtworks.length})</span>
+              <span>{locale === 'bn' ? 'সকল শিল্পকর্ম' : 'Collection Pieces'} ({filteredArtworks.length})</span>
               <Link href="/shop" className="text-[#FFB0C1] hover:underline flex items-center gap-1">
-                View All <ChevronRight className="w-3 h-3" />
+                {locale === 'bn' ? 'সব দেখুন' : 'View All'} <ChevronRight className="w-3 h-3" />
               </Link>
             </div>
 
-            {/* Responsive Deck: Horizontal swipe on mobile, vertical stack on desktop */}
-            <div className="flex flex-row lg:flex-col gap-3 overflow-x-auto lg:overflow-y-auto max-h-[550px] pb-2 lg:pb-0 pr-1 snap-x scrollbar-thin">
+            <div className="space-y-3 overflow-y-auto max-h-[500px] pr-1">
               {filteredArtworks.map((art, idx) => {
                 const isSelected = activeArt.id === art.id;
                 return (
-                  <motion.div
+                  <div
                     key={art.id}
                     onClick={() => setActiveArtIndex(idx)}
-                    whileHover={{ x: 4 }}
-                    className={`p-3 rounded-2xl cursor-pointer transition-all duration-300 flex items-center gap-3.5 border min-w-[240px] sm:min-w-[280px] lg:min-w-0 snap-start shrink-0 lg:shrink ${
+                    className={`p-3.5 rounded-2xl border transition-all duration-300 cursor-pointer flex items-center gap-3.5 group ${
                       isSelected
-                        ? 'bg-[#2B020A]/90 border-[#E60049] shadow-neon-crimson'
-                        : 'bg-void-card border-glass-border hover:border-white/20 hover:bg-white/5'
+                        ? 'bg-[#E60049]/15 border-[#E60049] shadow-neon-crimson'
+                        : 'bg-void-card/80 border-glass-border hover:border-white/20'
                     }`}
                   >
-                    <div className="relative w-16 h-16 sm:w-20 sm:h-20 rounded-xl overflow-hidden shrink-0 bg-void-light border border-white/10">
+                    <div className="relative w-16 h-16 rounded-xl overflow-hidden bg-void-light shrink-0">
                       <img
                         src={art.primaryImage}
                         alt={art.title}
-                        className="w-full h-full object-cover"
-                        loading="lazy"
+                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                       />
-                      {isSelected && (
-                        <div className="absolute inset-0 bg-[#E60049]/20 flex items-center justify-center">
-                          <Eye className="w-4 h-4 text-white" />
+                      {art.discountPercent && (
+                        <div className="absolute top-0.5 right-0.5 px-1 py-0.5 rounded bg-[#E60049] text-white text-[8px] font-bold font-mono">
+                          -{art.discountPercent}%
                         </div>
                       )}
                     </div>
 
                     <div className="flex-1 min-w-0">
-                      <h4 className={`text-xs sm:text-sm font-bold truncate transition-colors ${
-                        isSelected ? 'text-[#FFB0C1]' : 'text-white'
-                      }`}>
+                      <h4 className="font-display font-bold text-sm text-white truncate group-hover:text-[#FFB0C1] transition-colors">
                         {locale === 'bn' ? art.titleBn : art.title}
                       </h4>
-                      <p className="text-[10px] sm:text-[11px] text-white/50 truncate mt-0.5">
+                      <p className="text-[11px] text-white/50 truncate">
                         {locale === 'bn' ? art.canvasSizeBn : art.canvasSize}
                       </p>
-                      <span className="text-xs font-mono font-bold text-gold block mt-1">
-                        {formatPrice(art.priceBDT, art.priceUSD)}
-                      </span>
+                      <div className="flex items-center gap-2 mt-1">
+                        <span className="text-xs font-mono font-bold text-[#E60049]">
+                          ৳{art.priceBDT.toLocaleString()}
+                        </span>
+                        {art.discountPercent && (
+                          <span className="text-[10px] text-white/40 line-through font-mono">
+                            ৳{art.originalPriceBDT?.toLocaleString()}
+                          </span>
+                        )}
+                      </div>
                     </div>
-
-                    {isSelected && (
-                      <div className="w-2 h-2 rounded-full bg-[#E60049] shadow-neon-crimson shrink-0 hidden lg:block" />
-                    )}
-                  </motion.div>
+                  </div>
                 );
               })}
             </div>

@@ -8,6 +8,8 @@ export interface ArtWork {
   canvasSize: string;
   canvasSizeBn: string;
   priceBDT: number;
+  originalPriceBDT?: number;
+  discountPercent?: number;
   priceUSD: number;
   isSold: boolean;
   isCommissionable: boolean;
@@ -73,6 +75,92 @@ export const ARTWORKS_DATA: ArtWork[] = [
     ]
   },
   {
+    id: "art-3",
+    slug: "inna-maal-usri-yusra-calligraphy",
+    title: "Inna Ma'al Usri Yusra (إِنَّ مَعَ الْعُسْرِ يُسْرًا)",
+    titleBn: "ইন্না মা'আল উসরি ইউসরা - আরবি ক্যালিগ্রাফি ও গ্রিন ল্যান্ডস্কেপ",
+    medium: "Sacred Arabic Calligraphy on Textured Green Mountain Canvas",
+    mediumBn: "পবিত্র আরবি ক্যালিগ্রাফি ও টেক্সচার্ড গ্রিন মাউন্টেন ক্যানভাস",
+    canvasSize: "24 x 36 inches (Vertical Gallery Canvas)",
+    canvasSizeBn: "২৪ x ৩৬ ইঞ্চি (ভার্টিক্যাল গ্যালারি ফ্রেম)",
+    priceBDT: 10000,
+    originalPriceBDT: 18180,
+    discountPercent: 45,
+    priceUSD: 90,
+    isSold: false,
+    isCommissionable: true,
+    featured: true,
+    category: "original",
+    year: 2025,
+    primaryImage: "/images/inna-maal-usri-yusra.jpg",
+    images: [
+      "/images/inna-maal-usri-yusra.jpg"
+    ],
+    colorPalette: ["#5C784D", "#97B376", "#2B3C25", "#DEE5D2", "#181F15"],
+    description: "An evocative, tranquil original canvas featuring the sacred Quranic verse 'Indeed, with hardship comes ease' (إِنَّ مَعَ الْعُسْرِ يُسْرًا). Rendered in fluid Thuluth calligraphy against serene layered green mountain horizons, signed Artora by artist Fiha Islam.",
+    descriptionBn: "পবিত্র কোরআনের আশার বাণী 'নিশ্চয়ই কষ্টের সাথেই স্বস্তি আছে' (إِنَّ مَعَ الْعُسْرِ يُسْرًا) সম্বলিত এক অপূর্ব মাস্টারপিস। শিল্পী ফিহা ইসলামের স্বহস্তে আঁকা শান্তিময় সবুজ পাহাড়ের দিগন্ত ও নিখুঁত আরবি ক্যালিগ্রাফি।",
+    dimensions: {
+      widthInches: 24,
+      heightInches: 36,
+      depthInches: 1.5
+    },
+    highlights: [
+      "Sacred Quranic verse (Surah Ash-Sharh - 94:6)",
+      "Layered mountain landscape in soothing moss and olive greens",
+      "Signed original artwork: Artora 02.09.2025 by Fiha Islam",
+      "Special 45% Collector Discount applied"
+    ],
+    highlightsBn: [
+      "পবিত্র কোরআনিক আয়াত (সূরা আল-ইনশিরাহ - ৯৪:৬)",
+      "হাতে আঁকা সবুজ পাহাড় ও প্রাকৃতিক দিগন্তের মিতালী",
+      "শিল্পী ফিহা ইসলামের অফিশিয়াল সিগনেচার: Artora",
+      "সীমিত সময়ের জন্য ৪৫% বিশেষ ডিসকাউন্ট"
+    ]
+  },
+  {
+    id: "art-004",
+    slug: "landscape-boat-ocean-impasto",
+    title: "Landscape Boat • Ocean Impasto Waves",
+    titleBn: "ল্যান্ডস্কেপ বোট • নীল জলরাশি ও নৌকা (হেভি ইম্পাস্তো)",
+    medium: "Heavy Impasto Acrylic & Palette Knife on Stretched Canvas",
+    mediumBn: "হেভি ইম্পাস্তো অ্যাক্রিলিক ও প্যালেট-নাইফ স্ট্রোক (ক্যানভাস)",
+    canvasSize: "30 x 48 inches (Horizontal Statement Canvas)",
+    canvasSizeBn: "৩০ x ৪৮ ইঞ্চি (হরাইজন্টাল স্টেটমেন্ট ক্যানভাস)",
+    priceBDT: 18500,
+    originalPriceBDT: 41100,
+    discountPercent: 55,
+    priceUSD: 165,
+    isSold: false,
+    isCommissionable: true,
+    featured: true,
+    category: "acrylic",
+    year: 2025,
+    primaryImage: "/images/landscape-boat-ocean.jpg",
+    images: [
+      "/images/landscape-boat-ocean.jpg"
+    ],
+    colorPalette: ["#0066B2", "#5BB7EA", "#FFFFFF", "#5C4033", "#0B2545"],
+    description: "A powerful, immersive seascape capturing a wooden boat gently gliding over dynamic azure textured waves. Fiha Islam's masterclass palette knife impasto delivers vivid dimensional paint textures and calm seafaring serenity.",
+    descriptionBn: "নীল সমুদ্রের উত্তাল ও শান্ত ঢেউয়ের মাঝে একটি কাঠের নৌকার অপরূপ দৃশ্য। শিল্পী ফিহা ইসলামের বলিষ্ঠ প্যালেট-নাইফ ইম্পাস্তো টেকনিকে ত্রিমাত্রিক টেক্সচারে ফুটিয়ে তোলা হয়েছে জীবন্ত জলরাশি ও প্রকৃতির গভীর প্রশান্তি।",
+    dimensions: {
+      widthInches: 48,
+      heightInches: 30,
+      depthInches: 1.5
+    },
+    highlights: [
+      "3D Raised palette knife impasto ocean wave textures",
+      "Dynamic azure, cerulean, and pure white froth palette",
+      "Signed original fine art with Authenticity Certificate",
+      "Exclusive 55% Collector Discount applied"
+    ],
+    highlightsBn: [
+      "প্যালেট নাইফের ত্রিমাত্রিক উঁচু ঢেউ ও জলরাশির টেক্সচার",
+      "গাঢ় নীল, আসমানি ও সাদা ফোমের বৈচিত্র্যময় কালার প্যালেট",
+      "শিল্পী ফিহা ইসলামের স্বাক্ষরযুক্ত অরিজিনাল ফাইন আর্ট",
+      "এক্সক্লুসিভ ৫৫% স্পেশাল কালেক্টর ডিসকাউন্ট"
+    ]
+  },
+  {
     id: "art-calligraphy-2",
     slug: "la-tahzan-grand-edition",
     title: "La Tahzan • Grand Statement Canvas",
@@ -85,7 +173,7 @@ export const ARTWORKS_DATA: ArtWork[] = [
     priceUSD: 420,
     isSold: false,
     isCommissionable: true,
-    featured: true,
+    featured: false,
     category: "original",
     year: 2025,
     primaryImage: "/images/hero-calligraphy.png",
@@ -109,45 +197,6 @@ export const ARTWORKS_DATA: ArtWork[] = [
       "হাই-সিলিং লিভিং স্পেসের জন্য আকর্ষণীয় গ্র্যান্ড স্কেল",
       "অ্যান্টি-ওয়ার্প সলিড উডেন বারযুক্ত আর্কিভাল লিনেন ক্যানভাস",
       "শিল্পী ফিহা ইসলামের নিজ হাতে আঁকা অরিজিনাল মাস্টারপিস"
-    ]
-  },
-  {
-    id: "art-calligraphy-3",
-    slug: "la-tahzan-bespoke-floating-frame",
-    title: "La Tahzan • Floating Wood Studio Edition",
-    titleBn: "লা তাহযান • ফ্লোটিং উড স্টুডিও এডিশন",
-    medium: "Arabic Calligraphy with Natural Wood Floating Casing",
-    mediumBn: "আরবি ক্যালিগ্রাফি ও ন্যাচারাল উডেন ফ্লোটিং ফ্রেম",
-    canvasSize: "24 x 36 inches (Collector Studio Size)",
-    canvasSizeBn: "২৪ x ৩৬ ইঞ্চি (কালেক্টর স্টুডিও সাইজ)",
-    priceBDT: 28000,
-    priceUSD: 250,
-    isSold: false,
-    isCommissionable: true,
-    featured: false,
-    category: "acrylic",
-    year: 2025,
-    primaryImage: "/images/hero-calligraphy.png",
-    images: [
-      "/images/hero-calligraphy.png"
-    ],
-    colorPalette: ["#B88B58", "#5A3825", "#F4ECE1"],
-    description: "A versatile collector size featuring the full sacred verse with hand-detailed raw texture borders and optional floating wooden framing.",
-    descriptionBn: "স্টুডিও ও বেডরুমের জন্য পারফেক্ট সাইজের লা তাহযান ক্যালিগ্রাফি। ফ্লোটিং ফ্রেম বা ডিরেক্ট ক্যানভাস উভয় ফরম্যাটে সংগ্রহযোগ্য।",
-    dimensions: {
-      widthInches: 36,
-      heightInches: 24,
-      depthInches: 1.5
-    },
-    highlights: [
-      "Compact versatile dimensions for apartment sanctuaries",
-      "Tactile raw earth palette and botanical corners",
-      "Direct artist consultation for frame customization"
-    ],
-    highlightsBn: [
-      "অ্যাপার্টমেন্ট বা পার্সোনাল স্পেসের জন্য নিখুঁত মাপ",
-      "টেক্সচার্ড রাস্ট-আর্থ প্যালেট ও ফ্লোরাল পাতার নকশা",
-      "ফ্রেম কালার কাস্টমাইজেশনের জন্য শিল্পীর সাথে সরাসরি পরামর্শ"
     ]
   }
 ];
@@ -204,18 +253,25 @@ export const COLOR_PALETTE_PRESETS = [
     description: "Classic Quranic calligraphy aesthetic with earthy raw tones"
   },
   {
+    id: "pal-green",
+    name: "Emerald Sanctuary & Olive Highlands",
+    nameBn: "সবুজ পাহাড়ের দিগন্ত, অলিভ ও নিস্তব্ধ প্রকৃতি",
+    colors: ["#5C784D", "#97B376", "#2B3C25", "#DEE5D2"],
+    description: "Soothing natural greens and highland serenity"
+  },
+  {
+    id: "pal-ocean",
+    name: "Azure Ocean Waves & Cerulean Froth",
+    nameBn: "গাঢ় সমুদ্রের নীল, আসমানি ও সাদা ঢেউয়ের ফেনা",
+    colors: ["#0066B2", "#5BB7EA", "#FFFFFF", "#0B2545"],
+    description: "Vibrant marine blue impasto and textured wave froth"
+  },
+  {
     id: "pal-crimson",
     name: "Crimson Eclipse & 24k Gold",
     nameBn: "ক্রিমসন রেড, ডিপ স্পেস ব্ল্যাক ও ২৪ ক্যারেট গোল্ড",
     colors: ["#E60049", "#2B020A", "#E6B93F", "#0D0004"],
     description: "Rich metallic magenta-red luxury impasto"
-  },
-  {
-    id: "pal-emerald",
-    name: "Emerald Sanctuary & Pearl Ivory",
-    nameBn: "ডিপ এমারেল্ড গ্রিন, গোল্ড লিফ ও মুক্তা আইভরি",
-    colors: ["#0B3B2E", "#155744", "#E6B93F", "#FAF8F5"],
-    description: "Soothing deep emerald tones with shimmering gold"
   }
 ];
 
