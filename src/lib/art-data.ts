@@ -41,8 +41,10 @@ export const ARTWORKS_DATA: ArtWork[] = [
     mediumBn: "আরবি ক্যালিগ্রাফি ও টেক্সচার্ড আর্থ প্যালেট অ্যাক্রিলিক (ক্যানভাস)",
     canvasSize: "30 x 48 inches (Horizontal Gallery Canvas)",
     canvasSizeBn: "৩০ x ৪৮ ইঞ্চি (হরাইজন্টাল গ্যালারি ফ্রেম)",
-    priceBDT: 35000,
-    priceUSD: 310,
+    originalPriceBDT: 20000,
+    discountPercent: 30,
+    priceBDT: 14000,
+    priceUSD: 125,
     isSold: false,
     isCommissionable: true,
     featured: true,
@@ -51,7 +53,7 @@ export const ARTWORKS_DATA: ArtWork[] = [
     primaryImage: "/images/hero-calligraphy.png",
     images: [
       "/images/hero-calligraphy.png",
-      "/images/hero-calligraphy.png"
+      "/images/la-tahzan-calligraphy.jpg"
     ],
     colorPalette: ["#B88B58", "#5A3825", "#F4ECE1", "#221A15", "#A3CAD6"],
     description: "An evocative, spiritually uplifting original masterpiece featuring the timeless Quranic verse 'Do not grieve, indeed Allah is with us' (لا تَحْزَنْ إِنَّ اللَّهَ مَعَنَا). Hand-crafted with organic raw earth ochre textures, intricate floral leaf accents, and bold fluid Arabic calligraphy by Fiha Islam.",
@@ -83,10 +85,10 @@ export const ARTWORKS_DATA: ArtWork[] = [
     mediumBn: "পবিত্র আরবি ক্যালিগ্রাফি ও টেক্সচার্ড গ্রিন মাউন্টেন ক্যানভাস",
     canvasSize: "24 x 36 inches (Vertical Gallery Canvas)",
     canvasSizeBn: "২৪ x ৩৬ ইঞ্চি (ভার্টিক্যাল গ্যালারি ফ্রেম)",
-    priceBDT: 10000,
-    originalPriceBDT: 18180,
+    originalPriceBDT: 10000,
     discountPercent: 45,
-    priceUSD: 90,
+    priceBDT: 5500,
+    priceUSD: 50,
     isSold: false,
     isCommissionable: true,
     featured: true,
@@ -126,10 +128,10 @@ export const ARTWORKS_DATA: ArtWork[] = [
     mediumBn: "হেভি ইম্পাস্তো অ্যাক্রিলিক ও প্যালেট-নাইফ স্ট্রোক (ক্যানভাস)",
     canvasSize: "30 x 48 inches (Horizontal Statement Canvas)",
     canvasSizeBn: "৩০ x ৪৮ ইঞ্চি (হরাইজন্টাল স্টেটমেন্ট ক্যানভাস)",
-    priceBDT: 18500,
-    originalPriceBDT: 41100,
+    originalPriceBDT: 18000,
     discountPercent: 55,
-    priceUSD: 165,
+    priceBDT: 8100,
+    priceUSD: 75,
     isSold: false,
     isCommissionable: true,
     featured: true,
@@ -158,45 +160,6 @@ export const ARTWORKS_DATA: ArtWork[] = [
       "গাঢ় নীল, আসমানি ও সাদা ফোমের বৈচিত্র্যময় কালার প্যালেট",
       "শিল্পী ফিহা ইসলামের স্বাক্ষরযুক্ত অরিজিনাল ফাইন আর্ট",
       "এক্সক্লুসিভ ৫৫% স্পেশাল কালেক্টর ডিসকাউন্ট"
-    ]
-  },
-  {
-    id: "art-calligraphy-2",
-    slug: "la-tahzan-grand-edition",
-    title: "La Tahzan • Grand Statement Canvas",
-    titleBn: "লা তাহযান • গ্র্যান্ড স্টেটমেন্ট ক্যানভাস (লার্জ সাইজ)",
-    medium: "Bespoke Arabic Calligraphy on Heavy Gallery Stretched Linen",
-    mediumBn: "বিস্পোক আরবি ক্যালিগ্রাফি ও প্রিমিয়াম হেভি লিনেন ক্যানভাস",
-    canvasSize: "36 x 60 inches (Oversized Statement Canvas)",
-    canvasSizeBn: "৩৬ x ৬০ ইঞ্চি (গ্র্যান্ড স্টেটমেন্ট ফ্রেম)",
-    priceBDT: 48000,
-    priceUSD: 420,
-    isSold: false,
-    isCommissionable: true,
-    featured: false,
-    category: "original",
-    year: 2025,
-    primaryImage: "/images/hero-calligraphy.png",
-    images: [
-      "/images/hero-calligraphy.png"
-    ],
-    colorPalette: ["#B88B58", "#5A3825", "#F4ECE1", "#221A15"],
-    description: "A grand oversized statement edition of the sacred La Tahzan calligraphy, custom sized for prominent living rooms, boardrooms, and prayer sanctuaries. Museum grade UV archival protective seal.",
-    descriptionBn: "লিভিং রুম ও লাক্সারি ইন্টেরিয়রের কেন্দ্রবিন্দু হিসেবে বড় সাইজে তৈরি লা তাহযান আরবি ক্যালিগ্রাফি স্টেটমেন্ট ক্যানভাস। ইউভি আর্কিভাল প্রটেক্টিভ সিলযুক্ত।",
-    dimensions: {
-      widthInches: 60,
-      heightInches: 36,
-      depthInches: 1.75
-    },
-    highlights: [
-      "Grand statement scale for high-ceiling living rooms",
-      "Archival heavy linen canvas with anti-warp solid wood bars",
-      "100% hand-painted by Fiha Islam with direct artist provenance"
-    ],
-    highlightsBn: [
-      "হাই-সিলিং লিভিং স্পেসের জন্য আকর্ষণীয় গ্র্যান্ড স্কেল",
-      "অ্যান্টি-ওয়ার্প সলিড উডেন বারযুক্ত আর্কিভাল লিনেন ক্যানভাস",
-      "শিল্পী ফিহা ইসলামের নিজ হাতে আঁকা অরিজিনাল মাস্টারপিস"
     ]
   }
 ];

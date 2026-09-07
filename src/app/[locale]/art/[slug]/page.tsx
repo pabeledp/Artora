@@ -33,6 +33,7 @@ import {
   ArrowRight,
   Palette,
   CheckCircle2,
+  MessageSquare,
 } from 'lucide-react';
 import { motion } from 'framer-motion';
 
@@ -248,7 +249,7 @@ export default function ProductDetailPage() {
                 className="w-full py-4 text-sm"
                 onClick={() => addItem(art)}
               >
-                <ShoppingBag className="w-4 h-4 text-gold" />
+                <ShoppingBag className="w-4 h-4 text-[#FFB0C1]" />
                 <span>{t('addToCart')}</span>
               </MagneticButton>
 
@@ -265,9 +266,38 @@ export default function ProductDetailPage() {
               </MagneticButton>
             </div>
 
+            {/* Direct WhatsApp Original Studio Photo/Video Request Button */}
+            {(() => {
+              const whatsappOriginalMsg = encodeURIComponent(
+                `🎨 *Original Artwork HD Photo/Video Request*\n\n` +
+                `*Artwork:* ${art.title}\n` +
+                `*Ref ID:* ${art.id}\n` +
+                `*Canvas Size:* ${art.canvasSize}\n` +
+                `*Price:* ৳${art.priceBDT.toLocaleString()}${art.discountPercent ? ` (Special ${art.discountPercent}% Discount)` : ''}\n\n` +
+                `Hello Fiha Islam, I am interested in this original canvas and would like to see real original uncompressed photos & video clips from your studio!`
+              );
+              const whatsappOriginalUrl = `https://wa.me/8801723722019?text=${whatsappOriginalMsg}`;
+
+              return (
+                <a
+                  href={whatsappOriginalUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full py-3.5 px-4 rounded-full text-xs sm:text-sm font-bold bg-[#25D366]/15 hover:bg-[#25D366]/25 text-[#25D366] border border-[#25D366]/40 backdrop-blur-xl shadow-lg transition-all flex items-center justify-center gap-2 group cursor-pointer"
+                >
+                  <MessageSquare className="w-4 h-4 fill-current group-hover:scale-110 transition-transform" />
+                  <span>
+                    {locale === 'bn'
+                      ? 'আসল ছবি ও ভিডিও দেখতে হোয়াটসঅ্যাপে রিকোয়েস্ট পাঠান'
+                      : 'Request Studio HD Photo & Video on WhatsApp'}
+                  </span>
+                </a>
+              );
+            })()}
+
             <Link href="/commission" className="block">
-              <button className="w-full py-3 rounded-full text-xs font-medium text-white/70 hover:text-white bg-void-card border border-glass-border hover:border-violet transition-all flex items-center justify-center gap-2">
-                <Palette className="w-3.5 h-3.5 text-violet" />
+              <button className="w-full py-3 rounded-full text-xs font-medium text-white/70 hover:text-white bg-void-card border border-glass-border hover:border-[#E60049] transition-all flex items-center justify-center gap-2">
+                <Palette className="w-3.5 h-3.5 text-[#FFB0C1]" />
                 <span>{t('requestCommission')}</span>
               </button>
             </Link>
