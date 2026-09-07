@@ -135,18 +135,8 @@ export const AcrylicCanvasViewer: React.FC<AcrylicCanvasViewerProps> = ({
       const canvasGroup = new THREE.Group();
       const boxGeo = new THREE.BoxGeometry(dimensions.width, dimensions.height, dimensions.depth);
 
-      const textureLoader = new THREE.TextureLoader();
-      let colorTexture: THREE.Texture | null = null;
-
-      if (imageUrl) {
-        colorTexture = textureLoader.load(imageUrl, () => {
-          renderer.render(scene, camera);
-        });
-        colorTexture.colorSpace = THREE.SRGBColorSpace;
-      }
-
       const frontMat = new THREE.MeshStandardMaterial({
-        map: colorTexture,
+        color: 0xffffff,
         bumpMap: bumpTexture,
         bumpScale: 0.08,
         roughness: 0.35,
@@ -169,6 +159,26 @@ export const AcrylicCanvasViewer: React.FC<AcrylicCanvasViewerProps> = ({
       const canvasMesh = new THREE.Mesh(boxGeo, materials);
       canvasGroup.add(canvasMesh);
       scene.add(canvasGroup);
+
+      const textureLoader = new THREE.TextureLoader();
+      let colorTexture: THREE.Texture | null = null;
+
+      if (imageUrl) {
+        colorTexture = textureLoader.load(
+          imageUrl,
+          (tex) => {
+            tex.colorSpace = THREE.SRGBColorSpace;
+            tex.needsUpdate = true;
+            frontMat.map = tex;
+            frontMat.needsUpdate = true;
+            renderer.render(scene, camera);
+          },
+          undefined,
+          (err) => {
+            console.error('Error loading 3D canvas texture:', err);
+          }
+        );
+      }
 
       let animationId: number | null = null;
       let isVisible = true;
@@ -198,6 +208,9 @@ export const AcrylicCanvasViewer: React.FC<AcrylicCanvasViewerProps> = ({
 
       animate();
 
+      // Ensure immediate render after setup
+      renderer.render(scene, camera);
+
       // Visibility change handler
       const innerObserver = new IntersectionObserver(
         ([innerEntry]) => {
@@ -210,15 +223,15 @@ export const AcrylicCanvasViewer: React.FC<AcrylicCanvasViewerProps> = ({
             animationId = null;
           }
         },
-        { threshold: 0.1 }
+        { threshold: 0.05 }
       );
       innerObserver.observe(targetEl);
 
       // Resize Handler
       const handleResize = () => {
         if (!targetEl) return;
-        width = targetEl.clientWidth;
-        height = targetEl.clientHeight;
+        width = targetEl.clientWidth || 600;
+        height = targetEl.clientHeight || 450;
         camera.aspect = width / height;
         camera.updateProjectionMatrix();
         renderer.setSize(width, height);

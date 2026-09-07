@@ -147,7 +147,7 @@ export default function HomePage() {
 
           <div className="relative z-10 max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
             {/* LEFT COLUMN: Brand, Typography & CTAs */}
-            <div className="lg:col-span-6 space-y-4 sm:space-y-6 text-center lg:text-left flex flex-col items-center lg:items-start">
+            <div className="lg:col-span-6 space-y-6 text-center lg:text-left flex flex-col items-center lg:items-start">
               {/* Futuristic Animated Badge */}
               <div className="relative inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-void-card/90 border border-[#E60049]/40 shadow-neon-crimson backdrop-blur-xl overflow-hidden group cursor-default">
                 <div className="relative flex items-center justify-center">
@@ -165,19 +165,19 @@ export default function HomePage() {
               </div>
 
               {/* Brand Logo & Exactly ONE <h1> Heading */}
-              <div className="space-y-3">
-                <div className="relative h-12 sm:h-16 md:h-20 w-44 sm:w-64 md:w-80 flex items-center">
+              <div className="space-y-4 w-full flex flex-col items-center lg:items-start">
+                <div className="relative h-10 sm:h-12 md:h-14 w-36 sm:w-44 md:w-48 flex items-center justify-center lg:justify-start">
                   <Image
                     src="/images/artora-logo.png"
                     alt="Artora by FramEmpire - Handcrafted Sacred Calligraphy & Textured Impasto Art by Fiha Islam"
                     fill
                     priority
-                    sizes="(max-width: 768px) 250px, 320px"
-                    className="object-contain"
+                    sizes="(max-width: 768px) 200px, 250px"
+                    className="object-contain object-center lg:object-left"
                   />
                 </div>
 
-                <h1 className="font-display font-black text-3xl sm:text-5xl md:text-6xl text-white tracking-tight leading-[1.15]">
+                <h1 className="font-display font-black text-3xl sm:text-4xl md:text-5xl lg:text-[42px] xl:text-[46px] text-white tracking-tight leading-[1.3] max-w-xl">
                   {isBn ? (
                     <>
                       শিল্পী ফিহা ইসলামের স্বহস্তে আঁকা{' '}
@@ -197,7 +197,7 @@ export default function HomePage() {
               </div>
 
               {/* Sub-headline description with keyword integration */}
-              <p className="text-sm sm:text-base md:text-lg text-white/70 max-w-xl font-light leading-relaxed">
+              <p className="text-sm sm:text-base text-white/70 max-w-xl font-light leading-relaxed">
                 {isBn
                   ? 'ঢাকার মিরপুর ও নারায়ণগঞ্জের স্টুডিও থেকে পরিচালিত Artora—যেখানে ত্রিমাত্রিক হেভি টেক্সচার, খাঁটি লিকুইড গোল্ড লিফ এবং আধ্যাত্মিক আরবি ক্যালিগ্রাফিকে রূপ দেওয়া হয়েছে আধুনিক স্থাপত্য ও গৃহসজ্জার এক অনন্য নান্দনিকতায়।'
                   : 'Islamic wall art in Bangladesh, bespoke handcrafted calligraphy canvases, and heavy impasto acrylic paintings created with passion by fine artist Fiha Islam.'}
@@ -206,7 +206,7 @@ export default function HomePage() {
               {/* Primary Action Buttons (2 Buttons with thumb-friendly touch targets) */}
               <div className="flex flex-col sm:flex-row items-center gap-3.5 sm:gap-4 w-full sm:w-auto pt-2">
                 <Link href="/shop" className="w-full sm:w-auto">
-                  <MagneticButton variant="gold" className="w-full sm:w-auto py-4 px-7 text-sm font-bold min-h-[48px]">
+                  <MagneticButton variant="gold" className="w-full sm:w-auto py-3.5 sm:py-4 px-7 text-sm font-bold min-h-[48px]">
                     <span>{isBn ? 'কালেকশন দেখুন' : 'Explore Collection'}</span>
                     <ArrowRight className="w-4 h-4" />
                   </MagneticButton>
@@ -216,7 +216,7 @@ export default function HomePage() {
                   href="https://wa.me/8801723722019?text=Hello%20Fiha%20Islam%2C%20I%20am%20interested%20in%20your%20custom%20canvas%20artwork."
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-4 rounded-full text-sm font-semibold bg-white/10 hover:bg-white/20 text-white border border-white/20 backdrop-blur-xl shadow-lg transition-all min-h-[48px]"
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 sm:py-4 rounded-full text-sm font-semibold bg-white/10 hover:bg-white/20 text-white border border-white/20 backdrop-blur-xl shadow-lg transition-all min-h-[48px]"
                 >
                   <MessageSquare className="w-4 h-4 text-[#25D366]" />
                   <span>{isBn ? 'হোয়াটসঅ্যাপে কথা বলুন' : 'Chat on WhatsApp'}</span>
