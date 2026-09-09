@@ -74,9 +74,9 @@ export default async function PrivacyPolicyPage({ params }: PrivacyPolicyPagePro
 
   return (
     <div className="relative min-h-screen pt-28 pb-24 px-4 sm:px-6 lg:px-8 overflow-hidden">
-      {/* Dynamic Background Glows (FramEmpire Signature Cyan & Crimson) */}
-      <div className="absolute top-20 left-1/3 w-[600px] h-[600px] bg-[#00F0FF]/10 rounded-full blur-[170px] pointer-events-none" />
-      <div className="absolute top-1/2 right-1/4 w-[500px] h-[500px] bg-[#E60049]/10 rounded-full blur-[160px] pointer-events-none" />
+      {/* Dynamic Background Glows (Artora Luxury Crimson & Gold Aura) */}
+      <div className="absolute top-20 left-1/3 w-[600px] h-[600px] bg-[#E60049]/12 rounded-full blur-[170px] pointer-events-none" />
+      <div className="absolute top-1/2 right-1/4 w-[500px] h-[500px] bg-gold/10 rounded-full blur-[160px] pointer-events-none" />
 
       <div className="max-w-5xl mx-auto relative z-10 space-y-12">
         {/* ===================== TOP HEADER & NAVIGATION ===================== */}
@@ -90,7 +90,7 @@ export default async function PrivacyPolicyPage({ params }: PrivacyPolicyPagePro
           </Link>
 
           <Link href="/commission">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#00F0FF]/10 border border-[#00F0FF]/40 text-xs font-semibold text-[#00F0FF] hover:bg-[#00F0FF]/20 transition-all backdrop-blur-md shadow-neon-cyan">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#E60049]/10 border border-[#E60049]/40 text-xs font-semibold text-[#FFB0C1] hover:bg-[#E60049]/20 transition-all backdrop-blur-md shadow-neon-crimson">
               <Palette className="w-3.5 h-3.5" />
               <span>{isBn ? 'কাস্টম কমিশন অর্ডার' : 'Commission Studio'}</span>
             </div>
@@ -98,13 +98,13 @@ export default async function PrivacyPolicyPage({ params }: PrivacyPolicyPagePro
         </div>
 
         {/* ===================== MAIN HEADER CARD ===================== */}
-        <header className="p-8 sm:p-10 rounded-3xl bg-void-card/95 border border-[#00F0FF]/30 backdrop-blur-2xl space-y-6 shadow-2xl relative overflow-hidden">
-          <div className="absolute top-0 right-0 w-48 h-48 bg-[#00F0FF]/10 rounded-full blur-3xl pointer-events-none" />
+        <header className="p-8 sm:p-10 rounded-3xl bg-void-card/95 border border-glass-border backdrop-blur-2xl space-y-6 shadow-2xl relative overflow-hidden">
+          <div className="absolute top-0 right-0 w-48 h-48 bg-[#E60049]/10 rounded-full blur-3xl pointer-events-none" />
 
           {/* Top Pill Badges */}
           <div className="flex flex-wrap items-center gap-3">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full text-xs font-mono font-bold bg-[#00F0FF]/10 border border-[#00F0FF]/40 text-[#00F0FF]">
-              <ShieldCheck className="w-3.5 h-3.5" />
+            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full text-xs font-mono font-bold bg-[#E60049]/15 border border-[#E60049]/40 text-[#FFB0C1]">
+              <ShieldCheck className="w-3.5 h-3.5 text-gold" />
               <span>{t('badge')}</span>
             </div>
 
@@ -122,20 +122,20 @@ export default async function PrivacyPolicyPage({ params }: PrivacyPolicyPagePro
           </p>
 
           {/* Disclaimer Callout Box */}
-          <div className="p-4 sm:p-5 rounded-2xl bg-void-card/80 border border-[#00F0FF]/25 flex items-start gap-3.5 text-xs text-white/80 leading-relaxed shadow-lg">
-            <Info className="w-4 h-4 text-[#00F0FF] shrink-0 mt-0.5" />
+          <div className="p-4 sm:p-5 rounded-2xl bg-void-card/80 border border-gold/30 flex items-start gap-3.5 text-xs text-white/80 leading-relaxed shadow-lg">
+            <Info className="w-4 h-4 text-gold shrink-0 mt-0.5" />
             <p>{t('disclaimer')}</p>
           </div>
         </header>
 
         {/* ===================== SECTION 01: INFORMATION WE COLLECT ===================== */}
-        <section className="p-6 sm:p-8 rounded-3xl bg-void-card/90 border border-glass-border hover:border-[#00F0FF]/40 transition-colors backdrop-blur-2xl space-y-6 shadow-xl">
+        <section className="p-6 sm:p-8 rounded-3xl bg-void-card/90 border border-glass-border hover:border-[#E60049]/40 transition-colors backdrop-blur-2xl space-y-6 shadow-xl">
           <div className="flex items-center gap-3">
-            <span className="font-mono text-xs font-black text-[#00F0FF] bg-[#00F0FF]/10 px-2.5 py-1 rounded-lg border border-[#00F0FF]/30">
+            <span className="font-mono text-xs font-black text-[#FFB0C1] bg-[#E60049]/15 px-2.5 py-1 rounded-lg border border-[#E60049]/30">
               {t('sec1.num')}
             </span>
             <div className="space-y-0.5">
-              <span className="text-[10px] font-mono font-bold text-[#00F0FF] uppercase tracking-wider block">
+              <span className="text-[10px] font-mono font-bold text-gold uppercase tracking-wider block">
                 {t('sec1.badge')}
               </span>
               <h2 className="font-display font-bold text-xl sm:text-2xl text-white">
@@ -147,8 +147,8 @@ export default async function PrivacyPolicyPage({ params }: PrivacyPolicyPagePro
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
             {/* Subcard A */}
             <div className="p-5 sm:p-6 rounded-2xl bg-white/[0.02] border border-glass-border space-y-4">
-              <div className="flex items-center gap-2 text-sm font-bold text-[#00F0FF]">
-                <CheckCircle2 className="w-4 h-4" />
+              <div className="flex items-center gap-2 text-sm font-bold text-[#FFB0C1]">
+                <CheckCircle2 className="w-4 h-4 text-gold" />
                 <h3>{t('sec1.aTitle')}</h3>
               </div>
               <ul className="space-y-3 text-xs text-white/70 leading-relaxed list-disc list-inside">
@@ -160,8 +160,8 @@ export default async function PrivacyPolicyPage({ params }: PrivacyPolicyPagePro
 
             {/* Subcard B */}
             <div className="p-5 sm:p-6 rounded-2xl bg-white/[0.02] border border-glass-border space-y-4">
-              <div className="flex items-center gap-2 text-sm font-bold text-[#00F0FF]">
-                <Layers className="w-4 h-4" />
+              <div className="flex items-center gap-2 text-sm font-bold text-[#FFB0C1]">
+                <Layers className="w-4 h-4 text-gold" />
                 <h3>{t('sec1.bTitle')}</h3>
               </div>
               <ul className="space-y-3 text-xs text-white/70 leading-relaxed list-disc list-inside">
@@ -173,13 +173,13 @@ export default async function PrivacyPolicyPage({ params }: PrivacyPolicyPagePro
         </section>
 
         {/* ===================== SECTION 02: HOW WE USE YOUR INFORMATION ===================== */}
-        <section className="p-6 sm:p-8 rounded-3xl bg-void-card/90 border border-glass-border hover:border-[#00F0FF]/40 transition-colors backdrop-blur-2xl space-y-6 shadow-xl">
+        <section className="p-6 sm:p-8 rounded-3xl bg-void-card/90 border border-glass-border hover:border-[#E60049]/40 transition-colors backdrop-blur-2xl space-y-6 shadow-xl">
           <div className="flex items-center gap-3">
-            <span className="font-mono text-xs font-black text-[#00F0FF] bg-[#00F0FF]/10 px-2.5 py-1 rounded-lg border border-[#00F0FF]/30">
+            <span className="font-mono text-xs font-black text-[#FFB0C1] bg-[#E60049]/15 px-2.5 py-1 rounded-lg border border-[#E60049]/30">
               {t('sec2.num')}
             </span>
             <div className="space-y-0.5">
-              <span className="text-[10px] font-mono font-bold text-[#00F0FF] uppercase tracking-wider block">
+              <span className="text-[10px] font-mono font-bold text-gold uppercase tracking-wider block">
                 {t('sec2.badge')}
               </span>
               <h2 className="font-display font-bold text-xl sm:text-2xl text-white">
@@ -191,7 +191,7 @@ export default async function PrivacyPolicyPage({ params }: PrivacyPolicyPagePro
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
             <div className="p-5 rounded-2xl bg-white/[0.02] border border-glass-border space-y-2">
               <div className="flex items-center gap-2 text-xs font-bold text-white">
-                <Truck className="w-4 h-4 text-[#00F0FF]" />
+                <Truck className="w-4 h-4 text-[#FFB0C1]" />
                 <h4>{t('sec2.item1Title')}</h4>
               </div>
               <p className="text-xs text-white/60 leading-relaxed">{t('sec2.item1Desc')}</p>
@@ -224,13 +224,13 @@ export default async function PrivacyPolicyPage({ params }: PrivacyPolicyPagePro
         </section>
 
         {/* ===================== SECTION 03: DELIVERY & LOGISTICS ===================== */}
-        <section className="p-6 sm:p-8 rounded-3xl bg-void-card/90 border border-glass-border hover:border-[#00F0FF]/40 transition-colors backdrop-blur-2xl space-y-6 shadow-xl">
+        <section className="p-6 sm:p-8 rounded-3xl bg-void-card/90 border border-glass-border hover:border-gold/40 transition-colors backdrop-blur-2xl space-y-6 shadow-xl">
           <div className="flex items-center gap-3">
-            <span className="font-mono text-xs font-black text-[#00F0FF] bg-[#00F0FF]/10 px-2.5 py-1 rounded-lg border border-[#00F0FF]/30">
+            <span className="font-mono text-xs font-black text-gold bg-gold/15 px-2.5 py-1 rounded-lg border border-gold/30">
               {t('sec3.num')}
             </span>
             <div className="space-y-0.5">
-              <span className="text-[10px] font-mono font-bold text-[#00F0FF] uppercase tracking-wider block">
+              <span className="text-[10px] font-mono font-bold text-gold uppercase tracking-wider block">
                 {t('sec3.badge')}
               </span>
               <h2 className="font-display font-bold text-xl sm:text-2xl text-white">
@@ -249,7 +249,7 @@ export default async function PrivacyPolicyPage({ params }: PrivacyPolicyPagePro
             </div>
 
             <div className="p-5 rounded-2xl bg-white/[0.02] border border-glass-border space-y-2">
-              <div className="flex items-center gap-2 text-sm font-bold text-[#00F0FF]">
+              <div className="flex items-center gap-2 text-sm font-bold text-[#FFB0C1]">
                 <Package className="w-4 h-4" />
                 <h3>{t('sec3.item2Title')}</h3>
               </div>
@@ -345,13 +345,13 @@ export default async function PrivacyPolicyPage({ params }: PrivacyPolicyPagePro
         </section>
 
         {/* ===================== SECTION 06: DATA PRIVACY & CONTACT ===================== */}
-        <section className="p-6 sm:p-8 rounded-3xl bg-void-card/90 border border-glass-border hover:border-[#00F0FF]/40 transition-colors backdrop-blur-2xl space-y-6 shadow-xl">
+        <section className="p-6 sm:p-8 rounded-3xl bg-void-card/90 border border-glass-border hover:border-[#E60049]/40 transition-colors backdrop-blur-2xl space-y-6 shadow-xl">
           <div className="flex items-center gap-3">
-            <span className="font-mono text-xs font-black text-[#00F0FF] bg-[#00F0FF]/10 px-2.5 py-1 rounded-lg border border-[#00F0FF]/30">
+            <span className="font-mono text-xs font-black text-[#FFB0C1] bg-[#E60049]/15 px-2.5 py-1 rounded-lg border border-[#E60049]/30">
               {t('sec6.num')}
             </span>
             <div className="space-y-0.5">
-              <span className="text-[10px] font-mono font-bold text-[#00F0FF] uppercase tracking-wider block">
+              <span className="text-[10px] font-mono font-bold text-gold uppercase tracking-wider block">
                 {t('sec6.badge')}
               </span>
               <h2 className="font-display font-bold text-xl sm:text-2xl text-white">
@@ -363,7 +363,7 @@ export default async function PrivacyPolicyPage({ params }: PrivacyPolicyPagePro
           <div className="space-y-4 pt-2">
             <div className="p-5 rounded-2xl bg-white/[0.02] border border-glass-border space-y-2">
               <div className="flex items-center gap-2 text-sm font-bold text-white">
-                <Lock className="w-4 h-4 text-[#00F0FF]" />
+                <Lock className="w-4 h-4 text-gold" />
                 <h3>{t('sec6.item1Title')}</h3>
               </div>
               <p className="text-xs text-white/70 leading-relaxed">{t('sec6.item1Desc')}</p>
@@ -398,3 +398,4 @@ export default async function PrivacyPolicyPage({ params }: PrivacyPolicyPagePro
     </div>
   );
 }
+

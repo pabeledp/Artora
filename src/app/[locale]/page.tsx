@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import { useTranslations, useLocale } from 'next-intl';
@@ -20,13 +20,16 @@ import {
   ShieldCheck,
   ShoppingBag,
   Layers,
+  ChevronLeft,
   ChevronRight,
   MessageSquare,
   Award,
   CheckCircle2,
   Facebook,
   ExternalLink,
+  Quote,
 } from 'lucide-react';
+
 
 export default function HomePage() {
   const tHero = useTranslations('hero');
@@ -39,6 +42,16 @@ export default function HomePage() {
 
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [activeArtIndex, setActiveArtIndex] = useState<number>(0);
+  const [activeReviewIndex, setActiveReviewIndex] = useState<number>(0);
+
+  // Auto-slide effect when testimonials > 3 or on mobile screens
+  useEffect(() => {
+    if (TESTIMONIALS_DATA.length <= 1) return;
+    const interval = setInterval(() => {
+      setActiveReviewIndex((prev) => (prev + 1) % TESTIMONIALS_DATA.length);
+    }, 6000);
+    return () => clearInterval(interval);
+  }, []);
 
   const categories = [
     { id: 'all', labelBn: 'সকল মাস্টারপিস', labelEn: 'All Masterpieces' },
@@ -621,7 +634,7 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* ===================== COLLECTOR TESTIMONIALS ===================== */}
+        {/* ===================== COLLECTOR TESTIMONIALS (3-COL LUXURY GRID / CAROUSEL) ===================== */}
         <section className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto relative z-10">
           <div className="text-center max-w-2xl mx-auto mb-12 space-y-3">
             <span className="text-xs font-bold text-gold uppercase tracking-widest font-mono">
@@ -632,98 +645,131 @@ export default function HomePage() {
             </h2>
           </div>
 
-          <div className="max-w-3xl mx-auto">
-            {TESTIMONIALS_DATA.map((item) => (
+          {/* 3 Review Cards Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {TESTIMONIALS_DATA.map((item, idx) => (
               <div
                 key={item.id}
-                className="p-6 sm:p-10 rounded-3xl bg-void-card/95 border border-[#1877F2]/40 hover:border-[#1877F2] transition-all duration-300 flex flex-col space-y-6 shadow-2xl backdrop-blur-2xl relative overflow-hidden"
+                className={`p-6 rounded-3xl bg-void-card/95 border transition-all duration-500 flex flex-col justify-between space-y-5 backdrop-blur-2xl relative overflow-hidden group shadow-xl ${
+                  item.isFacebookEmbed
+                    ? 'border-[#E60049]/40 hover:border-[#E60049] shadow-neon-crimson/20'
+                    : 'border-glass-border hover:border-white/30'
+                }`}
               >
-                {/* Top Glowing Ambient Orb */}
-                <div className="absolute top-0 right-0 w-48 h-48 bg-[#1877F2]/10 rounded-full blur-3xl pointer-events-none" />
+                {/* Ambient Subtle Glow */}
+                <div
+                  className={`absolute top-0 right-0 w-32 h-32 rounded-full blur-2xl pointer-events-none ${
+                    item.isFacebookEmbed ? 'bg-[#E60049]/15' : 'bg-gold/10'
+                  }`}
+                />
 
-                {/* Header: Author, Rating & Verified Badges */}
-                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-glass-border">
-                  <div className="flex items-center gap-3">
-                    <div className="w-11 h-11 rounded-full bg-gradient-to-tr from-[#1877F2] to-[#00F0FF] p-0.5 shadow-neon-cyan">
-                      <div className="w-full h-full rounded-full bg-void-card flex items-center justify-center text-white font-bold font-display text-base">
-                        {item.author.charAt(0)}
+                <div className="space-y-4 relative z-10">
+                  {/* Header: Author & Verified Badges */}
+                  <div className="flex items-center justify-between gap-3 pb-3 border-b border-glass-border">
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-[#E60049] to-gold p-0.5 shadow-sm shrink-0">
+                        <div className="w-full h-full rounded-full bg-void-card flex items-center justify-center text-white font-bold font-display text-sm">
+                          {item.author.charAt(0)}
+                        </div>
+                      </div>
+                      <div className="min-w-0">
+                        <h3 className="font-display font-bold text-sm sm:text-base text-white truncate flex items-center gap-1.5">
+                          <span>{isBn ? item.authorBn : item.author}</span>
+                          {item.isFacebookEmbed && (
+                            <span className="p-0.5 rounded-full bg-[#1877F2]/20 text-[#1877F2]">
+                              <Facebook className="w-3 h-3" />
+                            </span>
+                          )}
+                        </h3>
+                        <span className="text-[11px] text-emerald-400 font-mono flex items-center gap-1 truncate">
+                          <CheckCircle2 className="w-3 h-3 shrink-0" />
+                          <span>{isBn ? item.locationBn : item.location}</span>
+                        </span>
                       </div>
                     </div>
-                    <div>
-                      <h3 className="font-display font-bold text-base sm:text-lg text-white flex items-center gap-2">
-                        <span>{isBn ? item.authorBn : item.author}</span>
-                        <span className="p-1 rounded-full bg-[#1877F2]/20 text-[#1877F2]">
-                          <Facebook className="w-3.5 h-3.5" />
-                        </span>
-                      </h3>
-                      <span className="text-xs text-emerald-400 font-mono flex items-center gap-1">
-                        <CheckCircle2 className="w-3 h-3" />
-                        <span>{isBn ? item.locationBn : item.location}</span>
-                      </span>
+
+                    {/* 5-Star Rating */}
+                    <div className="flex items-center gap-0.5 bg-void/70 px-2.5 py-1 rounded-full border border-glass-border shrink-0">
+                      {[...Array(item.rating)].map((_, i) => (
+                        <Star key={i} className="w-3 h-3 text-gold fill-gold" />
+                      ))}
                     </div>
                   </div>
 
-                  {/* 5-Star Rating */}
-                  <div className="flex items-center gap-1 bg-void/60 px-3 py-1.5 rounded-full border border-glass-border w-fit">
-                    {[...Array(item.rating)].map((_, i) => (
-                      <Star key={i} className="w-4 h-4 text-gold fill-gold" />
-                    ))}
-                    <span className="text-xs font-mono font-bold text-gold ml-1">5.0</span>
-                  </div>
+                  {/* Review Content */}
+                  {item.isFacebookEmbed && item.facebookEmbedUrl ? (
+                    <div className="space-y-3">
+                      <div className="w-full rounded-2xl overflow-hidden bg-white/[0.02] border border-glass-border p-2 flex justify-center">
+                        <iframe
+                          src={item.facebookEmbedUrl}
+                          width="100%"
+                          height="160"
+                          style={{ border: 'none', overflow: 'hidden' }}
+                          scrolling="no"
+                          frameBorder="0"
+                          allowFullScreen={true}
+                          allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+                          className="w-full max-w-[340px] rounded-xl"
+                          title="Artora Facebook Customer Review by Moni Akther"
+                        />
+                      </div>
+                      <p className="text-xs text-white/80 leading-relaxed italic font-serif">
+                        "{isBn ? item.reviewBn : item.review}"
+                      </p>
+                    </div>
+                  ) : (
+                    <div className="space-y-2 py-2">
+                      <Quote className="w-6 h-6 text-gold/40" />
+                      <p className="text-xs sm:text-sm text-white/80 leading-relaxed font-light">
+                        {isBn ? item.reviewBn : item.review}
+                      </p>
+                    </div>
+                  )}
                 </div>
 
-                {/* Live Facebook Post Embed Container */}
-                <div className="w-full rounded-2xl overflow-hidden bg-white/[0.02] border border-glass-border p-3 sm:p-5 flex flex-col items-center justify-center space-y-3">
-                  <div className="w-full overflow-x-auto flex justify-center scrollbar-none py-1">
-                    <iframe
-                      src={item.facebookEmbedUrl}
-                      width="500"
-                      height="170"
-                      style={{ border: 'none', overflow: 'hidden' }}
-                      scrolling="no"
-                      frameBorder="0"
-                      allowFullScreen={true}
-                      allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
-                      className="max-w-full rounded-xl"
-                      title="Artora Facebook Customer Review by Moni Akther"
-                    />
-                  </div>
-                </div>
-
-                {/* Actions & Verification */}
-                <div className="pt-2 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-                  <div className="flex items-center gap-2 text-xs text-white/60">
-                    <ShieldCheck className="w-4 h-4 text-gold" />
+                {/* Footer Action */}
+                <div className="pt-3 border-t border-glass-border flex items-center justify-between gap-2 relative z-10">
+                  <div className="flex items-center gap-1.5 text-[11px] text-white/60">
+                    <ShieldCheck className="w-3.5 h-3.5 text-gold" />
                     <span>{tTestimonials('verified')}</span>
                   </div>
 
-                  <div className="flex items-center gap-3">
+                  {item.facebookPostUrl ? (
                     <a
                       href={item.facebookPostUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="px-4 py-2 rounded-xl text-xs font-semibold bg-[#1877F2]/15 hover:bg-[#1877F2]/30 text-[#1877F2] border border-[#1877F2]/40 backdrop-blur-md transition-all flex items-center gap-1.5"
+                      className="px-3 py-1.5 rounded-lg text-[11px] font-semibold bg-[#E60049]/15 hover:bg-[#E60049]/30 text-[#FFB0C1] border border-[#E60049]/30 backdrop-blur-md transition-all flex items-center gap-1"
                     >
-                      <Facebook className="w-3.5 h-3.5" />
-                      <span>{isBn ? 'ফেসবুকে মূল পোস্টটি দেখুন' : 'View Post on Facebook'}</span>
-                      <ExternalLink className="w-3 h-3" />
+                      <span>{isBn ? 'ফেসবুক পোস্ট' : 'View Post'}</span>
+                      <ExternalLink className="w-2.5 h-2.5" />
                     </a>
-
-                    <a
-                      href="https://www.facebook.com/profile.php?id=61591782255184"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="px-4 py-2 rounded-xl text-xs font-semibold bg-void-card hover:bg-white/10 text-white/80 hover:text-white border border-glass-border transition-all flex items-center gap-1.5"
-                    >
-                      <span>{isBn ? 'সকল রিভিউ দেখুন' : 'Artora Community'}</span>
-                    </a>
-                  </div>
+                  ) : (
+                    <span className="text-[10px] font-mono text-white/40 uppercase">
+                      Artora Collector
+                    </span>
+                  )}
                 </div>
               </div>
             ))}
+          </div>
+
+          {/* Bottom Community Link */}
+          <div className="mt-10 flex justify-center">
+            <a
+              href="https://www.facebook.com/profile.php?id=61591782255184"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-6 py-3 rounded-full text-xs font-semibold bg-void-card hover:bg-white/10 text-white/90 hover:text-white border border-glass-border transition-all flex items-center gap-2 shadow-lg hover:border-[#FFB0C1]"
+            >
+              <Facebook className="w-4 h-4 text-[#1877F2]" />
+              <span>{isBn ? 'আমাদের ফেসবুক পেজ ও সকল রিভিউ দেখুন' : 'Explore All Community Reviews on Facebook'}</span>
+              <ExternalLink className="w-3.5 h-3.5" />
+            </a>
           </div>
         </section>
       </div>
     </>
   );
 }
+
