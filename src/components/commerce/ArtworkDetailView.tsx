@@ -6,7 +6,6 @@ import { useTranslations, useLocale } from 'next-intl';
 import { ArtWork } from '@/lib/art-data';
 import { useCurrency } from '@/lib/currency';
 import { useCart } from '@/lib/cart';
-import { ARWallModal } from '@/components/ui/ARWallModal';
 import { MagneticButton } from '@/components/ui/MagneticButton';
 import { Link, useRouter } from '@/i18n/routing';
 
@@ -15,7 +14,6 @@ import {
   ShieldCheck,
   Truck,
   Eye,
-  Camera,
   ShoppingBag,
   ArrowRight,
   Palette,
@@ -37,7 +35,6 @@ export const ArtworkDetailView: React.FC<ArtworkDetailViewProps> = ({ art }) => 
   const router = useRouter();
 
   const [activeImage, setActiveImage] = useState(art.primaryImage);
-  const [isARModalOpen, setIsARModalOpen] = useState(false);
 
   const isBn = locale === 'bn';
 
@@ -61,22 +58,14 @@ export const ArtworkDetailView: React.FC<ArtworkDetailViewProps> = ({ art }) => 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
         {/* ===================== LEFT: VISUAL MEDIA (MULTI-ANGLE HD GALLERY) ===================== */}
         <div className="lg:col-span-7 space-y-4 w-full">
-          {/* Top action bar: AR Wall & Gallery Badges */}
-          <div className="flex flex-wrap items-center justify-between gap-3">
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-void-card border border-glass-border text-xs font-mono text-white/80 backdrop-blur-md">
+          {/* Top action bar: Studio Photo Gallery Badge */}
+          <div className="flex items-center justify-between gap-3">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-void-card border border-glass-border text-xs font-mono text-white/80 backdrop-blur-md">
               <Eye className="w-3.5 h-3.5 text-gold" />
-              <span>{isBn ? 'হাই-রেজোলিউশন স্টুডিও ফটো' : 'High-Resolution Studio Gallery'}</span>
+              <span>{isBn ? 'হাই-রেজোলিউশন স্টুডিও ফটো গ্যালারি' : 'High-Resolution Studio Gallery'}</span>
             </div>
-
-            {/* AR Wall Button */}
-            <button
-              onClick={() => setIsARModalOpen(true)}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold bg-gradient-to-r from-[#E60049] to-[#2B020A] text-white shadow-neon-crimson border border-[#E60049]/40 hover:opacity-95 transition-all"
-            >
-              <Camera className="w-4 h-4" />
-              <span>{t('arButton')}</span>
-            </button>
           </div>
+
 
           {/* Main Visual Display */}
           <div className="space-y-4">
@@ -285,13 +274,7 @@ export const ArtworkDetailView: React.FC<ArtworkDetailViewProps> = ({ art }) => 
           </div>
         </div>
       </div>
-
-      {/* AR Modal */}
-      <ARWallModal
-        art={art}
-        isOpen={isARModalOpen}
-        onClose={() => setIsARModalOpen(false)}
-      />
     </div>
   );
 };
+
