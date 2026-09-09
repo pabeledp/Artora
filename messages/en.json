@@ -14,8 +14,7 @@
     "subtitle": "By Fiha Islam",
     "tagline": "Where tactile acrylic impasto meets futuristic aesthetic serenity. Handcrafted luxury canvas creations designed to elevate living spaces and modern architectural interiors.",
     "exploreArt": "Explore Collection",
-    "customOrder": "Request Commission",
-    "interactiveHint": "🎨 Touch or move cursor to interact with paint textures"
+    "customOrder": "Request Commission"
   },
   "featured": {
     "title": "Curated Masterpieces",
@@ -27,9 +26,10 @@
   },
   "aboutArtist": {
     "badge": "Artist Profile & Studio Vision",
+    "subtitle": "About Artist",
     "title": "Fiha Islam",
     "role": "Fine Artist & Founder, Artora by FramEmpire",
-    "bio1": "Based in Kutubpur, Fatullah, Narayanganj, Dhaka, Fiha Islam is the lead artist and creative founder behind Artora by FramEmpire. Specializing in heavy acrylic impasto, 24k gold leaf gilding, and hand-painted wearable silks, she crafts statement art pieces tailored for modern architectural spaces.",
+    "bio1": "Based in Kutubpur, Fatullah, Narayanganj, Fiha Islam is the lead artist and creative founder behind Artora by FramEmpire. Specializing in heavy acrylic impasto, 24k gold leaf gilding, and hand-painted wearable silks, she crafts statement art pieces tailored for modern architectural spaces.",
     "bio2": "Her signature palette knife technique and rich dimensional textures bring walls alive with radiant warmth and contemporary depth. Every canvas is 100% original, sealed with archival museum varnish for collectors worldwide.",
     "experience": "5+ Years Studio Practice",
     "artworksDelivered": "300+ Curated Artworks",
@@ -149,5 +149,138 @@
     "email": "team.framempire@gmail.com",
     "copyright": "© 2025 Artora by FramEmpire (Fiha Islam). All rights reserved.",
     "developedBy": "Developed & Engineered by"
+  },
+  "aboutPage": {
+    "badge": "Studio Vision & Artist Profile",
+    "title": "Fiha Islam",
+    "role": "Fine Artist & Creative Founder",
+    "headline": "Crafting Dimension, Spirit, and Sacred Calligraphy onto Canvas",
+    "bioLead": "Based in Kutubpur, Fatullah, Narayanganj, Fiha Islam is an independent visual fine artist and calligrapher whose studio practice explores the delicate boundary between tactile three-dimensional texture and spiritual tranquility.",
+    "bioStory": "Every piece created under the Artora banner is a labour of love—built layer upon layer using heavy body acrylics, organic stone-paste textures, 24k liquid gold leaf gilding, and fluid Quranic Arabic calligraphy. Rather than mass-produced prints, Artora is dedicated to pure, singular, 100% handcrafted studio originals designed to transform luxury residences, modern duplexes, and corporate headquarters into serene sanctuaries.",
+    "quote": "Art is not merely something to hang on a blank wall; it is the atmospheric pulse and spiritual refuge of your living space.",
+    "timelineTitle": "The Creative Evolution",
+    "timelineSubtitle": "Milestones of Artistic Discovery & Studio Growth",
+    "milestones": [
+      {
+        "year": "2020",
+        "title": "Studio Genesis & Impasto Experiments",
+        "desc": "Began private studio exploration in Narayanganj, experimenting with heavy-body acrylic pastes, palette knife sculpting, and mineral pigments."
+      },
+      {
+        "year": "2022",
+        "title": "Sacred Calligraphy & 24k Gold Gilding",
+        "desc": "Pioneered a signature style uniting classic Arabic Thuluth/Diwani script with weathered stone textures and radiant liquid gold leaf."
+      },
+      {
+        "year": "2024",
+        "title": "Artora Brand Inception & Nationwide Reach",
+        "desc": "Established Artora under FramEmpire, delivering over 300+ custom commissioned canvases to art lovers across all 64 districts in Bangladesh."
+      },
+      {
+        "year": "2025+",
+        "title": "Global Collector Presence & Bespoke Art",
+        "desc": "Expanding international shipments to North America, UK, and the Middle East with museum-sealed archival packaging and Certificates of Authenticity."
+      }
+    ],
+    "philosophyTitle": "Studio Philosophy & Mediums",
+    "philosophySubtitle": "Uncompromising Quality, Raw Organic Materials & Spiritual Soul",
+    "pillars": [
+      {
+        "title": "Heavy Impasto Acrylics",
+        "tag": "Sculptural Texture",
+        "desc": "Built with rich dimensional knife strokes that catch natural daylight and cast dynamic ambient shadows across your wall throughout the day."
+      },
+      {
+        "title": "Sacred Arabic Calligraphy",
+        "tag": "Spiritual Grace",
+        "desc": "Timeless Quranic verses and prayers rendered in majestic flow, gilded with 24k liquid gold leaf accents for an aura of eternal peace."
+      },
+      {
+        "title": "Bespoke Scale & Color",
+        "tag": "Tailored Living",
+        "desc": "Every custom commission is harmonized to your interior color palette, lighting temperature, and exact architectural wall dimensions."
+      }
+    ],
+    "authenticityTitle": "Certificate of Authenticity & Museum Grade Protection",
+    "authenticityDesc": "Every artwork from Artora comes with an official Certificate of Authenticity signed by Fiha Islam, certifying that the canvas is 100% hand-painted. Finished with archival non-yellowing UV protective varnish against moisture, dust, and daylight fading.",
+    "locationTitle": "Studio Location & Nationwide Reach",
+    "locationDesc": "Studio located at Kutubpur, Fatullah, Narayanganj. Safe, insured home delivery across Bangladesh via Steadfast Courier and reinforced protective wooden casing for worldwide shipments.",
+    "ctaTitle": "Ready to Transform Your Living Space?",
+    "ctaDesc": "Explore our curated catalog of available masterworks or collaborate with Fiha Islam for a bespoke commissioned canvas.",
+    "ctaExplore": "Explore Masterpieces",
+    "ctaCommission": "Commission Custom Canvas"
+  },
+  "privacyPolicy": {
+    "badge": "Official Privacy & Governance Statement",
+    "effective": "Effective: February 26, 2022",
+    "updated": "Updated: August 10, 2026",
+    "title": "PRIVACY POLICY & TERMS",
+    "lead": "At Artora by FramEmpire (\"we,\" \"our,\" or \"us\"), accessible from artora.framempire.com, we deeply respect your privacy and are committed to protecting your personal information, collector details, and transaction security across our Art Studio, Commission Services, and Gallery Platform.",
+    "disclaimer": "If you do not agree with the terms of this privacy policy, please refrain from submitting orders, personal contact information, or utilizing our custom commission services.",
+    "sec1": {
+      "num": "01",
+      "badge": "SECTION 01",
+      "title": "01. Information We Collect",
+      "aTitle": "A. Personal & Collector Data",
+      "a1": "Contact & Delivery Details: Full name, phone/WhatsApp number, shipping address, city/division for order fulfillment.",
+      "a2": "Commission Specifications: Interior wall photos, custom dimensions, color preferences, and design vision provided during art consultations.",
+      "a3": "Payment Verification: Transaction reference numbers, mobile banking confirmation IDs (bKash/Nagad), or payment status. We never store raw debit/credit card details.",
+      "bTitle": "B. Technical & Browsing Data",
+      "b1": "Device & Network Diagnostics: IP address, device type, browser specifications, and screen resolution to optimize visual rendering.",
+      "b2": "Anonymous Analytics: Aggregated interaction patterns, page viewing duration, and catalog browsing to improve our gallery experience."
+    },
+    "sec2": {
+      "num": "02",
+      "badge": "SECTION 02",
+      "title": "02. How We Use Your Information",
+      "item1Title": "Artwork Fulfillment & Delivery",
+      "item1Desc": "To prepare, inspect, package, and safely dispatch your handcrafted canvas artwork to your specified address.",
+      "item2Title": "Direct Artist Consultation",
+      "item2Desc": "To connect with you via WhatsApp or phone call to discuss bespoke dimensions, colors, and progress updates.",
+      "item3Title": "Secure Invoicing & Accounting",
+      "item3Desc": "To generate official order receipts, Certificate of Authenticity (CoA) records, and courier shipping waybills.",
+      "item4Title": "Collector Support & Inquiries",
+      "item4Desc": "To assist you with hanging instructions, framing inquiries, maintenance tips, or delivery tracking."
+    },
+    "sec3": {
+      "num": "03",
+      "badge": "SECTION 03 • DELIVERY & LOGISTICS",
+      "title": "03. Delivery, Packaging & Courier Governance",
+      "item1Title": "Steadfast Courier Nationwide Delivery",
+      "item1Desc": "All orders inside Bangladesh are dispatched via trusted courier partners (Steadfast Courier) with end-to-end tracking and direct home delivery across all 64 districts.",
+      "item2Title": "Reinforced Multi-Layer Packaging",
+      "item2Desc": "Every stretched canvas is protected with heavy bubble wrap, rigid corner protectors, and moisture-resistant exterior casing to prevent transit damage.",
+      "item3Title": "International Collector Shipping",
+      "item3Desc": "Worldwide express courier shipments are secured in heavy-duty wooden crate enclosures with archival moisture shielding."
+    },
+    "sec4": {
+      "num": "04",
+      "badge": "SECTION 04 • COMMISSIONS & RETURNS",
+      "title": "04. Custom Commissions, Returns & Transit Damage",
+      "item1Title": "Custom Commission Non-Refundable Policy",
+      "item1Desc": "Because custom commissioned paintings are individually handcrafted to your bespoke specifications, materials, and sizes, advance booking deposits are non-refundable once the painting process has commenced.",
+      "item2Title": "100% Zero-Risk Transit Damage Guarantee",
+      "item2Desc": "If an artwork arrives physically damaged due to courier mishandling, notify us within 24 hours of delivery with unboxing photos/video. We will promptly repair, replace, or re-create the artwork at zero additional cost to you.",
+      "item3Title": "Pre-Shipment Approval",
+      "item3Desc": "For all custom commissions, high-resolution photographs and studio videos of the completed artwork are shared with the collector for final approval prior to packaging and dispatch."
+    },
+    "sec5": {
+      "num": "05",
+      "badge": "SECTION 05 • INTELLECTUAL PROPERTY",
+      "title": "05. Intellectual Property & Copyright Protection",
+      "item1Title": "Original Artworks by Fiha Islam",
+      "item1Desc": "All paintings, calligraphy compositions, color schemes, photography, and digital assets published on Artora are the intellectual property of Fiha Islam and FramEmpire.",
+      "item2Title": "Certificate of Authenticity (CoA)",
+      "item2Desc": "Each original artwork is issued a verifiable physical Certificate of Authenticity signed by the artist, prohibiting unauthorized commercial reproduction, duplication, or counterfeiting."
+    },
+    "sec6": {
+      "num": "06",
+      "badge": "SECTION 06 • DATA PRIVACY & CONTACT",
+      "title": "06. Collector Privacy Rights & Contact",
+      "item1Title": "Data Protection & No Third-Party Sales",
+      "item1Desc": "We do not sell, rent, or trade your personal or contact information to any third-party advertisers. Information is strictly utilized for studio logistics.",
+      "item2Title": "Privacy Questions & Direct Contact",
+      "item2Desc": "For privacy requests, address modifications, or inquiries, contact our studio team directly at team.framempire@gmail.com or call +880 1723-722019."
+    }
   }
 }

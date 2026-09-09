@@ -83,8 +83,18 @@ export const Footer: React.FC = () => {
                 </Link>
               </li>
               <li>
+                <Link href="/about" className="hover:text-white transition-colors">
+                  {tNav('about')}
+                </Link>
+              </li>
+              <li>
                 <Link href="/commission" className="hover:text-white transition-colors">
                   {tNav('commissions')}
+                </Link>
+              </li>
+              <li>
+                <Link href="/privacy-policy" className="hover:text-white transition-colors">
+                  {locale === 'bn' ? 'প্রাইভেসি পলিসি ও টার্মস' : 'Privacy Policy & Terms'}
                 </Link>
               </li>
               <li>

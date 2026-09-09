@@ -5,7 +5,7 @@ import { useTranslations, useLocale } from 'next-intl';
 import { Link, usePathname, useRouter } from '@/i18n/routing';
 import { useCurrency } from '@/lib/currency';
 import { useCart } from '@/lib/cart';
-import { ShoppingBag, Globe, Home, Image as GalleryIcon, Palette } from 'lucide-react';
+import { ShoppingBag, Globe, Home, Image as GalleryIcon, Palette, User } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 export const Navbar: React.FC = () => {
@@ -38,6 +38,7 @@ export const Navbar: React.FC = () => {
     { href: '/', label: t('home'), icon: Home },
     { href: '/shop', label: t('gallery'), icon: GalleryIcon },
     { href: '/commission', label: t('commissions'), icon: Palette },
+    { href: '/about', label: t('about'), icon: User },
   ];
 
   return (

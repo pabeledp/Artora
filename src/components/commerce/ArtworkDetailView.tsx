@@ -1,7 +1,6 @@
 'use client';
 
 import React, { useState } from 'react';
-import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import { useTranslations, useLocale } from 'next-intl';
 import { ArtWork } from '@/lib/art-data';
@@ -11,23 +10,10 @@ import { ARWallModal } from '@/components/ui/ARWallModal';
 import { MagneticButton } from '@/components/ui/MagneticButton';
 import { Link, useRouter } from '@/i18n/routing';
 
-const AcrylicCanvasViewer = dynamic(
-  () => import('@/components/3d/AcrylicCanvasViewer').then((mod) => mod.AcrylicCanvasViewer),
-  {
-    ssr: false,
-    loading: () => (
-      <div className="w-full h-[360px] sm:h-[480px] rounded-2xl bg-void-card border border-glass-border flex items-center justify-center text-xs text-[#FFB0C1] animate-pulse">
-        🎨 Loading 3D Impasto Canvas...
-      </div>
-    ),
-  }
-);
-
 import {
   Sparkles,
   ShieldCheck,
   Truck,
-  Box,
   Eye,
   Camera,
   ShoppingBag,
@@ -35,6 +21,7 @@ import {
   Palette,
   CheckCircle2,
   MessageSquare,
+  Maximize2,
 } from 'lucide-react';
 
 interface ArtworkDetailViewProps {
@@ -50,7 +37,6 @@ export const ArtworkDetailView: React.FC<ArtworkDetailViewProps> = ({ art }) => 
   const router = useRouter();
 
   const [activeImage, setActiveImage] = useState(art.primaryImage);
-  const [activeTab, setActiveTab] = useState<'3d' | 'photos'>('3d');
   const [isARModalOpen, setIsARModalOpen] = useState(false);
 
   const isBn = locale === 'bn';
@@ -73,33 +59,13 @@ export const ArtworkDetailView: React.FC<ArtworkDetailViewProps> = ({ art }) => 
       </nav>
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
-        {/* ===================== LEFT: VISUAL MEDIA (3D VIEWER / MULTI-ANGLE GALLERY) ===================== */}
+        {/* ===================== LEFT: VISUAL MEDIA (MULTI-ANGLE HD GALLERY) ===================== */}
         <div className="lg:col-span-7 space-y-4 w-full">
-          {/* Toggle between 3D Canvas Slab and HD Photo Gallery */}
+          {/* Top action bar: AR Wall & Gallery Badges */}
           <div className="flex flex-wrap items-center justify-between gap-3">
-            <div className="flex items-center p-1 rounded-xl bg-void-card border border-glass-border backdrop-blur-md">
-              <button
-                onClick={() => setActiveTab('3d')}
-                className={`flex items-center gap-1.5 px-3.5 py-2 rounded-lg text-xs font-medium transition-all ${
-                  activeTab === '3d'
-                    ? 'bg-[#E60049] text-white font-semibold shadow-neon-crimson'
-                    : 'text-white/60 hover:text-white'
-                }`}
-              >
-                <Box className="w-3.5 h-3.5" />
-                <span>3D Impasto Studio</span>
-              </button>
-              <button
-                onClick={() => setActiveTab('photos')}
-                className={`flex items-center gap-1.5 px-3.5 py-2 rounded-lg text-xs font-medium transition-all ${
-                  activeTab === 'photos'
-                    ? 'bg-white/20 text-white font-semibold shadow-inner'
-                    : 'text-white/60 hover:text-white'
-                }`}
-              >
-                <Eye className="w-3.5 h-3.5" />
-                <span>HD Photo Gallery</span>
-              </button>
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-void-card border border-glass-border text-xs font-mono text-white/80 backdrop-blur-md">
+              <Eye className="w-3.5 h-3.5 text-gold" />
+              <span>{isBn ? 'হাই-রেজোলিউশন স্টুডিও ফটো' : 'High-Resolution Studio Gallery'}</span>
             </div>
 
             {/* AR Wall Button */}
@@ -113,56 +79,46 @@ export const ArtworkDetailView: React.FC<ArtworkDetailViewProps> = ({ art }) => 
           </div>
 
           {/* Main Visual Display */}
-          {activeTab === '3d' ? (
-            <div className="rounded-2xl overflow-hidden bg-void-card border border-glass-border shadow-2xl">
-              <AcrylicCanvasViewer
-                imageUrl={art.primaryImage}
-                title={art.title}
-                artist="Fiha Islam"
-                dimensions={{
-                  width: art.dimensions.widthInches / 10,
-                  height: art.dimensions.heightInches / 10,
-                  depth: art.dimensions.depthInches,
-                }}
+          <div className="space-y-4">
+            <div className="relative aspect-[4/3] sm:aspect-[16/10] rounded-2xl overflow-hidden bg-void-card border border-glass-border shadow-2xl group">
+              <Image
+                src={activeImage}
+                alt={`${art.title} Original Acrylic Impasto Canvas Artwork by Fiha Islam`}
+                fill
+                priority
+                sizes="(max-width: 1024px) 100vw, 800px"
+                className="object-cover transition-transform duration-700 group-hover:scale-105"
               />
-            </div>
-          ) : (
-            <div className="space-y-4">
-              <div className="relative aspect-[4/3] sm:aspect-[16/10] rounded-2xl overflow-hidden bg-void-card border border-glass-border shadow-2xl">
-                <Image
-                  src={activeImage}
-                  alt={`${art.title} 3D Acrylic Impasto Canvas Artwork by Fiha Islam`}
-                  fill
-                  priority
-                  sizes="(max-width: 1024px) 100vw, 800px"
-                  className="object-cover"
-                />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
+              <div className="absolute bottom-3 right-3 px-3 py-1 rounded-full bg-void-card/90 border border-glass-border backdrop-blur-md text-[10px] font-mono text-white/80 flex items-center gap-1">
+                <Maximize2 className="w-3 h-3 text-gold" />
+                <span>{isBn ? art.canvasSizeBn : art.canvasSize}</span>
               </div>
+            </div>
 
-              {/* Thumbnails */}
-              <div className="flex gap-3 overflow-x-auto pb-2 scrollbar-thin">
-                {art.images.map((img, idx) => (
-                  <button
-                    key={idx}
-                    onClick={() => setActiveImage(img)}
-                    className={`relative w-20 h-20 rounded-xl overflow-hidden border-2 shrink-0 transition-all ${
-                      activeImage === img
-                        ? 'border-[#E60049] shadow-neon-crimson scale-105'
-                        : 'border-glass-border opacity-70 hover:opacity-100'
-                    }`}
-                  >
-                    <Image
-                      src={img}
-                      alt={`${art.title} Thumbnail ${idx + 1}`}
-                      fill
-                      sizes="80px"
-                      className="object-cover"
-                    />
-                  </button>
-                ))}
-              </div>
+            {/* Thumbnails */}
+            <div className="flex gap-3 overflow-x-auto pb-2 scrollbar-thin">
+              {art.images.map((img, idx) => (
+                <button
+                  key={idx}
+                  onClick={() => setActiveImage(img)}
+                  className={`relative w-20 h-20 rounded-xl overflow-hidden border-2 shrink-0 transition-all ${
+                    activeImage === img
+                      ? 'border-[#E60049] shadow-neon-crimson scale-105'
+                      : 'border-glass-border opacity-70 hover:opacity-100'
+                  }`}
+                >
+                  <Image
+                    src={img}
+                    alt={`${art.title} Thumbnail ${idx + 1}`}
+                    fill
+                    sizes="80px"
+                    className="object-cover"
+                  />
+                </button>
+              ))}
             </div>
-          )}
+          </div>
         </div>
 
         {/* ===================== RIGHT: ARTWORK DETAILS & COMMERCE ACTIONS ===================== */}

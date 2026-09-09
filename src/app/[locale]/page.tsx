@@ -11,18 +11,6 @@ import { useCurrency } from '@/lib/currency';
 import { useCart } from '@/lib/cart';
 import { motion, AnimatePresence } from 'framer-motion';
 
-const AcrylicCanvasViewer = dynamic(
-  () => import('@/components/3d/AcrylicCanvasViewer').then((mod) => mod.AcrylicCanvasViewer),
-  {
-    ssr: false,
-    loading: () => (
-      <div className="w-full h-[360px] sm:h-[480px] rounded-2xl bg-void-card border border-glass-border flex items-center justify-center text-xs text-[#FFB0C1] animate-pulse">
-        🎨 Loading 3D Canvas Impasto Studio...
-      </div>
-    ),
-  }
-);
-
 import {
   Sparkles,
   ArrowRight,
@@ -30,7 +18,6 @@ import {
   Eye,
   Star,
   ShieldCheck,
-  Zap,
   ShoppingBag,
   Layers,
   ChevronRight,
@@ -43,7 +30,6 @@ export default function HomePage() {
   const tHero = useTranslations('hero');
   const tFeatured = useTranslations('featured');
   const tAbout = useTranslations('aboutArtist');
-  const tTexture = useTranslations('texture3D');
   const tTestimonials = useTranslations('testimonials');
   const locale = useLocale();
   const { formatPrice } = useCurrency();
@@ -258,7 +244,7 @@ export default function HomePage() {
                       href={`/art/${featuredHeroArt.slug}`}
                       className="px-3 py-1 rounded-full text-[10px] sm:text-xs font-mono bg-white/10 hover:bg-white/20 backdrop-blur-xl border border-white/25 text-white hover:border-[#FFB0C1] transition-all flex items-center gap-1 shadow-sm"
                     >
-                      <Zap className="w-3 h-3 text-[#FFB0C1]" /> 3D View
+                      <Eye className="w-3 h-3 text-[#FFB0C1]" /> {isBn ? 'বিস্তারিত' : 'View Details'}
                     </Link>
                   </div>
 
@@ -405,7 +391,7 @@ export default function HomePage() {
                         href={`/art/${activeArt.slug}`}
                         className="px-3.5 py-1.5 rounded-full text-xs font-mono bg-[#E60049]/30 border border-[#E60049] text-[#FFB0C1] backdrop-blur-md flex items-center gap-1.5 hover:bg-[#E60049] hover:text-white transition-colors"
                       >
-                        <Zap className="w-3.5 h-3.5 text-[#FFB0C1]" /> 3D View
+                        <Eye className="w-3.5 h-3.5 text-[#FFB0C1]" /> {isBn ? 'বিস্তারিত দেখুন' : 'View Details'}
                       </Link>
                     </div>
                   </div>
@@ -620,59 +606,6 @@ export default function HomePage() {
                     <span>{isBn ? 'স্টুডিও চ্যাট' : 'Direct Studio Chat'}</span>
                   </a>
                 </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* ===================== 3D VIRTUAL STUDIO SECTION ===================== */}
-        <section className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto relative z-10">
-          <div className="rounded-3xl p-6 sm:p-12 bg-gradient-to-br from-[#1A030A] via-void-card to-[#0D0004] border border-glass-border shadow-2xl relative overflow-hidden">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
-              {/* Left: 3D Explanation */}
-              <div className="lg:col-span-5 space-y-6">
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold bg-[#E60049]/20 border border-[#E60049]/40 text-[#FFB0C1]">
-                  <Zap className="w-3.5 h-3.5 text-gold" />
-                  <span>{tTexture('badge')}</span>
-                </div>
-
-                <h2 className="font-display font-black text-3xl sm:text-4xl text-white leading-tight">
-                  {tTexture('title')}
-                </h2>
-
-                <p className="text-sm text-white/70 leading-relaxed">
-                  {tTexture('description')}
-                </p>
-
-                <div className="space-y-3 text-xs text-white/80">
-                  <div className="flex items-center gap-2.5 p-3 rounded-xl bg-void-card border border-glass-border">
-                    <span className="w-2 h-2 rounded-full bg-[#E60049]" />
-                    <span>Heavy impasto palette knife ridges simulated in real-time</span>
-                  </div>
-                  <div className="flex items-center gap-2.5 p-3 rounded-xl bg-void-card border border-glass-border">
-                    <span className="w-2 h-2 rounded-full bg-gold" />
-                    <span>24k liquid gold specular reflections under orbital spotlights</span>
-                  </div>
-                </div>
-
-                <div className="pt-2">
-                  <Link href={`/art/${featuredHeroArt.slug}`}>
-                    <MagneticButton variant="gold" className="text-sm min-h-[44px]">
-                      <span>Inspect Full Masterpiece</span>
-                      <ArrowRight className="w-4 h-4" />
-                    </MagneticButton>
-                  </Link>
-                </div>
-              </div>
-
-              {/* Right: Embedded Live 3D Canvas */}
-              <div className="lg:col-span-7">
-                <AcrylicCanvasViewer
-                  imageUrl={featuredHeroArt.primaryImage}
-                  title={featuredHeroArt.title}
-                  artist="Fiha Islam"
-                  dimensions={{ width: 4.2, height: 2.8, depth: 0.22 }}
-                />
               </div>
             </div>
           </div>

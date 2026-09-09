@@ -7,23 +7,30 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const currentDate = new Date().toISOString();
 
   // Static core pages
-  const staticPages = ['', '/shop', '/commission', '/checkout'];
+  const staticPages = [
+    { path: '', priority: 1.0, changeFrequency: 'daily' as const },
+    { path: '/shop', priority: 0.9, changeFrequency: 'weekly' as const },
+    { path: '/about', priority: 0.85, changeFrequency: 'weekly' as const },
+    { path: '/commission', priority: 0.85, changeFrequency: 'weekly' as const },
+    { path: '/privacy-policy', priority: 0.7, changeFrequency: 'monthly' as const },
+    { path: '/checkout', priority: 0.75, changeFrequency: 'weekly' as const },
+  ];
 
   const sitemapEntries: MetadataRoute.Sitemap = [];
 
   // Add static routes for each locale
   for (const page of staticPages) {
     for (const locale of locales) {
-      const url = `${baseUrl}/${locale}${page}`;
+      const url = `${baseUrl}/${locale}${page.path}`;
       sitemapEntries.push({
         url,
         lastModified: currentDate,
-        changeFrequency: page === '' ? 'daily' : 'weekly',
-        priority: page === '' ? 1.0 : page === '/shop' ? 0.9 : 0.8,
+        changeFrequency: page.changeFrequency,
+        priority: page.priority,
         alternates: {
           languages: {
-            en: `${baseUrl}/en${page}`,
-            bn: `${baseUrl}/bn${page}`,
+            en: `${baseUrl}/en${page.path}`,
+            bn: `${baseUrl}/bn${page.path}`,
           },
         },
       });

@@ -1,33 +1,18 @@
 'use client';
 
 import React, { useState } from 'react';
-import dynamic from 'next/dynamic';
 import { useTranslations, useLocale } from 'next-intl';
 import { Link } from '@/i18n/routing';
 import { ARTWORKS_DATA } from '@/lib/art-data';
 import { useCurrency } from '@/lib/currency';
 import { useCart } from '@/lib/cart';
 import { motion, AnimatePresence } from 'framer-motion';
-
-const VirtualGalleryWall = dynamic(
-  () => import('@/components/3d/VirtualGalleryWall').then((mod) => mod.VirtualGalleryWall),
-  {
-    ssr: false,
-    loading: () => (
-      <div className="w-full h-[650px] rounded-2xl bg-void-card border border-glass-border flex items-center justify-center text-xs text-gold/60 animate-pulse">
-        🏛️ Loading 3D Virtual Gallery Wall...
-      </div>
-    ),
-  }
-);
 import {
   Grid,
-  Box,
   ShoppingBag,
   ArrowRight,
-  Filter,
   Sparkles,
-  Zap,
+  Eye,
 } from 'lucide-react';
 
 export default function ShopPage() {
@@ -37,7 +22,6 @@ export default function ShopPage() {
   const { addItem } = useCart();
 
   const [activeCategory, setActiveCategory] = useState<string>('all');
-  const [viewMode, setViewMode] = useState<'grid' | 'wall'>('grid');
 
   const categories = [
     { key: 'all', label: t('filters.all') },
@@ -67,15 +51,15 @@ export default function ShopPage() {
         </h1>
         <p className="text-sm sm:text-base text-white/70 max-w-2xl mx-auto leading-relaxed">
           {locale === 'bn'
-            ? 'হাতে আঁকা থ্রিডি আরবি ক্যালিগ্রাফি ও টেক্সচার্ড ইম্প্যাস্টো অ্যাক্রিলিক আর্টওয়ার্ক কালেকশন। প্রতিটি পেইন্টিং ১০০% অরিজিনাল এবং আর্টিস্ট ফিহা ইসলামের স্বাক্ষরযুক্ত।'
-            : 'Explore handcrafted 3D Islamic calligraphy, heavy impasto textures, and bespoke original canvases created in Dhaka, Bangladesh by fine artist Fiha Islam.'}
+            ? 'হাতে আঁকা আরবি ক্যালিগ্রাফি ও টেক্সচার্ড ইম্প্যাস্টো অ্যাক্রিলিক আর্টওয়ার্ক কালেকশন। প্রতিটি পেইন্টিং ১০০% অরিজিনাল এবং আর্টিস্ট ফিহা ইসলামের স্বাক্ষরযুক্ত।'
+            : 'Explore handcrafted Islamic calligraphy, heavy impasto textures, and bespoke original canvases created in Narayanganj, Dhaka by fine artist Fiha Islam.'}
         </p>
       </div>
 
-      {/* Control Toolbar: Filter tabs & View Mode switcher */}
-      <div className="flex flex-col md:flex-row items-center justify-between gap-4 sm:gap-6 mb-10 pb-6 border-b border-glass-border">
+      {/* Control Toolbar: Category filter tabs */}
+      <div className="flex items-center justify-between gap-4 mb-10 pb-6 border-b border-glass-border">
         {/* Category Pills (horizontally scrollable on mobile) */}
-        <div className="flex items-center gap-2 overflow-x-auto max-w-full w-full md:w-auto pb-2 md:pb-0 scrollbar-none snap-x">
+        <div className="flex items-center gap-2 overflow-x-auto max-w-full w-full pb-2 md:pb-0 scrollbar-none snap-x">
           {categories.map((cat) => (
             <button
               key={cat.key}
@@ -90,129 +74,100 @@ export default function ShopPage() {
             </button>
           ))}
         </div>
-
-        {/* View Mode Toggle (Flat Grid vs 3D Wall) */}
-        <div className="flex items-center p-1 rounded-xl bg-void-card border border-glass-border backdrop-blur-md">
-          <button
-            onClick={() => setViewMode('grid')}
-            className={`flex items-center gap-2 px-3.5 py-1.5 rounded-lg text-xs font-medium transition-all ${
-              viewMode === 'grid'
-                ? 'bg-white/15 text-white font-semibold shadow-inner'
-                : 'text-white/60 hover:text-white'
-            }`}
-          >
-            <Grid className="w-3.5 h-3.5" />
-            <span>{t('viewMode.grid')}</span>
-          </button>
-          <button
-            onClick={() => setViewMode('wall')}
-            className={`flex items-center gap-2 px-3.5 py-1.5 rounded-lg text-xs font-medium transition-all ${
-              viewMode === 'wall'
-                ? 'bg-gold/20 text-gold font-semibold shadow-inner'
-                : 'text-white/60 hover:text-white'
-            }`}
-          >
-            <Box className="w-3.5 h-3.5 text-gold" />
-            <span>{t('viewMode.wall')}</span>
-          </button>
-        </div>
       </div>
 
-      {/* Viewport: 3D Virtual Gallery Wall or 2D Card Grid */}
-      {viewMode === 'wall' ? (
-        <div className="my-8">
-          <VirtualGalleryWall />
-        </div>
-      ) : (
-        <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <AnimatePresence>
-            {filteredArtworks.map((art) => (
-              <motion.div
-                key={art.id}
-                layout
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.95 }}
-                transition={{ duration: 0.3 }}
-                className="group rounded-3xl overflow-hidden bg-void-card border border-glass-border hover:border-gold/50 transition-all duration-300 flex flex-col justify-between shadow-xl hover:shadow-neon-gold"
-              >
-                <div className="relative h-72 overflow-hidden bg-void-light">
-                  <img
-                    src={art.primaryImage}
-                    alt={`${art.title} - Handcrafted 3D Arabic Calligraphy and Impasto Canvas Painting by Fiha Islam (${art.canvasSize})`}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-void via-transparent to-transparent opacity-70" />
+      {/* 2D Card Grid */}
+      <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <AnimatePresence>
+          {filteredArtworks.map((art) => (
+            <motion.div
+              key={art.id}
+              layout
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.95 }}
+              transition={{ duration: 0.3 }}
+              className="group rounded-3xl overflow-hidden bg-void-card border border-glass-border hover:border-gold/50 transition-all duration-300 flex flex-col justify-between shadow-xl hover:shadow-neon-gold"
+            >
+              <div className="relative h-72 overflow-hidden bg-void-light">
+                <img
+                  src={art.primaryImage}
+                  alt={`${art.title} - Handcrafted Arabic Calligraphy and Impasto Canvas Painting by Fiha Islam (${art.canvasSize})`}
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-void via-transparent to-transparent opacity-70" />
 
-                  {/* Badges */}
-                  <div className="absolute top-4 left-4 flex flex-wrap gap-2">
-                    <span className="px-2.5 py-1 rounded-full text-[11px] font-semibold bg-void/80 border border-glass-border text-white/90 backdrop-blur-md">
-                      {locale === 'bn' ? art.canvasSizeBn : art.canvasSize}
+                {/* Badges */}
+                <div className="absolute top-4 left-4 flex flex-wrap gap-2">
+                  <span className="px-2.5 py-1 rounded-full text-[11px] font-semibold bg-void/80 border border-glass-border text-white/90 backdrop-blur-md">
+                    {locale === 'bn' ? art.canvasSizeBn : art.canvasSize}
+                  </span>
+                  {art.discountPercent && (
+                    <span className="px-2.5 py-1 rounded-full text-[10px] font-mono font-bold bg-[#E60049] text-white shadow-neon-crimson animate-pulse">
+                      🔥 {art.discountPercent}% OFF
                     </span>
-                    {art.discountPercent && (
-                      <span className="px-2.5 py-1 rounded-full text-[10px] font-mono font-bold bg-[#E60049] text-white shadow-neon-crimson animate-pulse">
-                        🔥 {art.discountPercent}% OFF
-                      </span>
-                    )}
-                  </div>
-
-                  <div className="absolute top-4 right-4">
-                    <span className="px-2.5 py-1 rounded-full text-[11px] font-mono bg-[#E60049]/30 border border-[#E60049]/40 text-[#FFB0C1] backdrop-blur-md flex items-center gap-1">
-                      <Zap className="w-3 h-3 text-[#FFB0C1]" /> 3D View
-                    </span>
-                  </div>
+                  )}
                 </div>
 
-                <div className="p-6 space-y-4 flex-1 flex flex-col justify-between">
+                <div className="absolute top-4 right-4">
+                  <Link
+                    href={`/art/${art.slug}`}
+                    className="px-2.5 py-1 rounded-full text-[11px] font-mono bg-white/10 border border-white/20 text-white hover:text-gold backdrop-blur-md flex items-center gap-1 transition-colors"
+                  >
+                    <Eye className="w-3 h-3 text-gold" /> {locale === 'bn' ? 'বিস্তারিত' : 'View'}
+                  </Link>
+                </div>
+              </div>
+
+              <div className="p-6 space-y-4 flex-1 flex flex-col justify-between">
+                <div>
+                  <h3 className="font-display font-bold text-lg text-white group-hover:text-[#FFB0C1] transition-colors">
+                    {locale === 'bn' ? art.titleBn : art.title}
+                  </h3>
+                  <p className="text-xs text-white/60 mt-1 line-clamp-2">
+                    {locale === 'bn' ? art.mediumBn : art.medium}
+                  </p>
+                </div>
+
+                <div className="pt-4 border-t border-glass-border flex items-center justify-between">
                   <div>
-                    <h3 className="font-display font-bold text-lg text-white group-hover:text-[#FFB0C1] transition-colors">
-                      {locale === 'bn' ? art.titleBn : art.title}
-                    </h3>
-                    <p className="text-xs text-white/60 mt-1 line-clamp-2">
-                      {locale === 'bn' ? art.mediumBn : art.medium}
-                    </p>
+                    {art.discountPercent && art.originalPriceBDT && (
+                      <div className="flex items-center gap-1.5">
+                        <span className="text-[11px] text-white/40 line-through font-mono">
+                          ৳{art.originalPriceBDT.toLocaleString()}
+                        </span>
+                        <span className="text-[9px] font-mono font-bold px-1 py-0.2 rounded bg-[#E60049]/20 text-[#FFB0C1]">
+                          -{art.discountPercent}%
+                        </span>
+                      </div>
+                    )}
+                    <span className="text-lg font-black text-[#E60049] font-mono">
+                      ৳{art.priceBDT.toLocaleString()}
+                    </span>
                   </div>
 
-                  <div className="pt-4 border-t border-glass-border flex items-center justify-between">
-                    <div>
-                      {art.discountPercent && art.originalPriceBDT && (
-                        <div className="flex items-center gap-1.5">
-                          <span className="text-[11px] text-white/40 line-through font-mono">
-                            ৳{art.originalPriceBDT.toLocaleString()}
-                          </span>
-                          <span className="text-[9px] font-mono font-bold px-1 py-0.2 rounded bg-[#E60049]/20 text-[#FFB0C1]">
-                            -{art.discountPercent}%
-                          </span>
-                        </div>
-                      )}
-                      <span className="text-lg font-black text-[#E60049] font-mono">
-                        ৳{art.priceBDT.toLocaleString()}
-                      </span>
-                    </div>
-
-                    <div className="flex items-center gap-2">
-                      <button
-                        onClick={() => addItem(art)}
-                        className="p-2.5 rounded-full bg-void-card border border-glass-border text-white hover:text-[#FFB0C1] hover:border-[#E60049] transition-colors"
-                        title={t('addToCart')}
-                      >
-                        <ShoppingBag className="w-4 h-4" />
-                      </button>
-                      <Link
-                        href={`/art/${art.slug}`}
-                        className="px-4 py-2 rounded-full text-xs font-semibold bg-gradient-to-r from-crimson to-violet text-white shadow-neon-crimson hover:opacity-90 transition-all flex items-center gap-1"
-                      >
-                        <span>View</span>
-                        <ArrowRight className="w-3.5 h-3.5" />
-                      </Link>
-                    </div>
+                  <div className="flex items-center gap-2">
+                    <button
+                      onClick={() => addItem(art)}
+                      className="p-2.5 rounded-full bg-void-card border border-glass-border text-white hover:text-[#FFB0C1] hover:border-[#E60049] transition-colors"
+                      title={t('addToCart')}
+                    >
+                      <ShoppingBag className="w-4 h-4" />
+                    </button>
+                    <Link
+                      href={`/art/${art.slug}`}
+                      className="px-4 py-2 rounded-full text-xs font-semibold bg-gradient-to-r from-crimson to-violet text-white shadow-neon-crimson hover:opacity-90 transition-all flex items-center gap-1"
+                    >
+                      <span>{locale === 'bn' ? 'বিস্তারিত' : 'View'}</span>
+                      <ArrowRight className="w-3.5 h-3.5" />
+                    </Link>
                   </div>
                 </div>
-              </motion.div>
-            ))}
-          </AnimatePresence>
-        </motion.div>
-      )}
+              </div>
+            </motion.div>
+          ))}
+        </AnimatePresence>
+      </motion.div>
     </div>
   );
 }
