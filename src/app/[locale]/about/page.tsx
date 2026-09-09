@@ -141,7 +141,7 @@ export default async function AboutPage({ params }: AboutPageProps) {
         ? 'প্রতিটি কাস্টম অর্ডার আপনার ঘরের ইন্টেরিয়র কালার থিম, লাইটিং ও দেওয়ালের সঠিক মাপ অনুযায়ী নিপুণভাবে পরিকল্পনা ও তৈরি করা হয়।'
         : 'Every custom commission is harmonized to your interior color palette, lighting temperature, and exact architectural wall dimensions.',
       icon: Compass,
-      borderColor: 'border-[#00F0FF]/30 hover:border-[#00F0FF]',
+      borderColor: 'border-[#E60049]/30 hover:border-[#E60049]',
     },
   ];
 
@@ -149,7 +149,7 @@ export default async function AboutPage({ params }: AboutPageProps) {
     <div className="relative min-h-screen pt-28 pb-24 px-4 sm:px-6 lg:px-8 overflow-hidden">
       {/* Dynamic Background Glows */}
       <div className="absolute top-16 left-1/4 w-[550px] h-[550px] bg-[#E60049]/15 rounded-full blur-[150px] pointer-events-none" />
-      <div className="absolute top-1/2 right-10 w-[450px] h-[450px] bg-[#00F0FF]/10 rounded-full blur-[160px] pointer-events-none" />
+      <div className="absolute top-1/2 right-10 w-[450px] h-[450px] bg-[#2B020A]/40 rounded-full blur-[160px] pointer-events-none" />
       <div className="absolute bottom-20 left-10 w-[500px] h-[500px] bg-gold/10 rounded-full blur-[150px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto relative z-10 space-y-20 sm:space-y-28">
@@ -216,7 +216,7 @@ export default async function AboutPage({ params }: AboutPageProps) {
           <div className="lg:col-span-5 flex justify-center">
             <div className="relative w-full max-w-md group">
               {/* Glowing aura */}
-              <div className="absolute -inset-2 bg-gradient-to-tr from-[#E60049]/40 via-gold/20 to-[#00F0FF]/30 rounded-[36px] blur-xl opacity-80 group-hover:opacity-100 transition-opacity duration-500" />
+              <div className="absolute -inset-2 bg-gradient-to-tr from-[#E60049]/40 via-gold/20 to-[#FFB0C1]/30 rounded-[36px] blur-xl opacity-80 group-hover:opacity-100 transition-opacity duration-500" />
 
               {/* Main Liquid Glass Frame */}
               <div className="relative rounded-[32px] overflow-hidden bg-void-card border border-white/15 backdrop-blur-2xl shadow-2xl p-3 sm:p-4">
@@ -307,7 +307,7 @@ export default async function AboutPage({ params }: AboutPageProps) {
         {/* ===================== STUDIO PHILOSOPHY & MEDIUMS ===================== */}
         <section className="space-y-12">
           <div className="text-center max-w-3xl mx-auto space-y-3">
-            <span className="text-xs font-bold text-[#00F0FF] uppercase tracking-widest font-mono">
+            <span className="text-xs font-bold text-gold uppercase tracking-widest font-mono">
               {t('philosophySubtitle')}
             </span>
             <h2 className="font-display font-black text-3xl sm:text-4xl text-white">
@@ -328,7 +328,7 @@ export default async function AboutPage({ params }: AboutPageProps) {
                       <span className="text-xs font-mono font-bold px-2.5 py-1 rounded-lg bg-white/5 border border-glass-border text-white/60">
                         {pillar.num}
                       </span>
-                      <span className="text-[11px] font-mono text-[#00F0FF] bg-[#00F0FF]/10 px-2.5 py-1 rounded-full border border-[#00F0FF]/30">
+                      <span className="text-[11px] font-mono text-gold bg-gold/10 px-2.5 py-1 rounded-full border border-gold/30">
                         {pillar.tag}
                       </span>
                     </div>
@@ -355,6 +355,7 @@ export default async function AboutPage({ params }: AboutPageProps) {
             })}
           </div>
         </section>
+
 
         {/* ===================== AUTHENTICITY & CERTIFICATION ===================== */}
         <section className="rounded-3xl p-8 sm:p-12 bg-gradient-to-br from-[#1A030A] via-void-card to-[#0D0004] border border-[#E60049]/30 shadow-2xl relative overflow-hidden">
