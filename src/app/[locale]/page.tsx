@@ -104,9 +104,17 @@ export default function HomePage() {
         '@id': `${baseUrl}/#website`,
         url: baseUrl,
         name: 'Artora by FramEmpire',
+        alternateName: [
+          'Artora',
+          'Artora by FramEmpire (Fiha Islam)',
+          'Artora Fine Art Studio',
+          'Artora Studio',
+        ],
         publisher: {
           '@type': 'Organization',
           name: 'FramEmpire',
+          url: 'https://framempire.com',
+          logo: `${baseUrl}/icon.png`,
         },
       },
     ],

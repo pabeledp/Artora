@@ -56,9 +56,15 @@ export async function generateMetadata({
       'La Tahzan Calligraphy Canvas',
       'Custom Painting Commission Bangladesh',
     ],
+    applicationName: 'Artora by FramEmpire',
+    appleWebApp: {
+      title: 'Artora by FramEmpire',
+      statusBarStyle: 'default',
+      capable: true,
+    },
     authors: [{ name: 'Fiha Islam', url: baseUrl }],
     creator: 'Fiha Islam (Artora by FramEmpire)',
-    publisher: 'FramEmpire',
+    publisher: 'Artora by FramEmpire',
     formatDetection: {
       email: false,
       address: false,
@@ -66,11 +72,15 @@ export async function generateMetadata({
     },
     icons: {
       icon: [
-        { url: '/images/artora-logo.png', sizes: '32x32', type: 'image/png' },
-        { url: '/images/artora-logo.png', sizes: '192x192', type: 'image/png' },
+        { url: '/favicon.ico', sizes: 'any' },
+        { url: '/icon-48.png', sizes: '48x48', type: 'image/png' },
+        { url: '/icon-192.png', sizes: '192x192', type: 'image/png' },
+        { url: '/icon.png', sizes: '512x512', type: 'image/png' },
       ],
-      shortcut: '/images/artora-logo.png',
-      apple: '/images/artora-logo.png',
+      shortcut: '/favicon.ico',
+      apple: [
+        { url: '/apple-icon.png', sizes: '180x180', type: 'image/png' },
+      ],
     },
     alternates: {
       canonical: canonicalUrl,
@@ -134,9 +144,43 @@ export default async function LocaleLayout({
 
   const messages = await getMessages();
 
+  const siteSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    '@id': 'https://artora.framempire.com/#website',
+    url: 'https://artora.framempire.com/',
+    name: 'Artora by FramEmpire',
+    alternateName: [
+      'Artora',
+      'Artora by FramEmpire (Fiha Islam)',
+      'Artora Fine Art Studio',
+      'Artora Studio',
+    ],
+    description:
+      'Handcrafted 3D Arabic calligraphy, heavy impasto acrylics, and bespoke collector canvases by fine artist Fiha Islam.',
+    inLanguage: locale === 'bn' ? 'bn-BD' : 'en-US',
+    publisher: {
+      '@type': 'Organization',
+      name: 'FramEmpire',
+      url: 'https://framempire.com',
+      logo: 'https://artora.framempire.com/icon.png',
+    },
+  };
+
   return (
     <html lang={locale} className="dark">
       <head>
+        <link rel="icon" href="/favicon.ico" sizes="any" />
+        <link rel="icon" href="/icon-48.png" type="image/png" sizes="48x48" />
+        <link rel="icon" href="/icon-192.png" type="image/png" sizes="192x192" />
+        <link rel="icon" href="/icon.png" type="image/png" sizes="512x512" />
+        <link rel="apple-touch-icon" href="/apple-icon.png" sizes="180x180" />
+        <meta name="application-name" content="Artora by FramEmpire" />
+        <meta name="apple-mobile-web-app-title" content="Artora by FramEmpire" />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(siteSchema) }}
+        />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link
