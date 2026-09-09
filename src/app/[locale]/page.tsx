@@ -107,10 +107,10 @@ export default function HomePage() {
           '@type': 'Person',
           name: 'Fiha Islam',
           jobTitle: 'Fine Artist & Master Calligrapher',
-          sameAs: ['https://www.facebook.com/profile.php?id=61591782255184'],
+          sameAs: ['https://www.facebook.com/Artora.FramEmpire/'],
         },
         sameAs: [
-          'https://www.facebook.com/profile.php?id=61591782255184',
+          'https://www.facebook.com/Artora.FramEmpire/',
           'https://www.artora.framempire.com',
         ],
       },
@@ -757,7 +757,7 @@ export default function HomePage() {
           {/* Bottom Community Link */}
           <div className="mt-10 flex justify-center">
             <a
-              href="https://www.facebook.com/profile.php?id=61591782255184"
+              href="https://www.facebook.com/Artora.FramEmpire/"
               target="_blank"
               rel="noopener noreferrer"
               className="px-6 py-3 rounded-full text-xs font-semibold bg-void-card hover:bg-white/10 text-white/90 hover:text-white border border-glass-border transition-all flex items-center gap-2 shadow-lg hover:border-[#FFB0C1]"

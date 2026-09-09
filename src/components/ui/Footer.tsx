@@ -37,7 +37,7 @@ export const Footer: React.FC = () => {
 
             <div className="flex items-center gap-3 pt-2">
               <a
-                href="https://www.facebook.com/profile.php?id=61591782255184"
+                href="https://www.facebook.com/Artora.FramEmpire/"
                 target="_blank"
                 rel="noreferrer"
                 className="w-8 h-8 rounded-full bg-void-card border border-glass-border flex items-center justify-center text-white/70 hover:text-[#1877F2] hover:border-[#1877F2] transition-all"
