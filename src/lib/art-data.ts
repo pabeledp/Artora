@@ -240,33 +240,16 @@ export const COLOR_PALETTE_PRESETS = [
 
 export const TESTIMONIALS_DATA = [
   {
-    id: "test-1",
-    author: "Barrister Rafiqul Islam",
-    authorBn: "ব্যারিস্টার রফিকুল ইসলাম",
-    location: "Gulshan-2, Dhaka",
-    locationBn: "গুলশান-২, ঢাকা",
-    review: "The Arabic calligraphy canvas exceeded every expectation. The texture is tangible, and the spiritual tranquility it brings to our living room is priceless. Fiha Islam is a true master.",
-    reviewBn: "শিল্পী ফিহা ইসলামের হাতে আঁকা আরবি ক্যালিগ্রাফি ক্যানভাসটি আমাদের ড্রয়িং রুমের সৌন্দর্য বহুগুণ বাড়িয়ে দিয়েছে। টেক্সচার ও হাতের কাজ অসাধারণ।",
-    rating: 5
-  },
-  {
-    id: "test-2",
-    author: "Dr. Nabila Chowdhury",
-    authorBn: "ডা. নাবিলা চৌধুরী",
-    location: "Dhanmondi, Dhaka",
-    locationBn: "ধানমন্ডি, ঢাকা",
-    review: "Commissioned a bespoke 30x48 piece for our new home. The direct WhatsApp consultation, frame selection, and safe delivery were flawless.",
-    reviewBn: "নতুন বাড়ির জন্য কাস্টম সাইজের পেইন্টিং নিয়েছিলাম। শিল্পীর সাথে সরাসরি কথা বলে সাইজ ও ফ্রেম ঠিক করা খুব সহজ ছিল। সময়মতো নিখুঁতভাবে ডেলিভারি পেয়েছি।",
-    rating: 5
-  },
-  {
-    id: "test-3",
-    author: "Tanvir Ahmed (Architect)",
-    authorBn: "তানভীর আহমেদ (স্থপতি)",
-    location: "Uttara Sector 4, Dhaka",
-    locationBn: "উত্তরা, ঢাকা",
-    review: "As an architect, I care deeply about authentic craftsmanship. Fiha's original artwork brings life, soul, and contemporary depth to any modern architectural space.",
-    reviewBn: "স্থপতি হিসেবে দেয়ালের জন্য খাঁটি হস্তনির্মিত আর্ট খুব জরুরি মনে করি। Artora-এর ক্যানভাস প্রতিটি স্পেসে প্রাণ এনে দেয়।",
-    rating: 5
+    id: "fb-review-moni-akther",
+    author: "Moni Akther",
+    authorBn: "মণি আক্তার",
+    location: "Facebook Verified Review",
+    locationBn: "ফেসবুক ভেরিফাইড রিভিউ",
+    facebookPostUrl: "https://www.facebook.com/moni.akther.20971/posts/pfbid0q2aj2LdpkSFgkA8EcVf8rB6qF5npv7XqBG9f5iC1Qkc3XqCGbBv95JZ2vvnu7nbXl",
+    facebookEmbedUrl: "https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Fmoni.akther.20971%2Fposts%2Fpfbid0q2aj2LdpkSFgkA8EcVf8rB6qF5npv7XqBG9f5iC1Qkc3XqCGbBv95JZ2vvnu7nbXl&show_text=true&width=500",
+    review: "Alhamdulillah! The artwork and framing are truly amazing and beautifully finished. It brought such elegance and spiritual serenity to our space.",
+    reviewBn: "আলহামদুলিল্লাহ! পেইন্টিংটি অত্যন্ত চমৎকার ও নিখুঁত হয়েছে। ফ্রেমিং এবং রঙের টেক্সচার সত্যি খুব সুন্দর।",
+    rating: 5,
+    isFacebookVerified: true,
   }
 ];
