@@ -174,9 +174,9 @@ export default function HomePage() {
                 <h1 className="font-display font-black text-3xl sm:text-4xl md:text-5xl lg:text-[42px] xl:text-[46px] text-white tracking-tight leading-[1.3] max-w-xl">
                   {isBn ? (
                     <>
-                      শিল্পী ফিহা ইসলামের স্বহস্তে আঁকা{' '}
+                      পবিত্র আরবি ক্যালিগ্রাফি ও{' '}
                       <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FFB0C1] via-[#E60049] to-gold">
-                        আরবি ক্যালিগ্রাফি ও ইম্পাস্তো ক্যানভাস
+                        টেক্সচার্ড ইম্পাস্তো ক্যানভাস আর্ট
                       </span>
                     </>
                   ) : (
@@ -193,7 +193,7 @@ export default function HomePage() {
               {/* Sub-headline description with keyword integration */}
               <p className="text-sm sm:text-base text-white/70 max-w-xl font-light leading-relaxed">
                 {isBn
-                  ? 'ঢাকার মিরপুর ও নারায়ণগঞ্জের স্টুডিও থেকে পরিচালিত Artora—যেখানে ত্রিমাত্রিক হেভি টেক্সচার, খাঁটি লিকুইড গোল্ড লিফ এবং আধ্যাত্মিক আরবি ক্যালিগ্রাফিকে রূপ দেওয়া হয়েছে আধুনিক স্থাপত্য ও গৃহসজ্জার এক অনন্য নান্দনিকতায়।'
+                  ? 'বাংলাদেশে ইসলামিক ওয়াল আর্ট, স্বহস্তে নির্মিত কাস্টম ক্যালিগ্রাফি ক্যানভাস এবং ফাইন আর্টিস্ট ফিহা ইসলামের ভালোবাসায় আঁকা হেভি ইম্পাস্তো অ্যাক্রিলিক পেইন্টিং।'
                   : 'Islamic wall art in Bangladesh, bespoke handcrafted calligraphy canvases, and heavy impasto acrylic paintings created with passion by fine artist Fiha Islam.'}
               </p>
 
