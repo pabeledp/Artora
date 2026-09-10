@@ -253,15 +253,17 @@ export const TESTIMONIALS_DATA = [
     isFacebookEmbed: true,
   },
   {
-    id: "review-collector-1",
-    author: "Barrister Rafiqul Islam",
-    authorBn: "ব্যারিস্টার রফিকুল ইসলাম",
-    location: "Gulshan-2, Dhaka",
-    locationBn: "গুলশান-২, ঢাকা",
-    review: "The heavy impasto texture on the calligraphy canvas is breathtaking. Fiha Islam's knife strokes and gold detailing create a museum-grade presence in our living room.",
-    reviewBn: "ক্যালিগ্রাফি ক্যানভাসটির হেভি ইম্পাস্তো টেক্সচার এক কথায় অসাধারণ। ফিহা ইসলামের প্যালেট নাইফ স্ট্রোক ও গোল্ড ডিটেইলিং ড্রয়িং রুমের আভিজাত্য দ্বিগুণ বাড়িয়ে দিয়েছে।",
+    id: "fb-review-rabeya-bossry",
+    author: "Rabeya Bossry",
+    authorBn: "রাবেয়া বসরী",
+    location: "Facebook Community Review",
+    locationBn: "ফেসবুক ভেরিফাইড রিভিউ",
+    facebookPostUrl: "https://www.facebook.com/rabeya.bossry.161405/posts/pfbid0X6nzDD5oRaYJyuUEtRSZCLfxnt3dyDkNnEfeKsBL9fUpNB3dxDSM2uAwFWGU4KZQl",
+    facebookEmbedUrl: "https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Frabeya.bossry.161405%2Fposts%2Fpfbid0X6nzDD5oRaYJyuUEtRSZCLfxnt3dyDkNnEfeKsBL9fUpNB3dxDSM2uAwFWGU4KZQl&show_text=true&width=500",
+    review: "Mashallah! The calligraphy and texture are exceptional. Thank you Artora for the genuine handcrafted masterpiece.",
+    reviewBn: "অসাধারণ কাজ! ক্যালিগ্রাফি ও ফিনিশিং সত্যিই প্রশংসনীয়। আলহামদুলিল্লাহ অনেক সুন্দর হয়েছে।",
     rating: 5,
-    isFacebookEmbed: false,
+    isFacebookEmbed: true,
   },
   {
     id: "review-collector-2",
@@ -275,4 +277,5 @@ export const TESTIMONIALS_DATA = [
     isFacebookEmbed: false,
   }
 ];
+
 

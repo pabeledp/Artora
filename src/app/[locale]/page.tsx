@@ -634,9 +634,9 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* ===================== COLLECTOR TESTIMONIALS (3-COL LUXURY GRID / CAROUSEL) ===================== */}
+        {/* ===================== COLLECTOR TESTIMONIALS (RESPONSIVE SLIDER & LUXURY CARDS) ===================== */}
         <section className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto relative z-10">
-          <div className="text-center max-w-2xl mx-auto mb-12 space-y-3">
+          <div className="text-center max-w-2xl mx-auto mb-10 sm:mb-12 space-y-3">
             <span className="text-xs font-bold text-gold uppercase tracking-widest font-mono">
               {tTestimonials('subtitle')}
             </span>
@@ -645,12 +645,12 @@ export default function HomePage() {
             </h2>
           </div>
 
-          {/* 3 Review Cards Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {/* Review Cards: Horizontal Snap Slider on Mobile, 3-Col Grid on Desktop */}
+          <div className="flex md:grid md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 overflow-x-auto md:overflow-x-visible pb-4 md:pb-0 snap-x snap-mandatory scrollbar-none">
             {TESTIMONIALS_DATA.map((item, idx) => (
               <div
                 key={item.id}
-                className={`p-6 rounded-3xl bg-void-card/95 border transition-all duration-500 flex flex-col justify-between space-y-5 backdrop-blur-2xl relative overflow-hidden group shadow-xl ${
+                className={`w-[85vw] sm:w-[420px] md:w-auto shrink-0 snap-center p-5 sm:p-6 rounded-3xl bg-void-card/95 border transition-all duration-500 flex flex-col justify-between space-y-5 backdrop-blur-2xl relative overflow-hidden group shadow-xl ${
                   item.isFacebookEmbed
                     ? 'border-[#E60049]/40 hover:border-[#E60049] shadow-neon-crimson/20'
                     : 'border-glass-border hover:border-white/30'
@@ -666,7 +666,7 @@ export default function HomePage() {
                 <div className="space-y-4 relative z-10">
                   {/* Header: Author & Verified Badges */}
                   <div className="flex items-center justify-between gap-3 pb-3 border-b border-glass-border">
-                    <div className="flex items-center gap-3">
+                    <div className="flex items-center gap-3 min-w-0">
                       <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-[#E60049] to-gold p-0.5 shadow-sm shrink-0">
                         <div className="w-full h-full rounded-full bg-void-card flex items-center justify-center text-white font-bold font-display text-sm">
                           {item.author.charAt(0)}
@@ -674,16 +674,16 @@ export default function HomePage() {
                       </div>
                       <div className="min-w-0">
                         <h3 className="font-display font-bold text-sm sm:text-base text-white truncate flex items-center gap-1.5">
-                          <span>{isBn ? item.authorBn : item.author}</span>
+                          <span className="truncate">{isBn ? item.authorBn : item.author}</span>
                           {item.isFacebookEmbed && (
-                            <span className="p-0.5 rounded-full bg-[#1877F2]/20 text-[#1877F2]">
+                            <span className="p-0.5 rounded-full bg-[#1877F2]/20 text-[#1877F2] shrink-0">
                               <Facebook className="w-3 h-3" />
                             </span>
                           )}
                         </h3>
                         <span className="text-[11px] text-emerald-400 font-mono flex items-center gap-1 truncate">
                           <CheckCircle2 className="w-3 h-3 shrink-0" />
-                          <span>{isBn ? item.locationBn : item.location}</span>
+                          <span className="truncate">{isBn ? item.locationBn : item.location}</span>
                         </span>
                       </div>
                     </div>
@@ -710,7 +710,7 @@ export default function HomePage() {
                           allowFullScreen={true}
                           allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
                           className="w-full max-w-[340px] rounded-xl"
-                          title="Artora Facebook Customer Review by Moni Akther"
+                          title={`Artora Facebook Customer Review by ${item.author}`}
                         />
                       </div>
                       <p className="text-xs text-white/80 leading-relaxed italic font-serif">
@@ -754,8 +754,13 @@ export default function HomePage() {
             ))}
           </div>
 
+          {/* Mobile Swipe / Drag Hint Indicator */}
+          <div className="flex md:hidden items-center justify-center gap-1.5 mt-3 text-[11px] text-white/40 font-mono">
+            <span>← Swipe for more collector reviews →</span>
+          </div>
+
           {/* Bottom Community Link */}
-          <div className="mt-10 flex justify-center">
+          <div className="mt-8 sm:mt-10 flex justify-center">
             <a
               href="https://www.facebook.com/Artora.FramEmpire/"
               target="_blank"
@@ -772,4 +777,5 @@ export default function HomePage() {
     </>
   );
 }
+
 
