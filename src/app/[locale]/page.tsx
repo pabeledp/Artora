@@ -698,24 +698,19 @@ export default function HomePage() {
 
                   {/* Review Content */}
                   {item.isFacebookEmbed && item.facebookEmbedUrl ? (
-                    <div className="space-y-3">
-                      <div className="w-full rounded-2xl overflow-hidden bg-white/[0.02] border border-glass-border p-2 flex justify-center">
-                        <iframe
-                          src={item.facebookEmbedUrl}
-                          width="100%"
-                          height="160"
-                          style={{ border: 'none', overflow: 'hidden' }}
-                          scrolling="no"
-                          frameBorder="0"
-                          allowFullScreen={true}
-                          allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
-                          className="w-full max-w-[340px] rounded-xl"
-                          title={`Artora Facebook Customer Review by ${item.author}`}
-                        />
-                      </div>
-                      <p className="text-xs text-white/80 leading-relaxed italic font-serif">
-                        "{isBn ? item.reviewBn : item.review}"
-                      </p>
+                    <div className="w-full rounded-2xl overflow-hidden bg-white/[0.02] border border-glass-border p-2 flex justify-center">
+                      <iframe
+                        src={item.facebookEmbedUrl}
+                        width="100%"
+                        height="160"
+                        style={{ border: 'none', overflow: 'hidden' }}
+                        scrolling="no"
+                        frameBorder="0"
+                        allowFullScreen={true}
+                        allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+                        className="w-full max-w-[340px] rounded-xl"
+                        title={`Artora Facebook Customer Review by ${item.author}`}
+                      />
                     </div>
                   ) : (
                     <div className="space-y-2 py-2">
@@ -725,6 +720,7 @@ export default function HomePage() {
                       </p>
                     </div>
                   )}
+
                 </div>
 
                 {/* Footer Action */}
