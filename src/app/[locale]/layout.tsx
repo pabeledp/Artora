@@ -125,7 +125,10 @@ export async function generateMetadata({
       },
     },
     verification: {
-      google: 'Oy93MTaszG3wYsln_fWjPwYsDI8eSDTjNJOeaSJH8tI',
+      google: [
+        '3tCfd3Vbg2DwmKkqnD01dIEa7JmUOEuMEkKW-UeRhOg',
+        'Oy93MTaszG3wYsln_fWjPwYsDI8eSDTjNJOeaSJH8tI',
+      ],
     },
   };
 }
@@ -170,6 +173,8 @@ export default async function LocaleLayout({
   return (
     <html lang={locale} className="dark">
       <head>
+        <meta name="google-site-verification" content="3tCfd3Vbg2DwmKkqnD01dIEa7JmUOEuMEkKW-UeRhOg" />
+        <meta name="google-site-verification" content="Oy93MTaszG3wYsln_fWjPwYsDI8eSDTjNJOeaSJH8tI" />
         <link rel="icon" href="/favicon.ico" sizes="any" />
         <link rel="icon" href="/icon-48.png" type="image/png" sizes="48x48" />
         <link rel="icon" href="/icon-192.png" type="image/png" sizes="192x192" />
@@ -193,6 +198,7 @@ export default async function LocaleLayout({
           rel="stylesheet"
         />
       </head>
+
       <body className="bg-void text-white font-sans antialiased selection:bg-[#E60049] selection:text-white bg-tech-grid min-h-screen flex flex-col justify-between relative">
         <NextIntlClientProvider messages={messages} locale={locale}>
           <CurrencyProvider>
