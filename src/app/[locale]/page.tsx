@@ -249,81 +249,64 @@ export default function HomePage() {
               </div>
             </div>
 
-            {/* RIGHT COLUMN: Featured Artwork Spotlight with next/image priority preloading */}
-            <div className="lg:col-span-6 flex justify-center w-full max-w-sm sm:max-w-md mx-auto lg:max-w-none">
-              <div className="relative w-full max-w-lg group">
+            {/* RIGHT COLUMN: Official Studio Video Presentation (Vimeo High-Definition Stream) */}
+            <div className="lg:col-span-6 flex justify-center w-full max-w-lg sm:max-w-xl mx-auto lg:max-w-none">
+              <div className="relative w-full group">
                 {/* Outer Ambient Glow */}
-                <div className="absolute -inset-2 bg-gradient-to-tr from-[#E60049]/40 via-[#2B020A] to-[#E6B93F]/30 rounded-3xl blur-xl opacity-75 group-hover:opacity-100 transition-opacity duration-700" />
+                <div className="absolute -inset-2 bg-gradient-to-tr from-[#E60049]/40 via-[#2B020A] to-[#E6B93F]/30 rounded-3xl blur-xl opacity-80 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
 
-                {/* Canvas Card Container */}
+                {/* Video Card Container */}
                 <div className="relative rounded-2xl sm:rounded-3xl overflow-hidden bg-[#1A030A] border border-[#E60049]/40 shadow-2xl p-3 sm:p-4 backdrop-blur-xl space-y-3">
-                  {/* Header Bar Above Image */}
+                  {/* Header Bar Above Video */}
                   <div className="flex items-center justify-between px-1">
                     <span className="px-3 py-1 rounded-full text-[10px] sm:text-xs font-mono font-bold bg-[#E60049] text-white shadow-neon-crimson flex items-center gap-1.5">
                       <span className="w-1.5 h-1.5 rounded-full bg-white animate-ping" />
-                      {isBn ? '🌟 বিশেষ প্রদর্শনী' : '🌟 Featured Masterpiece'}
+                      {isBn ? '🎬 স্টুডিও উপস্থাপনা' : '🎬 Studio 3D Presentation'}
                     </span>
                     <Link
-                      href={`/art/${featuredHeroArt.slug}`}
+                      href="/shop"
                       className="px-3 py-1 rounded-full text-[10px] sm:text-xs font-mono bg-white/10 hover:bg-white/20 backdrop-blur-xl border border-white/25 text-white hover:border-[#FFB0C1] transition-all flex items-center gap-1 shadow-sm"
                     >
-                      <Eye className="w-3 h-3 text-[#FFB0C1]" /> {isBn ? 'বিস্তারিত' : 'View Details'}
+                      <Eye className="w-3 h-3 text-[#FFB0C1]" /> {isBn ? 'সকল আর্ট' : 'Explore Gallery'}
                     </Link>
                   </div>
 
-                  {/* 100% Clear, Unobstructed Image Display (Preloaded via priority) */}
-                  <div className="relative aspect-[16/10] rounded-xl sm:rounded-2xl overflow-hidden bg-void-light border border-white/10 group-hover:scale-[1.01] transition-transform duration-500 shadow-inner">
-                    <Image
-                      src={featuredHeroArt.primaryImage}
-                      alt="La Tahzan 3D Arabic Calligraphy Canvas Artwork with Gold Leaf Details by Fiha Islam"
-                      fill
-                      priority
-                      sizes="(max-width: 768px) 90vw, 550px"
-                      className="object-cover object-center"
+                  {/* High-Definition Vimeo Video Player Container */}
+                  <div className="relative w-full aspect-[16/9] rounded-xl sm:rounded-2xl overflow-hidden bg-void-light border border-white/10 shadow-inner">
+                    <iframe
+                      src="https://player.vimeo.com/video/1225932303?badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1&muted=1&loop=1&background=0"
+                      className="absolute top-0 left-0 w-full h-full border-0"
+                      allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
+                      referrerPolicy="strict-origin-when-cross-origin"
+                      title="Artora Studio 3D Presentation by Fiha Islam"
                     />
                   </div>
 
-                  {/* Artwork Details Placed Cleanly BELOW Image */}
+                  {/* Video Details Placed Cleanly BELOW */}
                   <div className="p-3.5 rounded-xl bg-void-card/90 border border-white/10 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                     <div>
                       <h2 className="font-display font-bold text-sm sm:text-base text-white">
-                        {isBn ? featuredHeroArt.titleBn : featuredHeroArt.title}
+                        {isBn ? 'আর্টোরা এক্সক্লুসিভ ক্যালিগ্রাফি ও ইম্পাস্তো ক্যানভাস' : 'Artora Exclusive Calligraphy & Impasto Studio'}
                       </h2>
                       <p className="text-[11px] text-[#FFB0C1] font-mono flex items-center gap-1.5 mt-0.5">
-                        <span>{isBn ? featuredHeroArt.canvasSizeBn : featuredHeroArt.canvasSize}</span>
+                        <span>{isBn ? 'শিল্পী ফিহা ইসলাম' : 'Fine Artist Fiha Islam'}</span>
                         <span className="text-white/30">•</span>
-                        <span>Fiha Islam</span>
+                        <span>Artora by FramEmpire</span>
                       </p>
                     </div>
 
-                    <div className="flex items-center justify-between sm:justify-end gap-3 shrink-0 pt-2 sm:pt-0 border-t sm:border-t-0 border-white/10">
-                      <div className="text-left sm:text-right">
-                        {featuredHeroArt.discountPercent && featuredHeroArt.originalPriceBDT && (
-                          <div className="flex items-center sm:justify-end gap-1.5">
-                            <span className="text-[10px] text-white/40 line-through font-mono">
-                              ৳{featuredHeroArt.originalPriceBDT.toLocaleString()}
-                            </span>
-                            <span className="text-[9px] font-bold font-mono px-1 py-0.2 rounded bg-[#E60049]/20 text-[#FFB0C1]">
-                              -{featuredHeroArt.discountPercent}%
-                            </span>
-                          </div>
-                        )}
-                        <span className="text-sm sm:text-base font-mono font-bold text-[#E60049]">
-                          ৳{featuredHeroArt.priceBDT.toLocaleString()}
-                        </span>
-                      </div>
-
-                      <Link href={`/art/${featuredHeroArt.slug}`}>
-                        <button className="px-4 py-2.5 rounded-xl text-xs font-semibold bg-white/10 hover:bg-[#E60049] text-white border border-white/20 backdrop-blur-xl transition-all flex items-center gap-1.5 shadow-sm cursor-pointer min-h-[40px]">
-                          <span>{isBn ? 'দেখুন' : 'View'}</span>
-                          <ArrowRight className="w-3.5 h-3.5 text-[#FFB0C1]" />
-                        </button>
-                      </Link>
-                    </div>
+                    <Link href="/commission">
+                      <button className="px-4 py-2.5 rounded-xl text-xs font-semibold bg-gradient-to-r from-[#E60049] to-[#2B020A] hover:opacity-95 text-white border border-[#E60049]/40 transition-all flex items-center gap-1.5 shadow-neon-crimson cursor-pointer min-h-[40px] shrink-0">
+                        <Sparkles className="w-3.5 h-3.5 text-gold" />
+                        <span>{isBn ? 'কাস্টম অর্ডার' : 'Order Commission'}</span>
+                        <ArrowRight className="w-3.5 h-3.5" />
+                      </button>
+                    </Link>
                   </div>
                 </div>
               </div>
             </div>
+
           </div>
         </section>
 
