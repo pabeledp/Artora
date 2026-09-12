@@ -266,9 +266,9 @@ export const TESTIMONIALS_DATA = [
     isFacebookEmbed: true,
   },
   {
-    id: "fb-review-community-3",
-    author: "Artora Collector",
-    authorBn: "আর্টোরা কালেক্টর",
+    id: "fb-review-nusrat-jahan",
+    author: "Nusrat Jahan",
+    authorBn: "নুসরাত জাহান",
     location: "Facebook Community Review",
     locationBn: "ফেসবুক ভেরিফাইড রিভিউ",
     facebookPostUrl: "https://www.facebook.com/permalink.php?story_fbid=pfbid02Hmoc7yT2fkZM8oJJKsbADZkY1kg3GmE2Y9V3Q5pf3tt7zX2Wc6mt9HgkqnmXtzEVl&id=100088126017837",
