@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Script from 'next/script';
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages } from 'next-intl/server';
 import { notFound } from 'next/navigation';
@@ -173,6 +174,23 @@ export default async function LocaleLayout({
   return (
     <html lang={locale} className="dark">
       <head>
+        {/* Google tag (gtag.js) */}
+        <Script
+          strategy="afterInteractive"
+          src="https://www.googletagmanager.com/gtag/js?id=G-GRCKHQTKZ0"
+        />
+        <Script
+          id="google-analytics"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-GRCKHQTKZ0');
+            `,
+          }}
+        />
         <meta name="google-site-verification" content="3tCfd3Vbg2DwmKkqnD01dIEa7JmUOEuMEkKW-UeRhOg" />
         <meta name="google-site-verification" content="Oy93MTaszG3wYsln_fWjPwYsDI8eSDTjNJOeaSJH8tI" />
         <link rel="icon" href="/favicon.ico" sizes="any" />
