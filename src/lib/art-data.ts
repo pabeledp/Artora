@@ -266,15 +266,17 @@ export const TESTIMONIALS_DATA = [
     isFacebookEmbed: true,
   },
   {
-    id: "review-collector-2",
-    author: "Dr. Nabila Chowdhury",
-    authorBn: "ডা. নাবিলা চৌধুরী",
-    location: "Dhanmondi, Dhaka",
-    locationBn: "ধানমন্ডি, ঢাকা",
-    review: "Received the artwork with impeccable archival framing. The spiritual tranquility of the Arabic verse and color harmony exceeded all expectations.",
-    reviewBn: "নিখুঁত মিউজিয়াম ফ্রেমিং সহ ক্যানভাসটি হাতে পেয়েছি। পবিত্র আয়াতের আধ্যাত্মিক প্রশান্তি এবং রঙের গভীরতা প্রত্যাশার চেয়েও বেশি সুন্দর।",
+    id: "fb-review-community-3",
+    author: "Artora Collector",
+    authorBn: "আর্টোরা কালেক্টর",
+    location: "Facebook Community Review",
+    locationBn: "ফেসবুক ভেরিফাইড রিভিউ",
+    facebookPostUrl: "https://www.facebook.com/permalink.php?story_fbid=pfbid02Hmoc7yT2fkZM8oJJKsbADZkY1kg3GmE2Y9V3Q5pf3tt7zX2Wc6mt9HgkqnmXtzEVl&id=100088126017837",
+    facebookEmbedUrl: "https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Fpermalink.php%3Fstory_fbid%3Dpfbid02Hmoc7yT2fkZM8oJJKsbADZkY1kg3GmE2Y9V3Q5pf3tt7zX2Wc6mt9HgkqnmXtzEVl%26id%3D100088126017837&show_text=true&width=500",
+    review: "Alhamdulillah! Amazing handcrafted calligraphy and museum-grade framing. Highly recommended!",
+    reviewBn: "আলহামদুলিল্লাহ! অসাধারণ ক্যালিগ্রাফি ও প্রিমিয়াম ফিনিশিং। অনেক ধন্যবাদ আর্টোরা কে।",
     rating: 5,
-    isFacebookEmbed: false,
+    isFacebookEmbed: true,
   }
 ];
 
