@@ -175,13 +175,8 @@ export default async function LocaleLayout({
     <html lang={locale} className="dark">
       <head>
         {/* Google tag (gtag.js) */}
-        <Script
-          strategy="afterInteractive"
-          src="https://www.googletagmanager.com/gtag/js?id=G-GRCKHQTKZ0"
-        />
-        <Script
-          id="google-analytics"
-          strategy="afterInteractive"
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-GRCKHQTKZ0" />
+        <script
           dangerouslySetInnerHTML={{
             __html: `
               window.dataLayer = window.dataLayer || [];
@@ -194,6 +189,7 @@ export default async function LocaleLayout({
         <meta name="google-site-verification" content="3tCfd3Vbg2DwmKkqnD01dIEa7JmUOEuMEkKW-UeRhOg" />
         <meta name="google-site-verification" content="Oy93MTaszG3wYsln_fWjPwYsDI8eSDTjNJOeaSJH8tI" />
         <link rel="icon" href="/favicon.ico" sizes="any" />
+
         <link rel="icon" href="/icon-48.png" type="image/png" sizes="48x48" />
         <link rel="icon" href="/icon-192.png" type="image/png" sizes="192x192" />
         <link rel="icon" href="/icon.png" type="image/png" sizes="512x512" />
