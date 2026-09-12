@@ -6,14 +6,14 @@ export default function Loading() {
   const locale = useLocale();
 
   return (
-    <div className="min-h-[70vh] flex items-center justify-center px-4 relative overflow-hidden py-24">
-      {/* Background Glow */}
-      <div className="absolute top-1/3 left-1/3 w-80 h-80 bg-[#E60049]/15 rounded-full blur-[140px] pointer-events-none animate-pulse-slow" />
-      <div className="absolute bottom-1/3 right-1/3 w-72 h-72 bg-gold/10 rounded-full blur-[140px] pointer-events-none" />
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-void/90 backdrop-blur-md overflow-hidden select-none">
+      {/* Background Ambient Glows */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 sm:w-96 h-80 sm:h-96 bg-[#E60049]/15 rounded-full blur-[120px] pointer-events-none animate-pulse-slow" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 sm:w-80 h-64 sm:h-80 bg-gold/10 rounded-full blur-[100px] pointer-events-none" />
 
-      <div className="max-w-md w-full relative z-10 text-center space-y-6">
+      <div className="w-full max-w-sm sm:max-w-md relative z-10 text-center">
         {/* Luxury Glass Spinner Card */}
-        <div className="p-8 sm:p-10 rounded-3xl bg-void-card/90 border border-glass-border shadow-2xl backdrop-blur-2xl relative overflow-hidden space-y-5">
+        <div className="p-6 sm:p-9 rounded-3xl bg-void-card/95 border border-glass-border shadow-[0_0_50px_rgba(0,0,0,0.8)] backdrop-blur-2xl relative overflow-hidden space-y-5">
           <div className="relative flex items-center justify-center py-4">
             {/* Ambient Background Pulse for Logo */}
             <div className="absolute w-20 h-20 rounded-full bg-gradient-to-tr from-[#E60049]/30 to-gold/25 blur-xl animate-pulse pointer-events-none" />
