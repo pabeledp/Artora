@@ -282,5 +282,19 @@
       "item2Title": "Privacy Questions & Direct Contact",
       "item2Desc": "For privacy requests, address modifications, or inquiries, contact our studio team directly at team.framempire@gmail.com or call +880 1723-722019."
     }
+  },
+  "notFound": {
+    "badge": "404 • Page Not Found",
+    "title": "Masterpiece Not Found",
+    "desc": "The canvas or page you are looking for might have been moved, renamed, or is currently stored in our private studio archives.",
+    "backHome": "Return to Studio Home",
+    "exploreShop": "Explore Artwork Gallery",
+    "customCommission": "Request Custom Painting"
+  },
+  "loading": {
+    "badge": "Artora Fine Art Studio",
+    "title": "Loading Canvas & Studio Experience...",
+    "sub": "Curating high-resolution impasto textures & sacred calligraphy"
   }
 }
+

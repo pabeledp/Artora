@@ -1,0 +1,19 @@
+import React from 'react';
+import './globals.css';
+
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return (
+    <html lang="en" className="dark">
+      <head>
+        <link rel="icon" href="/favicon.ico" />
+      </head>
+      <body className="bg-void text-white font-sans antialiased">
+        {children}
+      </body>
+    </html>
+  );
+}
