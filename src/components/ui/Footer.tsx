@@ -20,17 +20,12 @@ export const Footer: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 pb-12 border-b border-glass-border">
           {/* Brand Info */}
           <div className="space-y-4 lg:col-span-1">
-            <div className="flex flex-col items-start">
-              <div className="relative h-10 w-36 flex items-center">
-                <img
-                  src="/images/artora-logo-with-bg.png"
-                  alt="Artora Logo"
-                  className="h-10 w-auto object-contain rounded-lg"
-                />
-              </div>
-              <span className="text-[10px] text-white/50 tracking-wider font-mono -mt-1 pl-0.5">
-                by <span className="text-white/80 font-semibold">FramEmpire</span>
-              </span>
+            <div className="relative h-12 w-44 flex items-center">
+              <img
+                src="/images/artora-logo-with-bg.png"
+                alt="Artora Logo"
+                className="h-full w-auto object-contain rounded-xl"
+              />
             </div>
             
             <p className="text-xs text-white/60 leading-relaxed">{t('about')}</p>
