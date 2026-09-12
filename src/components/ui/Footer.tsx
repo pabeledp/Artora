@@ -23,9 +23,9 @@ export const Footer: React.FC = () => {
             <div className="flex flex-col items-start">
               <div className="relative h-10 w-36 flex items-center">
                 <img
-                  src="/images/artora-logo.png"
+                  src="/images/artora-logo-with-bg.png"
                   alt="Artora Logo"
-                  className="h-10 w-auto object-contain mix-blend-screen brightness-110"
+                  className="h-10 w-auto object-contain rounded-lg"
                 />
               </div>
               <span className="text-[10px] text-white/50 tracking-wider font-mono -mt-1 pl-0.5">

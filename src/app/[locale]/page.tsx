@@ -177,7 +177,7 @@ export default function HomePage() {
               <div className="space-y-4 w-full flex flex-col items-center lg:items-start">
                 <div className="relative h-10 sm:h-12 md:h-14 w-36 sm:w-44 md:w-48 flex items-center justify-center lg:justify-start">
                   <Image
-                    src="/images/artora-logo.png"
+                    src="/images/artora-logo-main.png"
                     alt="Artora by FramEmpire - Handcrafted Sacred Calligraphy & Textured Impasto Art by Fiha Islam"
                     fill
                     priority

@@ -58,9 +58,9 @@ export const Navbar: React.FC = () => {
             <div className="flex flex-col items-start">
               <div className="relative h-8 sm:h-11 w-28 sm:w-36 flex items-center">
                 <img
-                  src="/images/artora-logo.png"
+                  src="/images/artora-logo-main.png"
                   alt="Artora Logo"
-                  className="h-full w-auto object-contain mix-blend-screen brightness-125 drop-shadow-[0_0_15px_rgba(255,176,193,0.4)] group-hover:brightness-150 transition-all duration-300"
+                  className="h-full w-auto object-contain drop-shadow-[0_0_15px_rgba(255,176,193,0.4)] group-hover:brightness-110 transition-all duration-300"
                 />
               </div>
               <span className="text-[9px] text-white/50 tracking-wider font-mono -mt-1 pl-0.5">
