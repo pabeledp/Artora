@@ -173,19 +173,8 @@ export default function HomePage() {
                 <span className="w-1.5 h-1.5 rounded-full bg-[#E6B93F] animate-pulse" />
               </div>
 
-              {/* Brand Logo & Exactly ONE <h1> Heading */}
+              {/* Exactly ONE <h1> Heading */}
               <div className="space-y-4 w-full flex flex-col items-center lg:items-start">
-                <div className="relative h-10 sm:h-12 md:h-14 w-36 sm:w-44 md:w-48 flex items-center justify-center lg:justify-start">
-                  <Image
-                    src="/images/artora-logo-main.png"
-                    alt="Artora by FramEmpire - Handcrafted Sacred Calligraphy & Textured Impasto Art by Fiha Islam"
-                    fill
-                    priority
-                    sizes="(max-width: 768px) 200px, 250px"
-                    className="object-contain object-center lg:object-left"
-                  />
-                </div>
-
                 <h1 className="font-display font-black text-3xl sm:text-4xl md:text-5xl lg:text-[42px] xl:text-[46px] text-white tracking-tight leading-[1.3] max-w-xl">
                   {isBn ? (
                     <>
