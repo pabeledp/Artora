@@ -22,9 +22,9 @@ export const Footer: React.FC = () => {
           <div className="space-y-4 lg:col-span-1">
             <div className="relative h-12 w-44 flex items-center">
               <img
-                src="/images/artora-logo-with-bg.png"
+                src="/images/artora-logo-main.png"
                 alt="Artora Logo"
-                className="h-full w-auto object-contain rounded-xl"
+                className="h-full w-auto object-contain drop-shadow-[0_0_15px_rgba(255,176,193,0.3)]"
               />
             </div>
             
