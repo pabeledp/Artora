@@ -14,11 +14,21 @@ export default function Loading() {
       <div className="max-w-md w-full relative z-10 text-center space-y-6">
         {/* Luxury Glass Spinner Card */}
         <div className="p-8 sm:p-10 rounded-3xl bg-void-card/90 border border-glass-border shadow-2xl backdrop-blur-2xl relative overflow-hidden space-y-5">
-          <div className="relative flex justify-center py-2">
+          <div className="relative flex items-center justify-center py-4">
+            {/* Ambient Background Pulse for Logo */}
+            <div className="absolute w-20 h-20 rounded-full bg-gradient-to-tr from-[#E60049]/30 to-gold/25 blur-xl animate-pulse pointer-events-none" />
+            
             {/* Outer Spinning Gradient Ring */}
-            <div className="w-16 h-16 rounded-full border-2 border-[#E60049]/20 border-t-[#E60049] border-r-gold animate-spin" />
-            {/* Inner Glowing Core */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-6 h-6 rounded-full bg-gradient-to-tr from-[#E60049] to-gold blur-[6px] opacity-75 animate-ping" />
+            <div className="w-24 h-24 rounded-full border-2 border-[#E60049]/20 border-t-[#E60049] border-r-gold animate-spin" />
+            
+            {/* Center Logo in the Circle */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-14 h-14 flex items-center justify-center">
+              <img
+                src="/images/artora-logo.png"
+                alt="Artora"
+                className="w-12 h-auto object-contain mix-blend-screen brightness-125 drop-shadow-[0_0_12px_rgba(230,0,73,0.6)] animate-pulse"
+              />
+            </div>
           </div>
 
           <div className="space-y-2">
