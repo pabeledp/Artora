@@ -266,7 +266,7 @@ export default function CommissionPage() {
             {/* Step Content Panes */}
             <form onSubmit={handleSubmit} className="space-y-4">
               <AnimatePresence mode="wait">
-                {/* STEP 1: Choose Canvas Size (Ultra-compact mini chips) */}
+                {/* STEP 1: Choose Canvas Size (Clean Luxury Square Cards) */}
                 {currentStep === 1 && (
                   <motion.div
                     key="step1"
@@ -309,38 +309,38 @@ export default function CommissionPage() {
                       </div>
                     </div>
 
-                    {/* Mini Size Chips Grid (Ultra compact, fits cleanly without taking over whole screen) */}
-                    <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 max-h-[280px] sm:max-h-[320px] overflow-y-auto pr-1 scrollbar-thin scrollbar-thumb-white/10 hover:scrollbar-thumb-[#E60049]/40">
+                    {/* Square Cards Grid (3 cols on mobile, 4 cols on desktop) */}
+                    <div className="grid grid-cols-3 sm:grid-cols-4 gap-2 max-h-[300px] sm:max-h-[340px] overflow-y-auto p-1 scrollbar-thin scrollbar-thumb-white/10 hover:scrollbar-thumb-[#E60049]/40">
                       {filteredSizes.map((size) => {
                         const isSelected = selectedSize.id === size.id;
                         return (
                           <div
                             key={size.id}
                             onClick={() => setSelectedSize(size)}
-                            className={`p-2 sm:p-2.5 rounded-xl border transition-all cursor-pointer flex flex-col justify-between relative group ${
+                            className={`aspect-square rounded-2xl border transition-all cursor-pointer flex flex-col items-center justify-between p-2 text-center relative group ${
                               isSelected
-                                ? 'bg-gradient-to-b from-[#E60049]/25 to-[#1A0008] border-[#E60049] shadow-neon-crimson ring-1 ring-[#E60049]/70'
+                                ? 'bg-gradient-to-b from-[#E60049]/30 to-[#1A0008] border-[#E60049] shadow-neon-crimson ring-1 ring-[#E60049]/80 scale-[1.02]'
                                 : 'bg-void-light/50 border-glass-border hover:border-white/30 hover:bg-white/[0.04]'
                             }`}
                           >
-                            {/* Top row: Size & Selection Indicator */}
-                            <div className="flex items-center justify-between gap-1">
-                              <span className="font-display font-bold text-xs text-white group-hover:text-[#FFB0C1] transition-colors truncate">
-                                {locale === 'bn' ? size.sizeBn : size.size}
-                              </span>
-                              {isSelected ? (
-                                <span className="w-1.5 h-1.5 rounded-full bg-gold animate-pulse shrink-0" />
-                              ) : (
-                                <span className="text-[8px] font-mono text-white/40">{size.category[0]}</span>
+                            {/* Top: Category or Active Indicator */}
+                            <div className="w-full flex items-center justify-between text-[8px] font-mono text-white/40">
+                              <span>{size.category}</span>
+                              {isSelected && (
+                                <span className="w-1.5 h-1.5 rounded-full bg-gold animate-pulse" />
                               )}
                             </div>
 
-                            {/* Bottom row: Estimated Price */}
-                            <div className="pt-1 mt-1 border-t border-white/5 flex items-center justify-between text-[10px]">
-                              <span className="text-white/40 text-[9px] font-mono">
-                                {locale === 'bn' ? 'আনুমানিক' : 'Est.'}
-                              </span>
-                              <span className="font-mono font-bold text-emerald-400 text-[11px]">
+                            {/* Center: Clean Bold Size */}
+                            <div className="my-auto py-0.5">
+                              <h4 className="font-display font-black text-xs sm:text-sm text-white group-hover:text-[#FFB0C1] transition-colors leading-tight">
+                                {locale === 'bn' ? size.sizeBn : size.size}
+                              </h4>
+                            </div>
+
+                            {/* Bottom: Price Tag */}
+                            <div className="w-full pt-1 border-t border-white/10 flex items-center justify-center">
+                              <span className="font-mono font-bold text-emerald-400 text-[10px] sm:text-[11px]">
                                 ৳{size.basePriceBDT.toLocaleString()}
                               </span>
                             </div>
@@ -350,9 +350,11 @@ export default function CommissionPage() {
                     </div>
 
                     {/* Negotiation / Budget Note */}
-                    <div className="p-2 rounded-xl bg-white/[0.02] border border-white/5 flex items-center gap-1.5 text-[10px] text-white/60">
-                      <Sparkles className="w-3 h-3 text-gold shrink-0" />
-                      <span>{locale === 'bn' ? 'বাজেট ও সাইজ আলোচনা সাপেক্ষে পরিবর্তনযোগ্য' : 'Budget and custom sizes are negotiable'}</span>
+                    <div className="p-2 rounded-xl bg-white/[0.02] border border-white/5 flex items-center justify-between text-[10px] text-white/60">
+                      <div className="flex items-center gap-1.5 text-gold">
+                        <Sparkles className="w-3 h-3 shrink-0" />
+                        <span>{locale === 'bn' ? 'বাজেট ও ফ্রেম সাইজ আলোচনা সাপেক্ষে পরিবর্তনযোগ্য' : 'Budget and sizes adaptable upon discussion'}</span>
+                      </div>
                     </div>
 
                     {/* Next Button */}
@@ -369,7 +371,7 @@ export default function CommissionPage() {
                   </motion.div>
                 )}
 
-                {/* STEP 2: Select Palette (Ultra Compact 2-Col Grid) */}
+                {/* STEP 2: Select Palette (Clean Luxury Square Cards) */}
                 {currentStep === 2 && (
                   <motion.div
                     key="step2"
@@ -390,44 +392,46 @@ export default function CommissionPage() {
                       </span>
                     </div>
 
-                    {/* Compact Palette Grid */}
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 max-h-[280px] sm:max-h-[320px] overflow-y-auto pr-1 scrollbar-thin scrollbar-thumb-white/10 hover:scrollbar-thumb-[#E60049]/40">
+                    {/* Square Palette Cards Grid (2 cols on mobile, 4 cols on desktop) */}
+                    <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 max-h-[300px] sm:max-h-[340px] overflow-y-auto p-1 scrollbar-thin scrollbar-thumb-white/10 hover:scrollbar-thumb-[#E60049]/40">
                       {COLOR_PALETTE_PRESETS.map((pal) => {
                         const isSelected = selectedPalette.id === pal.id;
                         return (
                           <div
                             key={pal.id}
                             onClick={() => setSelectedPalette(pal)}
-                            className={`p-2.5 rounded-xl border transition-all cursor-pointer flex items-center justify-between gap-2.5 ${
+                            className={`aspect-square rounded-2xl border transition-all cursor-pointer flex flex-col items-center justify-between p-2.5 text-center relative group ${
                               isSelected
-                                ? 'bg-gradient-to-b from-[#E60049]/25 to-[#1A0008] border-[#E60049] shadow-neon-crimson ring-1 ring-[#E60049]/70'
+                                ? 'bg-gradient-to-b from-[#E60049]/30 to-[#1A0008] border-[#E60049] shadow-neon-crimson ring-1 ring-[#E60049]/80 scale-[1.02]'
                                 : 'bg-void-light/50 border-glass-border hover:border-white/30 hover:bg-white/[0.04]'
                             }`}
                           >
-                            <div className="min-w-0 flex-1">
-                              <div className="flex items-center gap-1.5">
-                                <h4 className="font-semibold text-xs text-white truncate">
-                                  {locale === 'bn' ? pal.nameBn : pal.name}
-                                </h4>
-                                {isSelected && (
-                                  <span className="w-1.5 h-1.5 rounded-full bg-gold shrink-0 animate-pulse" />
-                                )}
-                              </div>
-                              <p className="text-[9px] text-white/40 truncate mt-0.5">
-                                {pal.description}
-                              </p>
+                            {/* Top: Selection indicator */}
+                            <div className="w-full flex items-center justify-end">
+                              {isSelected ? (
+                                <span className="w-1.5 h-1.5 rounded-full bg-gold animate-pulse" />
+                              ) : (
+                                <span className="w-1.5 h-1.5" />
+                              )}
                             </div>
 
-                            {/* Color Swatches */}
-                            <div className="flex items-center gap-1 shrink-0">
+                            {/* Center: 2x2 Clean Color Grid */}
+                            <div className="grid grid-cols-2 gap-1.5 p-1 rounded-xl bg-black/40 border border-white/10 my-auto shadow-inner">
                               {pal.colors.slice(0, 4).map((c, i) => (
                                 <span
                                   key={i}
-                                  className="w-3.5 h-3.5 rounded-full border border-white/20 shadow-sm shrink-0"
+                                  className="w-3.5 h-3.5 sm:w-4 sm:h-4 rounded-full border border-white/20 shadow-sm"
                                   style={{ backgroundColor: c }}
                                   title={c}
                                 />
                               ))}
+                            </div>
+
+                            {/* Bottom: Palette Title */}
+                            <div className="w-full pt-1">
+                              <h4 className="font-semibold text-[11px] sm:text-xs text-white group-hover:text-[#FFB0C1] transition-colors truncate">
+                                {locale === 'bn' ? pal.nameBn : pal.name}
+                              </h4>
                             </div>
                           </div>
                         );
