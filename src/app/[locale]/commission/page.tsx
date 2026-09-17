@@ -420,16 +420,11 @@ export default function CommissionPage() {
                   exit={{ opacity: 0, x: -20 }}
                   className="p-3.5 sm:p-5 rounded-3xl bg-void-card/90 border border-glass-border space-y-3.5 backdrop-blur-xl"
                 >
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-1.5 text-gold">
-                      <Palette className="w-3.5 h-3.5" />
-                      <h3 className="font-semibold text-xs uppercase tracking-wider">
-                        {t('step2')}
-                      </h3>
-                    </div>
-                    <span className="text-[10px] text-white/50 font-mono">
-                      {locale === 'bn' ? '৮টি কালার থিম' : '8 Curated Palettes'}
-                    </span>
+                  <div className="flex items-center gap-1.5 text-gold">
+                    <Palette className="w-3.5 h-3.5" />
+                    <h3 className="font-semibold text-xs uppercase tracking-wider">
+                      {locale === 'bn' ? 'কালার নির্বাচন' : 'Select Color'}
+                    </h3>
                   </div>
 
                   {/* Square Palette Cards Grid (2 cols on mobile, 4 cols on desktop) */}
