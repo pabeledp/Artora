@@ -133,22 +133,22 @@ export default function CommissionPage() {
   );
 
   return (
-    <div className="min-h-screen pt-28 pb-24 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
-      {/* Header with Single H1 for Search Engine Optimization */}
-      <div className="text-center max-w-2xl mx-auto mb-10 space-y-3">
-        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-mono font-semibold bg-void-card/90 border border-[#E60049]/40 text-[#FFB0C1] shadow-neon-crimson backdrop-blur-xl">
-          <Palette className="w-3.5 h-3.5 text-[#E60049] animate-spin-slow" />
+    <div className="min-h-screen pt-20 sm:pt-24 pb-12 px-3 sm:px-6 lg:px-8 max-w-6xl mx-auto">
+      {/* Compact Studio Header */}
+      <div className="text-center max-w-xl mx-auto mb-6 space-y-1.5">
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-[11px] font-mono font-semibold bg-void-card/90 border border-[#E60049]/40 text-[#FFB0C1] shadow-neon-crimson backdrop-blur-xl">
+          <Palette className="w-3 h-3 text-[#E60049] animate-spin-slow" />
           <span>{locale === 'bn' ? 'বিস্পোক কাস্টম আর্ট কমিশন' : 'Bespoke Custom Canvas Commission'}</span>
         </div>
-        <h1 className="font-display font-black text-2xl sm:text-4xl lg:text-5xl text-white tracking-tight">
+        <h1 className="font-display font-black text-xl sm:text-3xl text-white tracking-tight">
           {locale === 'bn'
             ? 'কাস্টম আর্ট কমিশন ও বিস্পোক পেইন্টিং'
-            : 'Bespoke Custom Artwork Commission by Fiha Islam'}
+            : 'Bespoke Custom Artwork Commission'}
         </h1>
-        <p className="text-xs sm:text-sm text-white/70 leading-relaxed max-w-xl mx-auto">
+        <p className="text-[11px] sm:text-xs text-white/60 leading-relaxed max-w-md mx-auto">
           {locale === 'bn'
-            ? 'আপনার লিভিং রুম, অফিস বা লাক্সারি ইন্টেরিয়রের জন্য কাস্টমাইজড থ্রিডি আরবি ক্যালিগ্রাফি ও হেভি ইম্প্যাস্টো ক্যানভাস তৈরি করুন।'
-            : 'Commission custom handcrafted 3D Islamic calligraphy and heavy impasto textured wall art tailored to your interior space in Dhaka, Bangladesh.'}
+            ? 'আপনার পছন্দের সাইজ, বাজেট ও কালার প্যালেটে সরাসরি তৈরি করিয়ে নিন প্রামাণ্য ক্যানভাস।'
+            : 'Handcrafted 3D Arabic calligraphy and heavy textured impasto tailored to your space.'}
         </p>
       </div>
 
@@ -272,24 +272,24 @@ export default function CommissionPage() {
                     initial={{ opacity: 0, x: 20 }}
                     animate={{ opacity: 1, x: 0 }}
                     exit={{ opacity: 0, x: -20 }}
-                    className="p-5 sm:p-7 rounded-3xl bg-void-card/90 border border-glass-border space-y-5 backdrop-blur-xl"
+                    className="p-4 sm:p-5 rounded-3xl bg-void-card/90 border border-glass-border space-y-3.5 backdrop-blur-xl"
                   >
-                    <div className="flex flex-wrap items-center justify-between gap-3">
+                    <div className="flex flex-wrap items-center justify-between gap-2">
                       <div className="flex items-center gap-2 text-gold">
                         <Layers className="w-4 h-4" />
-                        <h3 className="font-semibold text-sm uppercase tracking-wider">
+                        <h3 className="font-semibold text-xs sm:text-sm uppercase tracking-wider">
                           {t('step1')}
                         </h3>
                       </div>
 
                       {/* Category Filter Chips */}
-                      <div className="flex items-center gap-1.5 p-1 rounded-xl bg-void-light border border-white/10 text-[11px]">
+                      <div className="flex items-center gap-1 p-0.5 rounded-xl bg-void-light border border-white/10 text-[10px] sm:text-[11px]">
                         {(['All', 'Small', 'Medium', 'Large'] as const).map((cat) => (
                           <button
                             key={cat}
                             type="button"
                             onClick={() => setSizeCategoryFilter(cat)}
-                            className={`px-3 py-1 rounded-lg font-medium transition-all ${
+                            className={`px-2.5 py-1 rounded-lg font-medium transition-all ${
                               sizeCategoryFilter === cat
                                 ? 'bg-[#E60049] text-white shadow-sm font-semibold'
                                 : 'text-white/60 hover:text-white'
@@ -307,53 +307,53 @@ export default function CommissionPage() {
                       </div>
                     </div>
 
-                    <div className="flex items-center justify-between text-xs text-white/70">
+                    <div className="flex items-center justify-between text-[11px] text-white/70">
                       <span>{t('sizeLabel')}</span>
-                      <span className="text-[11px] text-emerald-400/90 font-mono">
-                        {locale === 'bn' ? 'মোট ১২টি স্ট্যান্ডার্ড সাইজ' : '12 Standard Canvas Sizes'}
+                      <span className="text-emerald-400/90 font-mono">
+                        {locale === 'bn' ? '১২টি স্ট্যান্ডার্ড সাইজ' : '12 Canvas Sizes'}
                       </span>
                     </div>
 
-                    {/* Mini Cards Grid (2 cols on mobile, 3 cols on sm/md) */}
-                    <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 max-h-[380px] overflow-y-auto pr-1 scrollbar-thin scrollbar-thumb-white/10 hover:scrollbar-thumb-[#E60049]/40">
+                    {/* Mini Cards Grid (3 cols on all modern screens, scrollable) */}
+                    <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5 max-h-[300px] overflow-y-auto pr-1 scrollbar-thin scrollbar-thumb-white/10 hover:scrollbar-thumb-[#E60049]/40">
                       {filteredSizes.map((size) => {
                         const isSelected = selectedSize.id === size.id;
                         return (
                           <div
                             key={size.id}
                             onClick={() => setSelectedSize(size)}
-                            className={`p-3 sm:p-3.5 rounded-2xl border transition-all cursor-pointer flex flex-col justify-between relative group ${
+                            className={`p-2.5 sm:p-3 rounded-xl border transition-all cursor-pointer flex flex-col justify-between relative group ${
                               isSelected
                                 ? 'bg-gradient-to-b from-[#E60049]/20 to-void-card border-[#E60049] shadow-neon-crimson ring-1 ring-[#E60049]/60'
                                 : 'bg-void-light/50 border-glass-border hover:border-white/30 hover:bg-white/[0.04]'
                             }`}
                           >
-                            {/* Category Badge */}
-                            <div className="flex items-center justify-between gap-1 mb-1.5">
-                              <span className="text-[10px] font-mono px-1.5 py-0.5 rounded-md bg-white/5 border border-white/10 text-white/60">
+                            {/* Category Badge & Selection Dot */}
+                            <div className="flex items-center justify-between gap-1 mb-1">
+                              <span className="text-[9px] font-mono px-1.5 py-0.2 rounded bg-white/5 border border-white/10 text-white/60">
                                 {size.category}
                               </span>
                               {isSelected && (
-                                <span className="w-2 h-2 rounded-full bg-gold animate-pulse" />
+                                <span className="w-1.5 h-1.5 rounded-full bg-gold animate-pulse" />
                               )}
                             </div>
 
                             {/* Measurement */}
-                            <div className="space-y-0.5 my-1">
-                              <h4 className="font-display font-bold text-xs sm:text-sm text-white group-hover:text-[#FFB0C1] transition-colors">
+                            <div className="my-0.5">
+                              <h4 className="font-display font-bold text-xs text-white group-hover:text-[#FFB0C1] transition-colors">
                                 {locale === 'bn' ? size.sizeBn : size.size}
                               </h4>
-                              <p className="text-[10px] text-white/50 line-clamp-1">
+                              <p className="text-[9px] text-white/40 line-clamp-1">
                                 {locale === 'bn' ? size.idealForBn : size.idealFor}
                               </p>
                             </div>
 
                             {/* Estimated Price Note */}
-                            <div className="pt-2 mt-1 border-t border-white/5 flex items-baseline justify-between">
-                              <span className="text-[10px] text-white/40 font-mono">
+                            <div className="pt-1.5 mt-0.5 border-t border-white/5 flex items-baseline justify-between">
+                              <span className="text-[9px] text-white/40 font-mono">
                                 {locale === 'bn' ? 'আনুমানিক' : 'Est.'}
                               </span>
-                              <span className="text-xs font-mono font-bold text-emerald-400">
+                              <span className="text-[11px] font-mono font-bold text-emerald-400">
                                 ৳{size.basePriceBDT.toLocaleString()}
                               </span>
                             </div>
@@ -363,18 +363,18 @@ export default function CommissionPage() {
                     </div>
 
                     {/* Friendly Pricing & Negotiation Note */}
-                    <div className="p-3 rounded-xl bg-white/[0.03] border border-white/10 flex items-center justify-between text-[11px] text-white/70">
+                    <div className="p-2.5 rounded-xl bg-white/[0.03] border border-white/10 flex items-center justify-between text-[10px] sm:text-[11px] text-white/70">
                       <div className="flex items-center gap-1.5 text-gold">
                         <Sparkles className="w-3.5 h-3.5 shrink-0" />
                         <span>{locale === 'bn' ? 'বাজেট ও ফ্রেম সাইজ আলোচনা সাপেক্ষে পরিবর্তনযোগ্য' : 'Budget & custom framing adaptable upon discussion'}</span>
                       </div>
                     </div>
 
-                    <div className="pt-2 flex justify-end">
+                    <div className="pt-1 flex justify-end">
                       <button
                         type="button"
                         onClick={() => setCurrentStep(2)}
-                        className="px-6 py-3 rounded-full text-xs font-semibold bg-white/10 hover:bg-white/20 text-white border border-white/20 backdrop-blur-xl transition-all flex items-center gap-2 cursor-pointer"
+                        className="px-5 py-2.5 rounded-full text-xs font-semibold bg-white/10 hover:bg-white/20 text-white border border-white/20 backdrop-blur-xl transition-all flex items-center gap-2 cursor-pointer"
                       >
                         <span>{locale === 'bn' ? 'পরবর্তী ধাপ' : 'Next Step'}</span>
                         <ArrowRight className="w-3.5 h-3.5" />
