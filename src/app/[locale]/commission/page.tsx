@@ -177,27 +177,37 @@ export default function CommissionPage() {
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
-          className="p-6 sm:p-10 rounded-3xl bg-void-card/95 border border-[#E60049]/40 text-center space-y-5 shadow-2xl backdrop-blur-2xl max-w-xl mx-auto"
+          className="p-5 sm:p-7 rounded-3xl bg-void-card/95 border border-[#E60049]/40 text-center space-y-4 shadow-2xl backdrop-blur-2xl max-w-xl mx-auto"
         >
-          <div className="w-14 h-14 rounded-full bg-[#E60049]/20 border border-[#E60049]/40 text-[#FFB0C1] flex items-center justify-center mx-auto shadow-neon-crimson">
-            <CheckCircle2 className="w-8 h-8 text-emerald-400" />
+          <div className="w-12 h-12 rounded-full bg-[#E60049]/20 border border-[#E60049]/40 text-[#FFB0C1] flex items-center justify-center mx-auto shadow-neon-crimson">
+            <CheckCircle2 className="w-7 h-7 text-emerald-400" />
           </div>
 
-          <div className="space-y-1.5">
+          <div className="space-y-2">
             <span className="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full text-[10px] font-mono bg-emerald-500/15 border border-emerald-500/30 text-emerald-300">
-              <FileCheck className="w-3 h-3" />
-              <span>{locale === 'bn' ? 'গুগল শিটসে সংরক্ষিত' : 'Synced with Studio'}</span>
+              <FileCheck className="w-3.5 h-3.5" />
+              <span>{locale === 'bn' ? 'সফলভাবে সংরক্ষিত' : 'Synced with Studio'}</span>
             </span>
-            <h2 className="font-display font-black text-xl sm:text-2xl text-white">
-              {t('successTitle')}
+            <h2 className="font-display font-black text-lg sm:text-xl text-white">
+              {locale === 'bn' ? 'অভিনন্দন! আপনার কমিশন রিকোয়েস্ট গৃহীত হয়েছে' : 'Congratulations! Commission Request Received'}
             </h2>
-            <p className="text-xs text-white/70 max-w-md mx-auto leading-relaxed">
-              {t('successMsg')}
-            </p>
+            
+            {/* Re-confirmation Notice Box */}
+            <div className="p-3.5 rounded-2xl bg-gradient-to-r from-[#E60049]/15 via-white/[0.03] to-[#FFB0C1]/10 border border-[#E60049]/30 text-left space-y-1.5 leading-relaxed">
+              <div className="flex items-center gap-1.5 font-bold text-gold text-[11px] sm:text-xs">
+                <Sparkles className="w-3.5 h-3.5 text-gold shrink-0" />
+                <span>{locale === 'bn' ? 'আমাদের পরবর্তী পদক্ষেপ ও যোগাযোগ:' : 'What Happens Next:'}</span>
+              </div>
+              <p className="text-[11px] sm:text-xs text-white/85 leading-normal">
+                {locale === 'bn'
+                  ? 'আপনার আর্টওয়ার্কের সাইজ, ফ্রেম এবং কালার ডিটেইলস আরও গভীরভাবে বোঝার জন্য এবং অর্ডারটি রি-কনফার্ম করার জন্য আমাদের টিম থেকে খুব শীঘ্রই সরাসরি আপনার সাথে (মোবাইল কল অথবা হোয়াটসঅ্যাপে) যোগাযোগ করা হবে।'
+                  : 'Our studio team will contact you shortly via phone or WhatsApp to re-confirm your order and discuss the canvas dimensions, framing, and custom details in depth.'}
+              </p>
+            </div>
           </div>
 
           {/* Submission Summary Card */}
-          <div className="p-4 rounded-2xl bg-void-light/80 border border-white/10 max-w-md mx-auto text-xs space-y-2 text-left backdrop-blur-md">
+          <div className="p-3.5 rounded-2xl bg-void-light/80 border border-white/10 max-w-md mx-auto text-xs space-y-2 text-left backdrop-blur-md">
             <div className="flex justify-between text-white/70 pb-1.5 border-b border-white/10">
               <span>{locale === 'bn' ? 'রেফারেন্স আইডি:' : 'Reference ID:'}</span>
               <span className="font-mono font-bold text-[#FFB0C1]">{submittedRef}</span>
@@ -214,9 +224,16 @@ export default function CommissionPage() {
               <span>{locale === 'bn' ? 'ক্যানভাস সাইজ:' : 'Canvas Size:'}</span>
               <span className="font-semibold text-gold">{selectedSize.size}</span>
             </div>
-            <div className="flex justify-between text-white/70">
+            <div className="flex items-center justify-between text-white/70">
               <span>{locale === 'bn' ? 'কালার প্যালেট:' : 'Palette:'}</span>
-              <span className="font-semibold text-[#FFB0C1]">{selectedPalette.name}</span>
+              <div className="flex items-center gap-1.5">
+                <div className="flex items-center gap-0.5">
+                  {selectedPalette.colors.map((c, i) => (
+                    <span key={i} className="w-2.5 h-2.5 rounded-full border border-white/20" style={{ backgroundColor: c }} />
+                  ))}
+                </div>
+                <span className="font-semibold text-[#FFB0C1] text-[11px]">{selectedPalette.name}</span>
+              </div>
             </div>
             <div className="flex justify-between text-white/70 pt-1.5 border-t border-white/10">
               <span>{locale === 'bn' ? 'আনুমানিক বাজেট:' : 'Estimated Price:'}</span>
@@ -233,10 +250,10 @@ export default function CommissionPage() {
                 href={whatsappLink}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-5 py-3 rounded-full text-xs font-bold bg-[#25D366] hover:bg-[#1EBE5D] text-black shadow-lg shadow-emerald-950/40 transition-all cursor-pointer"
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-xs font-bold bg-[#25D366] hover:bg-[#1EBE5D] text-black shadow-lg shadow-emerald-950/40 transition-all cursor-pointer"
               >
                 <MessageCircle className="w-4 h-4" />
-                <span>{locale === 'bn' ? 'হোয়াটসঅ্যাপে কথা বলুন' : 'Chat on WhatsApp'}</span>
+                <span>{locale === 'bn' ? 'সরাসরি হোয়াটসঅ্যাপে কথা বলুন' : 'Chat on WhatsApp'}</span>
               </a>
             )}
 
@@ -247,7 +264,7 @@ export default function CommissionPage() {
                 setDescription('');
                 setWallPhoto(null);
               }}
-              className="px-5 py-3 rounded-full text-xs font-semibold bg-white/10 hover:bg-white/20 text-white border border-white/20 backdrop-blur-xl transition-all cursor-pointer"
+              className="px-5 py-2.5 rounded-full text-xs font-semibold bg-white/10 hover:bg-white/20 text-white border border-white/20 backdrop-blur-xl transition-all cursor-pointer"
             >
               {locale === 'bn' ? 'নতুন কমিশন' : 'New Commission'}
             </button>
@@ -438,12 +455,12 @@ export default function CommissionPage() {
                             )}
                           </div>
 
-                          {/* Center: 2x2 Clean Color Grid */}
-                          <div className="grid grid-cols-2 gap-1.5 p-1 rounded-xl bg-black/40 border border-white/10 my-auto shadow-inner">
-                            {pal.colors.slice(0, 4).map((c, i) => (
+                          {/* Center: 3x2 Clean Color Grid (6 Colors) */}
+                          <div className="grid grid-cols-3 gap-1 p-1.5 rounded-xl bg-black/50 border border-white/10 my-auto shadow-inner">
+                            {pal.colors.slice(0, 6).map((c, i) => (
                               <span
                                 key={i}
-                                className="w-3.5 h-3.5 sm:w-4 sm:h-4 rounded-full border border-white/20 shadow-sm"
+                                className="w-3.5 h-3.5 sm:w-4 sm:h-4 rounded-full border border-white/20 shadow-sm transition-transform hover:scale-110"
                                 style={{ backgroundColor: c }}
                                 title={c}
                               />
@@ -469,19 +486,20 @@ export default function CommissionPage() {
                     >
                       {locale === 'bn' ? 'পূর্ববর্তী' : 'Back'}
                     </button>
+
                     <button
                       type="button"
                       onClick={() => setCurrentStep(3)}
-                      className="px-5 py-2.5 rounded-full text-xs font-bold bg-gradient-to-r from-[#E60049] to-[#2B020A] text-white shadow-neon-crimson border border-[#E60049]/50 hover:border-[#FFB0C1] transition-all flex items-center gap-2 cursor-pointer"
+                      className="w-full sm:w-auto px-6 py-2.5 rounded-full text-xs font-bold bg-gradient-to-r from-[#E60049] to-[#2B020A] text-white shadow-neon-crimson border border-[#E60049]/50 hover:border-[#FFB0C1] transition-all flex items-center justify-center gap-2 cursor-pointer"
                     >
-                      <span>{locale === 'bn' ? 'পরবর্তী ধাপ: ভিশন' : 'Next: Vision'}</span>
+                      <span>{locale === 'bn' ? 'পরবর্তী ধাপ: আপনার ভিশন' : 'Next: Your Vision'}</span>
                       <ArrowRight className="w-3.5 h-3.5" />
                     </button>
                   </div>
                 </motion.div>
               )}
 
-              {/* STEP 3: Wall Photo & Vision Description */}
+              {/* STEP 3: Vision, Wall Photo, & Instructions */}
               {currentStep === 3 && (
                 <motion.div
                   key="step3"
@@ -497,50 +515,65 @@ export default function CommissionPage() {
                     </h3>
                   </div>
 
-                  <div className="space-y-1.5">
-                    <label className="text-[11px] text-white/70 block">
-                      {t('descriptionLabel')}
+                  <div>
+                    <label className="text-xs font-semibold text-white/90 block mb-1">
+                      {t('visionPlaceholder')}
                     </label>
                     <textarea
                       value={description}
                       onChange={(e) => setDescription(e.target.value)}
+                      placeholder={
+                        locale === 'bn'
+                          ? 'যেমন: লিভিং রুমের সোফার পেছনের দেয়ালের জন্য সুরা আর-রহমানের ক্যালিগ্রাফি অথবা শান্ত মাউন্টেন টেক্সচারড আর্ট...'
+                          : 'e.g. Modern minimalist calligraphy with thick impasto palette knife strokes for our main lounge...'
+                      }
                       rows={3}
-                      placeholder={t('descriptionPlaceholder')}
-                      className="w-full px-3.5 py-2.5 rounded-xl bg-void-light border border-glass-border text-white text-xs focus:border-[#E60049] outline-none transition-colors"
+                      className="w-full p-3 rounded-2xl bg-void-light border border-glass-border text-white text-xs placeholder:text-white/30 focus:border-[#E60049] outline-none resize-none"
                     />
                   </div>
 
-                  <div className="space-y-1.5">
-                    <label className="text-[11px] text-white/70 block">{t('uploadLabel')}</label>
-                    <div className="border-2 border-dashed border-glass-border hover:border-[#E60049] rounded-xl p-4 text-center cursor-pointer relative bg-void-light/50 transition-colors">
+                  <div>
+                    <label className="text-xs font-semibold text-white/90 block mb-1">
+                      {t('uploadWall')}
+                    </label>
+                    <div className="border border-dashed border-white/20 rounded-2xl p-3 text-center bg-void-light/50 hover:border-[#E60049]/60 transition-colors">
                       <input
                         type="file"
                         accept="image/*"
                         onChange={handlePhotoUpload}
-                        className="absolute inset-0 opacity-0 cursor-pointer w-full h-full"
+                        className="hidden"
+                        id="wall-upload-popup"
                       />
-                      {wallPhoto ? (
-                        <div className="space-y-1.5">
-                          <img
-                            src={wallPhoto}
-                            alt="Wall Preview"
-                            className="h-20 mx-auto rounded-lg object-cover"
-                          />
-                          <p className="text-[10px] text-emerald-400">
-                            ✓ {locale === 'bn' ? 'ছবি যুক্ত হয়েছে' : 'Photo Attached'}
-                          </p>
-                        </div>
-                      ) : (
-                        <div className="space-y-1 text-white/50">
-                          <Upload className="w-5 h-5 mx-auto text-gold" />
-                          <p className="text-[11px]">
-                            {locale === 'bn'
-                              ? 'ওয়াল বা ইন্টেরিয়রের ছবি আপলোড করুন (ঐচ্ছিক)'
-                              : 'Upload interior photo (optional)'}
-                          </p>
-                        </div>
-                      )}
+                      <label
+                        htmlFor="wall-upload-popup"
+                        className="cursor-pointer flex flex-col items-center gap-1 text-white/60 hover:text-white"
+                      >
+                        <Upload className="w-5 h-5 text-[#FFB0C1]" />
+                        <span className="text-[11px] font-medium text-white/80">
+                          {locale === 'bn' ? 'দেয়ালের ছবি আপলোড করুন' : 'Click to Upload Wall Image'}
+                        </span>
+                        <span className="text-[9px] text-white/40">
+                          JPG, PNG up to 10MB (ঐচ্ছিক / Optional)
+                        </span>
+                      </label>
                     </div>
+
+                    {wallPhoto && (
+                      <div className="mt-2 relative w-20 h-20 rounded-xl overflow-hidden border border-white/20">
+                        <img
+                          src={wallPhoto}
+                          alt="Wall preview"
+                          className="w-full h-full object-cover"
+                        />
+                        <button
+                          type="button"
+                          onClick={() => setWallPhoto(null)}
+                          className="absolute top-1 right-1 p-0.5 rounded-full bg-black/70 text-white hover:text-red-400"
+                        >
+                          <X className="w-3 h-3" />
+                        </button>
+                      </div>
+                    )}
                   </div>
 
                   <div className="pt-1 flex items-center justify-between gap-3">
@@ -551,12 +584,13 @@ export default function CommissionPage() {
                     >
                       {locale === 'bn' ? 'পূর্ববর্তী' : 'Back'}
                     </button>
+
                     <button
                       type="button"
                       onClick={() => setCurrentStep(4)}
-                      className="px-5 py-2.5 rounded-full text-xs font-bold bg-gradient-to-r from-[#E60049] to-[#2B020A] text-white shadow-neon-crimson border border-[#E60049]/50 hover:border-[#FFB0C1] transition-all flex items-center gap-2 cursor-pointer"
+                      className="w-full sm:w-auto px-6 py-2.5 rounded-full text-xs font-bold bg-gradient-to-r from-[#E60049] to-[#2B020A] text-white shadow-neon-crimson border border-[#E60049]/50 hover:border-[#FFB0C1] transition-all flex items-center justify-center gap-2 cursor-pointer"
                     >
-                      <span>{locale === 'bn' ? 'পরবর্তী ধাপ: তথ্য ও সারসংক্ষেপ' : 'Next: Review & Submit'}</span>
+                      <span>{locale === 'bn' ? 'পরবর্তী ধাপ: রিভিউ ও সাবমিট' : 'Next: Review & Submit'}</span>
                       <ArrowRight className="w-3.5 h-3.5" />
                     </button>
                   </div>
@@ -598,7 +632,14 @@ export default function CommissionPage() {
                       </div>
                       <div>
                         <span className="text-white/40 block text-[9px] uppercase font-mono">{locale === 'bn' ? 'কালার থিম' : 'Palette'}</span>
-                        <span className="font-semibold text-[#FFB0C1]">{selectedPalette.name}</span>
+                        <div className="flex items-center gap-1.5 mt-0.5">
+                          <div className="flex items-center gap-0.5">
+                            {selectedPalette.colors.map((c, i) => (
+                              <span key={i} className="w-2.5 h-2.5 rounded-full border border-white/20" style={{ backgroundColor: c }} />
+                            ))}
+                          </div>
+                          <span className="font-semibold text-[#FFB0C1] truncate">{selectedPalette.name}</span>
+                        </div>
                       </div>
                     </div>
 

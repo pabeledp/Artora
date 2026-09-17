@@ -321,56 +321,56 @@ export const COLOR_PALETTE_PRESETS = [
     id: "pal-calligraphy",
     name: "Sacred Earth Ochre & Raw Linen",
     nameBn: "রাস্ট-আর্থ ওচার ও কাঁচা লিনেন",
-    colors: ["#B88B58", "#5A3825", "#F4ECE1", "#221A15"],
+    colors: ["#B88B58", "#5A3825", "#F4ECE1", "#D4AF37", "#8C6239", "#221A15"],
     description: "Classic Quranic calligraphy aesthetic with earthy raw ochre and antique tones"
   },
   {
     id: "pal-green",
     name: "Emerald Sanctuary & Olive Serenity",
     nameBn: "এমারেল্ড গ্রিন, অলিভ ও নিস্তব্ধ প্রকৃতি",
-    colors: ["#5C784D", "#97B376", "#2B3C25", "#DEE5D2"],
+    colors: ["#1B4332", "#2D6A4F", "#52B788", "#74C69D", "#D8F3DC", "#1A2E20"],
     description: "Soothing natural botanical greens, layered mountains, and highland peace"
   },
   {
     id: "pal-ocean",
     name: "Azure Ocean Waves & Froth",
     nameBn: "গাঢ় সমুদ্রের নীল, আসমানি ও সাদা ঢেউ",
-    colors: ["#0066B2", "#5BB7EA", "#FFFFFF", "#0B2545"],
+    colors: ["#03045E", "#0077B6", "#00B4D8", "#90E0EF", "#CAF0F8", "#FFFFFF"],
     description: "Vibrant marine blue impasto, coastal horizons, and textured wave froth"
   },
   {
     id: "pal-crimson",
     name: "Crimson Eclipse & 24k Gold Accents",
     nameBn: "রয়েল ক্রিমসন রেড ও ২৪ ক্যারেট গোল্ড",
-    colors: ["#E60049", "#2B020A", "#E6B93F", "#FFB0C1"],
+    colors: ["#E60049", "#9B0028", "#2B020A", "#E6B93F", "#FFB0C1", "#FFE5EC"],
     description: "Rich metallic magenta-red luxury impasto with radiant gold leaf highlights"
   },
   {
     id: "pal-monochrome",
     name: "Obsidian Noir & Titanium White",
     nameBn: "অবসিডিয়ান ব্ল্যাক, চারকোল ও পিওর হোয়াইট",
-    colors: ["#121212", "#3A3A3C", "#8E8E93", "#FFFFFF"],
+    colors: ["#0D0D0D", "#262626", "#525252", "#8C8C8C", "#D9D9D9", "#FFFFFF"],
     description: "Ultra-modern minimalist monochromatic contrast for contemporary interiors"
   },
   {
     id: "pal-royal-navy",
     name: "Royal Midnight Navy & Brushed Brass",
     nameBn: "রয়েল মিডনাইট নেভি ব্লু ও ব্রাশড গোল্ড",
-    colors: ["#0A192F", "#172A45", "#D4AF37", "#F8F9FA"],
+    colors: ["#0A192F", "#172A45", "#203A43", "#D4AF37", "#F3E5AB", "#F8F9FA"],
     description: "Deep regal navy blue with brushed gold metallic textures and Islamic geometry"
   },
   {
     id: "pal-terracotta",
     name: "Terracotta Sunset & Warm Amber",
     nameBn: "টেরাকোটা ক্লে, সানসেট ও ওয়ার্ম অ্যাম্বার",
-    colors: ["#C85A32", "#E29578", "#F5CB5C", "#331811"],
+    colors: ["#9E2A2B", "#C85A32", "#E29578", "#F5CB5C", "#FFE6A7", "#331811"],
     description: "Warm bohemian earthen terracotta, burnt sienna, and golden sunset glow"
   },
   {
     id: "pal-pastel-rose",
     name: "Blush Rose & Celestial Pearl",
     nameBn: "ব্লাশ রোজ, পেস্টেল পিংক ও পার্ল গ্রে",
-    colors: ["#F4ACB7", "#D8E2DC", "#FFE5D9", "#4A5759"],
+    colors: ["#D8829D", "#F4ACB7", "#FFCCD5", "#D8E2DC", "#FFE5D9", "#4A5759"],
     description: "Gentle romantic pastels, soft textured floral vibes, and soothing elegance"
   }
 ];
