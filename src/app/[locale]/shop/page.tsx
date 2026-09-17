@@ -151,20 +151,32 @@ export default function ShopPage() {
                   </div>
 
                   <div className="flex items-center gap-2">
-                    <button
-                      onClick={() => addItem(art)}
-                      className="p-2.5 rounded-full bg-void-card border border-glass-border text-white hover:text-[#FFB0C1] hover:border-[#E60049] transition-colors"
-                      title={t('addToCart')}
-                    >
-                      <ShoppingBag className="w-4 h-4" />
-                    </button>
-                    <Link
-                      href={`/art/${art.slug}`}
-                      className="px-4 py-2 rounded-full text-xs font-semibold bg-gradient-to-r from-crimson to-violet text-white shadow-neon-crimson hover:opacity-90 transition-all flex items-center gap-1"
-                    >
-                      <span>{locale === 'bn' ? 'বিস্তারিত' : 'View'}</span>
-                      <ArrowRight className="w-3.5 h-3.5" />
-                    </Link>
+                    {art.isSold ? (
+                      <Link
+                        href={`/art/${art.slug}`}
+                        className="px-3.5 py-2 rounded-full text-xs font-semibold bg-gradient-to-r from-[#E60049] to-[#2B020A] text-white shadow-neon-crimson hover:opacity-90 transition-all flex items-center gap-1.5"
+                      >
+                        <span>{locale === 'bn' ? 'রিস্টক রিকোয়েস্ট' : 'Request Restock'}</span>
+                        <ArrowRight className="w-3.5 h-3.5" />
+                      </Link>
+                    ) : (
+                      <>
+                        <button
+                          onClick={() => addItem(art)}
+                          className="p-2.5 rounded-full bg-void-card border border-glass-border text-white hover:text-[#FFB0C1] hover:border-[#E60049] transition-colors"
+                          title={t('addToCart')}
+                        >
+                          <ShoppingBag className="w-4 h-4" />
+                        </button>
+                        <Link
+                          href={`/art/${art.slug}`}
+                          className="px-4 py-2 rounded-full text-xs font-semibold bg-gradient-to-r from-crimson to-violet text-white shadow-neon-crimson hover:opacity-90 transition-all flex items-center gap-1"
+                        >
+                          <span>{locale === 'bn' ? 'বিস্তারিত' : 'View'}</span>
+                          <ArrowRight className="w-3.5 h-3.5" />
+                        </Link>
+                      </>
+                    )}
                   </div>
                 </div>
               </div>

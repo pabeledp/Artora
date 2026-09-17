@@ -218,66 +218,129 @@ export const ArtworkDetailView: React.FC<ArtworkDetailViewProps> = ({ art }) => 
             ))}
           </div>
 
-          {/* Purchase Actions */}
+          {/* Purchase Actions / Restock Request Actions */}
           <div className="pt-4 space-y-3">
-            <div className="grid grid-cols-2 gap-3">
-              <MagneticButton
-                variant="outline"
-                className="w-full py-4 text-sm font-semibold min-h-[48px]"
-                onClick={() => addItem(art)}
-              >
-                <ShoppingBag className="w-4 h-4 text-[#FFB0C1]" />
-                <span>{t('addToCart')}</span>
-              </MagneticButton>
+            {art.isSold ? (
+              <div className="space-y-3">
+                {/* Sold Out Notice Banner */}
+                <div className="p-3.5 rounded-2xl bg-[#E60049]/15 border border-[#E60049]/40 backdrop-blur-md flex items-center gap-3">
+                  <div className="w-8 h-8 rounded-xl bg-[#E60049] flex items-center justify-center shrink-0 shadow-neon-crimson text-white font-bold text-xs">
+                    SOLD
+                  </div>
+                  <div className="text-xs text-white/80">
+                    <p className="font-semibold text-white">
+                      {isBn ? 'এই অরিজিনাল ক্যানভাসটি সংগৃহীত হয়েছে' : 'This original canvas has been acquired'}
+                    </p>
+                    <p className="text-[11px] text-white/60">
+                      {isBn
+                        ? 'আপনার পছন্দসই সাইজ ও ফ্রেমে সেম ডিজাইনের কাস্টম রেপ্লিকা পেইন্টিং তৈরি করতে পারেন।'
+                        : 'You can request a custom replica handcrafted to your custom dimensions.'}
+                    </p>
+                  </div>
+                </div>
 
-              <MagneticButton
-                variant="gold"
-                className="w-full py-4 text-sm font-bold min-h-[48px]"
-                onClick={() => {
-                  addItem(art);
-                  router.push('/checkout');
-                }}
-              >
-                <span>{t('buyNow')}</span>
-                <ArrowRight className="w-4 h-4" />
-              </MagneticButton>
-            </div>
+                {/* Primary Action: Direct WhatsApp Restock / Custom Replica Inquiry */}
+                {(() => {
+                  const whatsappReplicaMsg = encodeURIComponent(
+                    `🎨 *Sold Artwork Restock / Custom Replica Request*\n\n` +
+                    `*Artwork:* ${art.title}\n` +
+                    `*Canvas Size:* ${art.canvasSize}\n` +
+                    `*Estimated Investment:* ৳${art.priceBDT.toLocaleString()}\n\n` +
+                    `Hello Fiha Islam, I love this sold artwork and would like to request a custom replica / restock for my wall. Could we discuss the creation timeline and details?`
+                  );
+                  const whatsappReplicaUrl = `https://wa.me/8801723722019?text=${whatsappReplicaMsg}`;
 
-            {/* Direct WhatsApp Original Studio Photo/Video Request Button */}
-            {(() => {
-              const whatsappOriginalMsg = encodeURIComponent(
-                `🎨 *Original Artwork HD Photo/Video Request*\n\n` +
-                `*Artwork:* ${art.title}\n` +
-                `*Ref ID:* ${art.id}\n` +
-                `*Canvas Size:* ${art.canvasSize}\n` +
-                `*Price:* ৳${art.priceBDT.toLocaleString()}${art.discountPercent ? ` (Special ${art.discountPercent}% Discount)` : ''}\n\n` +
-                `Hello Fiha Islam, I am interested in this original canvas and would like to see real original uncompressed photos & video clips from your studio!`
-              );
-              const whatsappOriginalUrl = `https://wa.me/8801723722019?text=${whatsappOriginalMsg}`;
+                  return (
+                    <a
+                      href={whatsappReplicaUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-full py-4 px-4 rounded-full text-xs sm:text-sm font-bold bg-[#25D366] hover:bg-[#1EBE5D] text-black shadow-lg shadow-emerald-950/40 transition-all flex items-center justify-center gap-2 group cursor-pointer min-h-[48px]"
+                    >
+                      <MessageSquare className="w-4 h-4 fill-current group-hover:scale-110 transition-transform" />
+                      <span>
+                        {isBn
+                          ? 'হোয়াটসঅ্যাপে রিস্টক / কাস্টম রেপ্লিকা রিকোয়েস্ট পাঠান'
+                          : 'Request Custom Replica on WhatsApp'}
+                      </span>
+                    </a>
+                  );
+                })()}
 
-              return (
-                <a
-                  href={whatsappOriginalUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-full py-4 px-4 rounded-full text-xs sm:text-sm font-bold bg-[#25D366]/15 hover:bg-[#25D366]/25 text-[#25D366] border border-[#25D366]/40 backdrop-blur-xl shadow-lg transition-all flex items-center justify-center gap-2 group cursor-pointer min-h-[48px]"
-                >
-                  <MessageSquare className="w-4 h-4 fill-current group-hover:scale-110 transition-transform" />
-                  <span>
-                    {isBn
-                      ? 'আসল ছবি ও ভিডিও দেখতে হোয়াটসঅ্যাপে রিকোয়েস্ট পাঠান'
-                      : 'Request Studio HD Photo & Video on WhatsApp'}
-                  </span>
-                </a>
-              );
-            })()}
+                {/* Secondary Action: Go to Commission Page */}
+                <Link href="/commission" className="block">
+                  <button className="w-full py-3.5 rounded-full text-xs font-semibold text-white hover:text-gold bg-void-card border border-glass-border hover:border-gold transition-all flex items-center justify-center gap-2 min-h-[44px] cursor-pointer">
+                    <Palette className="w-3.5 h-3.5 text-[#FFB0C1]" />
+                    <span>
+                      {isBn
+                        ? 'অন্য সাইজ বা কালারে নতুন কাস্টম কমিশন করুন'
+                        : 'Commission in Another Size / Palette'}
+                    </span>
+                  </button>
+                </Link>
+              </div>
+            ) : (
+              <>
+                <div className="grid grid-cols-2 gap-3">
+                  <MagneticButton
+                    variant="outline"
+                    className="w-full py-4 text-sm font-semibold min-h-[48px]"
+                    onClick={() => addItem(art)}
+                  >
+                    <ShoppingBag className="w-4 h-4 text-[#FFB0C1]" />
+                    <span>{t('addToCart')}</span>
+                  </MagneticButton>
 
-            <Link href="/commission" className="block">
-              <button className="w-full py-3.5 rounded-full text-xs font-medium text-white/70 hover:text-white bg-void-card border border-glass-border hover:border-[#E60049] transition-all flex items-center justify-center gap-2 min-h-[44px]">
-                <Palette className="w-3.5 h-3.5 text-[#FFB0C1]" />
-                <span>{t('requestCommission')}</span>
-              </button>
-            </Link>
+                  <MagneticButton
+                    variant="gold"
+                    className="w-full py-4 text-sm font-bold min-h-[48px]"
+                    onClick={() => {
+                      addItem(art);
+                      router.push('/checkout');
+                    }}
+                  >
+                    <span>{t('buyNow')}</span>
+                    <ArrowRight className="w-4 h-4" />
+                  </MagneticButton>
+                </div>
+
+                {/* Direct WhatsApp Original Studio Photo/Video Request Button */}
+                {(() => {
+                  const whatsappOriginalMsg = encodeURIComponent(
+                    `🎨 *Original Artwork HD Photo/Video Request*\n\n` +
+                    `*Artwork:* ${art.title}\n` +
+                    `*Ref ID:* ${art.id}\n` +
+                    `*Canvas Size:* ${art.canvasSize}\n` +
+                    `*Price:* ৳${art.priceBDT.toLocaleString()}${art.discountPercent ? ` (Special ${art.discountPercent}% Discount)` : ''}\n\n` +
+                    `Hello Fiha Islam, I am interested in this original canvas and would like to see real original uncompressed photos & video clips from your studio!`
+                  );
+                  const whatsappOriginalUrl = `https://wa.me/8801723722019?text=${whatsappOriginalMsg}`;
+
+                  return (
+                    <a
+                      href={whatsappOriginalUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-full py-4 px-4 rounded-full text-xs sm:text-sm font-bold bg-[#25D366]/15 hover:bg-[#25D366]/25 text-[#25D366] border border-[#25D366]/40 backdrop-blur-xl shadow-lg transition-all flex items-center justify-center gap-2 group cursor-pointer min-h-[48px]"
+                    >
+                      <MessageSquare className="w-4 h-4 fill-current group-hover:scale-110 transition-transform" />
+                      <span>
+                        {isBn
+                          ? 'আসল ছবি ও ভিডিও দেখতে হোয়াটসঅ্যাপে রিকোয়েস্ট পাঠান'
+                          : 'Request Studio HD Photo & Video on WhatsApp'}
+                      </span>
+                    </a>
+                  );
+                })()}
+
+                <Link href="/commission" className="block">
+                  <button className="w-full py-3.5 rounded-full text-xs font-medium text-white/70 hover:text-white bg-void-card border border-glass-border hover:border-[#E60049] transition-all flex items-center justify-center gap-2 min-h-[44px]">
+                    <Palette className="w-3.5 h-3.5 text-[#FFB0C1]" />
+                    <span>{t('requestCommission')}</span>
+                  </button>
+                </Link>
+              </>
+            )}
           </div>
 
           {/* Logistics & Authenticity Guarantee */}

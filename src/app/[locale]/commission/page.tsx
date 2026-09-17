@@ -133,7 +133,7 @@ export default function CommissionPage() {
   );
 
   return (
-    <div className="min-h-screen pt-20 sm:pt-24 pb-12 px-3 sm:px-6 lg:px-8 max-w-6xl mx-auto">
+    <div className="min-h-screen pt-20 sm:pt-24 pb-36 md:pb-20 px-3.5 sm:px-6 lg:px-8 max-w-6xl mx-auto">
       {/* Compact Studio Header */}
       <div className="text-center max-w-xl mx-auto mb-6 space-y-1.5">
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-[11px] font-mono font-semibold bg-void-card/90 border border-[#E60049]/40 text-[#FFB0C1] shadow-neon-crimson backdrop-blur-xl">
@@ -212,7 +212,7 @@ export default function CommissionPage() {
                 href={whatsappLink}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full text-xs font-bold bg-[#25D366] hover:bg-[#1EBE5D] text-black shadow-lg shadow-emerald-950/40 transition-all"
+                className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full text-xs font-bold bg-[#25D366] hover:bg-[#1EBE5D] text-black shadow-lg shadow-emerald-950/40 transition-all cursor-pointer"
               >
                 <MessageCircle className="w-4 h-4" />
                 <span>{locale === 'bn' ? 'হোয়াটসঅ্যাপে সরাসরি কথা বলুন' : 'Chat with Fiha Islam on WhatsApp'}</span>
@@ -226,7 +226,7 @@ export default function CommissionPage() {
                 setDescription('');
                 setWallPhoto(null);
               }}
-              className="px-6 py-3.5 rounded-full text-xs font-semibold bg-white/10 hover:bg-white/20 text-white border border-white/20 backdrop-blur-xl transition-all"
+              className="px-6 py-3.5 rounded-full text-xs font-semibold bg-white/10 hover:bg-white/20 text-white border border-white/20 backdrop-blur-xl transition-all cursor-pointer"
             >
               {locale === 'bn' ? 'নতুন কমিশন তৈরি করুন' : 'Create Another Commission'}
             </button>
@@ -237,12 +237,12 @@ export default function CommissionPage() {
           {/* ===================== LEFT: STEPPER & CONTROLS ===================== */}
           <div className="lg:col-span-7 space-y-6">
             {/* Step Progress Bar */}
-            <div className="grid grid-cols-4 gap-2 p-1.5 rounded-2xl bg-void-card border border-glass-border backdrop-blur-md">
+            <div className="grid grid-cols-4 gap-1.5 sm:gap-2 p-1.5 rounded-2xl bg-void-card border border-glass-border backdrop-blur-md">
               {[1, 2, 3, 4].map((step) => (
                 <button
                   key={step}
                   onClick={() => setCurrentStep(step)}
-                  className={`py-2 px-1 rounded-xl text-center text-xs font-semibold transition-all ${
+                  className={`py-2 px-1 rounded-xl text-center text-[11px] sm:text-xs font-semibold transition-all cursor-pointer ${
                     currentStep === step
                       ? 'bg-gradient-to-r from-[#E60049] to-[#2B020A] text-white shadow-neon-crimson border border-[#E60049]/50'
                       : currentStep > step
@@ -272,9 +272,9 @@ export default function CommissionPage() {
                     initial={{ opacity: 0, x: 20 }}
                     animate={{ opacity: 1, x: 0 }}
                     exit={{ opacity: 0, x: -20 }}
-                    className="p-4 sm:p-5 rounded-3xl bg-void-card/90 border border-glass-border space-y-3.5 backdrop-blur-xl"
+                    className="p-4 sm:p-6 rounded-3xl bg-void-card/90 border border-glass-border space-y-4 backdrop-blur-xl"
                   >
-                    <div className="flex flex-wrap items-center justify-between gap-2">
+                    <div className="flex flex-wrap items-center justify-between gap-2.5">
                       <div className="flex items-center gap-2 text-gold">
                         <Layers className="w-4 h-4" />
                         <h3 className="font-semibold text-xs sm:text-sm uppercase tracking-wider">
@@ -283,13 +283,13 @@ export default function CommissionPage() {
                       </div>
 
                       {/* Category Filter Chips */}
-                      <div className="flex items-center gap-1 p-0.5 rounded-xl bg-void-light border border-white/10 text-[10px] sm:text-[11px]">
+                      <div className="flex items-center gap-1 p-0.5 rounded-xl bg-void-light border border-white/10 text-[10px] sm:text-[11px] overflow-x-auto max-w-full scrollbar-none">
                         {(['All', 'Small', 'Medium', 'Large'] as const).map((cat) => (
                           <button
                             key={cat}
                             type="button"
                             onClick={() => setSizeCategoryFilter(cat)}
-                            className={`px-2.5 py-1 rounded-lg font-medium transition-all ${
+                            className={`px-2.5 py-1 rounded-lg font-medium transition-all cursor-pointer whitespace-nowrap ${
                               sizeCategoryFilter === cat
                                 ? 'bg-[#E60049] text-white shadow-sm font-semibold'
                                 : 'text-white/60 hover:text-white'
@@ -310,19 +310,19 @@ export default function CommissionPage() {
                     <div className="flex items-center justify-between text-[11px] text-white/70">
                       <span>{t('sizeLabel')}</span>
                       <span className="text-emerald-400/90 font-mono">
-                        {locale === 'bn' ? '১২টি স্ট্যান্ডার্ড সাইজ' : '12 Canvas Sizes'}
+                        {locale === 'bn' ? '১২টি ক্যানভাস সাইজ' : '12 Canvas Sizes Available'}
                       </span>
                     </div>
 
-                    {/* Mini Cards Grid (3 cols on all modern screens, scrollable) */}
-                    <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5 max-h-[300px] overflow-y-auto pr-1 scrollbar-thin scrollbar-thumb-white/10 hover:scrollbar-thumb-[#E60049]/40">
+                    {/* Mini Cards Grid (2 cols on mobile, 3 cols on sm/desktop, smooth scrolling) */}
+                    <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5 max-h-[340px] sm:max-h-[380px] overflow-y-auto pr-1 scrollbar-thin scrollbar-thumb-white/10 hover:scrollbar-thumb-[#E60049]/40">
                       {filteredSizes.map((size) => {
                         const isSelected = selectedSize.id === size.id;
                         return (
                           <div
                             key={size.id}
                             onClick={() => setSelectedSize(size)}
-                            className={`p-2.5 sm:p-3 rounded-xl border transition-all cursor-pointer flex flex-col justify-between relative group ${
+                            className={`p-2.5 sm:p-3 rounded-2xl border transition-all cursor-pointer flex flex-col justify-between relative group min-h-[96px] ${
                               isSelected
                                 ? 'bg-gradient-to-b from-[#E60049]/20 to-void-card border-[#E60049] shadow-neon-crimson ring-1 ring-[#E60049]/60'
                                 : 'bg-void-light/50 border-glass-border hover:border-white/30 hover:bg-white/[0.04]'
@@ -330,30 +330,30 @@ export default function CommissionPage() {
                           >
                             {/* Category Badge & Selection Dot */}
                             <div className="flex items-center justify-between gap-1 mb-1">
-                              <span className="text-[9px] font-mono px-1.5 py-0.2 rounded bg-white/5 border border-white/10 text-white/60">
+                              <span className="text-[9px] font-mono px-1.5 py-0.5 rounded bg-white/5 border border-white/10 text-white/60">
                                 {size.category}
                               </span>
                               {isSelected && (
-                                <span className="w-1.5 h-1.5 rounded-full bg-gold animate-pulse" />
+                                <span className="w-2 h-2 rounded-full bg-gold animate-pulse" />
                               )}
                             </div>
 
                             {/* Measurement */}
                             <div className="my-0.5">
-                              <h4 className="font-display font-bold text-xs text-white group-hover:text-[#FFB0C1] transition-colors">
+                              <h4 className="font-display font-bold text-xs sm:text-sm text-white group-hover:text-[#FFB0C1] transition-colors">
                                 {locale === 'bn' ? size.sizeBn : size.size}
                               </h4>
-                              <p className="text-[9px] text-white/40 line-clamp-1">
+                              <p className="text-[9px] sm:text-[10px] text-white/40 line-clamp-1">
                                 {locale === 'bn' ? size.idealForBn : size.idealFor}
                               </p>
                             </div>
 
                             {/* Estimated Price Note */}
-                            <div className="pt-1.5 mt-0.5 border-t border-white/5 flex items-baseline justify-between">
+                            <div className="pt-1.5 mt-1 border-t border-white/5 flex items-baseline justify-between">
                               <span className="text-[9px] text-white/40 font-mono">
                                 {locale === 'bn' ? 'আনুমানিক' : 'Est.'}
                               </span>
-                              <span className="text-[11px] font-mono font-bold text-emerald-400">
+                              <span className="text-[11px] sm:text-xs font-mono font-bold text-emerald-400">
                                 ৳{size.basePriceBDT.toLocaleString()}
                               </span>
                             </div>
@@ -363,7 +363,7 @@ export default function CommissionPage() {
                     </div>
 
                     {/* Friendly Pricing & Negotiation Note */}
-                    <div className="p-2.5 rounded-xl bg-white/[0.03] border border-white/10 flex items-center justify-between text-[10px] sm:text-[11px] text-white/70">
+                    <div className="p-2.5 sm:p-3 rounded-xl bg-white/[0.03] border border-white/10 flex items-center justify-between text-[10px] sm:text-[11px] text-white/70">
                       <div className="flex items-center gap-1.5 text-gold">
                         <Sparkles className="w-3.5 h-3.5 shrink-0" />
                         <span>{locale === 'bn' ? 'বাজেট ও ফ্রেম সাইজ আলোচনা সাপেক্ষে পরিবর্তনযোগ্য' : 'Budget & custom framing adaptable upon discussion'}</span>
@@ -374,7 +374,7 @@ export default function CommissionPage() {
                       <button
                         type="button"
                         onClick={() => setCurrentStep(2)}
-                        className="px-5 py-2.5 rounded-full text-xs font-semibold bg-white/10 hover:bg-white/20 text-white border border-white/20 backdrop-blur-xl transition-all flex items-center gap-2 cursor-pointer"
+                        className="px-5 py-2.5 sm:px-6 sm:py-3 rounded-full text-xs font-semibold bg-white/10 hover:bg-white/20 text-white border border-white/20 backdrop-blur-xl transition-all flex items-center gap-2 cursor-pointer"
                       >
                         <span>{locale === 'bn' ? 'পরবর্তী ধাপ' : 'Next Step'}</span>
                         <ArrowRight className="w-3.5 h-3.5" />
@@ -383,19 +383,19 @@ export default function CommissionPage() {
                   </motion.div>
                 )}
 
-                {/* STEP 2: Select Palette (Enhanced Mini-Cards Grid) */}
+                {/* STEP 2: Select Palette (Responsive 1-col on mobile, 2-col on sm/desktop) */}
                 {currentStep === 2 && (
                   <motion.div
                     key="step2"
                     initial={{ opacity: 0, x: 20 }}
                     animate={{ opacity: 1, x: 0 }}
                     exit={{ opacity: 0, x: -20 }}
-                    className="p-5 sm:p-7 rounded-3xl bg-void-card/90 border border-glass-border space-y-5 backdrop-blur-xl"
+                    className="p-4 sm:p-6 rounded-3xl bg-void-card/90 border border-glass-border space-y-4 backdrop-blur-xl"
                   >
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-2 text-gold">
                         <Palette className="w-4 h-4" />
-                        <h3 className="font-semibold text-sm uppercase tracking-wider">
+                        <h3 className="font-semibold text-xs sm:text-sm uppercase tracking-wider">
                           {t('step2')}
                         </h3>
                       </div>
@@ -406,40 +406,40 @@ export default function CommissionPage() {
 
                     <label className="text-xs text-white/70 block">{t('paletteLabel')}</label>
 
-                    {/* Palette 2-Col Grid */}
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 max-h-[380px] overflow-y-auto pr-1 scrollbar-thin scrollbar-thumb-white/10">
+                    {/* Palette Grid: 1 col on mobile, 2 col on sm/desktop */}
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-3 max-h-[360px] sm:max-h-[400px] overflow-y-auto pr-1 scrollbar-thin scrollbar-thumb-white/10 hover:scrollbar-thumb-[#E60049]/40">
                       {COLOR_PALETTE_PRESETS.map((pal) => {
                         const isSelected = selectedPalette.id === pal.id;
                         return (
                           <div
                             key={pal.id}
                             onClick={() => setSelectedPalette(pal)}
-                            className={`p-3.5 rounded-2xl border transition-all cursor-pointer space-y-2 flex flex-col justify-between ${
+                            className={`p-3 sm:p-3.5 rounded-2xl border transition-all cursor-pointer space-y-2 flex flex-col justify-between ${
                               isSelected
                                 ? 'bg-gradient-to-b from-[#E60049]/15 to-void-card border-[#E60049] shadow-neon-crimson ring-1 ring-[#E60049]/60'
                                 : 'bg-void-light/50 border-glass-border hover:border-white/30 hover:bg-white/[0.04]'
                             }`}
                           >
-                            <div className="space-y-1.5">
+                            <div className="space-y-1">
                               <div className="flex items-center justify-between gap-2">
-                                <h4 className="font-semibold text-xs sm:text-sm text-white truncate">
+                                <h4 className="font-semibold text-xs sm:text-sm text-white">
                                   {locale === 'bn' ? pal.nameBn : pal.name}
                                 </h4>
                                 {isSelected && (
                                   <span className="w-2 h-2 rounded-full bg-gold shrink-0 animate-pulse" />
                                 )}
                               </div>
-                              <p className="text-[11px] text-white/50 line-clamp-2 leading-relaxed">
+                              <p className="text-[10px] sm:text-[11px] text-white/50 line-clamp-2 leading-relaxed">
                                 {pal.description}
                               </p>
                             </div>
 
                             {/* Color Swatch circles */}
-                            <div className="flex items-center gap-1.5 pt-1">
+                            <div className="flex items-center gap-1.5 pt-1 flex-wrap">
                               {pal.colors.map((c, i) => (
                                 <span
                                   key={i}
-                                  className="w-5 h-5 rounded-full border border-white/20 shadow-sm shrink-0"
+                                  className="w-4 h-4 sm:w-5 sm:h-5 rounded-full border border-white/20 shadow-sm shrink-0"
                                   style={{ backgroundColor: c }}
                                   title={c}
                                 />
@@ -450,18 +450,18 @@ export default function CommissionPage() {
                       })}
                     </div>
 
-                    <div className="pt-2 flex justify-between">
+                    <div className="pt-2 flex justify-between items-center">
                       <button
                         type="button"
                         onClick={() => setCurrentStep(1)}
-                        className="px-5 py-2.5 rounded-full text-xs text-white/60 hover:text-white"
+                        className="px-4 py-2 sm:px-5 sm:py-2.5 rounded-full text-xs text-white/60 hover:text-white cursor-pointer"
                       >
                         {locale === 'bn' ? 'পূর্ববর্তী' : 'Back'}
                       </button>
                       <button
                         type="button"
                         onClick={() => setCurrentStep(3)}
-                        className="px-6 py-3 rounded-full text-xs font-semibold bg-white/10 hover:bg-white/20 text-white border border-white/20 backdrop-blur-xl transition-all flex items-center gap-2 cursor-pointer"
+                        className="px-5 py-2.5 sm:px-6 sm:py-3 rounded-full text-xs font-semibold bg-white/10 hover:bg-white/20 text-white border border-white/20 backdrop-blur-xl transition-all flex items-center gap-2 cursor-pointer"
                       >
                         <span>{locale === 'bn' ? 'পরবর্তী ধাপ' : 'Next Step'}</span>
                         <ArrowRight className="w-3.5 h-3.5" />

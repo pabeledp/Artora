@@ -438,17 +438,19 @@ export default function HomePage() {
                         </span>
                       </div>
 
-                      <button
-                        onClick={() => addItem(activeArt)}
-                        className="p-3.5 rounded-2xl bg-white/10 hover:bg-[#E60049] text-white border border-glass-border transition-all cursor-pointer min-h-[48px] min-w-[48px] flex items-center justify-center"
-                        title="Add to Inquiry Cart"
-                      >
-                        <ShoppingBag className="w-5 h-5" />
-                      </button>
+                      {!activeArt.isSold && (
+                        <button
+                          onClick={() => addItem(activeArt)}
+                          className="p-3.5 rounded-2xl bg-white/10 hover:bg-[#E60049] text-white border border-glass-border transition-all cursor-pointer min-h-[48px] min-w-[48px] flex items-center justify-center"
+                          title="Add to Inquiry Cart"
+                        >
+                          <ShoppingBag className="w-5 h-5" />
+                        </button>
+                      )}
 
                       <Link href={`/art/${activeArt.slug}`}>
                         <MagneticButton variant="gold" className="text-xs py-3.5 px-5 min-h-[48px]">
-                          <span>{tFeatured('viewDetails')}</span>
+                          <span>{activeArt.isSold ? (isBn ? 'রিস্টক রিকোয়েস্ট' : 'Request Restock') : tFeatured('viewDetails')}</span>
                           <ArrowRight className="w-3.5 h-3.5" />
                         </MagneticButton>
                       </Link>
