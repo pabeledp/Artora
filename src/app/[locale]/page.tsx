@@ -201,12 +201,12 @@ export default function HomePage() {
                   : 'Islamic wall art in Bangladesh, bespoke handcrafted calligraphy canvases, and heavy impasto acrylic paintings created with passion by fine artist Fiha Islam.'}
               </p>
 
-              {/* Primary Action Buttons (2 Buttons with thumb-friendly touch targets) */}
-              <div className="flex flex-col sm:flex-row items-center gap-3.5 sm:gap-4 w-full sm:w-auto pt-2">
-                <Link href="/shop" className="w-full sm:w-auto">
-                  <MagneticButton variant="gold" className="w-full sm:w-auto py-3.5 sm:py-4 px-7 text-sm font-bold min-h-[48px]">
-                    <span>{isBn ? 'কালেকশন দেখুন' : 'Explore Collection'}</span>
-                    <ArrowRight className="w-4 h-4" />
+              {/* Primary Action Buttons (2 side-by-side buttons on mobile & desktop) */}
+              <div className="grid grid-cols-2 gap-2 sm:gap-4 w-full sm:w-auto sm:flex sm:flex-row items-center pt-2">
+                <Link href="/shop" className="w-full sm:w-auto block">
+                  <MagneticButton variant="gold" className="w-full sm:w-auto py-3 sm:py-4 px-2.5 sm:px-7 text-xs sm:text-sm font-bold min-h-[46px] sm:min-h-[48px]">
+                    <span>{isBn ? 'কালেকশন দেখুন' : 'Explore Art'}</span>
+                    <ArrowRight className="w-3.5 h-3.5 shrink-0" />
                   </MagneticButton>
                 </Link>
 
@@ -214,10 +214,10 @@ export default function HomePage() {
                   href="https://wa.me/8801723722019?text=Hello%20Fiha%20Islam%2C%20I%20am%20interested%20in%20your%20custom%20canvas%20artwork."
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 sm:py-4 rounded-full text-sm font-semibold bg-white/10 hover:bg-white/20 text-white border border-white/20 backdrop-blur-xl shadow-lg transition-all min-h-[48px]"
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-1.5 sm:gap-2 px-2.5 sm:px-6 py-3 sm:py-4 rounded-full text-xs sm:text-sm font-semibold bg-white/10 hover:bg-white/20 text-white border border-white/20 backdrop-blur-xl shadow-lg transition-all min-h-[46px] sm:min-h-[48px] text-center"
                 >
-                  <MessageSquare className="w-4 h-4 text-[#25D366]" />
-                  <span>{isBn ? 'হোয়াটসঅ্যাপে কথা বলুন' : 'Chat on WhatsApp'}</span>
+                  <MessageSquare className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#25D366] shrink-0" />
+                  <span className="truncate">{isBn ? 'হোয়াটসঅ্যাপ' : 'WhatsApp'}</span>
                 </a>
               </div>
 
