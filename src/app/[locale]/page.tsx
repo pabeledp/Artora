@@ -144,7 +144,7 @@ export default function HomePage() {
 
       <div className="relative min-h-screen overflow-hidden">
         {/* ===================== HERO SECTION: 2-COLUMN LUXURY SPOTLIGHT ===================== */}
-        <section className="relative min-h-[85vh] sm:min-h-[90vh] flex items-center justify-center pt-14 sm:pt-28 pb-8 sm:pb-16 px-3.5 sm:px-6 lg:px-8">
+        <section className="relative min-h-[100dvh] sm:min-h-[90vh] flex flex-col justify-center items-center pt-20 pb-24 sm:pt-28 sm:pb-16 px-3.5 sm:px-6 lg:px-8">
           {/* Polished crimson-black gradient background */}
           <div className="absolute inset-0 bg-gradient-to-b from-[#0D0004] via-[#2B020A]/70 to-[#0D0004] pointer-events-none" />
 
