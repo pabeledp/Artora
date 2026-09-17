@@ -320,7 +320,7 @@ export default function CommissionPage() {
                     <div className="flex items-center gap-1.5 text-gold">
                       <Layers className="w-3.5 h-3.5" />
                       <h3 className="font-semibold text-xs uppercase tracking-wider">
-                        {t('step1')}
+                        {locale === 'bn' ? 'সাইজ নির্বাচন' : 'Select Size'}
                       </h3>
                     </div>
 
@@ -404,7 +404,7 @@ export default function CommissionPage() {
                       onClick={() => setCurrentStep(2)}
                       className="w-full sm:w-auto px-6 py-2.5 rounded-full text-xs font-bold bg-gradient-to-r from-[#E60049] to-[#2B020A] text-white shadow-neon-crimson border border-[#E60049]/50 hover:border-[#FFB0C1] transition-all flex items-center justify-center gap-2 cursor-pointer"
                     >
-                      <span>{locale === 'bn' ? 'পরবর্তী ধাপ: কালার নির্বাচন' : 'Next: Choose Palette'}</span>
+                      <span>{locale === 'bn' ? 'পরবর্তী' : 'Next'}</span>
                       <ArrowRight className="w-3.5 h-3.5" />
                     </button>
                   </div>
@@ -487,50 +487,44 @@ export default function CommissionPage() {
                       onClick={() => setCurrentStep(3)}
                       className="w-full sm:w-auto px-6 py-2.5 rounded-full text-xs font-bold bg-gradient-to-r from-[#E60049] to-[#2B020A] text-white shadow-neon-crimson border border-[#E60049]/50 hover:border-[#FFB0C1] transition-all flex items-center justify-center gap-2 cursor-pointer"
                     >
-                      <span>{locale === 'bn' ? 'পরবর্তী ধাপ: আপনার ভিশন' : 'Next: Your Vision'}</span>
+                      <span>{locale === 'bn' ? 'পরবর্তী' : 'Next'}</span>
                       <ArrowRight className="w-3.5 h-3.5" />
                     </button>
                   </div>
                 </motion.div>
               )}
 
-              {/* STEP 3: Vision, Wall Photo, & Instructions */}
+              {/* STEP 3: Vision & Wall Photo (Ultra Clean) */}
               {currentStep === 3 && (
                 <motion.div
                   key="step3"
                   initial={{ opacity: 0, x: 20 }}
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: -20 }}
-                  className="p-3.5 sm:p-5 rounded-3xl bg-void-card/90 border border-glass-border space-y-3.5 backdrop-blur-xl"
+                  className="p-3.5 sm:p-5 rounded-3xl bg-void-card/90 border border-glass-border space-y-3 backdrop-blur-xl"
                 >
                   <div className="flex items-center gap-1.5 text-gold">
                     <Sparkles className="w-3.5 h-3.5" />
                     <h3 className="font-semibold text-xs uppercase tracking-wider">
-                      {t('step3')}
+                      {locale === 'bn' ? 'আপনার ভিশন' : 'Your Vision'}
                     </h3>
                   </div>
 
                   <div>
-                    <label className="text-xs font-semibold text-white/90 block mb-1">
-                      {t('visionPlaceholder')}
-                    </label>
                     <textarea
                       value={description}
                       onChange={(e) => setDescription(e.target.value)}
                       placeholder={
                         locale === 'bn'
-                          ? 'যেমন: লিভিং রুমের সোফার পেছনের দেয়ালের জন্য সুরা আর-রহমানের ক্যালিগ্রাফি অথবা শান্ত মাউন্টেন টেক্সচারড আর্ট...'
-                          : 'e.g. Modern minimalist calligraphy with thick impasto palette knife strokes for our main lounge...'
+                          ? 'আপনার পছন্দের ডিজাইন, সুরা বা আর্ট সম্পর্কে লিখুন (ঐচ্ছিক)...'
+                          : 'Describe your vision, preferred verse, or details (optional)...'
                       }
                       rows={3}
-                      className="w-full p-3 rounded-2xl bg-void-light border border-glass-border text-white text-xs placeholder:text-white/30 focus:border-[#E60049] outline-none resize-none"
+                      className="w-full p-3 rounded-2xl bg-void-light border border-glass-border text-white text-xs placeholder:text-white/40 focus:border-[#E60049] outline-none resize-none"
                     />
                   </div>
 
                   <div>
-                    <label className="text-xs font-semibold text-white/90 block mb-1">
-                      {t('uploadWall')}
-                    </label>
                     <div className="border border-dashed border-white/20 rounded-2xl p-3 text-center bg-void-light/50 hover:border-[#E60049]/60 transition-colors">
                       <input
                         type="file"
@@ -541,20 +535,17 @@ export default function CommissionPage() {
                       />
                       <label
                         htmlFor="wall-upload-popup"
-                        className="cursor-pointer flex flex-col items-center gap-1 text-white/60 hover:text-white"
+                        className="cursor-pointer flex items-center justify-center gap-2 text-white/70 hover:text-white py-1"
                       >
-                        <Upload className="w-5 h-5 text-[#FFB0C1]" />
-                        <span className="text-[11px] font-medium text-white/80">
-                          {locale === 'bn' ? 'দেয়ালের ছবি আপলোড করুন' : 'Click to Upload Wall Image'}
-                        </span>
-                        <span className="text-[9px] text-white/40">
-                          JPG, PNG up to 10MB (ঐচ্ছিক / Optional)
+                        <Upload className="w-4 h-4 text-[#FFB0C1]" />
+                        <span className="text-xs font-medium">
+                          {locale === 'bn' ? 'দেয়ালের ছবি আপলোড (ঐচ্ছিক)' : 'Upload Wall Photo (Optional)'}
                         </span>
                       </label>
                     </div>
 
                     {wallPhoto && (
-                      <div className="mt-2 relative w-20 h-20 rounded-xl overflow-hidden border border-white/20">
+                      <div className="mt-2 relative w-16 h-16 rounded-xl overflow-hidden border border-white/20">
                         <img
                           src={wallPhoto}
                           alt="Wall preview"
@@ -585,73 +576,60 @@ export default function CommissionPage() {
                       onClick={() => setCurrentStep(4)}
                       className="w-full sm:w-auto px-6 py-2.5 rounded-full text-xs font-bold bg-gradient-to-r from-[#E60049] to-[#2B020A] text-white shadow-neon-crimson border border-[#E60049]/50 hover:border-[#FFB0C1] transition-all flex items-center justify-center gap-2 cursor-pointer"
                     >
-                      <span>{locale === 'bn' ? 'পরবর্তী ধাপ: রিভিউ ও সাবমিট' : 'Next: Review & Submit'}</span>
+                      <span>{locale === 'bn' ? 'পরবর্তী' : 'Next'}</span>
                       <ArrowRight className="w-3.5 h-3.5" />
                     </button>
                   </div>
                 </motion.div>
               )}
 
-              {/* STEP 4: Client Info & Final Commission Summary Review */}
+              {/* STEP 4: Review & Submit Contact Form */}
               {currentStep === 4 && (
                 <motion.div
                   key="step4"
                   initial={{ opacity: 0, x: 20 }}
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: -20 }}
-                  className="p-3.5 sm:p-6 rounded-3xl bg-void-card/90 border border-glass-border space-y-4 backdrop-blur-xl"
+                  className="p-3.5 sm:p-5 rounded-3xl bg-void-card/90 border border-glass-border space-y-3.5 backdrop-blur-xl"
                 >
                   <div className="flex items-center gap-1.5 text-gold">
                     <User className="w-3.5 h-3.5" />
                     <h3 className="font-semibold text-xs uppercase tracking-wider">
-                      {t('step4')}
+                      {locale === 'bn' ? 'রিভিউ ও সাবমিট' : 'Review & Submit'}
                     </h3>
                   </div>
 
                   {/* Summary Review Card Inside Step 4 */}
-                  <div className="p-3.5 sm:p-4 rounded-2xl bg-void-light/80 border border-white/10 text-xs space-y-2.5 backdrop-blur-md">
-                    <div className="flex items-center justify-between border-b border-white/10 pb-2">
-                      <span className="font-bold text-white flex items-center gap-1.5">
-                        <Sparkles className="w-3.5 h-3.5 text-gold" />
-                        {locale === 'bn' ? 'কমিশন সারসংক্ষেপ' : 'Commission Summary'}
-                      </span>
-                      <span className="text-[10px] font-mono text-emerald-400 font-bold bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/30">
-                        100% Signed Original
-                      </span>
-                    </div>
-
+                  <div className="p-3.5 rounded-2xl bg-void-light/80 border border-white/10 text-xs space-y-2 backdrop-blur-md">
                     <div className="grid grid-cols-2 gap-2 text-[11px] text-white/70">
                       <div>
                         <span className="text-white/40 block text-[9px] uppercase font-mono">{locale === 'bn' ? 'সাইজ' : 'Size'}</span>
                         <span className="font-bold text-gold font-mono">{selectedSize.size}</span>
                       </div>
                       <div>
-                        <span className="text-white/40 block text-[9px] uppercase font-mono">{locale === 'bn' ? 'কালার থিম' : 'Palette'}</span>
+                        <span className="text-white/40 block text-[9px] uppercase font-mono">{locale === 'bn' ? 'কালার' : 'Color'}</span>
                         <div className="flex items-center gap-1.5 mt-0.5">
                           <div className="flex items-center gap-0.5">
                             {selectedPalette.colors.map((c, i) => (
                               <span key={i} className="w-2.5 h-2.5 rounded-full border border-white/20" style={{ backgroundColor: c }} />
                             ))}
                           </div>
-                          <span className="font-semibold text-[#FFB0C1] truncate">{selectedPalette.name}</span>
+                          <span className="font-semibold text-[#FFB0C1] text-[10px] truncate">{selectedPalette.name}</span>
                         </div>
                       </div>
                     </div>
 
-                    <div className="flex items-baseline justify-between pt-1 border-t border-white/10">
-                      <span className="text-white/60 text-[11px]">{locale === 'bn' ? 'আনুমানিক বাজেট (আলোচনা সাপেক্ষে):' : 'Estimated Price (Negotiable):'}</span>
-                      <span className="text-lg sm:text-xl font-mono font-black text-emerald-400">
+                    <div className="flex items-baseline justify-between pt-1.5 border-t border-white/10">
+                      <span className="text-white/60 text-[11px]">{locale === 'bn' ? 'আনুমানিক বাজেট:' : 'Estimated Price:'}</span>
+                      <span className="text-base sm:text-lg font-mono font-black text-emerald-400">
                         ৳{estimatedBDT.toLocaleString()}
                       </span>
                     </div>
                   </div>
 
                   {/* Contact Form Fields */}
-                  <div className="space-y-2.5">
+                  <div className="space-y-2">
                     <div>
-                      <label className="text-[11px] text-white/70 block mb-1">
-                        {t('clientName')} *
-                      </label>
                       <div className="relative">
                         <User className="w-3.5 h-3.5 text-white/40 absolute left-3 top-3" />
                         <input
@@ -659,16 +637,13 @@ export default function CommissionPage() {
                           required
                           value={clientName}
                           onChange={(e) => setClientName(e.target.value)}
-                          placeholder="e.g. Tanvir Ahmed"
+                          placeholder={locale === 'bn' ? 'আপনার নাম *' : 'Your Name *'}
                           className="w-full pl-9 pr-3 py-2 rounded-xl bg-void-light border border-glass-border text-white text-xs focus:border-[#E60049] outline-none"
                         />
                       </div>
                     </div>
 
                     <div>
-                      <label className="text-[11px] text-white/70 block mb-1">
-                        {t('phone')} *
-                      </label>
                       <div className="relative">
                         <Phone className="w-3.5 h-3.5 text-emerald-400 absolute left-3 top-3" />
                         <input
@@ -676,16 +651,13 @@ export default function CommissionPage() {
                           required
                           value={phone}
                           onChange={(e) => setPhone(e.target.value)}
-                          placeholder="017XXXXXXXX"
+                          placeholder={locale === 'bn' ? 'মোবাইল নম্বর (WhatsApp) *' : 'Phone / WhatsApp *'}
                           className="w-full pl-9 pr-3 py-2 rounded-xl bg-void-light border border-glass-border text-white text-xs focus:border-[#E60049] outline-none"
                         />
                       </div>
                     </div>
 
                     <div>
-                      <label className="text-[11px] text-white/70 block mb-1">
-                        {t('email')} *
-                      </label>
                       <div className="relative">
                         <Mail className="w-3.5 h-3.5 text-[#FFB0C1] absolute left-3 top-3" />
                         <input
@@ -693,14 +665,14 @@ export default function CommissionPage() {
                           required
                           value={email}
                           onChange={(e) => setEmail(e.target.value)}
-                          placeholder="tanvir@example.com"
+                          placeholder={locale === 'bn' ? 'ইমেইল এড্রেস *' : 'Email Address *'}
                           className="w-full pl-9 pr-3 py-2 rounded-xl bg-void-light border border-glass-border text-white text-xs focus:border-[#E60049] outline-none"
                         />
                       </div>
                     </div>
                   </div>
 
-                  <div className="pt-2 flex justify-between items-center gap-3">
+                  <div className="pt-1 flex justify-between items-center gap-3">
                     <button
                       type="button"
                       onClick={() => setCurrentStep(3)}
@@ -712,7 +684,7 @@ export default function CommissionPage() {
                     <button
                       type="submit"
                       disabled={isSubmitting}
-                      className="px-7 py-3 rounded-full text-xs font-bold bg-gradient-to-r from-[#E60049] to-[#2B020A] text-white shadow-neon-crimson border border-[#E60049]/50 hover:border-[#FFB0C1] disabled:opacity-50 flex items-center gap-2 transition-all cursor-pointer"
+                      className="px-6 py-2.5 rounded-full text-xs font-bold bg-gradient-to-r from-[#E60049] to-[#2B020A] text-white shadow-neon-crimson border border-[#E60049]/50 hover:border-[#FFB0C1] disabled:opacity-50 flex items-center gap-2 transition-all cursor-pointer"
                     >
                       {isSubmitting ? (
                         <>
@@ -721,7 +693,7 @@ export default function CommissionPage() {
                         </>
                       ) : (
                         <>
-                          <span>{locale === 'bn' ? 'কমিশন রিকোয়েস্ট সাবমিট করুন' : 'Submit Commission'}</span>
+                          <span>{locale === 'bn' ? 'সাবমিট করুন' : 'Submit'}</span>
                           <ArrowRight className="w-3.5 h-3.5" />
                         </>
                       )}
