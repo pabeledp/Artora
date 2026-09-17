@@ -505,30 +505,30 @@ export default function HomePage() {
                 </Link>
               </div>
 
-              {/* Single-line horizontal slider on mobile, vertical deck on desktop */}
-              <div className="flex flex-row lg:flex-col overflow-x-auto lg:overflow-y-auto gap-2.5 sm:gap-3 lg:gap-0 lg:space-y-3 pb-2 lg:pb-0 scrollbar-none snap-x snap-mandatory lg:max-h-[500px] pr-1">
+              {/* 3-Column responsive grid on mobile (fits 100% within screen width), vertical deck on desktop */}
+              <div className="grid grid-cols-3 gap-2 sm:gap-3 lg:flex lg:flex-col lg:gap-0 lg:space-y-3 lg:max-h-[500px] lg:overflow-y-auto w-full pr-0 lg:pr-1">
                 {filteredArtworks.map((art, idx) => {
                   const isSelected = activeArt.id === art.id;
                   return (
                     <div
                       key={art.id}
                       onClick={() => setActiveArtIndex(idx)}
-                      className={`p-2 lg:p-3.5 rounded-2xl border transition-all duration-300 cursor-pointer flex flex-col lg:flex-row lg:items-center gap-2 lg:gap-3.5 shrink-0 snap-start w-28 sm:w-32 lg:w-full group ${
+                      className={`p-1.5 sm:p-2.5 lg:p-3.5 rounded-xl sm:rounded-2xl border transition-all duration-300 cursor-pointer flex flex-col lg:flex-row lg:items-center gap-1.5 sm:gap-2 lg:gap-3.5 w-full group ${
                         isSelected
                           ? 'bg-[#E60049]/25 border-[#E60049] shadow-neon-crimson ring-2 ring-[#E60049] scale-[1.02]'
                           : 'bg-void-card/80 border-glass-border hover:border-white/30 hover:bg-white/[0.04]'
                       }`}
                     >
-                      <div className="relative w-full aspect-square lg:w-16 lg:h-16 rounded-xl overflow-hidden bg-void-light shrink-0">
+                      <div className="relative w-full aspect-square lg:w-16 lg:h-16 rounded-lg sm:rounded-xl overflow-hidden bg-void-light shrink-0">
                         <Image
                           src={art.primaryImage}
                           alt={`${art.title} Thumbnail`}
                           fill
-                          sizes="(max-width: 1024px) 130px, 80px"
+                          sizes="(max-width: 1024px) 30vw, 80px"
                           className="object-cover group-hover:scale-105 transition-transform duration-500"
                         />
                         {art.discountPercent && (
-                          <div className="absolute top-1 right-1 px-1.5 py-0.5 rounded bg-[#E60049] text-white text-[8px] font-bold font-mono shadow">
+                          <div className="absolute top-1 right-1 px-1 py-0.5 rounded bg-[#E60049] text-white text-[7px] sm:text-[8px] font-bold font-mono shadow">
                             -{art.discountPercent}%
                           </div>
                         )}
@@ -537,15 +537,15 @@ export default function HomePage() {
                         )}
                       </div>
 
-                      <div className="flex-1 min-w-0 w-full">
-                        <h4 className="font-display font-bold text-[11px] lg:text-sm text-white truncate group-hover:text-[#FFB0C1] transition-colors">
+                      <div className="flex-1 min-w-0 w-full text-center lg:text-left">
+                        <h4 className="font-display font-bold text-[10px] sm:text-xs lg:text-sm text-white truncate group-hover:text-[#FFB0C1] transition-colors">
                           {isBn ? art.titleBn : art.title}
                         </h4>
-                        <p className="text-[9px] lg:text-[11px] text-white/50 truncate hidden sm:block lg:block">
+                        <p className="text-[9px] lg:text-[11px] text-white/50 truncate hidden lg:block">
                           {isBn ? art.canvasSizeBn : art.canvasSize}
                         </p>
-                        <div className="flex items-center justify-between lg:justify-start gap-1 lg:gap-2 mt-0.5 lg:mt-1">
-                          <span className="text-[11px] lg:text-xs font-mono font-bold text-emerald-400 lg:text-[#E60049]">
+                        <div className="flex items-center justify-center lg:justify-start gap-1 lg:gap-2 mt-0.5 lg:mt-1">
+                          <span className="text-[10px] sm:text-xs font-mono font-bold text-emerald-400 lg:text-[#E60049]">
                             ৳{art.priceBDT.toLocaleString()}
                           </span>
                         </div>
