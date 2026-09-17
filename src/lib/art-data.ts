@@ -165,45 +165,154 @@ export const ARTWORKS_DATA: ArtWork[] = [
 ];
 
 export const COMMISSION_CANVAS_SIZES = [
+  // Small Sizes (Starting from 3,000 BDT)
   {
-    id: "size-1",
-    size: "18 x 24 inches",
-    sizeBn: "১৮ x ২৪ ইঞ্চি (স্টুডিও সাইজ)",
+    id: "size-4x8",
+    size: "4 x 8 inches",
+    sizeBn: "৪ x ৮ ইঞ্চি",
+    category: "Small",
+    categoryBn: "স্মল (ডেস্ক / ন্যারো স্পেস)",
+    aspect: "1:2",
+    idealFor: "Desk, Console, Gift, Shelf Decor",
+    idealForBn: "ডেস্ক, কনসোল ও তাকের জন্য উপযুক্ত",
+    basePriceBDT: 3000,
+    basePriceUSD: 28
+  },
+  {
+    id: "size-5x7",
+    size: "5 x 7 inches",
+    sizeBn: "৫ x ৭ ইঞ্চি",
+    category: "Small",
+    categoryBn: "স্মল (ডেস্ক / স্মল ওয়াল)",
+    aspect: "5:7",
+    idealFor: "Desk, Bedside Table, Minimal Accent",
+    idealForBn: "বেডসাইড টেবিল ও মিনিমাল ওয়াল অ্যাকসেন্ট",
+    basePriceBDT: 3200,
+    basePriceUSD: 30
+  },
+
+  // Medium Sizes
+  {
+    id: "size-8x10",
+    size: "8 x 10 inches",
+    sizeBn: "৮ x ১০ ইঞ্চি",
+    category: "Medium",
+    categoryBn: "মিডিয়াম (স্টাডি / ওয়াল কর্নার)",
+    aspect: "4:5",
+    idealFor: "Study Table, Gallery Wall Accent",
+    idealForBn: "স্টাডি রুম ও গ্যালারি ওয়াল কর্নার",
+    basePriceBDT: 3800,
+    basePriceUSD: 35
+  },
+  {
+    id: "size-9x12",
+    size: "9 x 12 inches",
+    sizeBn: "৯ x ১২ ইঞ্চি",
+    category: "Medium",
+    categoryBn: "মিডিয়াম (স্টুডিও সাইজ)",
     aspect: "3:4",
-    idealFor: "Study, Bedroom, Reading Corner",
-    idealForBn: "স্টাডি রুম, বেডরুম ও রিডিং কর্নার",
-    basePriceBDT: 15000,
-    basePriceUSD: 140
+    idealFor: "Reading Nook, Bedroom Accent",
+    idealForBn: "রিডিং কর্নার ও বেডরুম ওয়াল",
+    basePriceBDT: 4200,
+    basePriceUSD: 39
   },
   {
-    id: "size-2",
-    size: "24 x 36 inches",
-    sizeBn: "২৪ x ৩৬ ইঞ্চি (ক্লাসিক গ্যালারি)",
-    aspect: "2:3",
-    idealFor: "Dining, Entryway, Foyer",
-    idealForBn: "ডাইনিং স্পেস ও এন্ট্রিওয়ে",
-    basePriceBDT: 25000,
-    basePriceUSD: 230
+    id: "size-11x14",
+    size: "11 x 14 inches",
+    sizeBn: "১১ x ১৪ ইঞ্চি",
+    category: "Medium",
+    categoryBn: "মিডিয়াম (ক্লাসিক ওয়াল)",
+    aspect: "11:14",
+    idealFor: "Dining Nook, Home Office Wall",
+    idealForBn: "ডাইনিং ওয়াল ও হোম অফিস",
+    basePriceBDT: 4800,
+    basePriceUSD: 45
   },
   {
-    id: "size-3",
-    size: "30 x 48 inches",
-    sizeBn: "৩০ x ৪৮ ইঞ্চি (হরাইজন্টাল ক্যালিগ্রাফি)",
-    aspect: "5:8",
-    idealFor: "Main Living Room Wall, Above Sofa",
-    idealForBn: "মেইন ড্রয়িং রুম ও সোফার পেছনের দেয়াল",
-    basePriceBDT: 35000,
-    basePriceUSD: 310
+    id: "size-12x12",
+    size: "12 x 12 inches",
+    sizeBn: "১২ x ১২ ইঞ্চি (স্কয়ার)",
+    category: "Medium",
+    categoryBn: "মিডিয়াম (পারফেক্ট স্কয়ার)",
+    aspect: "1:1",
+    idealFor: "Square Wall Space, Coffee Corner",
+    idealForBn: "স্কয়ার ওয়াল ও কফি কর্নার",
+    basePriceBDT: 4600,
+    basePriceUSD: 42
   },
   {
-    id: "size-4",
-    size: "36 x 60 inches",
-    sizeBn: "৩৬ x ৬০ ইঞ্চি (গ্র্যান্ড স্টেটমেন্ট)",
-    aspect: "3:5",
-    idealFor: "Double-height Hall, Luxury Villa, Office Boardroom",
-    idealForBn: "লাক্সারি লিভিং হল, ভিলা ও অফিস বোর্ডরুম",
-    basePriceBDT: 55000,
-    basePriceUSD: 490
+    id: "size-12x16",
+    size: "12 x 16 inches",
+    sizeBn: "১২ x ১৬ ইঞ্চি",
+    category: "Medium",
+    categoryBn: "মিডিয়াম (ভার্সাটাইল)",
+    aspect: "3:4",
+    idealFor: "Living Room Accent, Foyer",
+    idealForBn: "লিভিং রুম ও এন্ট্রিওয়ে ফোয়ার",
+    basePriceBDT: 5200,
+    basePriceUSD: 48
+  },
+
+  // Large Sizes
+  {
+    id: "size-16x20",
+    size: "16 x 20 inches",
+    sizeBn: "১৬ x ২০ ইঞ্চি",
+    category: "Large",
+    categoryBn: "লার্জ (স্টেটমেন্ট ক্যানভাস)",
+    aspect: "4:5",
+    idealFor: "Main Room Focal Point, Bedroom Wall",
+    idealForBn: "মেইন রুম ও বেডরুমের প্রধান দেয়াল",
+    basePriceBDT: 6500,
+    basePriceUSD: 60
+  },
+  {
+    id: "size-18x24",
+    size: "18 x 24 inches",
+    sizeBn: "১৮ x ২৪ ইঞ্চি",
+    category: "Large",
+    categoryBn: "লার্জ (ক্লাসিক গ্যালারি)",
+    aspect: "3:4",
+    idealFor: "Living Room, Executive Office",
+    idealForBn: "লিভিং রুম ও এক্সিকিউটিভ অফিস",
+    basePriceBDT: 7500,
+    basePriceUSD: 70
+  },
+  {
+    id: "size-24x24",
+    size: "24 x 24 inches",
+    sizeBn: "২৪ x ২৪ ইঞ্চি (গ্র্যান্ড স্কয়ার)",
+    category: "Large",
+    categoryBn: "লার্জ (গ্র্যান্ড স্কয়ার)",
+    aspect: "1:1",
+    idealFor: "Symmetric Living Room Wall, Villa Foyer",
+    idealForBn: "লিভিং রুম ও ভিলা এন্ট্রিওয়ে",
+    basePriceBDT: 8500,
+    basePriceUSD: 78
+  },
+  {
+    id: "size-24x32",
+    size: "24 x 32 inches",
+    sizeBn: "২৪ x ৩২ ইঞ্চি",
+    category: "Large",
+    categoryBn: "লার্জ (গ্যালারি স্টেটমেন্ট)",
+    aspect: "3:4",
+    idealFor: "Above Sofa, Drawing Room Feature Wall",
+    idealForBn: "সোফার ওপরের দেয়াল ও ড্রয়িং রুম",
+    basePriceBDT: 10500,
+    basePriceUSD: 95
+  },
+  {
+    id: "size-30x40",
+    size: "30 x 40 inches",
+    sizeBn: "৩০ x ৪০ ইঞ্চি",
+    category: "Large",
+    categoryBn: "লার্জ (মাস্টারপিস স্টেটমেন্ট)",
+    aspect: "3:4",
+    idealFor: "Double-Height Hall, Luxury Drawing Room, Boardroom",
+    idealForBn: "লাক্সারি ড্রয়িং হল, ডুপ্লেক্স স্পেস ও লাউঞ্জ",
+    basePriceBDT: 13500,
+    basePriceUSD: 125
   }
 ];
 
@@ -211,30 +320,58 @@ export const COLOR_PALETTE_PRESETS = [
   {
     id: "pal-calligraphy",
     name: "Sacred Earth Ochre & Raw Linen",
-    nameBn: "রাস্ট-আর্থ ওচার, কাঁচা লিনেন ও ব্ল্যাক ক্যালিগ্রাফি",
+    nameBn: "রাস্ট-আর্থ ওচার ও কাঁচা লিনেন",
     colors: ["#B88B58", "#5A3825", "#F4ECE1", "#221A15"],
-    description: "Classic Quranic calligraphy aesthetic with earthy raw tones"
+    description: "Classic Quranic calligraphy aesthetic with earthy raw ochre and antique tones"
   },
   {
     id: "pal-green",
-    name: "Emerald Sanctuary & Olive Highlands",
-    nameBn: "সবুজ পাহাড়ের দিগন্ত, অলিভ ও নিস্তব্ধ প্রকৃতি",
+    name: "Emerald Sanctuary & Olive Serenity",
+    nameBn: "এমারেল্ড গ্রিন, অলিভ ও নিস্তব্ধ প্রকৃতি",
     colors: ["#5C784D", "#97B376", "#2B3C25", "#DEE5D2"],
-    description: "Soothing natural greens and highland serenity"
+    description: "Soothing natural botanical greens, layered mountains, and highland peace"
   },
   {
     id: "pal-ocean",
-    name: "Azure Ocean Waves & Cerulean Froth",
-    nameBn: "গাঢ় সমুদ্রের নীল, আসমানি ও সাদা ঢেউয়ের ফেনা",
+    name: "Azure Ocean Waves & Froth",
+    nameBn: "গাঢ় সমুদ্রের নীল, আসমানি ও সাদা ঢেউ",
     colors: ["#0066B2", "#5BB7EA", "#FFFFFF", "#0B2545"],
-    description: "Vibrant marine blue impasto and textured wave froth"
+    description: "Vibrant marine blue impasto, coastal horizons, and textured wave froth"
   },
   {
     id: "pal-crimson",
-    name: "Crimson Eclipse & 24k Gold",
-    nameBn: "ক্রিমসন রেড, ডিপ স্পেস ব্ল্যাক ও ২৪ ক্যারেট গোল্ড",
-    colors: ["#E60049", "#2B020A", "#E6B93F", "#0D0004"],
-    description: "Rich metallic magenta-red luxury impasto"
+    name: "Crimson Eclipse & 24k Gold Accents",
+    nameBn: "রয়েল ক্রিমসন রেড ও ২৪ ক্যারেট গোল্ড",
+    colors: ["#E60049", "#2B020A", "#E6B93F", "#FFB0C1"],
+    description: "Rich metallic magenta-red luxury impasto with radiant gold leaf highlights"
+  },
+  {
+    id: "pal-monochrome",
+    name: "Obsidian Noir & Titanium White",
+    nameBn: "অবসিডিয়ান ব্ল্যাক, চারকোল ও পিওর হোয়াইট",
+    colors: ["#121212", "#3A3A3C", "#8E8E93", "#FFFFFF"],
+    description: "Ultra-modern minimalist monochromatic contrast for contemporary interiors"
+  },
+  {
+    id: "pal-royal-navy",
+    name: "Royal Midnight Navy & Brushed Brass",
+    nameBn: "রয়েল মিডনাইট নেভি ব্লু ও ব্রাশড গোল্ড",
+    colors: ["#0A192F", "#172A45", "#D4AF37", "#F8F9FA"],
+    description: "Deep regal navy blue with brushed gold metallic textures and Islamic geometry"
+  },
+  {
+    id: "pal-terracotta",
+    name: "Terracotta Sunset & Warm Amber",
+    nameBn: "টেরাকোটা ক্লে, সানসেট ও ওয়ার্ম অ্যাম্বার",
+    colors: ["#C85A32", "#E29578", "#F5CB5C", "#331811"],
+    description: "Warm bohemian earthen terracotta, burnt sienna, and golden sunset glow"
+  },
+  {
+    id: "pal-pastel-rose",
+    name: "Blush Rose & Celestial Pearl",
+    nameBn: "ব্লাশ রোজ, পেস্টেল পিংক ও পার্ল গ্রে",
+    colors: ["#F4ACB7", "#D8E2DC", "#FFE5D9", "#4A5759"],
+    description: "Gentle romantic pastels, soft textured floral vibes, and soothing elegance"
   }
 ];
 

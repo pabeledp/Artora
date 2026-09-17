@@ -40,8 +40,8 @@ export default function CommissionPage() {
   const [submittedRef, setSubmittedRef] = useState('');
   const [whatsappLink, setWhatsappLink] = useState('');
 
-  // Estimated Investment Calculation
-  const estimatedBDT = Math.round(selectedSize.basePriceBDT * 1.05);
+  // Estimated Investment Calculation (Standard Studio Price)
+  const estimatedBDT = selectedSize.basePriceBDT;
 
   const handlePhotoUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
@@ -125,20 +125,27 @@ export default function CommissionPage() {
     }
   };
 
+  const [sizeCategoryFilter, setSizeCategoryFilter] = useState<'All' | 'Small' | 'Medium' | 'Large'>('All');
+
+  // Filtered sizes based on category
+  const filteredSizes = COMMISSION_CANVAS_SIZES.filter((item) =>
+    sizeCategoryFilter === 'All' ? true : item.category === sizeCategoryFilter
+  );
+
   return (
-    <div className="min-h-screen pt-28 pb-24 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
+    <div className="min-h-screen pt-28 pb-24 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
       {/* Header with Single H1 for Search Engine Optimization */}
-      <div className="text-center max-w-2xl mx-auto mb-12 space-y-3">
+      <div className="text-center max-w-2xl mx-auto mb-10 space-y-3">
         <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-mono font-semibold bg-void-card/90 border border-[#E60049]/40 text-[#FFB0C1] shadow-neon-crimson backdrop-blur-xl">
           <Palette className="w-3.5 h-3.5 text-[#E60049] animate-spin-slow" />
           <span>{locale === 'bn' ? 'বিস্পোক কাস্টম আর্ট কমিশন' : 'Bespoke Custom Canvas Commission'}</span>
         </div>
-        <h1 className="font-display font-black text-3xl sm:text-5xl text-white tracking-tight">
+        <h1 className="font-display font-black text-2xl sm:text-4xl lg:text-5xl text-white tracking-tight">
           {locale === 'bn'
-            ? 'কাস্টম আর্ট কমিশন ও বিস্পোক পেইন্টিং - ফিহা ইসলাম'
+            ? 'কাস্টম আর্ট কমিশন ও বিস্পোক পেইন্টিং'
             : 'Bespoke Custom Artwork Commission by Fiha Islam'}
         </h1>
-        <p className="text-sm sm:text-base text-white/70 leading-relaxed">
+        <p className="text-xs sm:text-sm text-white/70 leading-relaxed max-w-xl mx-auto">
           {locale === 'bn'
             ? 'আপনার লিভিং রুম, অফিস বা লাক্সারি ইন্টেরিয়রের জন্য কাস্টমাইজড থ্রিডি আরবি ক্যালিগ্রাফি ও হেভি ইম্প্যাস্টো ক্যানভাস তৈরি করুন।'
             : 'Commission custom handcrafted 3D Islamic calligraphy and heavy impasto textured wall art tailored to your interior space in Dhaka, Bangladesh.'}
@@ -149,7 +156,7 @@ export default function CommissionPage() {
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
-          className="p-8 sm:p-12 rounded-3xl bg-void-card/95 border border-[#E60049]/40 text-center space-y-6 shadow-2xl backdrop-blur-2xl"
+          className="p-8 sm:p-12 rounded-3xl bg-void-card/95 border border-[#E60049]/40 text-center space-y-6 shadow-2xl backdrop-blur-2xl max-w-2xl mx-auto"
         >
           <div className="w-16 h-16 rounded-full bg-[#E60049]/20 border border-[#E60049]/40 text-[#FFB0C1] flex items-center justify-center mx-auto shadow-neon-crimson">
             <CheckCircle2 className="w-9 h-9 text-emerald-400" />
@@ -226,7 +233,7 @@ export default function CommissionPage() {
           </div>
         </motion.div>
       ) : (
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
           {/* ===================== LEFT: STEPPER & CONTROLS ===================== */}
           <div className="lg:col-span-7 space-y-6">
             {/* Step Progress Bar */}
@@ -258,56 +265,116 @@ export default function CommissionPage() {
             {/* Step Content Panes */}
             <form onSubmit={handleSubmit} className="space-y-6">
               <AnimatePresence mode="wait">
-                {/* STEP 1: Choose Canvas Size */}
+                {/* STEP 1: Choose Canvas Size (Mini Cards System with Filter Tabs) */}
                 {currentStep === 1 && (
                   <motion.div
                     key="step1"
                     initial={{ opacity: 0, x: 20 }}
                     animate={{ opacity: 1, x: 0 }}
                     exit={{ opacity: 0, x: -20 }}
-                    className="p-6 rounded-3xl bg-void-card/90 border border-glass-border space-y-5 backdrop-blur-xl"
+                    className="p-5 sm:p-7 rounded-3xl bg-void-card/90 border border-glass-border space-y-5 backdrop-blur-xl"
                   >
-                    <div className="flex items-center gap-2 text-gold">
-                      <Layers className="w-4 h-4" />
-                      <h3 className="font-semibold text-sm uppercase tracking-wider">
-                        {t('step1')}
-                      </h3>
-                    </div>
-                    <label className="text-xs text-white/70 block">{t('sizeLabel')}</label>
+                    <div className="flex flex-wrap items-center justify-between gap-3">
+                      <div className="flex items-center gap-2 text-gold">
+                        <Layers className="w-4 h-4" />
+                        <h3 className="font-semibold text-sm uppercase tracking-wider">
+                          {t('step1')}
+                        </h3>
+                      </div>
 
-                    <div className="space-y-3">
-                      {COMMISSION_CANVAS_SIZES.map((size) => (
-                        <div
-                          key={size.id}
-                          onClick={() => setSelectedSize(size)}
-                          className={`p-4 rounded-2xl border transition-all cursor-pointer flex items-center justify-between ${
-                            selectedSize.id === size.id
-                              ? 'bg-white/[0.08] border-[#E60049] shadow-neon-crimson'
-                              : 'bg-void-light/60 border-glass-border hover:border-white/25'
-                          }`}
-                        >
-                          <div>
-                            <h4 className="font-display font-bold text-sm text-white">
-                              {locale === 'bn' ? size.sizeBn : size.size}
-                            </h4>
-                            <p className="text-xs text-white/50 mt-0.5">
-                              {locale === 'bn' ? size.idealForBn : size.idealFor}
-                            </p>
+                      {/* Category Filter Chips */}
+                      <div className="flex items-center gap-1.5 p-1 rounded-xl bg-void-light border border-white/10 text-[11px]">
+                        {(['All', 'Small', 'Medium', 'Large'] as const).map((cat) => (
+                          <button
+                            key={cat}
+                            type="button"
+                            onClick={() => setSizeCategoryFilter(cat)}
+                            className={`px-3 py-1 rounded-lg font-medium transition-all ${
+                              sizeCategoryFilter === cat
+                                ? 'bg-[#E60049] text-white shadow-sm font-semibold'
+                                : 'text-white/60 hover:text-white'
+                            }`}
+                          >
+                            {cat === 'All'
+                              ? locale === 'bn' ? 'সবগুলো' : 'All'
+                              : cat === 'Small'
+                              ? locale === 'bn' ? 'স্মল' : 'Small'
+                              : cat === 'Medium'
+                              ? locale === 'bn' ? 'মিডিয়াম' : 'Medium'
+                              : locale === 'bn' ? 'লার্জ' : 'Large'}
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+
+                    <div className="flex items-center justify-between text-xs text-white/70">
+                      <span>{t('sizeLabel')}</span>
+                      <span className="text-[11px] text-emerald-400/90 font-mono">
+                        {locale === 'bn' ? 'মোট ১২টি স্ট্যান্ডার্ড সাইজ' : '12 Standard Canvas Sizes'}
+                      </span>
+                    </div>
+
+                    {/* Mini Cards Grid (2 cols on mobile, 3 cols on sm/md) */}
+                    <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 max-h-[380px] overflow-y-auto pr-1 scrollbar-thin scrollbar-thumb-white/10 hover:scrollbar-thumb-[#E60049]/40">
+                      {filteredSizes.map((size) => {
+                        const isSelected = selectedSize.id === size.id;
+                        return (
+                          <div
+                            key={size.id}
+                            onClick={() => setSelectedSize(size)}
+                            className={`p-3 sm:p-3.5 rounded-2xl border transition-all cursor-pointer flex flex-col justify-between relative group ${
+                              isSelected
+                                ? 'bg-gradient-to-b from-[#E60049]/20 to-void-card border-[#E60049] shadow-neon-crimson ring-1 ring-[#E60049]/60'
+                                : 'bg-void-light/50 border-glass-border hover:border-white/30 hover:bg-white/[0.04]'
+                            }`}
+                          >
+                            {/* Category Badge */}
+                            <div className="flex items-center justify-between gap-1 mb-1.5">
+                              <span className="text-[10px] font-mono px-1.5 py-0.5 rounded-md bg-white/5 border border-white/10 text-white/60">
+                                {size.category}
+                              </span>
+                              {isSelected && (
+                                <span className="w-2 h-2 rounded-full bg-gold animate-pulse" />
+                              )}
+                            </div>
+
+                            {/* Measurement */}
+                            <div className="space-y-0.5 my-1">
+                              <h4 className="font-display font-bold text-xs sm:text-sm text-white group-hover:text-[#FFB0C1] transition-colors">
+                                {locale === 'bn' ? size.sizeBn : size.size}
+                              </h4>
+                              <p className="text-[10px] text-white/50 line-clamp-1">
+                                {locale === 'bn' ? size.idealForBn : size.idealFor}
+                              </p>
+                            </div>
+
+                            {/* Estimated Price Note */}
+                            <div className="pt-2 mt-1 border-t border-white/5 flex items-baseline justify-between">
+                              <span className="text-[10px] text-white/40 font-mono">
+                                {locale === 'bn' ? 'আনুমানিক' : 'Est.'}
+                              </span>
+                              <span className="text-xs font-mono font-bold text-emerald-400">
+                                ৳{size.basePriceBDT.toLocaleString()}
+                              </span>
+                            </div>
                           </div>
-                          <div className="text-right">
-                            <span className="text-xs font-mono font-bold text-[#FFB0C1]">
-                              ৳{size.basePriceBDT.toLocaleString()}
-                            </span>
-                          </div>
-                        </div>
-                      ))}
+                        );
+                      })}
+                    </div>
+
+                    {/* Friendly Pricing & Negotiation Note */}
+                    <div className="p-3 rounded-xl bg-white/[0.03] border border-white/10 flex items-center justify-between text-[11px] text-white/70">
+                      <div className="flex items-center gap-1.5 text-gold">
+                        <Sparkles className="w-3.5 h-3.5 shrink-0" />
+                        <span>{locale === 'bn' ? 'বাজেট ও ফ্রেম সাইজ আলোচনা সাপেক্ষে পরিবর্তনযোগ্য' : 'Budget & custom framing adaptable upon discussion'}</span>
+                      </div>
                     </div>
 
                     <div className="pt-2 flex justify-end">
                       <button
                         type="button"
                         onClick={() => setCurrentStep(2)}
-                        className="px-6 py-3 rounded-full text-xs font-semibold bg-white/10 hover:bg-white/20 text-white border border-white/20 backdrop-blur-xl transition-all flex items-center gap-2"
+                        className="px-6 py-3 rounded-full text-xs font-semibold bg-white/10 hover:bg-white/20 text-white border border-white/20 backdrop-blur-xl transition-all flex items-center gap-2 cursor-pointer"
                       >
                         <span>{locale === 'bn' ? 'পরবর্তী ধাপ' : 'Next Step'}</span>
                         <ArrowRight className="w-3.5 h-3.5" />
@@ -316,51 +383,71 @@ export default function CommissionPage() {
                   </motion.div>
                 )}
 
-                {/* STEP 2: Select Palette */}
+                {/* STEP 2: Select Palette (Enhanced Mini-Cards Grid) */}
                 {currentStep === 2 && (
                   <motion.div
                     key="step2"
                     initial={{ opacity: 0, x: 20 }}
                     animate={{ opacity: 1, x: 0 }}
                     exit={{ opacity: 0, x: -20 }}
-                    className="p-6 rounded-3xl bg-void-card/90 border border-glass-border space-y-5 backdrop-blur-xl"
+                    className="p-5 sm:p-7 rounded-3xl bg-void-card/90 border border-glass-border space-y-5 backdrop-blur-xl"
                   >
-                    <div className="flex items-center gap-2 text-gold">
-                      <Palette className="w-4 h-4" />
-                      <h3 className="font-semibold text-sm uppercase tracking-wider">
-                        {t('step2')}
-                      </h3>
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-2 text-gold">
+                        <Palette className="w-4 h-4" />
+                        <h3 className="font-semibold text-sm uppercase tracking-wider">
+                          {t('step2')}
+                        </h3>
+                      </div>
+                      <span className="text-[11px] text-white/50 font-mono">
+                        {locale === 'bn' ? '৮টি স্পেশাল থিম' : '8 Signature Themes'}
+                      </span>
                     </div>
+
                     <label className="text-xs text-white/70 block">{t('paletteLabel')}</label>
 
-                    <div className="space-y-3">
-                      {COLOR_PALETTE_PRESETS.map((pal) => (
-                        <div
-                          key={pal.id}
-                          onClick={() => setSelectedPalette(pal)}
-                          className={`p-4 rounded-2xl border transition-all cursor-pointer space-y-2 ${
-                            selectedPalette.id === pal.id
-                              ? 'bg-white/[0.08] border-[#E60049] shadow-neon-crimson'
-                              : 'bg-void-light/60 border-glass-border hover:border-white/25'
-                          }`}
-                        >
-                          <div className="flex items-center justify-between">
-                            <h4 className="font-semibold text-sm text-white">
-                              {locale === 'bn' ? pal.nameBn : pal.name}
-                            </h4>
-                            <div className="flex gap-1.5">
+                    {/* Palette 2-Col Grid */}
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 max-h-[380px] overflow-y-auto pr-1 scrollbar-thin scrollbar-thumb-white/10">
+                      {COLOR_PALETTE_PRESETS.map((pal) => {
+                        const isSelected = selectedPalette.id === pal.id;
+                        return (
+                          <div
+                            key={pal.id}
+                            onClick={() => setSelectedPalette(pal)}
+                            className={`p-3.5 rounded-2xl border transition-all cursor-pointer space-y-2 flex flex-col justify-between ${
+                              isSelected
+                                ? 'bg-gradient-to-b from-[#E60049]/15 to-void-card border-[#E60049] shadow-neon-crimson ring-1 ring-[#E60049]/60'
+                                : 'bg-void-light/50 border-glass-border hover:border-white/30 hover:bg-white/[0.04]'
+                            }`}
+                          >
+                            <div className="space-y-1.5">
+                              <div className="flex items-center justify-between gap-2">
+                                <h4 className="font-semibold text-xs sm:text-sm text-white truncate">
+                                  {locale === 'bn' ? pal.nameBn : pal.name}
+                                </h4>
+                                {isSelected && (
+                                  <span className="w-2 h-2 rounded-full bg-gold shrink-0 animate-pulse" />
+                                )}
+                              </div>
+                              <p className="text-[11px] text-white/50 line-clamp-2 leading-relaxed">
+                                {pal.description}
+                              </p>
+                            </div>
+
+                            {/* Color Swatch circles */}
+                            <div className="flex items-center gap-1.5 pt-1">
                               {pal.colors.map((c, i) => (
                                 <span
                                   key={i}
-                                  className="w-4 h-4 rounded-full border border-black/40 shadow-sm"
+                                  className="w-5 h-5 rounded-full border border-white/20 shadow-sm shrink-0"
                                   style={{ backgroundColor: c }}
+                                  title={c}
                                 />
                               ))}
                             </div>
                           </div>
-                          <p className="text-xs text-white/50">{pal.description}</p>
-                        </div>
-                      ))}
+                        );
+                      })}
                     </div>
 
                     <div className="pt-2 flex justify-between">
@@ -374,7 +461,7 @@ export default function CommissionPage() {
                       <button
                         type="button"
                         onClick={() => setCurrentStep(3)}
-                        className="px-6 py-3 rounded-full text-xs font-semibold bg-white/10 hover:bg-white/20 text-white border border-white/20 backdrop-blur-xl transition-all flex items-center gap-2"
+                        className="px-6 py-3 rounded-full text-xs font-semibold bg-white/10 hover:bg-white/20 text-white border border-white/20 backdrop-blur-xl transition-all flex items-center gap-2 cursor-pointer"
                       >
                         <span>{locale === 'bn' ? 'পরবর্তী ধাপ' : 'Next Step'}</span>
                         <ArrowRight className="w-3.5 h-3.5" />
