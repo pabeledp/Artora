@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { useTranslations, useLocale } from 'next-intl';
+import { useRouter } from '@/i18n/routing';
 import { COMMISSION_CANVAS_SIZES, COLOR_PALETTE_PRESETS } from '@/lib/art-data';
 import { MagneticButton } from '@/components/ui/MagneticButton';
 import confetti from 'canvas-confetti';
@@ -19,12 +20,14 @@ import {
   MessageCircle,
   Loader2,
   FileCheck,
+  X,
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 export default function CommissionPage() {
   const t = useTranslations('commission');
   const locale = useLocale();
+  const router = useRouter();
 
   const [currentStep, setCurrentStep] = useState<number>(1);
   const [selectedSize, setSelectedSize] = useState(COMMISSION_CANVAS_SIZES[2]); // 30x48 default
@@ -133,20 +136,42 @@ export default function CommissionPage() {
   );
 
   return (
-    <div className="min-h-screen pt-16 sm:pt-24 pb-36 md:pb-20 px-3 sm:px-6 lg:px-8 max-w-5xl mx-auto">
-      {/* Compact Studio Header (Ultra-sleek on Mobile) */}
-      <div className="text-center max-w-xl mx-auto mb-4 sm:mb-6 space-y-1">
-        <h1 className="font-display font-black text-lg sm:text-2xl md:text-3xl text-white tracking-tight">
-          {locale === 'bn'
-            ? 'কাস্টম আর্ট কমিশন ও বিস্পোক পেইন্টিং'
-            : 'Bespoke Custom Artwork Commission'}
-        </h1>
-        <p className="text-[11px] sm:text-xs text-white/60 leading-tight">
-          {locale === 'bn'
-            ? 'পছন্দের সাইজ ও কালার প্যালেটে সরাসরি তৈরি করিয়ে নিন প্রামাণ্য ক্যানভাস'
-            : 'Handcrafted 3D calligraphy and heavy impasto tailored to your space'}
-        </p>
-      </div>
+    <div className="min-h-screen pt-14 sm:pt-20 pb-28 sm:pb-16 px-3 sm:px-4 flex items-center justify-center relative">
+      {/* Background Soft Ambient Light */}
+      <div className="fixed inset-0 bg-[#0A0A0C]/90 backdrop-blur-md -z-10" />
+      <div className="fixed top-1/4 left-1/2 -translate-x-1/2 w-[500px] h-[350px] bg-gradient-to-tr from-[#E60049]/20 via-[#2B020A] to-[#FFB0C1]/10 rounded-full blur-[140px] pointer-events-none -z-10" />
+
+      {/* POPUP MODAL CARD CONTAINER */}
+      <motion.div
+        initial={{ opacity: 0, scale: 0.96, y: 15 }}
+        animate={{ opacity: 1, scale: 1, y: 0 }}
+        transition={{ duration: 0.25 }}
+        className="w-full max-w-xl rounded-3xl bg-[#0D0004]/95 border border-[#E60049]/40 shadow-2xl p-4 sm:p-6 backdrop-blur-2xl relative overflow-hidden"
+      >
+        {/* Modal Top Navigation Bar */}
+        <div className="flex items-center justify-between pb-3 mb-3 border-b border-white/10">
+          <div className="flex items-center gap-2">
+            <div className="w-7 h-7 rounded-full bg-[#E60049]/20 border border-[#E60049]/40 flex items-center justify-center text-[#FFB0C1]">
+              <Palette className="w-3.5 h-3.5 text-[#E60049]" />
+            </div>
+            <div>
+              <h2 className="font-display font-bold text-sm sm:text-base text-white">
+                {locale === 'bn' ? 'কাস্টম আর্ট কমিশন' : 'Custom Canvas Commission'}
+              </h2>
+              <p className="text-[10px] text-white/50">
+                {locale === 'bn' ? 'বিস্পোক ফাইন আর্ট স্টুডিও' : 'Bespoke Fine Art Studio'}
+              </p>
+            </div>
+          </div>
+
+          <button
+            onClick={() => router.push('/shop')}
+            className="w-7 h-7 rounded-full bg-white/10 hover:bg-white/20 border border-white/15 text-white/70 hover:text-white flex items-center justify-center transition-colors cursor-pointer"
+            title="Close / Back to Shop"
+          >
+            <X className="w-3.5 h-3.5" />
+          </button>
+        </div>
 
       {isSuccess ? (
         <motion.div
@@ -672,6 +697,7 @@ export default function CommissionPage() {
           </form>
         </div>
       )}
+      </motion.div>
     </div>
   );
 }
