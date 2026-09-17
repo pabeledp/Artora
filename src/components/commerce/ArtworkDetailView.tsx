@@ -117,11 +117,15 @@ export const ArtworkDetailView: React.FC<ArtworkDetailViewProps> = ({ art }) => 
             <span className="px-3 py-1 rounded-full text-xs font-semibold bg-[#E60049]/20 border border-[#E60049]/40 text-[#FFB0C1]">
               {art.category.toUpperCase()}
             </span>
-            {art.discountPercent && (
+            {art.isSold ? (
+              <span className="px-3.5 py-1 rounded-full text-xs font-mono font-bold bg-[#E60049] text-white shadow-neon-crimson">
+                🔴 {isBn ? 'সোল্ড আউট (সংগৃহীত)' : 'SOLD OUT (Acquired)'}
+              </span>
+            ) : art.discountPercent ? (
               <span className="px-3 py-1 rounded-full text-xs font-mono font-bold bg-[#E60049] text-white shadow-neon-crimson animate-pulse">
                 🔥 {art.discountPercent}% SPECIAL DISCOUNT
               </span>
-            )}
+            ) : null}
             <span className="px-3 py-1 rounded-full text-xs font-semibold bg-void-card border border-glass-border text-gold">
               Original by Fiha Islam
             </span>
@@ -139,9 +143,16 @@ export const ArtworkDetailView: React.FC<ArtworkDetailViewProps> = ({ art }) => 
 
           {/* Dual Price Box with Discount Support */}
           <div className="p-5 rounded-2xl bg-void-card border border-glass-border backdrop-blur-md space-y-2">
-            <span className="text-xs text-white/40 uppercase tracking-widest block font-mono">
-              {isBn ? 'মূল্য ও ডিসকাউন্ট' : 'Collector Investment'}
-            </span>
+            <div className="flex items-center justify-between">
+              <span className="text-xs text-white/40 uppercase tracking-widest block font-mono">
+                {isBn ? 'মূল্য ও অবস্থা' : 'Collector Investment'}
+              </span>
+              {art.isSold && (
+                <span className="text-[11px] font-mono text-gold px-2 py-0.5 rounded bg-gold/10 border border-gold/30">
+                  {isBn ? 'কাস্টম অর্ডারে তৈরিযোগ্য' : 'Custom Replica Available'}
+                </span>
+              )}
+            </div>
             <div className="flex flex-wrap items-baseline gap-3">
               <span className="font-display font-black text-3xl sm:text-4xl text-transparent bg-clip-text bg-gradient-to-r from-[#FFB0C1] via-white to-gold font-mono">
                 ৳{art.priceBDT.toLocaleString()}
@@ -157,9 +168,17 @@ export const ArtworkDetailView: React.FC<ArtworkDetailViewProps> = ({ art }) => 
                 </div>
               )}
             </div>
-            <p className="text-xs text-emerald-400 flex items-center gap-1.5 pt-1">
+            <p className={`text-xs flex items-center gap-1.5 pt-1 ${art.isSold ? 'text-[#FFB0C1]' : 'text-emerald-400'}`}>
               <CheckCircle2 className="w-3.5 h-3.5" />
-              <span>{isBn ? 'সরাসরি সংগ্রহ ও স্টেডফাস্ট কুরিয়ারে ডেলিভারিযোগ্য' : 'Available for Immediate Acquisition & Steadfast Delivery'}</span>
+              <span>
+                {art.isSold
+                  ? isBn
+                    ? 'এই মাস্টারপিসটি ইতিমধ্যে সংগৃহীত হয়েছে। আপনার জন্য সেম ডিজাইনে কাস্টম ক্যানভাস তৈরি করা সম্ভব।'
+                    : 'This original has been acquired by a collector. You can commission a custom replica.'
+                  : isBn
+                  ? 'সরাসরি সংগ্রহ ও স্টেডফাস্ট কুরিয়ারে ডেলিভারিযোগ্য'
+                  : 'Available for Immediate Acquisition & Steadfast Delivery'}
+              </span>
             </p>
           </div>
 
