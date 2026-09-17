@@ -172,20 +172,8 @@ export default async function LocaleLayout({
   };
 
   return (
-    <html lang={locale} className="dark">
+    <html lang={locale} className="dark" suppressHydrationWarning>
       <head>
-        {/* Google tag (gtag.js) */}
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-GRCKHQTKZ0" />
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-              gtag('config', 'G-GRCKHQTKZ0');
-            `,
-          }}
-        />
         <meta name="google-site-verification" content="3tCfd3Vbg2DwmKkqnD01dIEa7JmUOEuMEkKW-UeRhOg" />
         <meta name="google-site-verification" content="Oy93MTaszG3wYsln_fWjPwYsDI8eSDTjNJOeaSJH8tI" />
         <link rel="icon" href="/favicon.ico" sizes="any" />
@@ -196,10 +184,6 @@ export default async function LocaleLayout({
         <link rel="apple-touch-icon" href="/apple-icon.png" sizes="180x180" />
         <meta name="application-name" content="Artora by FramEmpire" />
         <meta name="apple-mobile-web-app-title" content="Artora by FramEmpire" />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(siteSchema) }}
-        />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link
@@ -213,7 +197,33 @@ export default async function LocaleLayout({
         />
       </head>
 
-      <body className="bg-void text-white font-sans antialiased selection:bg-[#E60049] selection:text-white bg-tech-grid min-h-screen flex flex-col justify-between relative">
+      <body className="bg-void text-white font-sans antialiased selection:bg-[#E60049] selection:text-white bg-tech-grid min-h-screen flex flex-col justify-between relative" suppressHydrationWarning>
+        {/* Google tag (gtag.js) */}
+        <Script
+          strategy="afterInteractive"
+          src="https://www.googletagmanager.com/gtag/js?id=G-GRCKHQTKZ0"
+        />
+        <Script
+          id="google-analytics"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-GRCKHQTKZ0');
+            `,
+          }}
+        />
+
+        {/* Structured Schema Data */}
+        <Script
+          id="schema-site"
+          type="application/ld+json"
+          strategy="beforeInteractive"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(siteSchema) }}
+        />
+
         <NextIntlClientProvider messages={messages} locale={locale}>
           <CurrencyProvider>
             <CartProvider>
