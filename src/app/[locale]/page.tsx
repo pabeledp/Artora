@@ -111,6 +111,7 @@ export default function HomePage() {
         },
         sameAs: [
           'https://www.facebook.com/Artora.FramEmpire/',
+          'https://www.linkedin.com/company/artorabyframempire/',
           'https://www.artora.framempire.com',
         ],
       },

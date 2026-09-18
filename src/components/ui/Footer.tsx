@@ -3,7 +3,7 @@
 import React from 'react';
 import { useTranslations, useLocale } from 'next-intl';
 import { Link } from '@/i18n/routing';
-import { MapPin, Phone, Mail, Facebook, Globe, ShieldCheck, Truck, MessageCircle } from 'lucide-react';
+import { MapPin, Phone, Mail, Facebook, Globe, ShieldCheck, Truck, MessageCircle, Linkedin } from 'lucide-react';
 
 export const Footer: React.FC = () => {
   const t = useTranslations('footer');
@@ -39,6 +39,15 @@ export const Footer: React.FC = () => {
                 title="Artora Facebook Page"
               >
                 <Facebook className="w-4 h-4" />
+              </a>
+              <a
+                href="https://www.linkedin.com/company/artorabyframempire/"
+                target="_blank"
+                rel="noreferrer"
+                className="w-8 h-8 rounded-full bg-void-card border border-glass-border flex items-center justify-center text-white/70 hover:text-[#0A66C2] hover:border-[#0A66C2] transition-all"
+                title="Artora LinkedIn Page"
+              >
+                <Linkedin className="w-4 h-4" />
               </a>
               <a
                 href="https://www.artora.framempire.com"

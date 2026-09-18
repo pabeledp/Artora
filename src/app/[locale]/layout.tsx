@@ -168,6 +168,10 @@ export default async function LocaleLayout({
       name: 'FramEmpire',
       url: 'https://framempire.com',
       logo: 'https://artora.framempire.com/icon.png',
+      sameAs: [
+        'https://www.linkedin.com/company/artorabyframempire/',
+        'https://www.facebook.com/Artora.FramEmpire/',
+      ],
     },
   };
 
