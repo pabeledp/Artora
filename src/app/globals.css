@@ -19,24 +19,8 @@
   }
 }
 
-/* Classical Arabic Calligraphy Font-Face Rule (Auto applies to any Arabic Unicode range) */
-@font-face {
-  font-family: 'ArtoraArabicCalligraphy';
-  src: local('Aref Ruqaa'), local('Amiri');
-  unicode-range: U+0600-06FF, U+0750-077F, U+08A0-08FF, U+FB50-FDFF, U+FE70-FEFF;
-}
-
-/* Arabic Calligraphy Typography Utility */
-.font-arabic,
-[lang="ar"],
-.arabic-text,
-:lang(ar) {
-  font-family: 'Aref Ruqaa', 'Amiri', 'Reem Kufi', serif !important;
-  direction: rtl;
-  letter-spacing: 0.02em;
-}
-
-/* Exclusive Bengali Typography: Hind Siliguri with Arabic Calligraphy fallback */
+/* Exclusive Bengali Typography: Hind Siliguri for entire site in Bangla mode */
+html[lang="bn"],
 html[lang="bn"] body,
 html[lang="bn"] h1,
 html[lang="bn"] h2,
@@ -51,19 +35,30 @@ html[lang="bn"] a,
 html[lang="bn"] input,
 html[lang="bn"] textarea,
 html[lang="bn"] select {
-  font-family: 'Aref Ruqaa', 'Amiri', 'Hind Siliguri', sans-serif;
+  font-family: 'Hind Siliguri', sans-serif !important;
 }
 
-/* English Typography with Arabic Calligraphy fallback */
+/* Original English Typography: Inter & Space Grotesk */
 html[lang="en"] body {
-  font-family: 'Aref Ruqaa', 'Amiri', 'Inter', sans-serif;
+  font-family: 'Inter', sans-serif !important;
 }
 
 html[lang="en"] .font-display,
 html[lang="en"] h1,
 html[lang="en"] h2,
 html[lang="en"] h3 {
-  font-family: 'Aref Ruqaa', 'Amiri', 'Space Grotesk', sans-serif;
+  font-family: 'Space Grotesk', sans-serif !important;
+}
+
+/* Arabic Calligraphy: ONLY for Arabic text / elements */
+.font-arabic,
+[lang="ar"],
+.arabic-text,
+:lang(ar),
+span[dir="rtl"] {
+  font-family: 'Aref Ruqaa', 'Amiri', serif !important;
+  direction: rtl;
+  letter-spacing: 0.02em;
 }
 
 /* Custom Scrollbar for Minimalist Futuristic Aesthetic */
