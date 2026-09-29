@@ -193,10 +193,10 @@ export default async function LocaleLayout({
         <link
           rel="preload"
           as="style"
-          href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400;1,700&family=Aref+Ruqaa:wght@400;700&family=Hind+Siliguri:wght@400;600;700&family=Inter:wght@400;500;600;700&family=Reem+Kufi:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa+Ink:wght@400;700&family=Aref+Ruqaa:wght@400;700&family=Hind+Siliguri:wght@400;600;700&family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap"
         />
         <link
-          href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400;1,700&family=Aref+Ruqaa:wght@400;700&family=Hind+Siliguri:wght@400;600;700&family=Inter:wght@400;500;600;700&family=Reem+Kufi:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa+Ink:wght@400;700&family=Aref+Ruqaa:wght@400;700&family=Hind+Siliguri:wght@400;600;700&family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap"
           rel="stylesheet"
         />
       </head>

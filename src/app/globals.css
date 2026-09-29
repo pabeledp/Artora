@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400;1,700&family=Aref+Ruqaa:wght@400;700&family=Hind+Siliguri:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&family=Reem+Kufi:wght@400;500;600;700&family=Space+Grotesk:wght@400;600;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Aref+Ruqaa+Ink:wght@400;700&family=Aref+Ruqaa:wght@400;700&family=Hind+Siliguri:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;600;700;900&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -19,7 +19,14 @@
   }
 }
 
-/* Exclusive Bengali Typography: Hind Siliguri for entire site in Bangla mode */
+/* Classical Khatte Ruq'ah Arabic Calligraphy Font-Face Rule (Affects ONLY Arabic Unicode glyphs U+0600-06FF) */
+@font-face {
+  font-family: 'KhatteRuqaa';
+  src: local('Aref Ruqaa Ink'), local('Aref Ruqaa');
+  unicode-range: U+0600-06FF, U+0750-077F, U+08A0-08FF, U+FB50-FDFF, U+FE70-FEFF;
+}
+
+/* Exclusive Bengali Typography: Hind Siliguri for entire site in Bangla mode, with KhatteRuqaa for Arabic glyphs */
 html[lang="bn"],
 html[lang="bn"] body,
 html[lang="bn"] h1,
@@ -35,28 +42,28 @@ html[lang="bn"] a,
 html[lang="bn"] input,
 html[lang="bn"] textarea,
 html[lang="bn"] select {
-  font-family: 'Hind Siliguri', sans-serif !important;
+  font-family: 'KhatteRuqaa', 'Hind Siliguri', sans-serif !important;
 }
 
-/* Original English Typography: Inter & Space Grotesk */
+/* Original English Typography: Inter & Space Grotesk, with KhatteRuqaa for Arabic glyphs */
 html[lang="en"] body {
-  font-family: 'Inter', sans-serif !important;
+  font-family: 'KhatteRuqaa', 'Inter', sans-serif !important;
 }
 
 html[lang="en"] .font-display,
 html[lang="en"] h1,
 html[lang="en"] h2,
 html[lang="en"] h3 {
-  font-family: 'Space Grotesk', sans-serif !important;
+  font-family: 'KhatteRuqaa', 'Space Grotesk', sans-serif !important;
 }
 
-/* Arabic Calligraphy: ONLY for Arabic text / elements */
+/* Arabic Calligraphy Utility */
 .font-arabic,
 [lang="ar"],
 .arabic-text,
 :lang(ar),
 span[dir="rtl"] {
-  font-family: 'Aref Ruqaa', 'Amiri', serif !important;
+  font-family: 'Aref Ruqaa Ink', 'Aref Ruqaa', serif !important;
   direction: rtl;
   letter-spacing: 0.02em;
 }
