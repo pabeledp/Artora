@@ -498,44 +498,46 @@ export default function HomePage() {
                 </Link>
               </div>
 
-              {/* 3-Column responsive grid on mobile (fits 100% within screen width), vertical deck on desktop */}
-              <div className="grid grid-cols-3 gap-2 sm:gap-3 lg:flex lg:flex-col lg:gap-0 lg:space-y-3 lg:max-h-[500px] lg:overflow-y-auto w-full pr-0 lg:pr-1">
+              {/* Horizontal Slider on mobile with compact avatar + title, vertical list on desktop */}
+              <div className="flex overflow-x-auto gap-2.5 pb-2 pt-1 scrollbar-none snap-x snap-mandatory lg:flex-col lg:overflow-visible lg:gap-0 lg:space-y-3 lg:max-h-[500px] lg:overflow-y-auto w-full pr-0 lg:pr-1">
                 {filteredArtworks.map((art, idx) => {
                   const isSelected = activeArt.id === art.id;
                   return (
                     <div
                       key={art.id}
                       onClick={() => setActiveArtIndex(idx)}
-                      className={`p-1.5 sm:p-2.5 lg:p-3.5 rounded-xl sm:rounded-2xl border transition-all duration-300 cursor-pointer flex flex-col lg:flex-row lg:items-center gap-1.5 sm:gap-2 lg:gap-3.5 w-full group ${
+                      className={`snap-start shrink-0 w-[180px] sm:w-[210px] lg:w-full p-2 lg:p-3.5 rounded-2xl border transition-all duration-300 cursor-pointer flex items-center gap-2.5 lg:gap-3.5 group ${
                         isSelected
-                          ? 'bg-[#E60049]/25 border-[#E60049] shadow-neon-crimson ring-2 ring-[#E60049] scale-[1.02]'
+                          ? 'bg-[#E60049]/25 border-[#E60049] shadow-neon-crimson ring-1.5 ring-[#E60049] scale-[1.01]'
                           : 'bg-void-card/80 border-glass-border hover:border-white/30 hover:bg-white/[0.04]'
                       }`}
                     >
-                      <div className="relative w-full aspect-square lg:w-16 lg:h-16 rounded-lg sm:rounded-xl overflow-hidden bg-void-light shrink-0">
+                      {/* Compact profile-pic style avatar */}
+                      <div className="relative w-11 h-11 sm:w-12 sm:h-12 lg:w-16 lg:h-16 rounded-xl overflow-hidden bg-void-light shrink-0 border border-white/15">
                         <Image
                           src={art.primaryImage}
                           alt={`${art.title} Thumbnail`}
                           fill
-                          sizes="(max-width: 1024px) 30vw, 80px"
+                          sizes="64px"
                           className="object-cover group-hover:scale-105 transition-transform duration-500"
                         />
                         {art.discountPercent && (
-                          <div className="absolute top-1 right-1 px-1 py-0.5 rounded bg-[#E60049] text-white text-[7px] sm:text-[8px] font-bold font-mono shadow">
+                          <div className="absolute top-0.5 right-0.5 px-1 py-0.2 rounded bg-[#E60049] text-white text-[7px] font-bold font-mono">
                             -{art.discountPercent}%
                           </div>
                         )}
                         {isSelected && (
-                          <div className="absolute bottom-1 right-1 w-2 h-2 rounded-full bg-gold animate-pulse lg:hidden" />
+                          <div className="absolute bottom-0.5 right-0.5 w-2 h-2 rounded-full bg-gold animate-pulse lg:hidden" />
                         )}
                       </div>
 
-                      <div className="flex-1 min-w-0 w-full text-center lg:text-left">
-                        <h4 className="font-display font-bold text-[10px] sm:text-xs lg:text-sm text-white truncate group-hover:text-[#FFB0C1] transition-colors">
+                      {/* Title & Price beside avatar */}
+                      <div className="flex-1 min-w-0 text-left">
+                        <h4 className="font-display font-bold text-[11px] sm:text-xs lg:text-sm text-white truncate group-hover:text-[#FFB0C1] transition-colors leading-tight">
                           {isBn ? art.titleBn : art.title}
                         </h4>
-                        <div className="flex items-center justify-center lg:justify-start gap-1 lg:gap-2 mt-0.5 lg:mt-1">
-                          <span className="text-[10px] sm:text-xs font-mono font-bold text-emerald-400 lg:text-[#E60049]">
+                        <div className="flex items-center gap-1.5 mt-0.5">
+                          <span className="text-[11px] sm:text-xs font-mono font-bold text-[#FFB0C1] lg:text-[#E60049]">
                             ৳{art.priceBDT.toLocaleString()}
                           </span>
                         </div>
