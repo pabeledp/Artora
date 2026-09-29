@@ -103,8 +103,9 @@ export default function ShopPage() {
                     {locale === 'bn' ? art.canvasSizeBn : art.canvasSize}
                   </span>
                   {art.isSold ? (
-                    <span className="px-2.5 py-1 rounded-full text-[10px] font-mono font-bold bg-[#E60049] text-white shadow-neon-crimson">
-                      {locale === 'bn' ? 'সোল্ড আউট' : 'SOLD OUT'}
+                    <span className="px-2.5 py-1 rounded-full text-[10px] font-mono font-bold bg-black/60 border border-white/20 backdrop-blur-md text-white flex items-center gap-1 shadow-lg">
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#E60049] animate-pulse" />
+                      <span>{locale === 'bn' ? 'সোল্ড আউট' : 'SOLD OUT'}</span>
                     </span>
                   ) : art.discountPercent ? (
                     <span className="px-2.5 py-1 rounded-full text-[10px] font-mono font-bold bg-[#E60049] text-white shadow-neon-crimson animate-pulse">

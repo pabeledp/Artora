@@ -78,7 +78,21 @@ export const ArtworkDetailView: React.FC<ArtworkDetailViewProps> = ({ art }) => 
                 sizes="(max-width: 1024px) 100vw, 800px"
                 className="object-cover transition-transform duration-700 group-hover:scale-105"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
+              {/* Floating Badges inside Image */}
+              <div className="absolute top-3 left-3 flex flex-wrap gap-2 z-10">
+                {art.isSold && (
+                  <div className="px-3 py-1 rounded-full bg-black/60 border border-white/20 backdrop-blur-md text-[11px] font-mono font-bold text-white flex items-center gap-1.5 shadow-lg">
+                    <span className="w-2 h-2 rounded-full bg-[#E60049] animate-pulse" />
+                    <span>{isBn ? 'সংগৃহীত (Sold Out)' : 'Acquired / Sold Out'}</span>
+                  </div>
+                )}
+                {art.discountPercent && !art.isSold && (
+                  <span className="px-2.5 py-1 rounded-full text-[10px] font-mono font-bold bg-[#E60049] text-white shadow-neon-crimson animate-pulse">
+                    🔥 {art.discountPercent}% OFF
+                  </span>
+                )}
+              </div>
+
               <div className="absolute bottom-3 right-3 px-3 py-1 rounded-full bg-void-card/90 border border-glass-border backdrop-blur-md text-[10px] font-mono text-white/80 flex items-center gap-1">
                 <Maximize2 className="w-3 h-3 text-gold" />
                 <span>{isBn ? art.canvasSizeBn : art.canvasSize}</span>
@@ -112,20 +126,16 @@ export const ArtworkDetailView: React.FC<ArtworkDetailViewProps> = ({ art }) => 
 
         {/* ===================== RIGHT: ARTWORK DETAILS & COMMERCE ACTIONS ===================== */}
         <div className="lg:col-span-5 space-y-6 w-full">
-          {/* Category & Status */}
+          {/* Category & Origin */}
           <div className="flex flex-wrap items-center gap-2">
             <span className="px-3 py-1 rounded-full text-xs font-semibold bg-[#E60049]/20 border border-[#E60049]/40 text-[#FFB0C1]">
               {art.category.toUpperCase()}
             </span>
-            {art.isSold ? (
-              <span className="px-3.5 py-1 rounded-full text-xs font-mono font-bold bg-[#E60049] text-white shadow-neon-crimson">
-                🔴 {isBn ? 'সোল্ড আউট (সংগৃহীত)' : 'SOLD OUT (Acquired)'}
-              </span>
-            ) : art.discountPercent ? (
+            {art.discountPercent && !art.isSold && (
               <span className="px-3 py-1 rounded-full text-xs font-mono font-bold bg-[#E60049] text-white shadow-neon-crimson animate-pulse">
                 🔥 {art.discountPercent}% SPECIAL DISCOUNT
               </span>
-            ) : null}
+            )}
             <span className="px-3 py-1 rounded-full text-xs font-semibold bg-void-card border border-glass-border text-gold">
               Original by Fiha Islam
             </span>
@@ -222,24 +232,7 @@ export const ArtworkDetailView: React.FC<ArtworkDetailViewProps> = ({ art }) => 
           <div className="pt-4 space-y-3">
             {art.isSold ? (
               <div className="space-y-3">
-                {/* Sold Out Notice Banner */}
-                <div className="p-3.5 rounded-2xl bg-[#E60049]/15 border border-[#E60049]/40 backdrop-blur-md flex items-center gap-3">
-                  <div className="w-8 h-8 rounded-xl bg-[#E60049] flex items-center justify-center shrink-0 shadow-neon-crimson text-white font-bold text-xs">
-                    SOLD
-                  </div>
-                  <div className="text-xs text-white/80">
-                    <p className="font-semibold text-white">
-                      {isBn ? 'এই অরিজিনাল ক্যানভাসটি সংগৃহীত হয়েছে' : 'This original canvas has been acquired'}
-                    </p>
-                    <p className="text-[11px] text-white/60">
-                      {isBn
-                        ? 'আপনার পছন্দসই সাইজ ও ফ্রেমে সেম ডিজাইনের কাস্টম রেপ্লিকা পেইন্টিং তৈরি করতে পারেন।'
-                        : 'You can request a custom replica handcrafted to your custom dimensions.'}
-                    </p>
-                  </div>
-                </div>
-
-                {/* Primary Action: Direct WhatsApp Restock / Custom Replica Inquiry */}
+                {/* Primary Action: Direct WhatsApp Restock / Custom Replica Request Button */}
                 {(() => {
                   const whatsappReplicaMsg = encodeURIComponent(
                     `🎨 *Sold Artwork Restock / Custom Replica Request*\n\n` +
@@ -255,13 +248,13 @@ export const ArtworkDetailView: React.FC<ArtworkDetailViewProps> = ({ art }) => 
                       href={whatsappReplicaUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="w-full py-4 px-4 rounded-full text-xs sm:text-sm font-bold bg-[#25D366] hover:bg-[#1EBE5D] text-black shadow-lg shadow-emerald-950/40 transition-all flex items-center justify-center gap-2 group cursor-pointer min-h-[48px]"
+                      className="w-full py-4 px-6 rounded-full text-xs sm:text-sm font-bold bg-gradient-to-r from-[#25D366] to-[#128C7E] hover:opacity-95 text-white shadow-lg shadow-emerald-950/40 transition-all flex items-center justify-center gap-2.5 group cursor-pointer min-h-[50px]"
                     >
                       <MessageSquare className="w-4 h-4 fill-current group-hover:scale-110 transition-transform" />
                       <span>
                         {isBn
-                          ? 'হোয়াটসঅ্যাপে রিস্টক / কাস্টম রেপ্লিকা রিকোয়েস্ট পাঠান'
-                          : 'Request Custom Replica on WhatsApp'}
+                          ? 'রিস্টক বা কাস্টম রেপ্লিকা রিকোয়েস্ট পাঠান'
+                          : 'Request Restock / Custom Replica'}
                       </span>
                     </a>
                   );
@@ -269,12 +262,12 @@ export const ArtworkDetailView: React.FC<ArtworkDetailViewProps> = ({ art }) => 
 
                 {/* Secondary Action: Go to Commission Page */}
                 <Link href="/commission" className="block">
-                  <button className="w-full py-3.5 rounded-full text-xs font-semibold text-white hover:text-gold bg-void-card border border-glass-border hover:border-gold transition-all flex items-center justify-center gap-2 min-h-[44px] cursor-pointer">
+                  <button className="w-full py-3.5 px-4 rounded-full text-xs font-semibold text-white/90 hover:text-gold bg-void-card border border-glass-border hover:border-gold/60 backdrop-blur-md transition-all flex items-center justify-center gap-2 min-h-[46px] cursor-pointer">
                     <Palette className="w-3.5 h-3.5 text-[#FFB0C1]" />
                     <span>
                       {isBn
-                        ? 'অন্য সাইজ বা কালারে নতুন কাস্টম কমিশন করুন'
-                        : 'Commission in Another Size / Palette'}
+                        ? 'পছন্দমতো সাইজ বা কালারে নতুন অর্ডার করুন'
+                        : 'Commission in Custom Size / Palette'}
                     </span>
                   </button>
                 </Link>

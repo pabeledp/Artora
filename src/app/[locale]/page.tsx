@@ -408,8 +408,9 @@ export default function HomePage() {
                         </span>
                       )}
                       {activeArt.isSold ? (
-                        <span className="px-3 py-1 rounded-full text-xs font-semibold bg-[#E60049] text-white">
-                          {tFeatured('sold')}
+                        <span className="px-3 py-1 rounded-full text-xs font-mono font-bold bg-black/60 border border-white/20 backdrop-blur-md text-white flex items-center gap-1.5 shadow-lg">
+                          <span className="w-2 h-2 rounded-full bg-[#E60049] animate-pulse" />
+                          <span>{tFeatured('sold')}</span>
                         </span>
                       ) : (
                         <span className="px-3 py-1 rounded-full text-xs font-semibold bg-emerald-500/80 text-white backdrop-blur-md">
