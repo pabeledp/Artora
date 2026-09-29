@@ -37,6 +37,7 @@ const config: Config = {
         sans: ["Inter", "Hind Siliguri", "system-ui", "-apple-system", "sans-serif"],
         display: ["Space Grotesk", "sans-serif"],
         bangla: ["Hind Siliguri", "sans-serif"],
+        arabic: ["'Aref Ruqaa'", "Amiri", "'Reem Kufi'", "serif"],
       },
       boxShadow: {
         "neon-crimson": "0 0 25px -4px rgba(230, 0, 73, 0.45)",
