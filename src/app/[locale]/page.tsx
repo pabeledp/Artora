@@ -399,9 +399,6 @@ export default function HomePage() {
 
                     {/* Top Floating Badges */}
                     <div className="absolute top-4 left-4 flex flex-wrap gap-2">
-                      <span className="px-3 py-1 rounded-full text-xs font-mono font-semibold bg-black/75 backdrop-blur-md text-white border border-white/15">
-                        {isBn ? activeArt.mediumBn.split(' ')[0] : activeArt.medium.split(' ')[0]}
-                      </span>
                       {activeArt.discountPercent && (
                         <span className="px-3 py-1 rounded-full text-xs font-mono font-bold bg-[#E60049] text-white shadow-neon-crimson animate-pulse">
                           🔥 {activeArt.discountPercent}% OFF
@@ -429,12 +426,9 @@ export default function HomePage() {
                     </div>
                   </div>
 
-                  {/* Artwork Title, Specs & Color Palette Placed BELOW Image */}
-                  <div className="flex items-center justify-between gap-4 pt-1">
+                  {/* Artwork Title Placed BELOW Image */}
+                  <div className="flex items-center justify-between gap-4 pt-2">
                     <div>
-                      <span className="text-[11px] font-mono text-[#FFB0C1] uppercase tracking-wider block">
-                        {isBn ? activeArt.canvasSizeBn : activeArt.canvasSize}
-                      </span>
                       <h3 className="font-display font-black text-2xl sm:text-3xl text-white">
                         {isBn ? activeArt.titleBn : activeArt.title}
                       </h3>
@@ -453,11 +447,8 @@ export default function HomePage() {
                     </div>
                   </div>
 
-                  {/* Description & Action Footer */}
-                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pt-1 border-t border-white/10">
-                    <p className="text-xs sm:text-sm text-white/70 max-w-xl font-light leading-relaxed line-clamp-2">
-                      {isBn ? activeArt.descriptionBn : activeArt.description}
-                    </p>
+                  {/* Action Footer */}
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pt-3 border-t border-white/10">
 
                     <div className="flex items-center gap-3 shrink-0">
                       <div className="text-right">
@@ -543,9 +534,6 @@ export default function HomePage() {
                         <h4 className="font-display font-bold text-[10px] sm:text-xs lg:text-sm text-white truncate group-hover:text-[#FFB0C1] transition-colors">
                           {isBn ? art.titleBn : art.title}
                         </h4>
-                        <p className="text-[9px] lg:text-[11px] text-white/50 truncate hidden lg:block">
-                          {isBn ? art.canvasSizeBn : art.canvasSize}
-                        </p>
                         <div className="flex items-center justify-center lg:justify-start gap-1 lg:gap-2 mt-0.5 lg:mt-1">
                           <span className="text-[10px] sm:text-xs font-mono font-bold text-emerald-400 lg:text-[#E60049]">
                             ৳{art.priceBDT.toLocaleString()}

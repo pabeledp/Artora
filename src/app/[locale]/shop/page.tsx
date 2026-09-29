@@ -97,11 +97,8 @@ export default function ShopPage() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-void via-transparent to-transparent opacity-70" />
 
-                {/* Badges */}
+                {/* Floating Badges */}
                 <div className="absolute top-4 left-4 flex flex-wrap gap-2">
-                  <span className="px-2.5 py-1 rounded-full text-[11px] font-semibold bg-void/80 border border-glass-border text-white/90 backdrop-blur-md">
-                    {locale === 'bn' ? art.canvasSizeBn : art.canvasSize}
-                  </span>
                   {art.isSold ? (
                     <span className="px-2.5 py-1 rounded-full text-[10px] font-mono font-bold bg-black/60 border border-white/20 backdrop-blur-md text-white flex items-center gap-1 shadow-lg">
                       <span className="w-1.5 h-1.5 rounded-full bg-[#E60049] animate-pulse" />
@@ -126,12 +123,9 @@ export default function ShopPage() {
 
               <div className="p-6 space-y-4 flex-1 flex flex-col justify-between">
                 <div>
-                  <h3 className="font-display font-bold text-lg text-white group-hover:text-[#FFB0C1] transition-colors">
+                  <h3 className="font-display font-bold text-lg text-white group-hover:text-[#FFB0C1] transition-colors leading-snug">
                     {locale === 'bn' ? art.titleBn : art.title}
                   </h3>
-                  <p className="text-xs text-white/60 mt-1 line-clamp-2">
-                    {locale === 'bn' ? art.mediumBn : art.medium}
-                  </p>
                 </div>
 
                 <div className="pt-4 border-t border-glass-border flex items-center justify-between">
