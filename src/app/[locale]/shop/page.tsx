@@ -130,7 +130,7 @@ export default function ShopPage() {
 
                 <div className="pt-4 border-t border-glass-border flex items-center justify-between">
                   <div>
-                    {art.discountPercent && art.originalPriceBDT && (
+                    {!art.isSold && art.discountPercent && art.originalPriceBDT && (
                       <div className="flex items-center gap-1.5">
                         <span className="text-[11px] text-white/40 line-through font-mono">
                           ৳{art.originalPriceBDT.toLocaleString()}

@@ -399,15 +399,14 @@ export default function HomePage() {
 
                     {/* Top Floating Badges */}
                     <div className="absolute top-4 left-4 flex flex-wrap gap-2">
-                      {activeArt.discountPercent && (
-                        <span className="px-3 py-1 rounded-full text-xs font-mono font-bold bg-[#E60049] text-white shadow-neon-crimson animate-pulse">
-                          🔥 {activeArt.discountPercent}% OFF
-                        </span>
-                      )}
                       {activeArt.isSold ? (
                         <span className="px-3 py-1 rounded-full text-xs font-mono font-bold bg-black/60 border border-white/20 backdrop-blur-md text-white flex items-center gap-1.5 shadow-lg">
                           <span className="w-2 h-2 rounded-full bg-[#E60049] animate-pulse" />
                           <span>{tFeatured('sold')}</span>
+                        </span>
+                      ) : activeArt.discountPercent ? (
+                        <span className="px-3 py-1 rounded-full text-xs font-mono font-bold bg-[#E60049] text-white shadow-neon-crimson animate-pulse">
+                          🔥 {activeArt.discountPercent}% OFF
                         </span>
                       ) : (
                         <span className="px-3 py-1 rounded-full text-xs font-semibold bg-emerald-500/80 text-white backdrop-blur-md">
@@ -452,7 +451,7 @@ export default function HomePage() {
 
                     <div className="flex items-center gap-3 shrink-0">
                       <div className="text-right">
-                        {activeArt.discountPercent && activeArt.originalPriceBDT && (
+                        {!activeArt.isSold && activeArt.discountPercent && activeArt.originalPriceBDT && (
                           <div className="flex items-center justify-end gap-1.5">
                             <span className="text-xs text-white/40 line-through font-mono">
                               ৳{activeArt.originalPriceBDT.toLocaleString()}
@@ -521,7 +520,7 @@ export default function HomePage() {
                           sizes="64px"
                           className="object-cover group-hover:scale-105 transition-transform duration-500"
                         />
-                        {art.discountPercent && (
+                        {!art.isSold && art.discountPercent && (
                           <div className="absolute top-0.5 right-0.5 px-1 py-0.2 rounded bg-[#E60049] text-white text-[7px] font-bold font-mono">
                             -{art.discountPercent}%
                           </div>

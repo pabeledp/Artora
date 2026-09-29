@@ -167,7 +167,7 @@ export const ArtworkDetailView: React.FC<ArtworkDetailViewProps> = ({ art }) => 
               <span className="font-display font-black text-3xl sm:text-4xl text-transparent bg-clip-text bg-gradient-to-r from-[#FFB0C1] via-white to-gold font-mono">
                 ৳{art.priceBDT.toLocaleString()}
               </span>
-              {art.discountPercent && art.originalPriceBDT && (
+              {!art.isSold && art.discountPercent && art.originalPriceBDT && (
                 <div className="flex items-center gap-2">
                   <span className="text-sm text-white/40 line-through font-mono">
                     ৳{art.originalPriceBDT.toLocaleString()}
