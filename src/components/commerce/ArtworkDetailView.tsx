@@ -39,9 +39,9 @@ export const ArtworkDetailView: React.FC<ArtworkDetailViewProps> = ({ art }) => 
   const isBn = locale === 'bn';
 
   return (
-    <div className="min-h-[calc(100vh-80px)] flex flex-col justify-center pt-20 sm:pt-24 pb-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+    <div className="pt-32 sm:pt-40 lg:pt-44 pb-28 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
       {/* Breadcrumbs */}
-      <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-xs text-white/50 mb-4 sm:mb-6 overflow-x-auto whitespace-nowrap scrollbar-none py-1">
+      <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-xs text-white/50 mb-6 sm:mb-8 overflow-x-auto whitespace-nowrap scrollbar-none py-1">
         <Link href="/" className="hover:text-white transition-colors">
           {isBn ? 'হোম' : 'Home'}
         </Link>

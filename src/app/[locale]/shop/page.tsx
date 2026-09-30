@@ -38,7 +38,7 @@ export default function ShopPage() {
       : ARTWORKS_DATA.filter((art) => art.category === activeCategory);
 
   return (
-    <div className="min-h-screen pt-20 sm:pt-28 pb-28 md:pb-24 px-2.5 sm:px-4 lg:px-8 max-w-7xl mx-auto">
+    <div className="min-h-screen pt-28 sm:pt-36 lg:pt-40 pb-28 md:pb-24 px-2.5 sm:px-4 lg:px-8 max-w-7xl mx-auto">
       {/* Page Header */}
       <div className="text-center max-w-3xl mx-auto mb-6 sm:mb-10 space-y-2 sm:space-y-4">
         <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] sm:text-xs font-semibold bg-void-card border border-glass-border text-gold backdrop-blur-md">
