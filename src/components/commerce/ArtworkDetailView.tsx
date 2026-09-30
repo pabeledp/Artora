@@ -39,9 +39,9 @@ export const ArtworkDetailView: React.FC<ArtworkDetailViewProps> = ({ art }) => 
   const isBn = locale === 'bn';
 
   return (
-    <div className="min-h-screen pt-24 sm:pt-28 pb-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+    <div className="min-h-screen pt-28 sm:pt-36 lg:pt-36 pb-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
       {/* Breadcrumbs */}
-      <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-xs text-white/50 mb-8 overflow-x-auto whitespace-nowrap scrollbar-none py-1">
+      <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-xs text-white/50 mb-6 sm:mb-8 overflow-x-auto whitespace-nowrap scrollbar-none py-1">
         <Link href="/" className="hover:text-white transition-colors">
           {isBn ? 'হোম' : 'Home'}
         </Link>
@@ -59,7 +59,7 @@ export const ArtworkDetailView: React.FC<ArtworkDetailViewProps> = ({ art }) => 
         {/* ===================== LEFT: VISUAL MEDIA (MULTI-ANGLE HD GALLERY) ===================== */}
         <div className="lg:col-span-7 space-y-4 w-full">
           {/* Top action bar: Studio Photo Gallery Badge */}
-          <div className="flex items-center justify-between gap-3">
+          <div className="flex items-center justify-between gap-3 min-h-[34px]">
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-void-card border border-glass-border text-xs font-mono text-white/80 backdrop-blur-md">
               <Eye className="w-3.5 h-3.5 text-gold" />
               <span>{isBn ? 'হাই-রেজোলিউশন স্টুডিও ফটো গ্যালারি' : 'High-Resolution Studio Gallery'}</span>
@@ -127,7 +127,7 @@ export const ArtworkDetailView: React.FC<ArtworkDetailViewProps> = ({ art }) => 
         {/* ===================== RIGHT: ARTWORK DETAILS & COMMERCE ACTIONS ===================== */}
         <div className="lg:col-span-5 space-y-6 w-full">
           {/* Category & Origin */}
-          <div className="flex flex-wrap items-center gap-2">
+          <div className="flex flex-wrap items-center gap-2 min-h-[34px]">
             <span className="px-3 py-1 rounded-full text-xs font-semibold bg-[#E60049]/20 border border-[#E60049]/40 text-[#FFB0C1]">
               {art.category.toUpperCase()}
             </span>
