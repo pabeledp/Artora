@@ -224,12 +224,12 @@ export const ARTWORKS_DATA: ArtWork[] = [
     featured: true,
     category: "acrylic",
     year: 2025,
-    primaryImage: "/images/better-days-ahead-preview.webp",
+    primaryImage: "/images/better-days-ahead-shelf.webp",
     images: [
-      "/images/better-days-ahead-preview.webp",
+      "/images/better-days-ahead-shelf.webp",
       "/images/better-days-ahead-front.webp",
       "/images/better-days-ahead-room.webp",
-      "/images/better-days-ahead-shelf.webp"
+      "/images/better-days-ahead-preview.webp"
     ],
     colorPalette: ["#1B4D3E", "#2E8B57", "#FFFFFF", "#E07A5F", "#1A2E20"],
     description: "An uplifting, serene original botanical artwork featuring radiant white blossoms flourishing amidst a richly layered emerald green impasto texture. Crafted with emotive palette knife strokes by Fiha Islam to bring warmth, peace, and hope to your living or bedroom space.",
