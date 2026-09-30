@@ -161,6 +161,50 @@ export const ARTWORKS_DATA: ArtWork[] = [
       "শিল্পী ফিহা ইসলামের স্বাক্ষরযুক্ত অরিজিনাল ফাইন আর্ট",
       "এক্সক্লুসিভ ৫৫% স্পেশাল কালেক্টর ডিসকাউন্ট"
     ]
+  },
+  {
+    id: "art-coastal-beach-005",
+    slug: "coastal-beach-vibe-resin-texture-art",
+    title: "Coastal Beach Vibe Resin & Texture Art",
+    titleBn: "কোস্টাল বিচ ভাইব • রেজিন ও থ্রিডি টেক্সচার আর্ট",
+    medium: "Handcrafted Ocean Waves Resin & 3D Textured Sand on Canvas",
+    mediumBn: "হ্যান্ডক্রাফটেড ওশান ওয়েভ রেজিন ও থ্রিডি টেক্সচার্ড স্যান্ড (ক্যানভাস)",
+    canvasSize: "24 x 36 inches (Horizontal Statement Canvas)",
+    canvasSizeBn: "২৪ x ৩৬ ইঞ্চি (হরাইজন্টাল স্টেটমেন্ট ক্যানভাস)",
+    originalPriceBDT: 14527,
+    discountPercent: 45,
+    priceBDT: 7990,
+    priceUSD: 75,
+    isSold: false,
+    isCommissionable: true,
+    featured: true,
+    category: "acrylic",
+    year: 2025,
+    primaryImage: "/images/coastal-beach-vibe-preview.webp",
+    images: [
+      "/images/coastal-beach-vibe-preview.webp",
+      "/images/coastal-beach-vibe-room.webp"
+    ],
+    colorPalette: ["#005F73", "#0A9396", "#94D2BD", "#E9D8A6", "#EE9B00", "#FFFFFF"],
+    description: "Immerse your living space in tranquil coastal luxury. A breathtaking seascape combining raised wave froth, 3D textured beach sand, authentic seashell detailing, and glossy crystal-clear resin ocean layers crafted by Fiha Islam.",
+    descriptionBn: "প্রাকৃতিক সমুদ্রের উত্তাল ঢেউ আর বালুকাবেলার মোহনীয় রূপ নিয়ে জীবন্ত থ্রিডি টেক্সচার্ড ও রেজিন আর্ট। শিল্পী ফিহা ইসলামের স্বহস্তে তৈরি আসল সমুদ্রের ঝিনুক ও ফোমি ওয়েভ সমৃদ্ধ এক্সক্লুসিভ মাস্টারপিস।",
+    dimensions: {
+      widthInches: 36,
+      heightInches: 24,
+      depthInches: 1.5
+    },
+    highlights: [
+      "Multi-layered glossy crystal resin ocean depth",
+      "3D raised texture beach sand & realistic wave foam",
+      "Authentic real seashell accent embedded",
+      "Special 45% Collector Launch Discount"
+    ],
+    highlightsBn: [
+      "মাল্টি-লেয়ার্ড গ্লসি ক্রিস্টাল রেজিন ও গভীর নীল জলরাশি",
+      "থ্রিডি টেক্সচার্ড বালুকাবেলা ও বাস্তবসম্মত সাদা ফেনা",
+      "আসল কোস্টাল ঝিনুক খচিত ইউনিক ডিটেইলিং",
+      "সীমিত সময়ের জন্য ৪৫% বিশেষ লঞ্চ ডিসকাউন্ট"
+    ]
   }
 ];
 
