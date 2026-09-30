@@ -146,7 +146,7 @@ export default function HomePage() {
 
       <div className="relative min-h-screen overflow-hidden">
         {/* ===================== HERO SECTION: 2-COLUMN LUXURY SPOTLIGHT ===================== */}
-        <section className="relative min-h-[100dvh] sm:min-h-[90vh] flex flex-col justify-center items-center pt-20 pb-24 sm:pt-28 sm:pb-16 px-3.5 sm:px-6 lg:px-8">
+        <section className="relative min-h-[90vh] sm:min-h-[85vh] flex flex-col justify-center items-center pt-20 pb-12 sm:pt-24 sm:pb-14 px-3.5 sm:px-6 lg:px-8">
           {/* Polished crimson-black gradient background */}
           <div className="absolute inset-0 bg-gradient-to-b from-[#0D0004] via-[#2B020A]/70 to-[#0D0004] pointer-events-none" />
 
@@ -337,6 +337,16 @@ export default function HomePage() {
           </div>
         </section>
 
+        {/* Subtle Luxury Section Divider */}
+        <div className="relative py-4 sm:py-6 max-w-5xl mx-auto px-4 w-full flex items-center justify-center pointer-events-none">
+          <div className="h-[1px] w-full bg-gradient-to-r from-transparent via-[#E60049]/25 to-transparent" />
+          <div className="absolute flex items-center justify-center gap-2 px-3 bg-[#0D0004]">
+            <span className="w-1 h-1 rounded-full bg-[#E60049]/40" />
+            <span className="w-1.5 h-1.5 rotate-45 border border-[#E60049]/50 bg-[#E60049]/20 shadow-sm" />
+            <span className="w-1 h-1 rounded-full bg-[#E60049]/40" />
+          </div>
+        </div>
+
         {/* ===================== ULTRA-MODERN EXHIBITION & SHOP COLLECTION ===================== */}
         <section className="py-8 sm:py-14 md:py-20 px-2.5 sm:px-4 lg:px-8 max-w-7xl mx-auto relative z-10 pb-28 md:pb-20">
           {/* Section Header */}
@@ -489,8 +499,18 @@ export default function HomePage() {
           </motion.div>
         </section>
 
+        {/* Subtle Luxury Section Divider */}
+        <div className="relative py-4 sm:py-6 max-w-5xl mx-auto px-4 w-full flex items-center justify-center pointer-events-none">
+          <div className="h-[1px] w-full bg-gradient-to-r from-transparent via-[#E60049]/25 to-transparent" />
+          <div className="absolute flex items-center justify-center gap-2 px-3 bg-[#0D0004]">
+            <span className="w-1 h-1 rounded-full bg-[#E60049]/40" />
+            <span className="w-1.5 h-1.5 rotate-45 border border-[#E60049]/50 bg-[#E60049]/20 shadow-sm" />
+            <span className="w-1 h-1 rounded-full bg-[#E60049]/40" />
+          </div>
+        </div>
+
         {/* ===================== ABOUT THE ARTIST • FIHA ISLAM SECTION ===================== */}
-        <section className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto relative z-10">
+        <section className="py-16 sm:py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto relative z-10">
           <div className="rounded-3xl p-8 sm:p-12 lg:p-16 bg-gradient-to-br from-[#1A030A]/90 via-void-card to-void border border-glass-border shadow-2xl relative overflow-hidden">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative z-10">
               {/* Left: Artist Photo with Luxury Frame */}
@@ -574,8 +594,18 @@ export default function HomePage() {
           </div>
         </section>
 
+        {/* Subtle Luxury Section Divider */}
+        <div className="relative py-4 sm:py-6 max-w-5xl mx-auto px-4 w-full flex items-center justify-center pointer-events-none">
+          <div className="h-[1px] w-full bg-gradient-to-r from-transparent via-[#E60049]/25 to-transparent" />
+          <div className="absolute flex items-center justify-center gap-2 px-3 bg-[#0D0004]">
+            <span className="w-1 h-1 rounded-full bg-[#E60049]/40" />
+            <span className="w-1.5 h-1.5 rotate-45 border border-[#E60049]/50 bg-[#E60049]/20 shadow-sm" />
+            <span className="w-1 h-1 rounded-full bg-[#E60049]/40" />
+          </div>
+        </div>
+
         {/* ===================== COLLECTOR TESTIMONIALS (RESPONSIVE SLIDER & LUXURY CARDS) ===================== */}
-        <section className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto relative z-10">
+        <section className="py-16 sm:py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto relative z-10">
           <div className="text-center max-w-2xl mx-auto mb-10 sm:mb-12 space-y-3">
             <span className="text-xs font-bold text-gold uppercase tracking-widest font-mono">
               {tTestimonials('subtitle')}
