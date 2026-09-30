@@ -39,7 +39,7 @@ export const ArtworkDetailView: React.FC<ArtworkDetailViewProps> = ({ art }) => 
   const isBn = locale === 'bn';
 
   return (
-    <div className="pt-32 sm:pt-40 lg:pt-44 pb-28 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+    <div className="min-h-screen pt-24 sm:pt-28 pb-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
       {/* Breadcrumbs */}
       <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-xs text-white/50 mb-6 sm:mb-8 overflow-x-auto whitespace-nowrap scrollbar-none py-1">
         <Link href="/" className="hover:text-white transition-colors">
@@ -55,7 +55,7 @@ export const ArtworkDetailView: React.FC<ArtworkDetailViewProps> = ({ art }) => 
         </span>
       </nav>
 
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-center w-full">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start w-full">
         {/* ===================== LEFT: VISUAL MEDIA (MULTI-ANGLE HD GALLERY) ===================== */}
         <div className="lg:col-span-7 space-y-4 w-full">
           {/* Top action bar: Studio Photo Gallery Badge */}
@@ -69,14 +69,14 @@ export const ArtworkDetailView: React.FC<ArtworkDetailViewProps> = ({ art }) => 
 
           {/* Main Visual Display */}
           <div className="space-y-4">
-            <div className="relative aspect-[4/3] sm:aspect-[16/10] rounded-2xl overflow-hidden bg-void-card border border-glass-border shadow-2xl group">
+            <div className="relative aspect-square sm:aspect-square rounded-2xl overflow-hidden bg-void-card border border-glass-border shadow-2xl group">
               <Image
                 src={activeImage}
                 alt={`${art.title} Original Acrylic Impasto Canvas Artwork by Fiha Islam`}
                 fill
                 priority
                 sizes="(max-width: 1024px) 100vw, 800px"
-                className="object-cover transition-transform duration-700 group-hover:scale-105"
+                className="object-cover object-center transition-transform duration-700 group-hover:scale-105"
               />
               {/* Floating Badges inside Image */}
               <div className="absolute top-3 left-3 flex flex-wrap gap-2 z-10">
