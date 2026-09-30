@@ -39,9 +39,9 @@ export const ArtworkDetailView: React.FC<ArtworkDetailViewProps> = ({ art }) => 
   const isBn = locale === 'bn';
 
   return (
-    <div className="min-h-screen pt-28 sm:pt-36 lg:pt-36 pb-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+    <div className="min-h-[calc(100vh-80px)] flex flex-col justify-center pt-20 sm:pt-24 pb-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
       {/* Breadcrumbs */}
-      <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-xs text-white/50 mb-6 sm:mb-8 overflow-x-auto whitespace-nowrap scrollbar-none py-1">
+      <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-xs text-white/50 mb-4 sm:mb-6 overflow-x-auto whitespace-nowrap scrollbar-none py-1">
         <Link href="/" className="hover:text-white transition-colors">
           {isBn ? 'হোম' : 'Home'}
         </Link>
@@ -55,7 +55,7 @@ export const ArtworkDetailView: React.FC<ArtworkDetailViewProps> = ({ art }) => 
         </span>
       </nav>
 
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-center w-full">
         {/* ===================== LEFT: VISUAL MEDIA (MULTI-ANGLE HD GALLERY) ===================== */}
         <div className="lg:col-span-7 space-y-4 w-full">
           {/* Top action bar: Studio Photo Gallery Badge */}
