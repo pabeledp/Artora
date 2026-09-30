@@ -172,11 +172,6 @@ export default async function LocaleLayout({
         'https://www.linkedin.com/company/artorabyframempire/',
         'https://www.facebook.com/Artora.FramEmpire/',
       ],
-    verification: {
-      google: [
-        '3tCfd3Vbg2DwmKkqnD01dIEa7JmUOEuMEkKW-UeRhOg',
-        'Oy93MTaszG3wYsln_fWjPwYsDI8eSDTjNJOeaSJH8tI',
-      ],
     },
   };
 
