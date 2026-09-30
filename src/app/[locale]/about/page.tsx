@@ -54,7 +54,7 @@ export async function generateMetadata({ params }: AboutPageProps): Promise<Meta
       type: 'profile',
       images: [
         {
-          url: 'https://artora.framempire.com/images/fiha-islam.png',
+          url: 'https://artora.framempire.com/images/fiha-islam.webp',
           width: 1200,
           height: 630,
           alt: 'Fiha Islam - Fine Artist & Founder of Artora by FramEmpire',
@@ -65,7 +65,7 @@ export async function generateMetadata({ params }: AboutPageProps): Promise<Meta
       card: 'summary_large_image',
       title,
       description,
-      images: ['https://artora.framempire.com/images/fiha-islam.png'],
+      images: ['https://artora.framempire.com/images/fiha-islam.webp'],
     },
   };
 }
@@ -222,7 +222,7 @@ export default async function AboutPage({ params }: AboutPageProps) {
               <div className="relative rounded-[32px] overflow-hidden bg-void-card border border-white/15 backdrop-blur-2xl shadow-2xl p-3 sm:p-4">
                 <div className="relative aspect-[4/5] w-full rounded-2xl overflow-hidden bg-gradient-to-b from-[#2B020A] to-[#0D0004]">
                   <Image
-                    src="/images/fiha-islam.png"
+                    src="/images/fiha-islam.webp"
                     alt="Fiha Islam - Fine Artist & Master Calligrapher"
                     fill
                     sizes="(max-width: 768px) 100vw, 400px"

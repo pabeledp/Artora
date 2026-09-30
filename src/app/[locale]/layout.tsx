@@ -97,11 +97,11 @@ export async function generateMetadata({
       siteName: 'Artora by FramEmpire',
       images: [
         {
-          url: `${baseUrl}/images/hero-calligraphy.png`,
+          url: `${baseUrl}/images/hero-calligraphy.webp`,
           width: 1200,
           height: 630,
           alt: 'Artora Gallery & Handcrafted Canvases by Fiha Islam',
-          type: 'image/png',
+          type: 'image/webp',
         },
       ],
       locale: isBn ? 'bn_BD' : 'en_US',
@@ -112,7 +112,7 @@ export async function generateMetadata({
       title,
       description,
       creator: '@framempire',
-      images: [`${baseUrl}/images/hero-calligraphy.png`],
+      images: [`${baseUrl}/images/hero-calligraphy.webp`],
     },
     robots: {
       index: true,

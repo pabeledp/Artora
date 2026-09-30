@@ -56,7 +56,7 @@ export const Navbar: React.FC = () => {
           <Link href="/" className="group flex items-center gap-3">
             <div className="relative h-9 sm:h-12 w-32 sm:w-40 flex items-center">
               <img
-                src="/images/artora-logo-main.png"
+                src="/images/artora-logo-main.webp"
                 alt="Artora Logo"
                 className="h-full w-auto object-contain drop-shadow-[0_0_15px_rgba(255,176,193,0.4)] group-hover:brightness-110 transition-all duration-300"
               />

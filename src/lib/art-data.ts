@@ -50,10 +50,10 @@ export const ARTWORKS_DATA: ArtWork[] = [
     featured: true,
     category: "original",
     year: 2025,
-    primaryImage: "/images/hero-calligraphy.png",
+    primaryImage: "/images/hero-calligraphy.webp",
     images: [
-      "/images/hero-calligraphy.png",
-      "/images/la-tahzan-calligraphy.jpg"
+      "/images/hero-calligraphy.webp",
+      "/images/la-tahzan-calligraphy.webp"
     ],
     colorPalette: ["#B88B58", "#5A3825", "#F4ECE1", "#221A15", "#A3CAD6"],
     description: "An evocative, spiritually uplifting original masterpiece featuring the timeless Quranic verse 'Do not grieve, indeed Allah is with us' (لا تَحْزَنْ إِنَّ اللَّهَ مَعَنَا). Hand-crafted with organic raw earth ochre textures, intricate floral leaf accents, and bold fluid Arabic calligraphy by Fiha Islam.",
@@ -94,9 +94,9 @@ export const ARTWORKS_DATA: ArtWork[] = [
     featured: true,
     category: "original",
     year: 2025,
-    primaryImage: "/images/inna-maal-usri-yusra.jpg",
+    primaryImage: "/images/inna-maal-usri-yusra.webp",
     images: [
-      "/images/inna-maal-usri-yusra.jpg"
+      "/images/inna-maal-usri-yusra.webp"
     ],
     colorPalette: ["#5C784D", "#97B376", "#2B3C25", "#DEE5D2", "#181F15"],
     description: "An evocative, tranquil original canvas featuring the sacred Quranic verse 'Indeed, with hardship comes ease' (إِنَّ مَعَ الْعُسْرِ يُسْرًا). Rendered in fluid Thuluth calligraphy against serene layered green mountain horizons, signed Artora by artist Fiha Islam.",
@@ -137,9 +137,9 @@ export const ARTWORKS_DATA: ArtWork[] = [
     featured: true,
     category: "acrylic",
     year: 2025,
-    primaryImage: "/images/landscape-boat-ocean.jpg",
+    primaryImage: "/images/landscape-boat-ocean.webp",
     images: [
-      "/images/landscape-boat-ocean.jpg"
+      "/images/landscape-boat-ocean.webp"
     ],
     colorPalette: ["#0066B2", "#5BB7EA", "#FFFFFF", "#5C4033", "#0B2545"],
     description: "A powerful, immersive seascape capturing a wooden boat gently gliding over dynamic azure textured waves. Fiha Islam's masterclass palette knife impasto delivers vivid dimensional paint textures and calm seafaring serenity.",

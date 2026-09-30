@@ -83,8 +83,8 @@ export default function HomePage() {
         name: 'Artora by FramEmpire',
         alternateName: 'Artora Fine Art Studio by Fiha Islam',
         url: baseUrl,
-        logo: `${baseUrl}/images/artora-logo.png`,
-        image: `${baseUrl}/images/hero-calligraphy.png`,
+        logo: `${baseUrl}/images/artora-logo.webp`,
+        image: `${baseUrl}/images/hero-calligraphy.webp`,
         description:
           'Studio specializing in handcrafted 3D Arabic calligraphy, heavy impasto acrylic paintings, and luxury wall art by fine artist Fiha Islam in Dhaka, Bangladesh.',
         telephone: '+8801723722019',
@@ -518,7 +518,7 @@ export default function HomePage() {
                 <div className="relative group w-full max-w-md aspect-[3/4] rounded-2xl overflow-hidden p-2 bg-gradient-to-tr from-[#E60049]/40 via-[#2B020A] to-[#FFB0C1]/30 shadow-neon-crimson border border-[#E60049]/30">
                   <div className="w-full h-full rounded-xl overflow-hidden relative">
                     <Image
-                      src="/images/fiha-islam.png"
+                      src="/images/fiha-islam.webp"
                       alt="Fine Artist Fiha Islam - Founder & Master Calligrapher at Artora Studio Dhaka"
                       fill
                       sizes="(max-width: 768px) 90vw, 450px"

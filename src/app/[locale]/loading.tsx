@@ -24,7 +24,7 @@ export default function Loading() {
             {/* Center Logo in the Circle */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-14 h-14 flex items-center justify-center">
               <img
-                src="/images/artora-logo.png"
+                src="/images/artora-logo.webp"
                 alt="Artora"
                 className="w-12 h-auto object-contain mix-blend-screen brightness-125 drop-shadow-[0_0_12px_rgba(230,0,73,0.6)] animate-pulse"
               />
