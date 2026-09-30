@@ -28,10 +28,8 @@ export default function ShopPage() {
 
   const categories = [
     { key: 'all', label: t('filters.all') },
-    { key: 'acrylic', label: t('filters.acrylic') },
-    { key: 'textile', label: t('filters.textile') },
-    { key: 'original', label: t('filters.original') },
-    { key: 'print', label: t('filters.print') },
+    { key: 'acrylic', label: isBn ? 'অ্যাক্রিলিক ও রেজিন' : 'Acrylic & Resin' },
+    { key: 'original', label: isBn ? 'আরবি ক্যালিগ্রাফি ও লার্জ ক্যানভাস' : 'Calligraphy & Canvas' },
   ];
 
   const filteredArtworks =

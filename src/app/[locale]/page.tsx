@@ -57,9 +57,8 @@ export default function HomePage() {
 
   const categories = [
     { id: 'all', labelBn: 'সকল মাস্টারপিস', labelEn: 'All Masterpieces' },
-    { id: 'acrylic', labelBn: 'অ্যাক্রিলিক ইম্পাস্তো', labelEn: 'Acrylic Impasto' },
+    { id: 'acrylic', labelBn: 'অ্যাক্রিলিক ও রেজিন', labelEn: 'Acrylic & Resin' },
     { id: 'original', labelBn: 'আরবি ক্যালিগ্রাফি ও লার্জ ক্যানভাস', labelEn: 'Calligraphy & Canvas' },
-    { id: 'textile', labelBn: 'হ্যান্ড-পেইন্টেড সিল্ক', labelEn: 'Wearable Silk' },
   ];
 
   const filteredArtworks =
