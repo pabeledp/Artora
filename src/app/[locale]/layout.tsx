@@ -172,35 +172,16 @@ export default async function LocaleLayout({
         'https://www.linkedin.com/company/artorabyframempire/',
         'https://www.facebook.com/Artora.FramEmpire/',
       ],
+    verification: {
+      google: [
+        '3tCfd3Vbg2DwmKkqnD01dIEa7JmUOEuMEkKW-UeRhOg',
+        'Oy93MTaszG3wYsln_fWjPwYsDI8eSDTjNJOeaSJH8tI',
+      ],
     },
   };
 
   return (
     <html lang={locale} className="dark" suppressHydrationWarning>
-      <head>
-        <meta name="google-site-verification" content="3tCfd3Vbg2DwmKkqnD01dIEa7JmUOEuMEkKW-UeRhOg" />
-        <meta name="google-site-verification" content="Oy93MTaszG3wYsln_fWjPwYsDI8eSDTjNJOeaSJH8tI" />
-        <link rel="icon" href="/favicon.ico" sizes="any" />
-
-        <link rel="icon" href="/icon-48.png" type="image/png" sizes="48x48" />
-        <link rel="icon" href="/icon-192.png" type="image/png" sizes="192x192" />
-        <link rel="icon" href="/icon.png" type="image/png" sizes="512x512" />
-        <link rel="apple-touch-icon" href="/apple-icon.png" sizes="180x180" />
-        <meta name="application-name" content="Artora by FramEmpire" />
-        <meta name="apple-mobile-web-app-title" content="Artora by FramEmpire" />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link
-          rel="preload"
-          as="style"
-          href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa+Ink:wght@400;700&family=Aref+Ruqaa:wght@400;700&family=Hind+Siliguri:wght@400;600;700&family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap"
-        />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa+Ink:wght@400;700&family=Aref+Ruqaa:wght@400;700&family=Hind+Siliguri:wght@400;600;700&family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap"
-          rel="stylesheet"
-        />
-      </head>
-
       <body className="bg-void text-white font-sans antialiased selection:bg-[#E60049] selection:text-white bg-tech-grid min-h-screen flex flex-col justify-between relative" suppressHydrationWarning>
         {/* Google tag (gtag.js) */}
         <Script
