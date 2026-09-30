@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import { useTranslations, useLocale } from 'next-intl';
-import { Link } from '@/i18n/routing';
+import { Link, useRouter } from '@/i18n/routing';
 import { MagneticButton } from '@/components/ui/MagneticButton';
 import { ARTWORKS_DATA, TESTIMONIALS_DATA } from '@/lib/art-data';
 import { useCurrency } from '@/lib/currency';
@@ -28,6 +28,7 @@ import {
   Facebook,
   ExternalLink,
   Quote,
+  Zap,
 } from 'lucide-react';
 
 
@@ -37,6 +38,7 @@ export default function HomePage() {
   const tAbout = useTranslations('aboutArtist');
   const tTestimonials = useTranslations('testimonials');
   const locale = useLocale();
+  const router = useRouter();
   const { formatPrice } = useCurrency();
   const { addItem } = useCart();
 
@@ -336,16 +338,16 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* ===================== ULTRA-MODERN CINEMATIC EXHIBITION GALLERY ===================== */}
-        <section className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto relative z-10">
+        {/* ===================== ULTRA-MODERN EXHIBITION & SHOP COLLECTION ===================== */}
+        <section className="py-16 sm:py-20 px-3 sm:px-6 lg:px-8 max-w-7xl mx-auto relative z-10">
           {/* Section Header */}
-          <div className="flex flex-col lg:flex-row lg:items-end justify-between mb-12 gap-6">
+          <div className="flex flex-col lg:flex-row lg:items-end justify-between mb-8 sm:mb-12 gap-6">
             <div className="space-y-2">
               <div className="flex items-center gap-2 text-[#E60049] text-xs font-mono font-bold uppercase tracking-widest">
                 <Layers className="w-4 h-4" />
-                <span>{isBn ? 'কিউরেটেড প্রদর্শনী' : 'Exhibition Spotlight'}</span>
+                <span>{isBn ? 'কিউরেটেড প্রদর্শনী ও শপ' : 'Exhibition & Featured Artworks'}</span>
               </div>
-              <h2 className="font-display font-black text-3xl sm:text-5xl text-white tracking-tight">
+              <h2 className="font-display font-black text-2xl sm:text-4xl lg:text-5xl text-white tracking-tight">
                 {tFeatured('title')}
               </h2>
             </div>
@@ -359,9 +361,8 @@ export default function HomePage() {
                     key={cat.id}
                     onClick={() => {
                       setSelectedCategory(cat.id);
-                      setActiveArtIndex(0);
                     }}
-                    className={`px-4 py-2 rounded-xl text-xs font-semibold shrink-0 snap-start transition-all duration-300 ${
+                    className={`px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-xl text-xs font-semibold shrink-0 snap-start transition-all duration-300 ${
                       isActive
                         ? 'bg-gradient-to-r from-[#E60049] to-[#2B020A] text-white shadow-neon-crimson border border-[#E60049]/50'
                         : 'text-white/60 hover:text-white hover:bg-white/5'
@@ -374,179 +375,119 @@ export default function HomePage() {
             </div>
           </div>
 
-          {/* Dynamic Exhibition Showcase Stage */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
-            {/* Main Cinematic Stage Canvas (8 Cols) */}
-            <div className="lg:col-span-8 rounded-3xl p-6 sm:p-8 bg-gradient-to-b from-[#1A030A]/90 to-void-card border border-glass-border shadow-2xl relative overflow-hidden flex flex-col justify-between">
-              <AnimatePresence mode="wait">
+          {/* Products Grid: 2 per line on mobile (grid-cols-2), 2 columns of horizontal cards on desktop (md:grid-cols-2) */}
+          <motion.div layout className="grid grid-cols-2 md:grid-cols-2 gap-3 sm:gap-4 md:gap-6">
+            <AnimatePresence>
+              {filteredArtworks.map((art) => (
                 <motion.div
-                  key={activeArt.id}
-                  initial={{ opacity: 0, scale: 0.98 }}
+                  key={art.id}
+                  layout
+                  initial={{ opacity: 0, scale: 0.96 }}
                   animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.98 }}
+                  exit={{ opacity: 0, scale: 0.96 }}
                   transition={{ duration: 0.3 }}
-                  className="space-y-5"
+                  className="group rounded-2xl sm:rounded-3xl overflow-hidden bg-void-card border border-glass-border hover:border-[#E60049]/60 transition-all duration-300 flex flex-col md:flex-row justify-between shadow-xl hover:shadow-neon-crimson relative"
                 >
-                  {/* 100% Unobstructed Artwork Display Container */}
-                  <div className="relative aspect-[16/10] sm:aspect-[16/9] rounded-2xl overflow-hidden bg-void-light border border-white/10 group shadow-inner">
-                    <Image
-                      src={activeArt.primaryImage}
-                      alt={`${activeArt.title} Original Painting Canvas by Fiha Islam - Artora Studio`}
-                      fill
-                      sizes="(max-width: 1024px) 100vw, 850px"
-                      className="object-cover object-center transition-transform duration-700 group-hover:scale-105"
-                    />
+                  {/* Product Visual Container (Top on Mobile, Left on Desktop) */}
+                  <div className="relative w-full md:w-48 lg:w-60 aspect-square md:aspect-auto shrink-0 overflow-hidden bg-void-light border-b md:border-b-0 md:border-r border-glass-border">
+                    <Link href={`/art/${art.slug}`} className="block w-full h-full">
+                      <img
+                        src={art.primaryImage}
+                        alt={`${art.title} - Handcrafted Canvas Artwork by Fiha Islam`}
+                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-void/80 via-transparent to-transparent opacity-60 md:opacity-40" />
+                    </Link>
 
-                    {/* Top Floating Badges */}
-                    <div className="absolute top-4 left-4 flex flex-wrap gap-2">
-                      {activeArt.isSold ? (
-                        <span className="px-3 py-1 rounded-full text-xs font-mono font-bold bg-black/60 border border-white/20 backdrop-blur-md text-white flex items-center gap-1.5 shadow-lg">
-                          <span className="w-2 h-2 rounded-full bg-[#E60049] animate-pulse" />
-                          <span>{tFeatured('sold')}</span>
+                    {/* Floating Badges (Top Left) */}
+                    <div className="absolute top-2.5 left-2.5 sm:top-3 sm:left-3 flex flex-wrap gap-1.5 z-10 pointer-events-none">
+                      {art.isSold ? (
+                        <span className="px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-full text-[9px] sm:text-[10px] font-mono font-bold bg-black/70 border border-white/20 backdrop-blur-md text-white flex items-center gap-1 shadow-lg">
+                          <span className="w-1.5 h-1.5 rounded-full bg-[#E60049] animate-pulse" />
+                          <span>{isBn ? 'সোল্ড আউট' : 'SOLD OUT'}</span>
                         </span>
-                      ) : activeArt.discountPercent ? (
-                        <span className="px-3 py-1 rounded-full text-xs font-mono font-bold bg-[#E60049] text-white shadow-neon-crimson animate-pulse">
-                          🔥 {activeArt.discountPercent}% OFF
+                      ) : art.discountPercent ? (
+                        <span className="px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-full text-[9px] sm:text-[10px] font-mono font-bold bg-[#E60049] text-white shadow-neon-crimson animate-pulse">
+                          🔥 {art.discountPercent}% OFF
                         </span>
-                      ) : (
-                        <span className="px-3 py-1 rounded-full text-xs font-semibold bg-emerald-500/80 text-white backdrop-blur-md">
-                          {tFeatured('available')}
-                        </span>
-                      )}
+                      ) : null}
                     </div>
+                  </div>
 
-                    <div className="absolute top-4 right-4">
-                      <Link
-                        href={`/art/${activeArt.slug}`}
-                        className="px-3.5 py-1.5 rounded-full text-xs font-mono bg-[#E60049]/30 border border-[#E60049] text-[#FFB0C1] backdrop-blur-md flex items-center gap-1.5 hover:bg-[#E60049] hover:text-white transition-colors"
-                      >
-                        <Eye className="w-3.5 h-3.5 text-[#FFB0C1]" /> {isBn ? 'বিস্তারিত দেখুন' : 'View Details'}
+                  {/* Product Information Container (Bottom on Mobile, Right on Desktop) */}
+                  <div className="p-3 sm:p-4 md:p-5 lg:p-6 flex-1 flex flex-col justify-between space-y-2 sm:space-y-3">
+                    {/* Title & Specs */}
+                    <div className="space-y-1">
+                      <Link href={`/art/${art.slug}`} className="block group/title">
+                        <h3 className="font-display font-bold text-xs sm:text-sm md:text-base lg:text-lg text-white group-hover/title:text-[#FFB0C1] transition-colors leading-snug line-clamp-2 md:line-clamp-2">
+                          {isBn ? art.titleBn : art.title}
+                        </h3>
                       </Link>
-                    </div>
-                  </div>
-
-                  {/* Artwork Title Placed BELOW Image */}
-                  <div className="flex items-center justify-between gap-4 pt-2">
-                    <div>
-                      <h3 className="font-display font-black text-2xl sm:text-3xl text-white">
-                        {isBn ? activeArt.titleBn : activeArt.title}
-                      </h3>
+                      <p className="text-[10px] sm:text-xs text-white/50 hidden md:block line-clamp-1">
+                        {isBn ? art.canvasSizeBn : art.canvasSize}
+                      </p>
                     </div>
 
-                    {/* Color Palette Dots */}
-                    <div className="hidden sm:flex items-center gap-1.5 p-2 rounded-full bg-black/60 backdrop-blur-md border border-white/10">
-                      {activeArt.colorPalette.map((color, i) => (
-                        <span
-                          key={i}
-                          className="w-3.5 h-3.5 rounded-full border border-white/20 shadow-sm"
-                          style={{ backgroundColor: color }}
-                          title={color}
-                        />
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* Action Footer */}
-                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pt-3 border-t border-white/10">
-
-                    <div className="flex items-center gap-3 shrink-0">
-                      <div className="text-right">
-                        {!activeArt.isSold && activeArt.discountPercent && activeArt.originalPriceBDT && (
-                          <div className="flex items-center justify-end gap-1.5">
-                            <span className="text-xs text-white/40 line-through font-mono">
-                              ৳{activeArt.originalPriceBDT.toLocaleString()}
+                    {/* Price & Action Section */}
+                    <div className="pt-2 sm:pt-3 border-t border-glass-border flex flex-col justify-between gap-2.5">
+                      {/* Price Row */}
+                      <div>
+                        {!art.isSold && art.discountPercent && art.originalPriceBDT && (
+                          <div className="flex items-center gap-1.5">
+                            <span className="text-[10px] sm:text-xs text-white/40 line-through font-mono">
+                              ৳{art.originalPriceBDT.toLocaleString()}
                             </span>
-                            <span className="text-[10px] font-bold font-mono px-1.5 py-0.5 rounded bg-[#E60049]/20 text-[#FFB0C1] border border-[#E60049]/40">
-                              {activeArt.discountPercent}% OFF
+                            <span className="text-[8px] sm:text-[9px] font-mono font-bold px-1 py-0.2 rounded bg-[#E60049]/20 text-[#FFB0C1] border border-[#E60049]/40">
+                              -{art.discountPercent}%
                             </span>
                           </div>
                         )}
-                        <span className="text-2xl font-display font-black text-[#E60049] font-mono">
-                          ৳{activeArt.priceBDT.toLocaleString()}
+                        <span className="text-sm sm:text-base md:text-xl font-black text-[#E60049] font-mono block">
+                          ৳{art.priceBDT.toLocaleString()}
                         </span>
                       </div>
 
-                      {!activeArt.isSold && (
-                        <button
-                          onClick={() => addItem(activeArt)}
-                          className="p-3.5 rounded-2xl bg-white/10 hover:bg-[#E60049] text-white border border-glass-border transition-all cursor-pointer min-h-[48px] min-w-[48px] flex items-center justify-center"
-                          title="Add to Inquiry Cart"
-                        >
-                          <ShoppingBag className="w-5 h-5" />
-                        </button>
-                      )}
-
-                      <Link href={`/art/${activeArt.slug}`}>
-                        <MagneticButton variant="gold" className="text-xs py-3.5 px-5 min-h-[48px]">
-                          <span>{activeArt.isSold ? (isBn ? 'রিস্টক রিকোয়েস্ট' : 'Request Restock') : tFeatured('viewDetails')}</span>
-                          <ArrowRight className="w-3.5 h-3.5" />
-                        </MagneticButton>
-                      </Link>
+                      {/* Actions Row */}
+                      <div className="w-full">
+                        {art.isSold ? (
+                          <Link
+                            href={`/art/${art.slug}`}
+                            className="w-full py-2 px-3 rounded-xl sm:rounded-full text-[11px] sm:text-xs font-semibold bg-gradient-to-r from-[#E60049] to-[#2B020A] text-white shadow-neon-crimson hover:opacity-90 transition-all flex items-center justify-center gap-1.5 text-center min-h-[36px]"
+                          >
+                            <span className="truncate">{isBn ? 'রিস্টক রিকোয়েস্ট' : 'Request Restock'}</span>
+                            <ArrowRight className="w-3 h-3 shrink-0" />
+                          </Link>
+                        ) : (
+                          <div className="flex items-center gap-1.5 sm:gap-2 w-full">
+                            <button
+                              onClick={() => addItem(art)}
+                              className="p-2 sm:px-3 sm:py-2 rounded-xl sm:rounded-full bg-void-card border border-glass-border hover:border-[#E60049] text-white hover:text-[#FFB0C1] transition-all flex items-center justify-center gap-1.5 shrink-0 min-h-[36px]"
+                              title={isBn ? 'কার্টে যোগ করুন' : 'Add to Cart'}
+                            >
+                              <ShoppingBag className="w-3.5 h-3.5 text-[#FFB0C1]" />
+                              <span className="text-xs font-semibold hidden lg:inline">
+                                {isBn ? 'কার্ট' : 'Cart'}
+                              </span>
+                            </button>
+                            <button
+                              onClick={() => {
+                                addItem(art);
+                                router.push('/checkout');
+                              }}
+                              className="flex-1 py-2 px-2.5 sm:px-4 rounded-xl sm:rounded-full text-[11px] sm:text-xs font-bold bg-gradient-to-r from-[#E60049] to-[#2B020A] text-white shadow-neon-crimson hover:opacity-90 transition-all flex items-center justify-center gap-1 min-h-[36px]"
+                            >
+                              <Zap className="w-3 h-3 text-gold shrink-0" />
+                              <span className="truncate">{isBn ? 'এখনই কিনুন' : 'Buy now'}</span>
+                            </button>
+                          </div>
+                        )}
+                      </div>
                     </div>
                   </div>
                 </motion.div>
-              </AnimatePresence>
-            </div>
-
-            {/* Curator's Artwork Deck / Thumbnails (4 Cols) */}
-            <div className="lg:col-span-4 flex flex-col justify-between space-y-3">
-              <div className="text-xs font-mono uppercase tracking-wider text-white/50 flex items-center justify-between px-1">
-                <span>{isBn ? 'সকল শিল্পকর্ম' : 'Collection Pieces'} ({filteredArtworks.length})</span>
-                <Link href="/shop" className="text-[#FFB0C1] hover:underline flex items-center gap-1">
-                  {isBn ? 'সব দেখুন' : 'View All'} <ChevronRight className="w-3 h-3" />
-                </Link>
-              </div>
-
-              {/* Horizontal Slider on mobile with compact avatar + title, vertical list on desktop */}
-              <div className="flex overflow-x-auto gap-2.5 pb-2 pt-1 scrollbar-none snap-x snap-mandatory lg:flex-col lg:overflow-visible lg:gap-0 lg:space-y-3 lg:max-h-[500px] lg:overflow-y-auto w-full pr-0 lg:pr-1">
-                {filteredArtworks.map((art, idx) => {
-                  const isSelected = activeArt.id === art.id;
-                  return (
-                    <div
-                      key={art.id}
-                      onClick={() => setActiveArtIndex(idx)}
-                      className={`snap-start shrink-0 w-[180px] sm:w-[210px] lg:w-full p-2 lg:p-3.5 rounded-2xl border transition-all duration-300 cursor-pointer flex items-center gap-2.5 lg:gap-3.5 group ${
-                        isSelected
-                          ? 'bg-[#E60049]/25 border-[#E60049] shadow-neon-crimson ring-1.5 ring-[#E60049] scale-[1.01]'
-                          : 'bg-void-card/80 border-glass-border hover:border-white/30 hover:bg-white/[0.04]'
-                      }`}
-                    >
-                      {/* Compact profile-pic style avatar */}
-                      <div className="relative w-11 h-11 sm:w-12 sm:h-12 lg:w-16 lg:h-16 rounded-xl overflow-hidden bg-void-light shrink-0 border border-white/15">
-                        <Image
-                          src={art.primaryImage}
-                          alt={`${art.title} Thumbnail`}
-                          fill
-                          sizes="64px"
-                          className="object-cover group-hover:scale-105 transition-transform duration-500"
-                        />
-                        {!art.isSold && art.discountPercent && (
-                          <div className="absolute top-0.5 right-0.5 px-1 py-0.2 rounded bg-[#E60049] text-white text-[7px] font-bold font-mono">
-                            -{art.discountPercent}%
-                          </div>
-                        )}
-                        {isSelected && (
-                          <div className="absolute bottom-0.5 right-0.5 w-2 h-2 rounded-full bg-gold animate-pulse lg:hidden" />
-                        )}
-                      </div>
-
-                      {/* Title & Price beside avatar */}
-                      <div className="flex-1 min-w-0 text-left">
-                        <h4 className="font-display font-bold text-[11px] sm:text-xs lg:text-sm text-white truncate group-hover:text-[#FFB0C1] transition-colors leading-tight">
-                          {isBn ? art.titleBn : art.title}
-                        </h4>
-                        <div className="flex items-center gap-1.5 mt-0.5">
-                          <span className="text-[11px] sm:text-xs font-mono font-bold text-[#FFB0C1] lg:text-[#E60049]">
-                            ৳{art.priceBDT.toLocaleString()}
-                          </span>
-                        </div>
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
-          </div>
+              ))}
+            </AnimatePresence>
+          </motion.div>
         </section>
 
         {/* ===================== ABOUT THE ARTIST • FIHA ISLAM SECTION ===================== */}
