@@ -339,21 +339,21 @@ export default function HomePage() {
         </section>
 
         {/* ===================== ULTRA-MODERN EXHIBITION & SHOP COLLECTION ===================== */}
-        <section className="py-16 sm:py-20 px-3 sm:px-6 lg:px-8 max-w-7xl mx-auto relative z-10">
+        <section className="py-8 sm:py-14 md:py-20 px-2.5 sm:px-4 lg:px-8 max-w-7xl mx-auto relative z-10 pb-28 md:pb-20">
           {/* Section Header */}
-          <div className="flex flex-col lg:flex-row lg:items-end justify-between mb-8 sm:mb-12 gap-6">
-            <div className="space-y-2">
-              <div className="flex items-center gap-2 text-[#E60049] text-xs font-mono font-bold uppercase tracking-widest">
-                <Layers className="w-4 h-4" />
+          <div className="flex flex-col lg:flex-row lg:items-end justify-between mb-5 sm:mb-8 md:mb-12 gap-3 sm:gap-6">
+            <div className="space-y-1 sm:space-y-2">
+              <div className="flex items-center gap-1.5 text-[#E60049] text-[11px] sm:text-xs font-mono font-bold uppercase tracking-widest">
+                <Layers className="w-3.5 h-3.5" />
                 <span>{isBn ? 'কিউরেটেড প্রদর্শনী ও শপ' : 'Exhibition & Featured Artworks'}</span>
               </div>
-              <h2 className="font-display font-black text-2xl sm:text-4xl lg:text-5xl text-white tracking-tight">
+              <h2 className="font-display font-black text-xl sm:text-3xl lg:text-5xl text-white tracking-tight">
                 {tFeatured('title')}
               </h2>
             </div>
 
             {/* Category Filter Pills */}
-            <div className="flex items-center gap-2 overflow-x-auto max-w-full pb-2 lg:pb-0 scrollbar-none snap-x p-1.5 rounded-2xl bg-void-card border border-glass-border backdrop-blur-xl">
+            <div className="flex items-center gap-1.5 sm:gap-2 overflow-x-auto max-w-full pb-1 lg:pb-0 scrollbar-none snap-x p-1 sm:p-1.5 rounded-2xl bg-void-card border border-glass-border backdrop-blur-xl">
               {categories.map((cat) => {
                 const isActive = selectedCategory === cat.id;
                 return (
@@ -362,9 +362,9 @@ export default function HomePage() {
                     onClick={() => {
                       setSelectedCategory(cat.id);
                     }}
-                    className={`px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-xl text-xs font-semibold shrink-0 snap-start transition-all duration-300 ${
+                    className={`px-3 sm:px-4 py-1 sm:py-2 rounded-xl text-[11px] sm:text-xs font-semibold shrink-0 snap-start transition-all duration-300 ${
                       isActive
-                        ? 'bg-gradient-to-r from-[#E60049] to-[#2B020A] text-white shadow-neon-crimson border border-[#E60049]/50'
+                        ? 'bg-gradient-to-r from-[#E60049] to-[#2B020A] text-white shadow-neon-crimson border border-[#E60049]/50 font-bold'
                         : 'text-white/60 hover:text-white hover:bg-white/5'
                     }`}
                   >
@@ -376,7 +376,7 @@ export default function HomePage() {
           </div>
 
           {/* Products Grid: 2 per line on mobile (grid-cols-2), 2 columns of horizontal cards on desktop (md:grid-cols-2) */}
-          <motion.div layout className="grid grid-cols-2 md:grid-cols-2 gap-3 sm:gap-4 md:gap-6">
+          <motion.div layout className="grid grid-cols-2 md:grid-cols-2 gap-2 sm:gap-3.5 md:gap-6">
             <AnimatePresence>
               {filteredArtworks.map((art) => (
                 <motion.div
@@ -385,11 +385,11 @@ export default function HomePage() {
                   initial={{ opacity: 0, scale: 0.96 }}
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.96 }}
-                  transition={{ duration: 0.3 }}
-                  className="group rounded-2xl sm:rounded-3xl overflow-hidden bg-void-card border border-glass-border hover:border-[#E60049]/60 transition-all duration-300 flex flex-col md:flex-row justify-between shadow-xl hover:shadow-neon-crimson relative"
+                  transition={{ duration: 0.25 }}
+                  className="group rounded-xl sm:rounded-2xl md:rounded-3xl overflow-hidden bg-void-card/90 border border-glass-border hover:border-[#E60049]/60 transition-all duration-300 flex flex-col md:flex-row justify-between shadow-lg hover:shadow-neon-crimson relative"
                 >
                   {/* Product Visual Container (Top on Mobile, Left on Desktop) */}
-                  <div className="relative w-full md:w-48 lg:w-60 aspect-square md:aspect-auto shrink-0 overflow-hidden bg-void-light border-b md:border-b-0 md:border-r border-glass-border">
+                  <div className="relative w-full md:w-44 lg:w-56 aspect-[16/11] sm:aspect-[4/3] md:aspect-auto shrink-0 overflow-hidden bg-void-light border-b md:border-b-0 md:border-r border-glass-border">
                     <Link href={`/art/${art.slug}`} className="block w-full h-full">
                       <img
                         src={art.primaryImage}
@@ -400,14 +400,14 @@ export default function HomePage() {
                     </Link>
 
                     {/* Floating Badges (Top Left) */}
-                    <div className="absolute top-2.5 left-2.5 sm:top-3 sm:left-3 flex flex-wrap gap-1.5 z-10 pointer-events-none">
+                    <div className="absolute top-1.5 left-1.5 sm:top-2.5 sm:left-2.5 flex flex-wrap gap-1 z-10 pointer-events-none">
                       {art.isSold ? (
-                        <span className="px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-full text-[9px] sm:text-[10px] font-mono font-bold bg-black/70 border border-white/20 backdrop-blur-md text-white flex items-center gap-1 shadow-lg">
+                        <span className="px-1.5 py-0.5 sm:px-2 sm:py-0.5 rounded-full text-[8px] sm:text-[9px] font-mono font-bold bg-black/75 border border-white/20 backdrop-blur-md text-white flex items-center gap-1 shadow-md">
                           <span className="w-1.5 h-1.5 rounded-full bg-[#E60049] animate-pulse" />
                           <span>{isBn ? 'সোল্ড আউট' : 'SOLD OUT'}</span>
                         </span>
                       ) : art.discountPercent ? (
-                        <span className="px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-full text-[9px] sm:text-[10px] font-mono font-bold bg-[#E60049] text-white shadow-neon-crimson animate-pulse">
+                        <span className="px-1.5 py-0.5 sm:px-2 sm:py-0.5 rounded-full text-[8px] sm:text-[9px] font-mono font-bold bg-[#E60049] text-white shadow-neon-crimson animate-pulse">
                           🔥 {art.discountPercent}% OFF
                         </span>
                       ) : null}
@@ -415,11 +415,11 @@ export default function HomePage() {
                   </div>
 
                   {/* Product Information Container (Bottom on Mobile, Right on Desktop) */}
-                  <div className="p-3 sm:p-4 md:p-5 lg:p-6 flex-1 flex flex-col justify-between space-y-2 sm:space-y-3">
+                  <div className="p-2 sm:p-3 md:p-5 lg:p-6 flex-1 flex flex-col justify-between space-y-1.5 sm:space-y-2">
                     {/* Title & Specs */}
-                    <div className="space-y-1">
+                    <div className="space-y-0.5">
                       <Link href={`/art/${art.slug}`} className="block group/title">
-                        <h3 className="font-display font-bold text-xs sm:text-sm md:text-base lg:text-lg text-white group-hover/title:text-[#FFB0C1] transition-colors leading-snug line-clamp-2 md:line-clamp-2">
+                        <h3 className="font-display font-bold text-[11px] sm:text-xs md:text-base lg:text-lg text-white group-hover/title:text-[#FFB0C1] transition-colors leading-tight line-clamp-1 md:line-clamp-2">
                           {isBn ? art.titleBn : art.title}
                         </h3>
                       </Link>
@@ -429,20 +429,20 @@ export default function HomePage() {
                     </div>
 
                     {/* Price & Action Section */}
-                    <div className="pt-2 sm:pt-3 border-t border-glass-border flex flex-col justify-between gap-2.5">
+                    <div className="pt-1.5 sm:pt-2 md:pt-3 border-t border-glass-border flex flex-col justify-between gap-1.5 sm:gap-2">
                       {/* Price Row */}
                       <div>
                         {!art.isSold && art.discountPercent && art.originalPriceBDT && (
-                          <div className="flex items-center gap-1.5">
-                            <span className="text-[10px] sm:text-xs text-white/40 line-through font-mono">
+                          <div className="flex items-center gap-1">
+                            <span className="text-[8px] sm:text-[10px] text-white/40 line-through font-mono">
                               ৳{art.originalPriceBDT.toLocaleString()}
                             </span>
-                            <span className="text-[8px] sm:text-[9px] font-mono font-bold px-1 py-0.2 rounded bg-[#E60049]/20 text-[#FFB0C1] border border-[#E60049]/40">
+                            <span className="text-[7px] sm:text-[8px] font-mono font-bold px-1 py-0.2 rounded bg-[#E60049]/20 text-[#FFB0C1] border border-[#E60049]/40">
                               -{art.discountPercent}%
                             </span>
                           </div>
                         )}
-                        <span className="text-sm sm:text-base md:text-xl font-black text-[#E60049] font-mono block">
+                        <span className="text-xs sm:text-sm md:text-xl font-bold text-[#E60049] font-mono block leading-none">
                           ৳{art.priceBDT.toLocaleString()}
                         </span>
                       </div>
@@ -452,19 +452,19 @@ export default function HomePage() {
                         {art.isSold ? (
                           <Link
                             href={`/art/${art.slug}`}
-                            className="w-full py-2 px-3 rounded-xl sm:rounded-full text-[11px] sm:text-xs font-semibold bg-gradient-to-r from-[#E60049] to-[#2B020A] text-white shadow-neon-crimson hover:opacity-90 transition-all flex items-center justify-center gap-1.5 text-center min-h-[36px]"
+                            className="w-full py-1 sm:py-1.5 px-2 rounded-lg md:rounded-full text-[10px] sm:text-xs font-semibold bg-gradient-to-r from-[#E60049] to-[#2B020A] text-white shadow-neon-crimson hover:opacity-90 transition-all flex items-center justify-center gap-1 text-center h-7 sm:h-8 md:h-9"
                           >
                             <span className="truncate">{isBn ? 'রিস্টক রিকোয়েস্ট' : 'Request Restock'}</span>
-                            <ArrowRight className="w-3 h-3 shrink-0" />
+                            <ArrowRight className="w-2.5 h-2.5 sm:w-3 sm:h-3 shrink-0" />
                           </Link>
                         ) : (
-                          <div className="flex items-center gap-1.5 sm:gap-2 w-full">
+                          <div className="flex items-center gap-1 sm:gap-1.5 md:gap-2 w-full">
                             <button
                               onClick={() => addItem(art)}
-                              className="p-2 sm:px-3 sm:py-2 rounded-xl sm:rounded-full bg-void-card border border-glass-border hover:border-[#E60049] text-white hover:text-[#FFB0C1] transition-all flex items-center justify-center gap-1.5 shrink-0 min-h-[36px]"
+                              className="p-1 sm:p-1.5 md:px-3 md:py-2 rounded-lg md:rounded-full bg-void-card border border-glass-border hover:border-[#E60049] text-white hover:text-[#FFB0C1] transition-all flex items-center justify-center gap-1 shrink-0 h-7 sm:h-8 md:h-9"
                               title={isBn ? 'কার্টে যোগ করুন' : 'Add to Cart'}
                             >
-                              <ShoppingBag className="w-3.5 h-3.5 text-[#FFB0C1]" />
+                              <ShoppingBag className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-[#FFB0C1]" />
                               <span className="text-xs font-semibold hidden lg:inline">
                                 {isBn ? 'কার্ট' : 'Cart'}
                               </span>
@@ -474,10 +474,10 @@ export default function HomePage() {
                                 addItem(art);
                                 router.push('/checkout');
                               }}
-                              className="flex-1 py-2 px-2.5 sm:px-4 rounded-xl sm:rounded-full text-[11px] sm:text-xs font-bold bg-gradient-to-r from-[#E60049] to-[#2B020A] text-white shadow-neon-crimson hover:opacity-90 transition-all flex items-center justify-center gap-1 min-h-[36px]"
+                              className="flex-1 py-1 px-1.5 sm:px-2.5 md:px-4 rounded-lg md:rounded-full text-[10px] sm:text-xs font-bold bg-gradient-to-r from-[#E60049] to-[#2B020A] text-white shadow-neon-crimson hover:opacity-90 transition-all flex items-center justify-center gap-0.5 sm:gap-1 h-7 sm:h-8 md:h-9"
                             >
-                              <Zap className="w-3 h-3 text-gold shrink-0" />
-                              <span className="truncate">{isBn ? 'এখনই কিনুন' : 'Buy now'}</span>
+                              <Zap className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-gold shrink-0" />
+                              <span className="truncate">{isBn ? 'কিনুন' : 'Buy now'}</span>
                             </button>
                           </div>
                         )}
