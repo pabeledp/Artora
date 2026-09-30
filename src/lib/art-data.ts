@@ -205,6 +205,52 @@ export const ARTWORKS_DATA: ArtWork[] = [
       "আসল কোস্টাল ঝিনুক খচিত ইউনিক ডিটেইলিং",
       "সীমিত সময়ের জন্য ৪৫% বিশেষ লঞ্চ ডিসকাউন্ট"
     ]
+  },
+  {
+    id: "art-better-days-ahead-006",
+    slug: "better-days-ahead-floral-texture-art",
+    title: "Better Days Ahead • Emerald Floral Textured Canvas",
+    titleBn: "বেটার ডেজ অ্যাহেড • এমারেল্ড ফ্লোরাল টেক্সচার্ড ক্যানভাস",
+    medium: "Heavy Impasto White Blossom Palette Knife on Emerald Green Textured Canvas",
+    mediumBn: "হেভি ইম্পাস্তো হোয়াইট ব্লসম প্যালেট-নাইফ ও এমারেল্ড গ্রিন টেক্সচার্ড ক্যানভাস",
+    canvasSize: "24 x 36 inches (Vertical Statement Canvas)",
+    canvasSizeBn: "২৪ x ৩৬ ইঞ্চি (ভার্টিক্যাল স্টেটমেন্ট ক্যানভাস)",
+    originalPriceBDT: 15333,
+    discountPercent: 55,
+    priceBDT: 6900,
+    priceUSD: 65,
+    isSold: false,
+    isCommissionable: true,
+    featured: true,
+    category: "acrylic",
+    year: 2025,
+    primaryImage: "/images/better-days-ahead-preview.webp",
+    images: [
+      "/images/better-days-ahead-preview.webp",
+      "/images/better-days-ahead-front.webp",
+      "/images/better-days-ahead-room.webp",
+      "/images/better-days-ahead-shelf.webp"
+    ],
+    colorPalette: ["#1B4D3E", "#2E8B57", "#FFFFFF", "#E07A5F", "#1A2E20"],
+    description: "An uplifting, serene original botanical artwork featuring radiant white blossoms flourishing amidst a richly layered emerald green impasto texture. Crafted with emotive palette knife strokes by Fiha Islam to bring warmth, peace, and hope to your living or bedroom space.",
+    descriptionBn: "নিবিড় সবুজ অরণ্য ও প্রশান্তির প্রতীক হয়ে ফুটে ওঠা শুভ্র পুষ্পের এক অপরূপ শিল্পকর্ম 'Better Days Ahead'। শিল্পী ফিহা ইসলামের নিপুণ প্যালেট-নাইফ স্ট্রোক ও ত্রিমাত্রিক টেক্সচারে জীবন্ত এমারেল্ড গ্রিন ক্যানভাস আপনার ঘরের আবহকে করবে শান্তিময় ও স্নিগ্ধ।",
+    dimensions: {
+      widthInches: 24,
+      heightInches: 36,
+      depthInches: 1.5
+    },
+    highlights: [
+      "3D Raised palette knife impasto white blossoming petals",
+      "Deep layered emerald & forest green textured foliage",
+      "Signed original fine art by artist Fiha Islam",
+      "Special 55% Collector Launch Discount applied"
+    ],
+    highlightsBn: [
+      "প্যালেট-নাইফের ত্রিমাত্রিক উঁচু সাদা পাপড়ির ইম্পাস্তো টেক্সচার",
+      "গভীর এমারেল্ড ও ফরেস্ট গ্রিনের সমৃদ্ধ টেক্সচার্ড ব্যাকগ্রাউন্ড",
+      "শিল্পী ফিহা ইসলামের হস্তাক্ষরিত অরিজিনাল ফাইন আর্ট",
+      "সীমিত সময়ের জন্য ৫৫% বিশেষ কালেক্টর ডিসকাউন্ট"
+    ]
   }
 ];
 
