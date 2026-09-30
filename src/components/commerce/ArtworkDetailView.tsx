@@ -69,7 +69,7 @@ export const ArtworkDetailView: React.FC<ArtworkDetailViewProps> = ({ art }) => 
 
           {/* Main Visual Display */}
           <div className="space-y-4">
-            <div className="relative aspect-square sm:aspect-square rounded-2xl overflow-hidden bg-void-card border border-glass-border shadow-2xl group">
+            <div className="relative aspect-[4/3] sm:aspect-[16/10] rounded-2xl overflow-hidden bg-void-card border border-glass-border shadow-2xl group">
               <Image
                 src={activeImage}
                 alt={`${art.title} Original Acrylic Impasto Canvas Artwork by Fiha Islam`}
